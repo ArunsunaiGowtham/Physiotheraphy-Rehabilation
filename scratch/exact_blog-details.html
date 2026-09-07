@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="In-depth studio tutorial, master techniques, material breakdowns, and step-by-step illustrations.">
+  <title>Article Details — Artisan Craft Journal</title>
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Template Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/rtl.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="topbar">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <span><i class="bi bi-palette-fill text-warning me-1"></i> Art Club: Get 15% off all materials mentioned in our tutorials!</span>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="tel:+15550192834" class="text-decoration-none d-none d-md-inline"><i class="bi bi-telephone me-1"></i> +1 (555) 019-2834</a>
+        <span class="text-white-50 d-none d-md-inline">|</span>
+        <button class="btn btn-link p-0 text-white text-decoration-none small d-flex align-items-center gap-1" data-action="toggle-theme" title="Toggle Light / Dark Mode">
+          <i class="bi bi-moon-stars-fill theme-toggle-icon"></i>
+          <span class="d-none d-sm-inline">Theme</span>
+        </button>
+        <span class="text-white-50">|</span>
+        <button class="btn btn-link p-0 text-white text-decoration-none small d-flex align-items-center gap-1" data-action="toggle-rtl" title="Toggle RTL / LTR Layout">
+          <i class="bi bi-translate"></i>
+          <span class="rtl-toggle-text">RTL</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg header-navbar">
+    <div class="container">
+      <a class="brand-logo" href="index.html">
+        <div class="brand-icon-wrap"><i class="bi bi-brush-fill"></i></div>
+        <div><span>Artisan<span class="accent">Craft</span></span></div>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavMenu" aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-main"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavMenu">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-supplies.html">Student Supplies</a></li>
+          <li class="nav-item"><a class="nav-link" href="workshops.html">Workshops</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+            <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="pagesDropdown">
+              <li><a class="dropdown-item" href="product-details.html?id=acrylic-set">Product Details</a></li>
+              <li><a class="dropdown-item" href="workshop-details.html?id=ws-watercolor">Workshop Details</a></li>
+              <li><a class="dropdown-item" href="blog-details.html?id=blog-1">Blog Details</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="pricing.html">Pricing & Memberships</a></li>
+              <li><a class="dropdown-item" href="cart.html">Cart Page</a></li>
+              <li><a class="dropdown-item" href="checkout.html">Checkout Page</a></li>
+              <li><a class="dropdown-item" href="login.html">Login</a></li>
+              <li><a class="dropdown-item" href="register.html">Register</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="404.html">404 Error Page</a></li>
+              <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="action-badge-btn" data-open-search title="Search Art Supplies"><i class="bi bi-search"></i></button>
+          <a href="shop.html" class="action-badge-btn" title="Saved Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+          </a>
+          <button class="action-badge-btn" data-open-cart-drawer title="Studio Cart">
+            <i class="bi bi-bag-fill"></i>
+            <span class="badge-count cart-count-badge" style="display: none;">0</span>
+          </button>
+          <a href="login.html" class="action-badge-btn d-none d-sm-flex" title="Artist Account"><i class="bi bi-person-circle"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Breadcrumbs Header -->
+  <header class="page-header-craft">
+    <div class="container">
+      <ul class="breadcrumb-craft">
+        <li><a href="index.html">Home</a></li>
+        <li class="separator"><i class="bi bi-chevron-right"></i></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li class="separator"><i class="bi bi-chevron-right"></i></li>
+        <li class="active" id="blogBreadcrumbTitle">Article Details</li>
+      </ul>
+      <h1 class="h2 fw-bold mb-2" id="blogDetailHeading">Master Tutorial</h1>
+    </div>
+  </header>
+
+  <!-- Article Layout Section -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row g-5">
+        <!-- Left: Main Article Content -->
+        <article class="col-lg-8">
+          <div class="rounded-card overflow-hidden shadow-sm mb-4 border">
+            <img src="assets/images/blog/blog-1.svg" alt="Article Hero Image" id="blogDetailHeroImg" class="w-100" style="max-height: 420px; object-fit: cover;">
+          </div>
+
+          <div class="d-flex flex-wrap align-items-center gap-3 text-muted small mb-3">
+            <span class="badge-craft badge-craft-primary" id="blogDetailCategory">Art Tips</span>
+            <span><i class="bi bi-person me-1"></i> <strong id="blogDetailAuthor">Clara Oswald</strong></span>
+            <span>•</span>
+            <span><i class="bi bi-calendar3 me-1"></i> <span id="blogDetailDate">Oct 15, 2026</span></span>
+            <span>•</span>
+            <span><i class="bi bi-clock me-1"></i> <span id="blogDetailReadTime">5 min read</span></span>
+          </div>
+
+          <h1 class="h2 fw-bold mb-4" id="blogDetailTitle">10 Essential Watercolor Techniques Every Beginner Must Know</h1>
+
+          <!-- Article Text Body -->
+          <div class="text-main" style="font-size: 1.1rem; line-height: 1.8;">
+            <p>
+              Watercolor is celebrated worldwide for its luminous transparency and unpredictable organic flow. However, mastering water-to-pigment ratio is what separates muddy, warped paper from glowing gallery-worthy botanical washes.
+            </p>
+
+            <h4 class="fw-bold mt-4 mb-3">1. The Wet-on-Wet Gradient (Alla Prima)</h4>
+            <p>
+              By pre-wetting your 300 GSM cotton paper with clean water before laying down pigment, the color diffuses freely into soft cloud-like edges. This technique is indispensable for sunset skies, mist over mountains, and flower petals.
+            </p>
+
+            <div class="p-4 bg-subtle-custom rounded border-start border-4 border-primary my-4">
+              <p class="fst-italic mb-2">"Never chase wet watercolor across the paper with a dry synthetic brush; trust the surface tension and let the mineral granules settle into the cotton fibers naturally."</p>
+              <strong class="small text-primary-custom">— Clara Oswald, Resident Watercolorist</strong>
+            </div>
+
+            <h4 class="fw-bold mt-4 mb-3">2. Dry-Brush Detailing & Texture</h4>
+            <p>
+              Loading a sable or synthetic round brush with concentrated pigment and skimming it lightly across cold-press textured paper creates spontaneous sparkling highlights—perfect for ocean waves, tree bark, and weathered stone textures.
+            </p>
+
+            <h4 class="fw-bold mt-4 mb-3">3. Lifting with Natural Sea Sponges</h4>
+            <p>
+              While the paint is half-damp, dabbing a slightly moistened natural silk sponge will lift pigment cleanly to reveal crisp highlights without scratching or tearing fragile paper sizing.
+            </p>
+          </div>
+
+          <!-- Social Share Row -->
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 p-3 bg-subtle-custom rounded border my-4">
+            <span class="fw-bold small"><i class="bi bi-share-fill me-2 text-primary-custom"></i> Share this Studio Guide:</span>
+            <div class="d-flex gap-2">
+              <a href="#" class="btn btn-craft btn-craft-outline btn-craft-sm"><i class="bi bi-pinterest"></i> Pin It</a>
+              <a href="#" class="btn btn-craft btn-craft-outline btn-craft-sm"><i class="bi bi-facebook"></i> Share</a>
+              <a href="#" class="btn btn-craft btn-craft-outline btn-craft-sm"><i class="bi bi-twitter-x"></i> Tweet</a>
+            </div>
+          </div>
+
+          <!-- Comment Section -->
+          <div class="mt-5 pt-4 border-top">
+            <h4 class="fw-bold mb-4"><i class="bi bi-chat-left-text text-primary-custom me-2"></i> Artist Comments (3)</h4>
+            
+            <div class="border-bottom pb-3 mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <h6 class="fw-bold mb-0">Liam Wright</h6>
+                <span class="text-muted small">Oct 16, 2026</span>
+              </div>
+              <p class="text-muted small mb-0">The tip about water-to-pigment ratio completely solved my muddy wash issue on hot press paper. Thank you Clara!</p>
+            </div>
+
+            <div class="border-bottom pb-3 mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <h6 class="fw-bold mb-0">Samantha V.</h6>
+                <span class="text-muted small">Oct 17, 2026</span>
+              </div>
+              <p class="text-muted small mb-0">Can you do a follow-up article on granulating watercolor pigments versus staining dyes?</p>
+            </div>
+
+            <!-- Leave a Comment Form -->
+            <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm">
+              <h5 class="fw-bold mb-3">Leave a Reply</h5>
+              <form id="articleCommentForm">
+                <div class="row g-3 mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Your Name</label>
+                    <input type="text" class="form-control form-control-craft" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold">Email (will not be published)</label>
+                    <input type="email" class="form-control form-control-craft" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold">Comment</label>
+                  <textarea class="form-control form-control-craft" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-craft btn-craft-primary">Post Comment</button>
+              </form>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: Blog Sidebar -->
+        <aside class="col-lg-4">
+          <!-- Author Bio Widget -->
+          <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm mb-4 text-center">
+            <div class="mx-auto bg-primary-custom text-white fw-bold rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; font-size: 1.6rem;">
+              CO
+            </div>
+            <h5 class="fw-bold mb-1">Clara Oswald</h5>
+            <span class="text-primary-custom small fw-bold mb-3 d-block">Senior Studio Instructor</span>
+            <p class="text-muted small mb-3">Botanical watercolorist and author with 12 years of fine arts teaching experience.</p>
+            <a href="workshops.html" class="btn btn-craft btn-craft-outline btn-craft-sm w-100">View Clara's Masterclasses</a>
+          </div>
+
+          <!-- Featured Supply Kit Promotion -->
+          <div class="p-4 bg-subtle-custom rounded-card border mb-4">
+            <span class="badge-craft badge-craft-gold mb-2">Featured Kit</span>
+            <h5 class="fw-bold mb-2">Artist Watercolor Pan 36 Palette</h5>
+            <img src="assets/images/products/watercolor-pan.svg" alt="Watercolor Pan" class="img-fluid rounded mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="h5 fw-bold text-primary-custom mb-0">$48.50</span>
+              <span class="text-decoration-line-through text-muted small">$58.00</span>
+            </div>
+            <button class="btn btn-craft btn-craft-primary btn-craft-sm w-100" data-add-cart="watercolor-pan">
+              <i class="bi bi-cart-plus me-1"></i> Add to Cart
+            </button>
+          </div>
+
+          <!-- Recent Posts List -->
+          <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm mb-4">
+            <h5 class="fw-bold mb-3">Recent Studio Posts</h5>
+            <div class="d-flex flex-column gap-3" id="blogRecentPostsList">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="brand-logo text-white mb-3" href="index.html">
+            <div class="brand-icon-wrap"><i class="bi bi-brush-fill"></i></div>
+            <span>Artisan<span class="accent">Craft</span></span>
+          </a>
+          <p class="text-muted small mb-3">
+            Premier destination for fine art supplies, archival paints, clay sculpting instruments, Japanese origami, and live masterclass workshops.
+          </p>
+          <div class="small mb-2"><i class="bi bi-geo-alt-fill text-primary-custom me-2"></i> 742 Evergreen Studio Blvd, NY 10001</div>
+          <div class="small mb-2"><i class="bi bi-telephone-fill text-primary-custom me-2"></i> +1 (555) 019-2834</div>
+          <div class="small mb-3"><i class="bi bi-envelope-fill text-primary-custom me-2"></i> hello@artisancraft.store</div>
+          <div class="footer-social-links">
+            <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h5>Shop Categories</h5>
+          <ul class="footer-links">
+            <li><a href="shop.html?category=painting">Acrylic & Watercolor Paints</a></li>
+            <li><a href="shop.html?category=drawing">Drawing & Sketching Pads</a></li>
+            <li><a href="shop.html?category=sculpting">Polymer Clay & Pottery Tools</a></li>
+            <li><a href="shop.html?category=origami">Japanese Washi Origami</a></li>
+            <li><a href="shop.html?category=calligraphy">Calligraphy & Sumi Inks</a></li>
+            <li><a href="student-supplies.html">Student & Classroom Kits</a></li>
+            <li><a href="shop.html?category=crafting">Printmaking & DIY Crafts</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h5>Customer Care</h5>
+          <ul class="footer-links">
+            <li><a href="about.html">About Our Craft Store</a></li>
+            <li><a href="workshops.html">Workshop Schedule & Booking</a></li>
+            <li><a href="brands.html">Authorized Brands</a></li>
+            <li><a href="pricing.html">Art Club Memberships</a></li>
+            <li><a href="cart.html">View Studio Cart</a></li>
+            <li><a href="contact.html">Store Location & Contact</a></li>
+            <li><a href="404.html">Shipping & Return Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5>Studio Hours & Guarantee</h5>
+          <div class="p-3 bg-dark rounded border border-secondary border-opacity-25 mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Mon – Fri:</span>
+              <strong class="text-white">8:30 AM – 7:00 PM</strong>
+            </div>
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Saturday:</span>
+              <strong class="text-white">9:00 AM – 6:00 PM</strong>
+            </div>
+            <div class="d-flex justify-content-between small text-muted">
+              <span>Sunday:</span>
+              <strong class="text-white">10:00 AM – 4:00 PM</strong>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-2 text-muted small">
+            <i class="bi bi-shield-check text-success fs-4"></i>
+            <span>100% Secure Checkout with 30-Day Happiness Guarantee</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
+        <p class="mb-0 text-muted">© 2026 ArtisanCraft Store. All Rights Reserved. Built for Artists & Makers.</p>
+        <div class="d-flex gap-3 text-muted small">
+          <a href="contact.html" class="text-muted text-decoration-none">Privacy Policy</a>
+          <span>•</span>
+          <a href="contact.html" class="text-muted text-decoration-none">Terms of Service</a>
+          <span>•</span>
+          <a href="contact.html" class="text-muted text-decoration-none">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Offcanvas Cart Drawer -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop"></div>
+  <div class="drawer-panel" id="cartDrawerPanel">
+    <div class="drawer-header">
+      <h5 class="fw-bold mb-0"><i class="bi bi-bag me-2"></i> Studio Cart</h5>
+      <button type="button" class="btn-close" data-close-cart-drawer aria-label="Close"></button>
+    </div>
+    <div class="drawer-body" id="drawerCartItems"></div>
+    <div class="drawer-footer" id="drawerCartFooter"></div>
+  </div>
+
+  <!-- Global Search Overlay Modal -->
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0"><i class="bi bi-search me-2 text-primary-custom"></i> Search Art & Craft Supplies</h5>
+        <button type="button" class="btn-close" id="closeSearchModal" aria-label="Close"></button>
+      </div>
+      <input type="text" class="search-input-lg" id="globalSearchInput" placeholder="Search by title, medium, brand, or kit..." autocomplete="off">
+      <div class="search-results-list" id="globalSearchResults"></div>
+    </div>
+  </div>
+
+  <!-- Floating Quick Toolset (Theme & RTL) -->
+  <div class="floating-toolset">
+    <button class="toolset-btn" data-action="toggle-theme" title="Toggle Light / Dark Mode">
+      <i class="bi bi-moon-stars-fill theme-toggle-icon"></i>
+    </button>
+    <button class="toolset-btn" data-action="toggle-rtl" title="Toggle RTL / LTR Direction">
+      <i class="bi bi-translate"></i>
+    </button>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/store-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Dynamic Blog Details Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const blogId = params.get('id') || 'blog-1';
+      const b = getBlogById(blogId) || ART_STORE_DATA.blogs[0];
+
+      document.title = `${b.title} — Artisan Craft Journal`;
+      document.getElementById('blogBreadcrumbTitle').textContent = b.title;
+      document.getElementById('blogDetailHeading').textContent = b.title;
+      document.getElementById('blogDetailTitle').textContent = b.title;
+      document.getElementById('blogDetailCategory').textContent = b.category;
+      document.getElementById('blogDetailAuthor').textContent = b.author;
+      document.getElementById('blogDetailDate').textContent = b.date;
+      document.getElementById('blogDetailReadTime').textContent = b.readTime;
+      document.getElementById('blogDetailHeroImg').src = b.image;
+      document.getElementById('blogDetailHeroImg').alt = b.title;
+
+      // Comment Form
+      const commentForm = document.getElementById('articleCommentForm');
+      if (commentForm) {
+        commentForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          CartEngine.showToast('Thank you! Your comment has been submitted for studio review.', 'success');
+          commentForm.reset();
+        });
+      }
+
+      // Recent Posts
+      const recentList = document.getElementById('blogRecentPostsList');
+      if (recentList) {
+        const others = ART_STORE_DATA.blogs.filter(item => item.id !== b.id).slice(0, 3);
+        recentList.innerHTML = others.map(item => `
+          <a href="blog-details.html?id=${item.id}" class="d-flex align-items-center gap-3 text-decoration-none text-main border-bottom pb-2">
+            <img src="${item.image}" alt="${item.title}" style="width: 56px; height: 56px; object-fit: cover; border-radius: 8px;">
+            <div>
+              <h6 class="mb-0 fw-bold small text-truncate" style="max-width: 180px;">${item.title}</h6>
+              <span class="text-muted small">${item.date}</span>
+            </div>
+          </a>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

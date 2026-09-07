@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="100%" stop-color="#FEF3C7"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgGrad4)"/>
+  <!-- Hair -->
+  <path d="M140 140 C140 85 260 85 260 140 C255 105 240 95 200 95 C160 95 145 105 140 140 Z" fill="#18181B"/>
+  <!-- Face -->
+  <circle cx="200" cy="155" r="54" fill="#FDE68A"/>
+  <path d="M175 152 Q185 155 190 152" stroke="#18181B" stroke-width="3" fill="none"/>
+  <path d="M210 152 Q215 155 225 152" stroke="#18181B" stroke-width="3" fill="none"/>
+  <path d="M188 182 Q200 190 212 182" stroke="#B45309" stroke-width="3" fill="none"/>
+  <!-- Dark Navy Clinical Lab Coat -->
+  <path d="M105 370 L140 235 L260 235 L295 370 Z" fill="#1E293B"/>
+  <path d="M175 235 L200 290 L225 235 Z" fill="#0D9488"/>
+</svg>

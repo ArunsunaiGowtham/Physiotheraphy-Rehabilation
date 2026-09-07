@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Artisan Craft Supply Store: store hours, customer support, custom order inquiries, and studio location map.">
+  <title>Contact & Studio Location — Artisan Craft</title>
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Template Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/rtl.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="topbar">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <span><i class="bi bi-geo-alt-fill text-warning me-1"></i> Visit our flagship Manhattan studio loft or get in touch with our artist support team!</span>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="tel:+15550192834" class="text-decoration-none d-none d-md-inline"><i class="bi bi-telephone me-1"></i> +1 (555) 019-2834</a>
+        <span class="text-white-50 d-none d-md-inline">|</span>
+        <button class="btn btn-link p-0 text-white text-decoration-none small d-flex align-items-center gap-1" data-action="toggle-theme" title="Toggle Light / Dark Mode">
+          <i class="bi bi-moon-stars-fill theme-toggle-icon"></i>
+          <span class="d-none d-sm-inline">Theme</span>
+        </button>
+        <span class="text-white-50">|</span>
+        <button class="btn btn-link p-0 text-white text-decoration-none small d-flex align-items-center gap-1" data-action="toggle-rtl" title="Toggle RTL / LTR Layout">
+          <i class="bi bi-translate"></i>
+          <span class="rtl-toggle-text">RTL</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg header-navbar">
+    <div class="container">
+      <a class="brand-logo" href="index.html">
+        <div class="brand-icon-wrap"><i class="bi bi-brush-fill"></i></div>
+        <div><span>Artisan<span class="accent">Craft</span></span></div>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavMenu" aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-main"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavMenu">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-supplies.html">Student Supplies</a></li>
+          <li class="nav-item"><a class="nav-link" href="workshops.html">Workshops</a></li>
+          <li class="nav-item"><a class="nav-link" href="brands.html">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+            <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="pagesDropdown">
+              <li><a class="dropdown-item" href="product-details.html?id=acrylic-set">Product Details</a></li>
+              <li><a class="dropdown-item" href="workshop-details.html?id=ws-watercolor">Workshop Details</a></li>
+              <li><a class="dropdown-item" href="blog-details.html?id=blog-1">Blog Details</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="pricing.html">Pricing & Memberships</a></li>
+              <li><a class="dropdown-item" href="cart.html">Cart Page</a></li>
+              <li><a class="dropdown-item" href="checkout.html">Checkout Page</a></li>
+              <li><a class="dropdown-item" href="login.html">Login</a></li>
+              <li><a class="dropdown-item" href="register.html">Register</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="404.html">404 Error Page</a></li>
+              <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="action-badge-btn" data-open-search title="Search Art Supplies"><i class="bi bi-search"></i></button>
+          <a href="shop.html" class="action-badge-btn" title="Saved Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+          </a>
+          <button class="action-badge-btn" data-open-cart-drawer title="Studio Cart">
+            <i class="bi bi-bag-fill"></i>
+            <span class="badge-count cart-count-badge" style="display: none;">0</span>
+          </button>
+          <a href="login.html" class="action-badge-btn d-none d-sm-flex" title="Artist Account"><i class="bi bi-person-circle"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Breadcrumbs Header -->
+  <header class="page-header-craft">
+    <div class="container">
+      <ul class="breadcrumb-craft">
+        <li><a href="index.html">Home</a></li>
+        <li class="separator"><i class="bi bi-chevron-right"></i></li>
+        <li class="active">Contact & Visit Us</li>
+      </ul>
+      <h1 class="h2 fw-bold mb-2">Get in Touch with Our Studio Team</h1>
+      <p class="text-muted mb-0">Have questions about pigments, classroom wholesale orders, or private workshop bookings? We're here to help.</p>
+    </div>
+  </header>
+
+  <!-- Contact Details & Form Section -->
+  <section class="pb-5">
+    <div class="container">
+      <!-- Contact Info Cards -->
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-md-4">
+          <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm h-100 text-center">
+            <div class="fs-2 text-primary-custom mb-2"><i class="bi bi-geo-alt-fill"></i></div>
+            <h5 class="fw-bold mb-1">Studio Location</h5>
+            <p class="text-muted small mb-0">742 Evergreen Studio Blvd<br>Manhattan, NY 10001, USA</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm h-100 text-center">
+            <div class="fs-2 text-primary-custom mb-2"><i class="bi bi-telephone-fill"></i></div>
+            <h5 class="fw-bold mb-1">Direct Phone & WhatsApp</h5>
+            <p class="text-muted small mb-0">Support: +1 (555) 019-2834<br>Wholesale: +1 (555) 019-2835</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm h-100 text-center">
+            <div class="fs-2 text-primary-custom mb-2"><i class="bi bi-envelope-open-fill"></i></div>
+            <h5 class="fw-bold mb-1">Email Concierge</h5>
+            <p class="text-muted small mb-0">hello@artisancraft.store<br>orders@artisancraft.store</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form and Map Row -->
+      <div class="row g-5">
+        <!-- Form -->
+        <div class="col-lg-7">
+          <div class="p-4 p-lg-5 bg-surface-custom rounded-card border shadow-custom-md">
+            <h3 class="fw-bold mb-2">Send an Artist Inquiry</h3>
+            <p class="text-muted small mb-4">Fill out the message form below and a resident artist or support specialist will respond within 24 hours.</p>
+
+            <form id="contactForm">
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Full Name *</label>
+                  <input type="text" class="form-control form-control-craft" placeholder="e.g. Maya Lin" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Email Address *</label>
+                  <input type="email" class="form-control form-control-craft" placeholder="maya@example.com" required>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Phone Number</label>
+                  <input type="tel" class="form-control form-control-craft" placeholder="+1 (555) 000-0000">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Inquiry Topic</label>
+                  <select class="form-select form-control-craft">
+                    <option value="product">Product & Pigment Recommendation</option>
+                    <option value="school">School & Educator Bulk Order</option>
+                    <option value="workshop">Workshop & Masterclass Booking</option>
+                    <option value="order">Order Tracking & Returns</option>
+                    <option value="other">General Artist Feedback</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label small fw-bold">Your Message *</label>
+                <textarea class="form-control form-control-craft" rows="5" placeholder="Tell us how we can help your studio..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-craft btn-craft-primary btn-craft-lg w-100">
+                <i class="bi bi-send-fill me-1"></i> Send Inquiry Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Side: Opening Hours & Interactive Map Placeholder -->
+        <div class="col-lg-5">
+          <!-- Hours Card -->
+          <div class="p-4 bg-surface-custom rounded-card border shadow-custom-sm mb-4">
+            <h5 class="fw-bold mb-3"><i class="bi bi-clock-history text-primary-custom me-2"></i> Flagship Studio Hours</h5>
+            <div class="d-flex justify-content-between py-2 border-bottom small">
+              <span class="text-muted">Monday – Friday:</span>
+              <strong class="text-main">8:30 AM – 7:00 PM EST</strong>
+            </div>
+            <div class="d-flex justify-content-between py-2 border-bottom small">
+              <span class="text-muted">Saturday:</span>
+              <strong class="text-main">9:00 AM – 6:00 PM EST</strong>
+            </div>
+            <div class="d-flex justify-content-between py-2 small">
+              <span class="text-muted">Sunday:</span>
+              <strong class="text-main">10:00 AM – 4:00 PM EST</strong>
+            </div>
+          </div>
+
+          <!-- Stylized Map Container -->
+          <div class="p-4 bg-subtle-custom rounded-card border text-center">
+            <h5 class="fw-bold mb-2">Studio Location Map</h5>
+            <p class="small text-muted mb-3">Conveniently located 2 blocks from the 23rd St Subway Station.</p>
+            
+            <div class="bg-surface-custom p-4 rounded-card border shadow-sm d-flex flex-column align-items-center justify-content-center" style="min-height: 220px;">
+              <div class="fs-1 text-primary-custom mb-2"><i class="bi bi-map-fill"></i></div>
+              <h6 class="fw-bold mb-1">Artisan Craft Manhattan Studio</h6>
+              <span class="small text-muted mb-3">742 Evergreen Studio Blvd, NY 10001</span>
+              <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-craft btn-craft-outline btn-craft-sm">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Open in Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="brand-logo text-white mb-3" href="index.html">
+            <div class="brand-icon-wrap"><i class="bi bi-brush-fill"></i></div>
+            <span>Artisan<span class="accent">Craft</span></span>
+          </a>
+          <p class="text-muted small mb-3">
+            Premier destination for fine art supplies, archival paints, clay sculpting instruments, Japanese origami, and live masterclass workshops.
+          </p>
+          <div class="small mb-2"><i class="bi bi-geo-alt-fill text-primary-custom me-2"></i> 742 Evergreen Studio Blvd, NY 10001</div>
+          <div class="small mb-2"><i class="bi bi-telephone-fill text-primary-custom me-2"></i> +1 (555) 019-2834</div>
+          <div class="small mb-3"><i class="bi bi-envelope-fill text-primary-custom me-2"></i> hello@artisancraft.store</div>
+          <div class="footer-social-links">
+            <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h5>Shop Categories</h5>
+          <ul class="footer-links">
+            <li><a href="shop.html?category=painting">Acrylic & Watercolor Paints</a></li>
+            <li><a href="shop.html?category=drawing">Drawing & Sketching Pads</a></li>
+            <li><a href="shop.html?category=sculpting">Polymer Clay & Pottery Tools</a></li>
+            <li><a href="shop.html?category=origami">Japanese Washi Origami</a></li>
+            <li><a href="shop.html?category=calligraphy">Calligraphy & Sumi Inks</a></li>
+            <li><a href="student-supplies.html">Student & Classroom Kits</a></li>
+            <li><a href="shop.html?category=crafting">Printmaking & DIY Crafts</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h5>Customer Care</h5>
+          <ul class="footer-links">
+            <li><a href="about.html">About Our Craft Store</a></li>
+            <li><a href="workshops.html">Workshop Schedule & Booking</a></li>
+            <li><a href="brands.html">Authorized Brands</a></li>
+            <li><a href="pricing.html">Art Club Memberships</a></li>
+            <li><a href="cart.html">View Studio Cart</a></li>
+            <li><a href="contact.html">Store Location & Contact</a></li>
+            <li><a href="404.html">Shipping & Return Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5>Studio Hours & Guarantee</h5>
+          <div class="p-3 bg-dark rounded border border-secondary border-opacity-25 mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Mon – Fri:</span>
+              <strong class="text-white">8:30 AM – 7:00 PM</strong>
+            </div>
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Saturday:</span>
+              <strong class="text-white">9:00 AM – 6:00 PM</strong>
+            </div>
+            <div class="d-flex justify-content-between small text-muted">
+              <span>Sunday:</span>
+              <strong class="text-white">10:00 AM – 4:00 PM</strong>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-2 text-muted small">
+            <i class="bi bi-shield-check text-success fs-4"></i>
+            <span>100% Secure Checkout with 30-Day Happiness Guarantee</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
+        <p class="mb-0 text-muted">© 2026 ArtisanCraft Store. All Rights Reserved. Built for Artists & Makers.</p>
+        <div class="d-flex gap-3 text-muted small">
+          <a href="contact.html" class="text-muted text-decoration-none">Privacy Policy</a>
+          <span>•</span>
+          <a href="contact.html" class="text-muted text-decoration-none">Terms of Service</a>
+          <span>•</span>
+          <a href="contact.html" class="text-muted text-decoration-none">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Offcanvas Cart Drawer -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop"></div>
+  <div class="drawer-panel" id="cartDrawerPanel">
+    <div class="drawer-header">
+      <h5 class="fw-bold mb-0"><i class="bi bi-bag me-2"></i> Studio Cart</h5>
+      <button type="button" class="btn-close" data-close-cart-drawer aria-label="Close"></button>
+    </div>
+    <div class="drawer-body" id="drawerCartItems"></div>
+    <div class="drawer-footer" id="drawerCartFooter"></div>
+  </div>
+
+  <!-- Global Search Overlay Modal -->
+  <div class="search-modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0"><i class="bi bi-search me-2 text-primary-custom"></i> Search Art & Craft Supplies</h5>
+        <button type="button" class="btn-close" id="closeSearchModal" aria-label="Close"></button>
+      </div>
+      <input type="text" class="search-input-lg" id="globalSearchInput" placeholder="Search by title, medium, brand, or kit..." autocomplete="off">
+      <div class="search-results-list" id="globalSearchResults"></div>
+    </div>
+  </div>
+
+  <!-- Floating Quick Toolset (Theme & RTL) -->
+  <div class="floating-toolset">
+    <button class="toolset-btn" data-action="toggle-theme" title="Toggle Light / Dark Mode">
+      <i class="bi bi-moon-stars-fill theme-toggle-icon"></i>
+    </button>
+    <button class="toolset-btn" data-action="toggle-rtl" title="Toggle RTL / LTR Direction">
+      <i class="bi bi-translate"></i>
+    </button>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/store-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Contact Form Submit Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          CartEngine.showToast('Inquiry sent successfully! Our studio team will get back to you shortly.', 'success');
+          form.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

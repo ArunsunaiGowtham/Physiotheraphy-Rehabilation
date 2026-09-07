@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PhysioLife Staff & Admin Portal Login - Manage clinic operations, staff appointments, and patient rehabilitation records.">
+  <title>Admin Login – PhysioLife Clinic</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+</head>
+<body class="bg-surface-alt d-flex align-items-center min-vh-100 py-5">
+
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5" style="max-width: 520px;">
+        <!-- Logo Header -->
+        <div class="text-center mb-4">
+          <a href="../index.html" class="navbar-brand auth-brand d-inline-block">
+            <img src="../assets/images/logo.svg" alt="PhysioLife Logo" height="46" class="logo-light">
+            <img src="../assets/images/logo-dark.svg" alt="PhysioLife Logo" height="46" class="logo-dark">
+          </a>
+        </div>
+
+        <div class="card border-0 rounded-4 shadow-lg bg-surface p-4 p-sm-5">
+          <div class="text-center mb-4">
+            <h3 class="fw-bold mb-1">Admin Login</h3>
+            <p class="text-muted small">Enter your administrative credentials to access clinic management.</p>
+          </div>
+
+          <!-- Status / Feedback Alert -->
+          <div id="loginAlert" class="alert d-none" role="alert"></div>
+
+
+          <form id="loginForm" novalidate>
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">Email Address</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" id="loginEmail" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between">
+                <label for="loginPassword" class="form-label">Password</label>
+                <a href="../forgot-password.html" class="small text-primary">Forgot password?</a>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" id="loginPassword" class="form-control" required>
+                <button class="btn btn-outline-secondary toggle-password-btn" type="button" data-target="loginPassword" aria-label="Toggle password visibility">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                <label class="form-check-label small text-muted" for="rememberMe">Remember me</label>
+              </div>
+            </div>
+
+            <button type="submit" id="loginSubmitBtn" class="btn btn-primary btn-lg w-100 mb-3">
+              <i class="fas fa-sign-in-alt me-2"></i> Admin Login
+            </button>
+          </form>
+
+          <!-- Divider -->
+          <div class="d-flex align-items-center my-3">
+            <hr class="flex-grow-1 border-subtle my-0">
+            <span class="px-3 text-muted small text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.75rem;">or continue with</span>
+            <hr class="flex-grow-1 border-subtle my-0">
+          </div>
+
+          <!-- Social Login Buttons -->
+          <div class="d-flex flex-column gap-2 mb-4">
+            <button type="button" class="btn social-btn-auth w-100 d-flex align-items-center justify-content-center gap-2 py-2" id="btnGoogleLogin" onclick="handleSocialAuth('google')">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.616z" fill="#4285F4"/>
+                <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34A853"/>
+                <path d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.347 2.825.957 4.039l3.007-2.332z" fill="#FBBC05"/>
+                <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z" fill="#EA4335"/>
+              </svg>
+              <span>Continue with Google</span>
+            </button>
+            <button type="button" class="btn social-btn-auth w-100 d-flex align-items-center justify-content-center gap-2 py-2" id="btnAppleLogin" onclick="handleSocialAuth('apple')">
+              <i class="fab fa-apple"></i>
+              <span>Continue with Apple</span>
+            </button>
+          </div>
+
+          <p class="text-center small text-muted mb-0">
+            Don't have an account? <a href="../admin-register.html" class="fw-bold text-primary">Admin Sign Up</a>
+          </p>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="../index.html" class="text-muted small"><i class="fas fa-arrow-left me-1"></i> Back to Main Website</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    function handleSocialAuth(provider) {
+      if (window.PhysioAuth && window.PhysioAuth.showOAuthNotice) {
+        window.PhysioAuth.showOAuthNotice(provider);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const alertBox = document.getElementById('loginAlert');
+
+      // Check if redirected from registration
+      if (params.get('registered') === '1') {
+        alertBox.className = 'alert alert-success mb-4 d-block';
+        alertBox.innerHTML = '<i class="fas fa-check-circle me-2"></i> Administrator account created successfully! Please sign in with your credentials.';
+        const prefill = params.get('email');
+        if (prefill) {
+          document.getElementById('loginEmail').value = prefill;
+          document.getElementById('loginPassword').value = '';
+        }
+      }
+
+      // Handle login submission strictly (Login only, no account creation)
+      const form = document.getElementById('loginForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value.trim();
+        const pass = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+
+        if (!email) {
+          alertBox.className = 'alert alert-danger mb-4 d-block';
+          alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Please enter your email address.';
+          return;
+        }
+
+        if (!pass) {
+          alertBox.className = 'alert alert-danger mb-4 d-block';
+          alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Please enter your password.';
+          return;
+        }
+
+        const result = PhysioAuth.loginUser(email, pass, rememberMe);
+        if (!result.success) {
+          alertBox.className = 'alert alert-danger mb-4 d-block';
+          alertBox.innerHTML = `<i class="fas fa-exclamation-circle me-2"></i> ${result.message}`;
+          return;
+        }
+
+        // Successful authentication -> redirect to authenticated area
+        alertBox.className = 'alert alert-success mb-4 d-block';
+        alertBox.innerHTML = `<i class="fas fa-check-circle me-2"></i> Welcome back, <strong>${result.user.fullName}</strong>! Redirecting to admin dashboard...`;
+        setTimeout(() => {
+          if (result.redirectUrl.startsWith('admin/')) {
+            window.location.href = result.redirectUrl.replace('admin/', '');
+          } else {
+            window.location.href = '../' + result.redirectUrl;
+          }
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>

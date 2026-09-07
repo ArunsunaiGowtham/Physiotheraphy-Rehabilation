@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Configure clinic details, operating hours, booking rules, and payment gateways.">
+  <title>Clinic Settings – PhysioLife Admin</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Clinic Administration</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-chart-pie"></i> <span>Overview</span></a></li>
+        <li class="menu-item"><a href="users.html" class="menu-link"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
+        <li class="menu-item"><a href="therapists.html" class="menu-link"><i class="fas fa-user-md"></i> <span>Therapists</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="services.html" class="menu-link"><i class="fas fa-stethoscope"></i> <span>Services Catalog</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link"><i class="fas fa-file-medical-alt"></i> <span>Care Protocols</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link"><i class="fas fa-video"></i> <span>Exercise Videos</span></a></li>
+        <li class="menu-category">Financials &amp; Content</li>
+        <li class="menu-item"><a href="orders.html" class="menu-link"><i class="fas fa-file-invoice-dollar"></i> <span>Billing &amp; Claims</span></a></li>
+        <li class="menu-item"><a href="messages.html" class="menu-link"><i class="fas fa-envelope-open-text"></i> <span>Inquiries</span></a></li>
+        <li class="menu-item"><a href="blog.html" class="menu-link"><i class="fas fa-newspaper"></i> <span>Blog CMS</span></a></li>
+        <li class="menu-item"><a href="settings.html" class="menu-link active"><i class="fas fa-sliders-h"></i> <span>Clinic Settings</span></a></li>
+        <li class="menu-item mt-3"><a href="../admin-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/therapist-1.svg" alt="Dr. Sarah Jenkins" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Dr. Sarah Jenkins</div>
+            <div class="user-role">Clinical Director (Admin)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none"><i class="fas fa-bars"></i></button>
+          <span class="fw-bold">Clinic Configuration Settings</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+                  <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="mb-4">
+          <h2 class="fw-bold mb-1">Clinic System Settings</h2>
+          <p class="text-muted small mb-0">Manage clinic profile, operating hours, notification gateways, and theme defaults.</p>
+        </div>
+
+        <!-- Notification / Feedback Alert Banner -->
+        <div id="settingsAlertBanner" class="alert alert-success d-none alert-dismissible fade show mb-4" role="alert">
+          <i class="fas fa-check-circle me-2" id="settingsAlertIcon"></i>
+          <span id="settingsAlertMsg">Settings updated successfully.</span>
+          <button type="button" class="btn-close" onclick="this.parentElement.classList.add('d-none')" aria-label="Close"></button>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="dash-card mb-4">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-clinic-medical text-primary"></i> General Clinic Details</h5>
+              </div>
+              <div class="dash-card-body">
+                <form id="clinicDetailsForm">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small text-muted" for="clinicName">Clinic Name</label>
+                      <input type="text" id="clinicName" class="form-control" value="PhysioLife Rehabilitation Clinic" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small text-muted" for="clinicPhone">Main Contact Phone</label>
+                      <input type="tel" id="clinicPhone" class="form-control" value="+1 (800) 555-7342" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small text-muted" for="clinicEmail">Official Email</label>
+                      <input type="email" id="clinicEmail" class="form-control" value="care@physiolifeclinic.com" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small text-muted" for="clinicTaxId">NPI / Provider Tax ID</label>
+                      <input type="text" id="clinicTaxId" class="form-control" value="1482910399" required>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label fw-semibold small text-muted" for="clinicAddress">Physical Address</label>
+                      <input type="text" id="clinicAddress" class="form-control" value="742 Evergreen Healthcare Blvd, Suite 400, New York, NY 10001" required>
+                    </div>
+                    <div class="col-12 mt-3">
+                      <button type="submit" class="btn btn-primary" id="saveClinicBtn">
+                        <i class="fas fa-save me-1"></i> Save Clinic Details
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Booking Rules -->
+            <div class="dash-card mb-0">
+              <div class="dash-card-header d-flex justify-content-between align-items-center">
+                <h5 class="dash-card-title mb-0"><i class="fas fa-calendar-check text-secondary me-2"></i> Scheduling &amp; Cancellation Rules</h5>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle px-2 py-1" id="rulesStatusBadge">Active Rules</span>
+              </div>
+              <div class="dash-card-body">
+                <form id="schedulingRulesForm" onsubmit="event.preventDefault(); window.updateSchedulingRules();">
+                  <div class="mb-3">
+                    <label class="form-label fw-semibold small text-muted" for="advanceBookingWindow">Advance Booking Window (Days)</label>
+                    <input type="number" id="advanceBookingWindow" class="form-control" value="30" min="1" max="365" required>
+                    <div class="form-text text-muted">Maximum number of days patients can reserve clinical appointments ahead.</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label fw-semibold small text-muted" for="cancellationDeadline">Cancellation Deadline (Hours Prior)</label>
+                    <input type="number" id="cancellationDeadline" class="form-control" value="24" min="0" max="168" required>
+                    <div class="form-text text-muted">Minimum hours prior to session start required to reschedule or cancel without penalty.</div>
+                  </div>
+                  <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" id="autoConfirm" checked>
+                    <label class="form-check-label fw-semibold text-main" for="autoConfirm">Auto-confirm returning patient bookings</label>
+                    <div class="form-text text-muted">Bypasses manual intake coordinator approval for established patients.</div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="updateRulesBtn">
+                    <i class="fas fa-check-circle me-1"></i> Update Rules
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Settings -->
+          <div class="col-lg-4">
+            <div class="dash-card mb-4">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-credit-card text-success"></i> Payment Gateways</h5>
+              </div>
+              <div class="dash-card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <strong class="d-block text-main">Stripe / HSA Debit</strong>
+                    <small class="text-success" id="stripeStatus"><i class="fas fa-check-circle"></i> Connected</small>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input gateway-toggle" type="checkbox" id="gatewayStripe" checked data-gateway="stripe">
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div>
+                    <strong class="d-block text-main">Availity Clearinghouse</strong>
+                    <small class="text-success" id="availityStatus"><i class="fas fa-check-circle"></i> EDI 837 Live</small>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input gateway-toggle" type="checkbox" id="gatewayAvaility" checked data-gateway="availity">
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <strong class="d-block text-main">PayPal Healthcare</strong>
+                    <small class="text-muted" id="paypalStatus">Inactive</small>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input gateway-toggle" type="checkbox" id="gatewayPaypal" data-gateway="paypal">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-card mb-0">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-bell text-info"></i> Automated Notifications</h5>
+              </div>
+              <div class="dash-card-body">
+                <div class="form-check mb-2">
+                  <input class="form-check-input notif-toggle" type="checkbox" id="smsNotif" checked data-notif="sms">
+                  <label class="form-check-label small" for="smsNotif">SMS 24hr appointment reminder</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input notif-toggle" type="checkbox" id="emailNotif" checked data-notif="email">
+                  <label class="form-check-label small" for="emailNotif">Email exercise routine updates</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input notif-toggle" type="checkbox" id="claimNotif" checked data-notif="claims">
+                  <label class="form-check-label small" for="claimNotif">Insurance adjudication alerts</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Alert Notification -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11000;">
+    <div id="settingsToast" class="toast align-items-center text-white bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle text-success fs-5" id="settingsToastIcon"></i>
+          <span id="settingsToastMsg">Settings updated successfully.</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'physiolife_clinic_settings';
+
+      const DEFAULT_SETTINGS = {
+        clinic: {
+          name: 'PhysioLife Rehabilitation Clinic',
+          phone: '+1 (800) 555-7342',
+          email: 'care@physiolifeclinic.com',
+          taxId: '1482910399',
+          address: '742 Evergreen Healthcare Blvd, Suite 400, New York, NY 10001'
+        },
+        rules: {
+          advanceBookingDays: 30,
+          cancellationHours: 24,
+          autoConfirmReturning: true
+        },
+        gateways: {
+          stripe: true,
+          availity: true,
+          paypal: false
+        },
+        notifications: {
+          sms: true,
+          email: true,
+          claims: true
+        }
+      };
+
+      function getStoredSettings() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              return {
+                clinic: Object.assign({}, DEFAULT_SETTINGS.clinic, parsed.clinic || {}),
+                rules: Object.assign({}, DEFAULT_SETTINGS.rules, parsed.rules || {}),
+                gateways: Object.assign({}, DEFAULT_SETTINGS.gateways, parsed.gateways || {}),
+                notifications: Object.assign({}, DEFAULT_SETTINGS.notifications, parsed.notifications || {})
+              };
+            }
+          }
+        } catch (e) {
+          console.warn('Error reading settings from localStorage:', e);
+        }
+        return JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+      }
+
+      function saveSettings(settings) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+        } catch (e) {
+          console.error('Error saving settings to localStorage:', e);
+        }
+      }
+
+      function showToast(message, isSuccess = true) {
+        const toastEl = document.getElementById('settingsToast');
+        const msgEl = document.getElementById('settingsToastMsg');
+        const iconEl = document.getElementById('settingsToastIcon');
+        if (!toastEl || !msgEl) {
+          alert(message);
+          return;
+        }
+
+        msgEl.textContent = message;
+        if (iconEl) {
+          iconEl.className = isSuccess 
+            ? 'fas fa-check-circle text-success fs-5' 
+            : 'fas fa-info-circle text-info fs-5';
+        }
+
+        try {
+          if (typeof bootstrap !== 'undefined' && bootstrap.Toast) {
+            const toast = bootstrap.Toast.getOrCreateInstance(toastEl);
+            toast.show();
+          }
+        } catch (e) {
+          console.warn('Toast display error:', e);
+        }
+      }
+
+      function showAlertBanner(message, isSuccess = true) {
+        const banner = document.getElementById('settingsAlertBanner');
+        const msgEl = document.getElementById('settingsAlertMsg');
+        const iconEl = document.getElementById('settingsAlertIcon');
+        if (!banner || !msgEl) return;
+
+        msgEl.innerHTML = message;
+        banner.className = isSuccess 
+          ? 'alert alert-success alert-dismissible fade show mb-4' 
+          : 'alert alert-danger alert-dismissible fade show mb-4';
+
+        if (iconEl) {
+          iconEl.className = isSuccess ? 'fas fa-check-circle me-2' : 'fas fa-exclamation-triangle me-2';
+        }
+
+        banner.classList.remove('d-none');
+        window.scrollTo({ top: banner.offsetTop - 80, behavior: 'smooth' });
+      }
+
+      function populateFormFields() {
+        const settings = getStoredSettings();
+
+        // Clinic details
+        const clinicName = document.getElementById('clinicName');
+        if (clinicName) clinicName.value = settings.clinic.name;
+        const clinicPhone = document.getElementById('clinicPhone');
+        if (clinicPhone) clinicPhone.value = settings.clinic.phone;
+        const clinicEmail = document.getElementById('clinicEmail');
+        if (clinicEmail) clinicEmail.value = settings.clinic.email;
+        const clinicTaxId = document.getElementById('clinicTaxId');
+        if (clinicTaxId) clinicTaxId.value = settings.clinic.taxId;
+        const clinicAddress = document.getElementById('clinicAddress');
+        if (clinicAddress) clinicAddress.value = settings.clinic.address;
+
+        // Scheduling rules
+        const advanceWindow = document.getElementById('advanceBookingWindow');
+        if (advanceWindow) advanceWindow.value = settings.rules.advanceBookingDays;
+        const cancellationDeadline = document.getElementById('cancellationDeadline');
+        if (cancellationDeadline) cancellationDeadline.value = settings.rules.cancellationHours;
+        const autoConfirm = document.getElementById('autoConfirm');
+        if (autoConfirm) autoConfirm.checked = !!settings.rules.autoConfirmReturning;
+
+        // Gateways
+        const gwStripe = document.getElementById('gatewayStripe');
+        if (gwStripe) gwStripe.checked = !!settings.gateways.stripe;
+        const gwAvaility = document.getElementById('gatewayAvaility');
+        if (gwAvaility) gwAvaility.checked = !!settings.gateways.availity;
+        const gwPaypal = document.getElementById('gatewayPaypal');
+        if (gwPaypal) gwPaypal.checked = !!settings.gateways.paypal;
+
+        // Notifications
+        const notifSms = document.getElementById('smsNotif');
+        if (notifSms) notifSms.checked = !!settings.notifications.sms;
+        const notifEmail = document.getElementById('emailNotif');
+        if (notifEmail) notifEmail.checked = !!settings.notifications.email;
+        const notifClaim = document.getElementById('claimNotif');
+        if (notifClaim) notifClaim.checked = !!settings.notifications.claims;
+
+        updateGatewayLabels(settings.gateways);
+      }
+
+      function updateGatewayLabels(gateways) {
+        const stripeStatus = document.getElementById('stripeStatus');
+        if (stripeStatus) {
+          stripeStatus.innerHTML = gateways.stripe 
+            ? '<i class="fas fa-check-circle"></i> Connected' 
+            : '<span class="text-muted">Disconnected</span>';
+          stripeStatus.className = gateways.stripe ? 'text-success' : 'text-muted';
+        }
+
+        const availityStatus = document.getElementById('availityStatus');
+        if (availityStatus) {
+          availityStatus.innerHTML = gateways.availity 
+            ? '<i class="fas fa-check-circle"></i> EDI 837 Live' 
+            : '<span class="text-muted">Offline</span>';
+          availityStatus.className = gateways.availity ? 'text-success' : 'text-muted';
+        }
+
+        const paypalStatus = document.getElementById('paypalStatus');
+        if (paypalStatus) {
+          paypalStatus.innerHTML = gateways.paypal 
+            ? '<i class="fas fa-check-circle"></i> Connected' 
+            : '<span class="text-muted">Inactive</span>';
+          paypalStatus.className = gateways.paypal ? 'text-success' : 'text-muted';
+        }
+      }
+
+      // Main Update Rules function (called by form submit and button click)
+      window.updateSchedulingRules = function () {
+        const advanceWindowEl = document.getElementById('advanceBookingWindow');
+        const cancellationDeadlineEl = document.getElementById('cancellationDeadline');
+        const autoConfirmEl = document.getElementById('autoConfirm');
+        const updateBtn = document.getElementById('updateRulesBtn');
+
+        const advanceDays = parseInt(advanceWindowEl ? advanceWindowEl.value : '30', 10);
+        const cancelHours = parseInt(cancellationDeadlineEl ? cancellationDeadlineEl.value : '24', 10);
+        const autoConfirm = autoConfirmEl ? autoConfirmEl.checked : true;
+
+        if (isNaN(advanceDays) || advanceDays < 1) {
+          alert('Advance booking window must be at least 1 day.');
+          if (advanceWindowEl) advanceWindowEl.focus();
+          return;
+        }
+
+        if (isNaN(cancelHours) || cancelHours < 0) {
+          alert('Cancellation deadline must be 0 hours or greater.');
+          if (cancellationDeadlineEl) cancellationDeadlineEl.focus();
+          return;
+        }
+
+        const settings = getStoredSettings();
+        settings.rules.advanceBookingDays = advanceDays;
+        settings.rules.cancellationHours = cancelHours;
+        settings.rules.autoConfirmReturning = autoConfirm;
+
+        saveSettings(settings);
+
+        // Visual feedback on button
+        if (updateBtn) {
+          const originalHTML = updateBtn.innerHTML;
+          updateBtn.innerHTML = '<i class="fas fa-check me-1"></i> Rules Updated!';
+          updateBtn.classList.remove('btn-primary');
+          updateBtn.classList.add('btn-success');
+          updateBtn.disabled = true;
+
+          setTimeout(() => {
+            updateBtn.innerHTML = originalHTML;
+            updateBtn.classList.remove('btn-success');
+            updateBtn.classList.add('btn-primary');
+            updateBtn.disabled = false;
+          }, 2200);
+        }
+
+        showToast(`Scheduling rules updated: ${advanceDays}d advance window, ${cancelHours}h cancellation cutoff.`, true);
+        showAlertBanner(`<strong>Scheduling &amp; Cancellation Rules Saved!</strong> Advance booking window set to <strong>${advanceDays} days</strong>, cancellation deadline set to <strong>${cancelHours} hours</strong>, auto-confirm: <strong>${autoConfirm ? 'Enabled' : 'Disabled'}</strong>.`, true);
+      };
+
+      // Clinic details submit handler
+      const clinicForm = document.getElementById('clinicDetailsForm');
+      if (clinicForm) {
+        clinicForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const saveBtn = document.getElementById('saveClinicBtn');
+          const settings = getStoredSettings();
+
+          settings.clinic.name = document.getElementById('clinicName').value.trim();
+          settings.clinic.phone = document.getElementById('clinicPhone').value.trim();
+          settings.clinic.email = document.getElementById('clinicEmail').value.trim();
+          settings.clinic.taxId = document.getElementById('clinicTaxId').value.trim();
+          settings.clinic.address = document.getElementById('clinicAddress').value.trim();
+
+          saveSettings(settings);
+
+          if (saveBtn) {
+            const orig = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-check me-1"></i> Saved!';
+            saveBtn.classList.remove('btn-primary');
+            saveBtn.classList.add('btn-success');
+            setTimeout(() => {
+              saveBtn.innerHTML = orig;
+              saveBtn.classList.remove('btn-success');
+              saveBtn.classList.add('btn-primary');
+            }, 2000);
+          }
+
+          showToast('General clinic details updated successfully.', true);
+          showAlertBanner(`<strong>Clinic Details Saved:</strong> ${settings.clinic.name} configuration updated.`, true);
+        });
+      }
+
+      // Gateway toggles handler
+      document.querySelectorAll('.gateway-toggle').forEach(el => {
+        el.addEventListener('change', function () {
+          const gw = this.getAttribute('data-gateway');
+          const settings = getStoredSettings();
+          if (settings.gateways && gw) {
+            settings.gateways[gw] = this.checked;
+            saveSettings(settings);
+            updateGatewayLabels(settings.gateways);
+            showToast(`${gw.toUpperCase()} gateway status updated to: ${this.checked ? 'Active' : 'Inactive'}.`, true);
+          }
+        });
+      });
+
+      // Notification toggles handler
+      document.querySelectorAll('.notif-toggle').forEach(el => {
+        el.addEventListener('change', function () {
+          const notif = this.getAttribute('data-notif');
+          const settings = getStoredSettings();
+          if (settings.notifications && notif) {
+            settings.notifications[notif] = this.checked;
+            saveSettings(settings);
+            showToast(`Notification setting (${notif}) updated.`, true);
+          }
+        });
+      });
+
+      // Attach direct click to Update Rules button as well
+      const updateRulesBtn = document.getElementById('updateRulesBtn');
+      if (updateRulesBtn) {
+        updateRulesBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.updateSchedulingRules();
+        });
+      }
+
+      // Initialize on DOM Ready
+      document.addEventListener('DOMContentLoaded', populateFormFields);
+      if (document.readyState !== 'loading') populateFormFields();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about PhysioLife - Our founding mission, clinical philosophy, board-certified physical therapists, and historical milestones in orthopedic rehabilitation.">
+  <title>About Us – PhysioLife Rehabilitation Clinic</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/variables.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/rtl.css" rel="stylesheet">
+</head>
+<body>
+
+        <!-- Single Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container-fluid px-lg-4 px-xl-5">
+      <nav class="navbar navbar-expand-xl navbar-light">
+        <!-- Left: Brand Logo & Clinic Subtitle -->
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/images/logo.svg" alt="PhysioLife Clinic Logo" height="40" class="logo-light">
+          <img src="assets/images/logo-dark.svg" alt="PhysioLife Clinic Logo" height="40" class="logo-dark">
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="navbar-toggler border-0 shadow-none d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars fs-4 text-main"></i>
+        </button>
+
+        <!-- Navigation Collapse Container -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <!-- Center Navigation Links -->
+          <ul class="navbar-nav mx-auto align-items-xl-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Home <i class="fas fa-chevron-down dropdown-arrow ms-1"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                <li><a class="dropdown-item" href="index.html">Home 1</a></li>
+                <li><a class="dropdown-item" href="home-2.html">Home 2</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="insurance.html">Insurance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Right Actions (Desktop) -->
+          <div class="navbar-actions d-none d-xl-flex">
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i> <span class="theme-text">Dark</span>
+            </button>
+            <button class="rtl-toggle-btn" type="button" aria-label="Toggle RTL">
+              <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+            </button>
+            <a href="login.html" class="btn-nav-login">
+              <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+            </a>
+            <a href="register.html" class="btn-nav-signup">
+              <i class="fas fa-user-plus"></i> <span>Sign Up</span>
+            </a>
+          </div>
+
+          <!-- Mobile Action Drawer (<1200px) -->
+          <div class="mobile-nav-actions d-xl-none">
+            <div class="mobile-nav-controls">
+              <button class="theme-toggle-btn flex-fill" type="button" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i> <span class="theme-text">Dark</span>
+              </button>
+              <button class="rtl-toggle-btn flex-fill" type="button" aria-label="Toggle RTL">
+                <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+              </button>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="login.html" class="btn-nav-login flex-fill justify-content-center">
+                <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+              </a>
+              <a href="register.html" class="btn-nav-signup flex-fill justify-content-center">
+                <i class="fas fa-user-plus"></i> <span>Sign Up</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header Banner with Thematic Background Image -->
+  <section class="page-header-banner page-banner-about text-center">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">About Us</li>
+        </ol>
+      </nav>
+      <h1 class="banner-title">Pioneering Physical Rehabilitation Since 2008</h1>
+      <p class="lead banner-subtitle mx-auto">Discover our clinical heritage, patient-first philosophy, and clinical leadership.</p>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section-padding bg-surface">
+    <div class="container">
+      <div class="row align-items-center g-5 mb-5">
+        <div class="col-lg-6">
+          <span class="badge-tag">Our Founding Purpose</span>
+          <h2 class="h1 mb-4">Dedicated to Restoring Movement, Dignity, and Vitality</h2>
+          <p>
+            PhysioLife was founded by Dr. Sarah Jenkins and Dr. Marcus Vance with a clear mandate: eliminate the rushed, impersonal conveyor-belt model of therapy and replace it with dedicated, one-on-one doctor care rooted in biomechanical diagnostics.
+          </p>
+          <div class="row g-4 mt-2">
+            <div class="col-sm-6">
+              <div class="p-3 bg-surface-alt rounded-3 border border-subtle">
+                <h5 class="fw-bold text-primary"><i class="fas fa-bullseye me-2"></i> Our Mission</h5>
+                <p class="small text-muted mb-0">Deliver personalized, evidence-based orthopedic and neurological rehabilitation that permanently resolves root biomechanical dysfunctions.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-3 bg-surface-alt rounded-3 border border-subtle">
+                <h5 class="fw-bold text-secondary"><i class="fas fa-eye me-2"></i> Our Vision</h5>
+                <p class="small text-muted mb-0">To be the global benchmark for patient-centered physical therapy where state-of-the-art technology empowers lifelong mobility.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <img src="assets/images/clinic-team.jpg" alt="PhysioLife multidisciplinary physical therapy and rehabilitation clinical team" class="rounded-4 shadow-lg w-100 object-fit-cover" style="max-height: 280px;">
+            </div>
+            <div class="col-6">
+              <img src="assets/images/clinic-interior.jpg" alt="Modern clinic rehabilitation gym and treatment equipment" class="rounded-3 shadow-sm w-100 object-fit-cover" style="height: 160px;">
+            </div>
+            <div class="col-6">
+              <img src="assets/images/clinic-exterior.jpg" alt="PhysioLife Rehabilitation Clinic building exterior" class="rounded-3 shadow-sm w-100 object-fit-cover" style="height: 160px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History / Timeline Component -->
+  <section class="section-padding bg-surface-alt">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title">
+        <span class="badge-tag">Our Journey</span>
+        <h2 class="h1">Clinic Milestones &amp; Evolution</h2>
+        <p>From a modest two-room physical therapy practice to an internationally recognized clinical institute.</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="timeline-container">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2008 – The Beginning</div>
+              <h4 class="fw-bold mb-2">PhysioLife Clinic Opens in New York</h4>
+              <p class="text-muted">Founded by Dr. Sarah Jenkins with 2 treatment tables and a strict commitment to 60-minute 1-on-1 doctor appointments.</p>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2014 – Sports Expansion</div>
+              <h4 class="fw-bold mb-2">Launch of Sports Performance &amp; ACL Lab</h4>
+              <p class="text-muted">Added high-speed camera gait analysis and partnered with collegiate athletic teams for comprehensive injury prevention screening.</p>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2019 – Advanced Technology Integration</div>
+              <h4 class="fw-bold mb-2">Robotic Spinal Decompression &amp; Laser Therapy</h4>
+              <p class="text-muted">Invested in computerized spinal traction and class IV deep-tissue laser therapy to treat complex non-surgical disc herniations.</p>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2023 – 15,000 Recoveries</div>
+              <h4 class="fw-bold mb-2">Surpassed 15,000 Successfully Discharged Patients</h4>
+              <p class="text-muted">Achieved a verified 98.4% patient satisfaction and recovery score independently audited by Healthcare Quality Partners.</p>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2026 – Digital Care Portal Launch</div>
+              <h4 class="fw-bold mb-2">Next-Gen Patient Portal &amp; Tele-Rehab Hub</h4>
+              <p class="text-muted">Launched our proprietary patient dashboard providing HD exercise video prescriptions and instant therapist messaging.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section-padding bg-surface">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title">
+        <span class="badge-tag">Guiding Principles</span>
+        <h2 class="h1">Our Core Clinical Values</h2>
+        <p>The ethical standards that guide every evaluation, diagnosis, and adjustment we perform.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card text-center p-4">
+            <div class="service-icon-box mx-auto text-primary bg-primary-subtle">
+              <i class="fas fa-microscope"></i>
+            </div>
+            <h5 class="fw-bold">Evidence-Based Science</h5>
+            <p class="small text-muted mb-0">Every treatment protocol is grounded in verified peer-reviewed orthopedic and neurological research.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card text-center p-4">
+            <div class="service-icon-box mx-auto text-secondary bg-warning-subtle">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <h5 class="fw-bold">Compassionate Empathy</h5>
+            <p class="small text-muted mb-0">We listen attentively to your pain journey and treat the whole human being, not just an isolated joint.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card text-center p-4">
+            <div class="service-icon-box mx-auto text-info bg-info-subtle">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h5 class="fw-bold">Absolute Integrity</h5>
+            <p class="small text-muted mb-0">Zero unnecessary sessions or overtreatment. We empower you to graduate from therapy as rapidly as safely possible.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card text-center p-4">
+            <div class="service-icon-box mx-auto text-success bg-success-subtle">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h5 class="fw-bold">Lifelong Education</h5>
+            <p class="small text-muted mb-0">We teach you the precise biomechanics of your condition so you maintain permanent long-term resilience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clinical Leadership -->
+  <section class="section-padding bg-surface-alt">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title">
+        <span class="badge-tag">Clinic Founders</span>
+        <h2 class="h1">Our Clinical Leadership</h2>
+        <p>Guided by visionary physical therapy clinicians dedicated to raising standard of rehabilitation care.</p>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="assets/images/therapist-jenkins.jpg" alt="Dr. Sarah Jenkins - Founder &amp; Clinical Director">
+            </div>
+            <div class="therapist-info">
+              <span class="therapist-specialty">Founder &amp; Clinical Director</span>
+              <h4 class="therapist-name"><a href="therapist-details.html?id=jenkins">Dr. Sarah Jenkins</a></h4>
+              <p class="therapist-meta">PT, DPT, OCS • Board-Certified Orthopedic Specialist</p>
+              <p class="small text-muted mb-3">18+ years leading breakthrough clinical programs in spinal manual therapy and non-invasive lumbar decompression.</p>
+              <div class="therapist-socials">
+                <a href="https://www.linkedin.com/in/sarah-jenkins-dpt" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Sarah Jenkins LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/DrSarahJenkins" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Sarah Jenkins Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="therapist-details.html?id=jenkins" class="btn btn-outline-primary btn-sm ms-auto">View Full Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="assets/images/therapist-vance.jpg" alt="Dr. Marcus Vance - Co-Founder &amp; Director of Sports Medicine">
+            </div>
+            <div class="therapist-info">
+              <span class="therapist-specialty">Co-Founder &amp; Sports Director</span>
+              <h4 class="therapist-name"><a href="therapist-details.html?id=vance">Dr. Marcus Vance</a></h4>
+              <p class="therapist-meta">PT, DPT, SCS • Sports Clinical Specialist</p>
+              <p class="small text-muted mb-3">Former Olympic athletic physical therapist specializing in 3D gait diagnostics and high-velocity ACL return-to-sport.</p>
+              <div class="therapist-socials">
+                <a href="https://www.linkedin.com/in/marcus-vance-pt" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Marcus Vance LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/DrMarcusVance" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Marcus Vance Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="therapist-details.html?id=vance" class="btn btn-outline-primary btn-sm ms-auto">View Full Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-primary text-white text-center">
+    <div class="container">
+      <h2 class="display-6 fw-bold text-white mb-3">Begin Your Healing Journey with Us</h2>
+      <p class="lead text-white opacity-75 mb-4">Speak directly with our clinic intake coordinator and schedule your initial assessment.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="contact.html" class="btn btn-secondary btn-lg"><i class="fas fa-calendar-check me-2"></i> Book Evaluation</a>
+        <a href="therapists.html" class="btn btn-outline-light btn-lg"><i class="fas fa-user-md me-2"></i> Meet Our Doctors</a>
+      </div>
+    </div>
+  </section>  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row footer-main-row">
+        <!-- Col 1: Brand Info -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <div class="footer-brand-header">
+              <a href="index.html" class="footer-logo-wrap" title="PhysioLife Home">
+                <img src="assets/images/logo.svg" alt="PhysioLife Logo" height="32" class="logo-light">
+                <img src="assets/images/logo-dark.svg" alt="PhysioLife Logo" height="32" class="logo-dark">
+              </a>
+            </div>
+            <p class="footer-brand-text">
+              PhysioLife is an internationally accredited physical therapy and comprehensive orthopedic rehabilitation clinic dedicated to helping individuals live active, pain-free lives.
+            </p>
+            <div class="footer-social-wrap">
+              <div class="social-icons-group">
+                <a href="https://www.facebook.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/physiolife-clinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="about.html">About Clinic</a></li>
+              <li><a href="services.html">Therapy Services</a></li>
+              <li><a href="therapists.html">Our Specialists</a></li>
+              <li><a href="insurance.html">Insurance &amp; Billing</a></li>
+              <li><a href="pricing.html">Pricing Packages</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 3: Services -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Services</h5>
+            <ul class="footer-links">
+              <li><a href="service-details.html?service=spine-neck">Spine &amp; Neck Therapy</a></li>
+              <li><a href="service-details.html?service=sports-injury">Sports Rehabilitation</a></li>
+              <li><a href="service-details.html?service=post-surgery">Post-Surgical Care</a></li>
+              <li><a href="service-details.html?service=joint-rehab">Joint Mobility</a></li>
+              <li><a href="service-details.html?service=neurological">Neurological Rehab</a></li>
+              <li><a href="service-details.html?service=home-visit">Home Physiotherapy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 4: Clinic Information -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Clinic Information</h5>
+            <ul class="footer-links footer-contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>742 Evergreen Healthcare Blvd, Suite 400, NY 10001</span>
+              </li>
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>+1 (800) 555-REHAB (73422)</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>appointments@physiolifeclinic.com</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>Monday – Friday: 7:00 AM – 8:00 PM</span>
+              </li>
+              <li>
+                <i class="fas fa-calendar-check"></i>
+                <span>Saturday: 8:00 AM – 3:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="footer-copyright">&copy; 2026 PhysioLife Rehabilitation Clinic. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="documentation/index.html" class="footer-bottom-link"><i class="far fa-file-alt me-1"></i> Template Documentation</a>
+            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+            <a href="#" class="footer-bottom-link">Terms of Care</a>
+            <a href="404.html" class="footer-bottom-link">404 Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Appointment Booking Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h4 class="modal-title fw-bold" id="bookingModalLabel">Book Your Therapy Session</h4>
+            <p class="small text-muted mb-0">Choose your preferred date, therapist, and clinical service.</p>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="appointmentBookingForm" class="needs-validation" novalidate>
+          <div class="modal-body p-4">
+            <!-- Success alert shown dynamically by JS -->
+            <div id="bookingConfirmationFeedback" class="alert alert-success d-none mb-4" role="alert">
+              <i class="fas fa-check-circle me-2"></i> Your session request has been received! Our patient care team will contact you within 15 minutes to confirm.
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="bookName" class="form-label">Full Name *</label>
+                <input type="text" class="form-control" id="bookName" placeholder="e.g. John Doe" required>
+              </div>
+              <div class="col-md-6">
+                <label for="bookEmail" class="form-label">Email Address *</label>
+                <input type="email" class="form-control" id="bookEmail" placeholder="john@example.com" required>
+              </div>
+              <div class="col-md-6">
+                <label for="bookPhone" class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" id="bookPhone" placeholder="+1 (555) 000-0000" required>
+              </div>
+              <div class="col-md-6">
+                <label for="bookService" class="form-label">Select Therapy Service *</label>
+                <select class="form-select" id="bookService" required>
+                  <option value="" selected disabled>Choose a service...</option>
+                  <option value="spine">Spine &amp; Neck Pain Therapy</option>
+                  <option value="sports">Sports Injury Rehabilitation</option>
+                  <option value="postop">Post-Surgical Recovery</option>
+                  <option value="joint">Joint &amp; Mobility Care</option>
+                  <option value="neuro">Neurological Rehabilitation</option>
+                  <option value="home">Home Visit Physiotherapy</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="bookTherapist" class="form-label">Preferred Specialist</label>
+                <select class="form-select" id="bookTherapist">
+                  <option value="any">First Available Doctor</option>
+                  <option value="jenkins">Dr. Sarah Jenkins (Spine &amp; Ortho)</option>
+                  <option value="vance">Dr. Marcus Vance (Sports Rehab)</option>
+                  <option value="rostova">Dr. Elena Rostova (Neurology)</option>
+                  <option value="chen">Dr. David Chen (Joint Replacement)</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="bookDate" class="form-label">Preferred Date *</label>
+                <input type="date" class="form-control" id="bookDate" required>
+              </div>
+              <div class="col-12">
+                <label for="bookNotes" class="form-label">Symptoms or Clinical Notes</label>
+                <textarea class="form-control" id="bookNotes" rows="3" placeholder="Briefly describe your pain, recent injury, or surgical history..."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check me-2"></i> Confirm Booking Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

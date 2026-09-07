@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PhysioLife Kinetix - High-performance athletic rehabilitation, digital biomechanics, and sports performance therapy platform.">
+  <meta name="keywords" content="sports physiotherapy, athletic rehab, biomechanics, digital health, performance conditioning">
+  <meta name="author" content="Antigravity">
+  
+  <title>PhysioLife Kinetix – Sports Performance &amp; Digital Rehab Platform</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <!-- Core Design Tokens & Styles -->
+  <link href="assets/css/variables.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/rtl.css" rel="stylesheet">
+</head>
+<body>
+
+        <!-- Single Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container-fluid px-lg-4 px-xl-5">
+      <nav class="navbar navbar-expand-xl navbar-light">
+        <!-- Left: Brand Logo & Clinic Subtitle -->
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/images/logo.svg" alt="PhysioLife Clinic Logo" height="40" class="logo-light">
+          <img src="assets/images/logo-dark.svg" alt="PhysioLife Clinic Logo" height="40" class="logo-dark">
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="navbar-toggler border-0 shadow-none d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars fs-4 text-main"></i>
+        </button>
+
+        <!-- Navigation Collapse Container -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <!-- Center Navigation Links -->
+          <ul class="navbar-nav mx-auto align-items-xl-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Home <i class="fas fa-chevron-down dropdown-arrow ms-1"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                <li><a class="dropdown-item" href="index.html">Home 1</a></li>
+                <li><a class="dropdown-item active" href="home-2.html">Home 2</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="insurance.html">Insurance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Right Actions (Desktop) -->
+          <div class="navbar-actions d-none d-xl-flex">
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i> <span class="theme-text">Dark</span>
+            </button>
+            <button class="rtl-toggle-btn" type="button" aria-label="Toggle RTL">
+              <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+            </button>
+            <a href="login.html" class="btn-nav-login">
+              <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+            </a>
+            <a href="register.html" class="btn-nav-signup">
+              <i class="fas fa-user-plus"></i> <span>Sign Up</span>
+            </a>
+          </div>
+
+          <!-- Mobile Action Drawer (<1200px) -->
+          <div class="mobile-nav-actions d-xl-none">
+            <div class="mobile-nav-controls">
+              <button class="theme-toggle-btn flex-fill" type="button" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i> <span class="theme-text">Dark</span>
+              </button>
+              <button class="rtl-toggle-btn flex-fill" type="button" aria-label="Toggle RTL">
+                <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+              </button>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="login.html" class="btn-nav-login flex-fill justify-content-center">
+                <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+              </a>
+              <a href="register.html" class="btn-nav-signup flex-fill justify-content-center">
+                <i class="fas fa-user-plus"></i> <span>Sign Up</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="badge-tag badge-secondary">
+            <i class="fas fa-bolt"></i> Elite Athletic Kinematics
+          </div>
+          <h1 class="hero-title">
+            Recover Faster. <br><span class="text-secondary">Perform Without Limits.</span>
+          </h1>
+          <p class="hero-lead">
+            High-performance sports rehabilitation powered by wearable telemetry sensors, computerized motion capture, and personalized load management designed for competitive athletes.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <i class="fas fa-calendar-alt me-2"></i> Book Biomechanical Analysis
+            </button>
+            <a href="services.html" class="btn btn-outline-primary btn-lg">
+              <i class="fas fa-dumbbell me-2"></i> Athletic Programs
+            </a>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat-item">
+              <h3 class="counter-val text-secondary" data-target="3200" data-suffix="+">3,200+</h3>
+              <p>Athletes Coached</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3 class="counter-val text-secondary" data-target="99" data-suffix="%">99%</h3>
+              <p>Return to Sport</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3 class="counter-val text-secondary" data-target="40" data-suffix="ms">40ms</h3>
+              <p>Sensor Latency</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3 class="counter-val text-secondary" data-target="14" data-suffix=" Pro">14 Pro</h3>
+              <p>Team Affiliations</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="hero-image-wrapper">
+            <img src="assets/images/home2-hero-athlete.jpg" alt="Athletic sports physical therapy and performance rehabilitation session" class="hero-img-main">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Features / SaaS Pillars -->
+  <section class="section-padding bg-surface">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title">
+        <span class="badge-tag">Multipurpose Architecture</span>
+        <h2 class="h1">Engineered for Human Kinetic Excellence</h2>
+        <p>Combining world-class sports physical therapy with predictive muscle fatigue telemetry.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="service-card text-center p-4">
+            <div class="card-img-wrap">
+              <img src="assets/images/home2-velocity-lab.jpg" alt="3D motion capture and kinetic velocity tracking lab">
+            </div>
+            <div class="service-icon-box mx-auto text-secondary bg-warning-subtle">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h4 class="fw-bold">Dynamic Velocity Tracking</h4>
+            <p>Force plate telemetry and 3D camera analysis measure ground reaction forces and joint torque during sprints, cuts, and jumps.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card text-center p-4">
+            <div class="card-img-wrap">
+              <img src="assets/images/home2-neuromuscular.jpg" alt="Neuromuscular reset and sports recovery therapy">
+            </div>
+            <div class="service-icon-box mx-auto text-primary bg-primary-subtle">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h4 class="fw-bold">Neuromuscular Reset</h4>
+            <p>High-frequency electrical stimulation and blood flow restriction (BFR) training accelerate muscle protein synthesis without joint overload.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card text-center p-4">
+            <div class="card-img-wrap">
+              <img src="assets/images/home2-telemetry-app.jpg" alt="Digital athlete telemetry and training load tracking mobile app">
+            </div>
+            <div class="service-icon-box mx-auto text-info bg-info-subtle">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h4 class="fw-bold">Athlete Telemetry App</h4>
+            <p>Synchronize wearable metrics, log daily soreness indexes, and receive real-time training load adjustments from your physical therapist.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison / Program Matrix -->
+  <section class="section-padding bg-surface-alt">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title">
+        <span class="badge-tag">Return to Competition</span>
+        <h2 class="h1">Specialized Athletic Protocols</h2>
+        <p>Evidence-based recovery tracks customized for high-impact collegiate, professional, and endurance athletes.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Protocol 1: ACL Return-To-Play -->
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-img-wrap">
+              <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap">
+                <img src="assets/images/home2-acl-protocol.jpg" alt="ACL rehabilitation and return-to-play strength testing">
+              </a>
+            </div>
+            <div class="service-icon-box">
+              <i class="fas fa-running"></i>
+            </div>
+            <h5 class="fw-bold"><a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="text-decoration-none text-main">ACL Return-To-Play</a></h5>
+            <p class="small text-muted">9-phase criterion-based testing verifying quadriceps symmetry, deceleration mechanics, and rotational stability.</p>
+            <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Protocol 2: Overhead Athlete Arm Care -->
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-img-wrap">
+              <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis">
+                <img src="assets/images/home2-overhead-arm.jpg" alt="Overhead athlete shoulder mobility and arm care training">
+              </a>
+            </div>
+            <div class="service-icon-box">
+              <i class="fas fa-baseball-ball"></i>
+            </div>
+            <h5 class="fw-bold"><a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="text-decoration-none text-main">Overhead Athlete Arm Care</a></h5>
+            <p class="small text-muted">Scapular kinematics, rotator cuff plyometrics, and throwing volume tracking for baseball and tennis competitors.</p>
+            <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Protocol 3: Endurance Runner Gait Lab -->
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-img-wrap">
+              <a href="blog-details.html?slug=patellofemoral-pain-runners-knee">
+                <img src="assets/images/home2-gait-runner.jpg" alt="Endurance runner gait analysis and biomechanical assessment">
+              </a>
+            </div>
+            <div class="service-icon-box">
+              <i class="fas fa-shoe-prints"></i>
+            </div>
+            <h5 class="fw-bold"><a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="text-decoration-none text-main">Endurance Runner Gait Lab</a></h5>
+            <p class="small text-muted">High-speed treadmill video analysis identifying overstriding, hip drop, and plantar fascia strain triggers.</p>
+            <a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Protocol 4: Post-Concussion Baseline -->
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card">
+            <div class="card-img-wrap">
+              <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol">
+                <img src="assets/images/home2-concussion.jpg" alt="Post-concussion vestibular and neurological physical therapy assessment">
+              </a>
+            </div>
+            <div class="service-icon-box">
+              <i class="fas fa-swimmer"></i>
+            </div>
+            <h5 class="fw-bold"><a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="text-decoration-none text-main">Post-Concussion Baseline</a></h5>
+            <p class="small text-muted">Vestibular ocular motor screening (VOMS) and cervical spine stabilization for contact sport return-to-play clearance.</p>
+            <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-surface text-center">
+    <div class="container">
+      <div class="max-w-700 mx-auto">
+        <h2 class="display-6 fw-bold mb-3">Elevate Your Athletic Longevity</h2>
+        <p class="lead text-muted mb-4">Book your complete kinetic assessment today with our certified sports physical therapists.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">
+            <i class="fas fa-bolt me-2"></i> Book Athletic Assessment
+          </button>
+          <a href="index.html" class="btn btn-outline-secondary btn-lg">
+            <i class="fas fa-clinic-medical me-2"></i> Back to Main Clinic
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row footer-main-row">
+        <!-- Col 1: Brand Info -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <div class="footer-brand-header">
+              <a href="index.html" class="footer-logo-wrap" title="PhysioLife Home">
+                <img src="assets/images/logo.svg" alt="PhysioLife Logo" height="32" class="logo-light">
+                <img src="assets/images/logo-dark.svg" alt="PhysioLife Logo" height="32" class="logo-dark">
+              </a>
+            </div>
+            <p class="footer-brand-text">
+              PhysioLife is an internationally accredited physical therapy and comprehensive orthopedic rehabilitation clinic dedicated to helping individuals live active, pain-free lives.
+            </p>
+            <div class="footer-social-wrap">
+              <div class="social-icons-group">
+                <a href="https://www.facebook.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/physiolife-clinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="about.html">About Clinic</a></li>
+              <li><a href="services.html">Therapy Services</a></li>
+              <li><a href="therapists.html">Our Specialists</a></li>
+              <li><a href="insurance.html">Insurance &amp; Billing</a></li>
+              <li><a href="pricing.html">Pricing Packages</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 3: Services -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Services</h5>
+            <ul class="footer-links">
+              <li><a href="service-details.html?service=spine-neck">Spine &amp; Neck Therapy</a></li>
+              <li><a href="service-details.html?service=sports-injury">Sports Rehabilitation</a></li>
+              <li><a href="service-details.html?service=post-surgery">Post-Surgical Care</a></li>
+              <li><a href="service-details.html?service=joint-rehab">Joint Mobility</a></li>
+              <li><a href="service-details.html?service=neurological">Neurological Rehab</a></li>
+              <li><a href="service-details.html?service=home-visit">Home Physiotherapy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 4: Clinic Information -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Clinic Information</h5>
+            <ul class="footer-links footer-contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>742 Evergreen Healthcare Blvd, Suite 400, NY 10001</span>
+              </li>
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>+1 (800) 555-REHAB (73422)</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>appointments@physiolifeclinic.com</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>Monday – Friday: 7:00 AM – 8:00 PM</span>
+              </li>
+              <li>
+                <i class="fas fa-calendar-check"></i>
+                <span>Saturday: 8:00 AM – 3:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="footer-copyright">&copy; 2026 PhysioLife Rehabilitation Clinic. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="documentation/index.html" class="footer-bottom-link"><i class="far fa-file-alt me-1"></i> Template Documentation</a>
+            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+            <a href="#" class="footer-bottom-link">Terms of Care</a>
+            <a href="404.html" class="footer-bottom-link">404 Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Book Athlete Biomechanical Screen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="appointmentBookingForm" class="p-4">
+          <div class="mb-3">
+            <label class="form-label">Athlete Full Name</label>
+            <input type="text" class="form-control" placeholder="e.g. Alex Morgan" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" placeholder="alex@sport.com" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Sport / Activity</label>
+            <input type="text" class="form-control" placeholder="e.g. Marathon, Soccer, Tennis">
+          </div>
+          <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-check me-2"></i> Request Assessment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/service-engine.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
+

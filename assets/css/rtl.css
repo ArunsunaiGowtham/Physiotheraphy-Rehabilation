@@ -1,0 +1,219 @@
+/**
+ * PhysioLife - RTL (Right-to-Left) Stylesheet
+ * Ensures clean bidirectional mirroring for RTL while preserving perfect natural LTR
+ * Author: Antigravity
+ * Version: 1.1.0
+ */
+
+[dir="ltr"] {
+  text-align: left;
+  direction: ltr;
+}
+
+[dir="rtl"] {
+  text-align: right;
+  direction: rtl;
+}
+
+/* ==========================================================================
+   Bootstrap 5 Utility Mirroring for RTL Mode
+   In default Bootstrap, .me-* and .ms-* use margin-right and margin-left.
+   Here we ensure that in RTL, margin-end is on the left and margin-start is on the right.
+   ========================================================================== */
+[dir="rtl"] .me-0 { margin-right: 0 !important; margin-left: 0 !important; }
+[dir="rtl"] .me-1 { margin-right: 0 !important; margin-left: 0.25rem !important; }
+[dir="rtl"] .me-2 { margin-right: 0 !important; margin-left: 0.5rem !important; }
+[dir="rtl"] .me-3 { margin-right: 0 !important; margin-left: 1rem !important; }
+[dir="rtl"] .me-4 { margin-right: 0 !important; margin-left: 1.5rem !important; }
+[dir="rtl"] .me-5 { margin-right: 0 !important; margin-left: 3rem !important; }
+[dir="rtl"] .me-auto { margin-right: 0 !important; margin-left: auto !important; }
+
+[dir="rtl"] .ms-0 { margin-left: 0 !important; margin-right: 0 !important; }
+[dir="rtl"] .ms-1 { margin-left: 0 !important; margin-right: 0.25rem !important; }
+[dir="rtl"] .ms-2 { margin-left: 0 !important; margin-right: 0.5rem !important; }
+[dir="rtl"] .ms-3 { margin-left: 0 !important; margin-right: 1rem !important; }
+[dir="rtl"] .ms-4 { margin-left: 0 !important; margin-right: 1.5rem !important; }
+[dir="rtl"] .ms-5 { margin-left: 0 !important; margin-right: 3rem !important; }
+[dir="rtl"] .ms-auto { margin-left: 0 !important; margin-right: auto !important; }
+
+[dir="rtl"] .pe-0 { padding-right: 0 !important; padding-left: 0 !important; }
+[dir="rtl"] .pe-1 { padding-right: 0 !important; padding-left: 0.25rem !important; }
+[dir="rtl"] .pe-2 { padding-right: 0 !important; padding-left: 0.5rem !important; }
+[dir="rtl"] .pe-3 { padding-right: 0 !important; padding-left: 1rem !important; }
+[dir="rtl"] .pe-4 { padding-right: 0 !important; padding-left: 1.5rem !important; }
+[dir="rtl"] .pe-5 { padding-right: 0 !important; padding-left: 3rem !important; }
+
+[dir="rtl"] .ps-0 { padding-left: 0 !important; padding-right: 0 !important; }
+[dir="rtl"] .ps-1 { padding-left: 0 !important; padding-right: 0.25rem !important; }
+[dir="rtl"] .ps-2 { padding-left: 0 !important; padding-right: 0.5rem !important; }
+[dir="rtl"] .ps-3 { padding-left: 0 !important; padding-right: 1rem !important; }
+[dir="rtl"] .ps-4 { padding-left: 0 !important; padding-right: 1.5rem !important; }
+[dir="rtl"] .ps-5 { padding-left: 0 !important; padding-right: 3rem !important; }
+
+[dir="rtl"] .text-start { text-align: right !important; }
+[dir="rtl"] .text-end { text-align: left !important; }
+[dir="rtl"] .float-start { float: right !important; }
+[dir="rtl"] .float-end { float: left !important; }
+
+/* Breadcrumbs RTL */
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  float: right;
+  padding-right: 0;
+  padding-left: 0.5rem;
+}
+
+/* Forms, Checkboxes & Selects RTL */
+[dir="rtl"] .form-select {
+  background-position: left 0.75rem center;
+  padding-left: 2.25rem;
+  padding-right: 0.75rem;
+}
+
+[dir="rtl"] .form-check {
+  padding-left: 0;
+  padding-right: 1.5em;
+  text-align: right;
+}
+
+[dir="rtl"] .form-check .form-check-input {
+  float: right;
+  margin-right: -1.5em;
+  margin-left: 0;
+}
+
+[dir="rtl"] .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-right: -1px;
+  margin-left: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: var(--bs-border-radius);
+  border-bottom-left-radius: var(--bs-border-radius);
+}
+
+[dir="rtl"] .input-group > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: var(--bs-border-radius);
+  border-bottom-right-radius: var(--bs-border-radius);
+}
+
+[dir="rtl"] .modal-header .btn-close {
+  margin: -0.5rem auto -0.5rem -0.5rem;
+}
+
+/* ==========================================================================
+   Dashboard Components RTL
+   ========================================================================== */
+[dir="rtl"] .dashboard-sidebar {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+  transform: translateX(0);
+}
+
+@media (max-width: 991.98px) {
+  [dir="rtl"] .dashboard-sidebar {
+    transform: translateX(100%);
+  }
+
+  [dir="rtl"] .dashboard-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+}
+
+[dir="rtl"] .dashboard-main {
+  margin-left: 0;
+  margin-right: var(--sidebar-width);
+}
+
+@media (max-width: 991.98px) {
+  [dir="rtl"] .dashboard-main {
+    margin-right: 0;
+  }
+}
+
+[dir="rtl"] .topbar-search input {
+  padding-left: 1rem;
+  padding-right: 2.5rem;
+}
+
+[dir="rtl"] .topbar-search i {
+  left: auto;
+  right: 1rem;
+}
+
+[dir="rtl"] .menu-badge {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   Navigation & Header RTL
+   ========================================================================== */
+[dir="rtl"] .dropdown-menu {
+  text-align: right;
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .dropdown-menu-end {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .navbar-nav {
+  padding-right: 0;
+}
+
+/* ==========================================================================
+   Hover Micro-interactions Mirroring for RTL
+   ========================================================================== */
+[dir="rtl"] .site-footer .footer-links a:hover {
+  transform: translateX(-4px);
+}
+
+[dir="rtl"] .service-card:hover .service-link i {
+  transform: translateX(-4px);
+}
+
+[dir="rtl"] .blog-card-ref .link-ref:hover {
+  transform: translateX(-2px);
+}
+
+/* ==========================================================================
+   Timeline & Widgets RTL
+   ========================================================================== */
+[dir="rtl"] .timeline-item {
+  padding-left: 0;
+  padding-right: 2.5rem;
+  border-left: none;
+  border-right: 2px solid var(--primary-border);
+}
+
+[dir="rtl"] .timeline-dot {
+  left: auto;
+  right: -9px;
+}
+
+[dir="rtl"] .widget-title::after {
+  left: auto;
+  right: 0;
+}
+
+/* ==========================================================================
+   Floating Badges RTL
+   ========================================================================== */
+[dir="rtl"] .floating-badge.badge-top {
+  right: auto;
+  left: -5%;
+}
+
+[dir="rtl"] .floating-badge.badge-bottom {
+  left: auto;
+  right: -5%;
+}

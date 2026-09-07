@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View and print official medical payment receipts and statements.">
+  <title>Payment Receipt – PhysioLife Patient Portal</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+  <style>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .printable-receipt, .printable-receipt * {
+        visibility: visible;
+      }
+      .printable-receipt {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar no-print">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Patient Hub</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link"><i class="fas fa-calendar-alt"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link"><i class="fas fa-notes-medical"></i> <span>Treatment Plan</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link"><i class="fas fa-play-circle"></i> <span>Home Exercises</span></a></li>
+        <li class="menu-item"><a href="attendance.html" class="menu-link"><i class="fas fa-clipboard-check"></i> <span>Attendance &amp; Pain</span></a></li>
+        <li class="menu-category">Billing &amp; Account</li>
+        <li class="menu-item"><a href="payments.html" class="menu-link"><i class="fas fa-credit-card"></i> <span>Payments</span></a></li>
+        <li class="menu-item"><a href="receipts.html" class="menu-link active"><i class="fas fa-file-invoice-dollar"></i> <span>Receipts</span></a></li>
+        <li class="menu-item"><a href="profile.html" class="menu-link"><i class="fas fa-user-cog"></i> <span>My Profile</span></a></li>
+        <li class="menu-item mt-3"><a href="../patient-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/patient-avatar.svg" alt="Robert Sterling" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Robert Sterling</div>
+            <div class="user-role">Patient ID: #PT-82910</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar no-print">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none" type="button"><i class="fas fa-bars"></i></button>
+          <span class="fw-bold d-flex align-items-center gap-2 text-heading"><i class="fas fa-file-invoice-dollar text-primary"></i> Payment Receipt Viewer</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+          <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="receipt-layout-container mx-auto" style="max-width: 880px;">
+          <!-- Receipt Actions Header (Aligned with Receipt Box) -->
+          <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+            <div>
+              <h2 class="fw-bold mb-1">Official Medical Receipt</h2>
+              <p class="text-muted small mb-0">HSA / FSA and Insurance Reimbursement Compatible.</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary d-inline-flex align-items-center gap-2" onclick="window.print()">
+                <i class="fas fa-print"></i> <span>Print Receipt</span>
+              </button>
+              <button class="btn btn-primary d-inline-flex align-items-center gap-2" onclick="alert('PDF downloaded to your device.')">
+                <i class="fas fa-download"></i> <span>Download PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Printable Invoice Container -->
+          <div class="printable-receipt p-4 p-md-5 bg-surface rounded-4 border border-subtle shadow-sm">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-4 mb-4 pb-4 border-bottom border-subtle">
+              <div>
+                <img src="../assets/images/logo.svg" alt="PhysioLife Logo" height="42" class="mb-2">
+                <p class="small text-muted mb-0">
+                  742 Evergreen Healthcare Blvd, Suite 400<br>
+                  New York, NY 10001<br>
+                  Tax ID / NPI: 1482910399 • Tel: +1 (800) 555-REHAB
+                </p>
+              </div>
+              <div class="text-sm-end">
+                <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 mb-2 d-inline-block">PAID IN FULL</span>
+                <h5 class="fw-bold mb-1">Receipt #INV-2026-089</h5>
+                <p class="small text-muted mb-0">Date: September 1, 2026</p>
+              </div>
+            </div>
+
+            <!-- Patient & Provider Info -->
+            <div class="row g-4 mb-4">
+              <div class="col-sm-6">
+                <small class="text-muted text-uppercase fw-bold d-block mb-1">Billed To Patient:</small>
+                <h6 class="fw-bold mb-1 text-capitalize" id="receiptPatientName">Robert Sterling</h6>
+                <p class="small text-muted mb-0">
+                  Patient ID: #PT-82910<br>
+                  Insurance: BlueCross BlueShield PPO<br>
+                  Policy ID: W92847291-01
+                </p>
+              </div>
+              <div class="col-sm-6 text-sm-end">
+                <small class="text-muted text-uppercase fw-bold d-block mb-1">Treating Clinician:</small>
+                <h6 class="fw-bold mb-1">Dr. Sarah Jenkins, PT, DPT, OCS</h6>
+                <p class="small text-muted mb-0">
+                  License #: NY-PT-048291<br>
+                  Department: Orthopedic &amp; Spine Rehabilitation
+                </p>
+              </div>
+            </div>
+
+            <!-- Itemized Procedure Table -->
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered table-custom align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th style="width: 110px;">CPT Code</th>
+                    <th>Clinical Procedure Description</th>
+                    <th class="text-center" style="width: 140px;">Units / Time</th>
+                    <th class="text-end" style="width: 100px;">Fee</th>
+                    <th class="text-end" style="width: 130px;">Insurance Adj.</th>
+                    <th class="text-end" style="width: 120px;">Patient Paid</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>97110</strong></td>
+                    <td>Therapeutic Exercise (McKenzie Spinal Extensions)</td>
+                    <td class="text-center">2 Units (30 min)</td>
+                    <td class="text-end">$90.00</td>
+                    <td class="text-end text-success">-$70.00</td>
+                    <td class="text-end fw-semibold">$20.00</td>
+                  </tr>
+                  <tr>
+                    <td><strong>97140</strong></td>
+                    <td>Manual Therapy Techniques (Joint Mobilization)</td>
+                    <td class="text-center">1 Unit (15 min)</td>
+                    <td class="text-end">$50.00</td>
+                    <td class="text-end text-success">-$40.00</td>
+                    <td class="text-end fw-semibold">$10.00</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="5" class="text-end fw-bold">Total Patient Copay Paid:</td>
+                    <td class="text-end fw-bold text-primary fs-5">$30.00</td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" class="text-end small text-muted">Payment Method:</td>
+                    <td class="text-end small text-muted">Visa •••• 4242 (Auth #84920)</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div class="p-3 bg-surface-alt rounded-3 border border-subtle small text-muted">
+              <p class="mb-0">
+                <strong>Medical Certification:</strong> The above physical therapy procedures were medically necessary for the diagnosis and rehabilitation of Lumbar Disc Disorder with Radiculopathy (ICD-10: M51.16).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

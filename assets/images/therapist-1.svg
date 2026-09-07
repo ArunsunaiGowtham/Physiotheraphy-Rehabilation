@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDFA"/>
+      <stop offset="100%" stop-color="#CCFBF1"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgGrad1)"/>
+  <circle cx="200" cy="150" r="70" fill="#E2E8F0"/>
+  <!-- Hair -->
+  <path d="M120 150 C120 70 280 70 280 150 C280 170 270 200 270 200 C270 200 250 120 200 120 C150 120 130 200 130 200 Z" fill="#78350F"/>
+  <!-- Face -->
+  <circle cx="200" cy="160" r="55" fill="#FCD34D"/>
+  <path d="M175 160 Q185 165 190 160" stroke="#78350F" stroke-width="3" fill="none"/>
+  <path d="M210 160 Q215 165 225 160" stroke="#78350F" stroke-width="3" fill="none"/>
+  <path d="M190 185 Q200 195 210 185" stroke="#DC2626" stroke-width="3" fill="none"/>
+  <!-- Doctor Coat -->
+  <path d="M110 370 L140 240 L260 240 L290 370 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <path d="M170 240 L200 310 L230 240 Z" fill="#0F766E"/>
+  <!-- Stethoscope -->
+  <path d="M165 240 Q160 300 200 320 Q240 300 235 240" stroke="#0EA5E9" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="200" cy="330" r="10" fill="#64748B"/>
+</svg>

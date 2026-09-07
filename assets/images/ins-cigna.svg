@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" width="160" height="50">
+  <rect width="160" height="50" rx="8" fill="#F1F5F9"/>
+  <!-- Cigna Tree of Life Silhouette -->
+  <circle cx="25" cy="22" r="8" fill="#F59E0B"/>
+  <rect x="23" y="27" width="4" height="8" fill="#0D9488"/>
+  <text x="45" y="32" font-family="'Outfit', sans-serif" font-size="15" font-weight="800" fill="#0D9488">Cigna</text>
+</svg>

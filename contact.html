@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact PhysioLife Rehabilitation Clinic. Schedule appointments, find clinic location, emergency numbers, and patient support.">
+  <title>Contact Us – PhysioLife Clinic</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/variables.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/rtl.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Single Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container-fluid px-lg-4 px-xl-5">
+      <nav class="navbar navbar-expand-xl navbar-light">
+        <!-- Left: Brand Logo & Clinic Subtitle -->
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/images/logo.svg" alt="PhysioLife Clinic Logo" height="40" class="logo-light">
+          <img src="assets/images/logo-dark.svg" alt="PhysioLife Clinic Logo" height="40" class="logo-dark">
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="navbar-toggler border-0 shadow-none d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars fs-4 text-main"></i>
+        </button>
+
+        <!-- Navigation Collapse Container -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <!-- Center Navigation Links -->
+          <ul class="navbar-nav mx-auto align-items-xl-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Home <i class="fas fa-chevron-down dropdown-arrow ms-1"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                <li><a class="dropdown-item" href="index.html">Home 1</a></li>
+                <li><a class="dropdown-item" href="home-2.html">Home 2</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="insurance.html">Insurance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Right Actions (Desktop) -->
+          <div class="navbar-actions d-none d-xl-flex">
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i> <span class="theme-text">Dark</span>
+            </button>
+            <button class="rtl-toggle-btn" type="button" aria-label="Toggle RTL">
+              <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+            </button>
+            <a href="login.html" class="btn-nav-login">
+              <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+            </a>
+            <a href="register.html" class="btn-nav-signup">
+              <i class="fas fa-user-plus"></i> <span>Sign Up</span>
+            </a>
+          </div>
+
+          <!-- Mobile Action Drawer (<1200px) -->
+          <div class="mobile-nav-actions d-xl-none">
+            <div class="mobile-nav-controls">
+              <button class="theme-toggle-btn flex-fill" type="button" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i> <span class="theme-text">Dark</span>
+              </button>
+              <button class="rtl-toggle-btn flex-fill" type="button" aria-label="Toggle RTL">
+                <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+              </button>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="login.html" class="btn-nav-login flex-fill justify-content-center">
+                <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+              </a>
+              <a href="register.html" class="btn-nav-signup flex-fill justify-content-center">
+                <i class="fas fa-user-plus"></i> <span>Sign Up</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header Banner with Thematic Background Image -->
+  <section class="page-header-banner page-banner-contact text-center">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+        </ol>
+      </nav>
+      <h1 class="banner-title">Get in Touch with Our Clinical Team</h1>
+      <p class="lead banner-subtitle mx-auto">We are here to answer your questions, verify insurance benefits, and book your evaluation.</p>
+    </div>
+  </section>
+
+  <!-- Contact Information Cards -->
+  <section class="section-padding-sm bg-surface">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100">
+            <div class="service-icon-box text-primary bg-primary-subtle mb-3">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Our Clinic</h5>
+            <p class="small text-muted mb-0">742 Evergreen Healthcare Blvd, Suite 400, New York, NY 10001</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100">
+            <div class="service-icon-box text-secondary bg-warning-subtle mb-3">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Phone &amp; Direct Line</h5>
+            <p class="small text-muted mb-1">+1 (800) 555-REHAB</p>
+            <p class="small text-muted mb-0">Local: +1 (212) 555-0199</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100">
+            <div class="service-icon-box text-info bg-info-subtle mb-3">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Email Inquiries</h5>
+            <p class="small text-muted mb-1">care@physiolifeclinic.com</p>
+            <p class="small text-muted mb-0">billing@physiolifeclinic.com</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100">
+            <div class="service-icon-box text-success bg-success-subtle mb-3">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h5 class="fw-bold mb-1">Operating Hours</h5>
+            <p class="small text-muted mb-1">Mon – Fri: 7:00 AM – 8:00 PM</p>
+            <p class="small text-muted mb-0">Saturday: 8:00 AM – 3:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Appointment Form with Map -->
+  <section class="section-padding bg-surface-alt" id="contactFormSection">
+    <div class="container">
+      <div class="row g-5">
+        <!-- Form -->
+        <div class="col-lg-7">
+          <div class="p-4 p-md-5 bg-surface rounded-4 border border-subtle shadow-sm">
+            <span class="badge-tag">Quick Response</span>
+            <h2 class="h2 mb-2">Send an Inquiry or Request an Evaluation</h2>
+            <p class="text-muted small mb-4">Our clinical intake coordinator will respond within 2 hours during business hours.</p>
+
+            <form class="needs-validation" novalidate>
+              <div class="alert alert-success d-none form-success-alert mb-4" role="alert">
+                <i class="fas fa-check-circle me-2"></i> Thank you! Your message has been sent successfully. Our clinical team will reach out shortly.
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-control" placeholder="+1 (555) 000-0000" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Therapy Service Needed *</label>
+                  <select class="form-select" required>
+                    <option value="" selected disabled>Select an option...</option>
+                    <option value="spine">Spine &amp; Neck Pain Relief</option>
+                    <option value="sports">Sports Injury Rehabilitation</option>
+                    <option value="postop">Post-Surgical Care</option>
+                    <option value="joint">Joint &amp; Arthritis Therapy</option>
+                    <option value="home">Home Visit Physiotherapy</option>
+                    <option value="general">General Clinical Inquiry</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Preferred Appointment Date</label>
+                  <input type="date" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Are you using Health Insurance?</label>
+                  <select class="form-select">
+                    <option value="yes">Yes, In-Network Insurance</option>
+                    <option value="no">No, Self-Pay Package</option>
+                    <option value="unsure">Unsure / Need Verification</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message / Clinical Symptoms *</label>
+                  <textarea class="form-control" rows="4" placeholder="Describe your injury, painful movements, or diagnosis..." required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="fas fa-paper-plane me-2"></i> Submit Inquiry &amp; Request Call
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Clinic Map & Emergency Card -->
+        <div class="col-lg-5">
+          <!-- Emergency Info -->
+          <div class="p-4 bg-danger-subtle text-danger border border-danger-subtle rounded-4 mb-4">
+            <h5 class="fw-bold mb-2"><i class="fas fa-exclamation-triangle me-2"></i> Medical Emergency Notice</h5>
+            <p class="small mb-0">If you are experiencing sudden chest pain, difficulty breathing, or severe traumatic head injury, please call <strong>911</strong> or visit the nearest hospital emergency room immediately.</p>
+          </div>
+
+          <!-- Interactive Map Container -->
+          <div class="bg-surface rounded-4 border border-subtle overflow-hidden shadow-sm">
+            <div class="p-4 border-bottom border-subtle">
+              <h5 class="fw-bold mb-1"><i class="fas fa-directions text-primary me-2"></i> Clinic Directions</h5>
+              <p class="small text-muted mb-0">Located near Penn Station with designated patient parking.</p>
+            </div>
+            <!-- Google Maps Embed Placeholder with high quality SVG Map Graphic -->
+            <div class="position-relative bg-surface-alt p-5 text-center" style="min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <i class="fas fa-map-marked-alt display-4 text-primary mb-3"></i>
+              <h6 class="fw-bold">Interactive Navigation Map</h6>
+              <p class="small text-muted mb-3">742 Evergreen Healthcare Blvd, Suite 400</p>
+              <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-external-link-alt me-1"></i> Open in Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row footer-main-row">
+        <!-- Col 1: Brand Info -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <div class="footer-brand-header">
+              <a href="index.html" class="footer-logo-wrap" title="PhysioLife Home">
+                <img src="assets/images/logo.svg" alt="PhysioLife Logo" height="32" class="logo-light">
+                <img src="assets/images/logo-dark.svg" alt="PhysioLife Logo" height="32" class="logo-dark">
+              </a>
+            </div>
+            <p class="footer-brand-text">
+              PhysioLife is an internationally accredited physical therapy and comprehensive orthopedic rehabilitation clinic dedicated to helping individuals live active, pain-free lives.
+            </p>
+            <div class="footer-social-wrap">
+              <div class="social-icons-group">
+                <a href="https://www.facebook.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/physiolife-clinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@physiolifeclinic" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="about.html">About Clinic</a></li>
+              <li><a href="services.html">Therapy Services</a></li>
+              <li><a href="therapists.html">Our Specialists</a></li>
+              <li><a href="insurance.html">Insurance &amp; Billing</a></li>
+              <li><a href="pricing.html">Pricing Packages</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 3: Services -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Services</h5>
+            <ul class="footer-links">
+              <li><a href="service-details.html?service=spine-neck">Spine &amp; Neck Therapy</a></li>
+              <li><a href="service-details.html?service=sports-injury">Sports Rehabilitation</a></li>
+              <li><a href="service-details.html?service=post-surgery">Post-Surgical Care</a></li>
+              <li><a href="service-details.html?service=joint-rehab">Joint Mobility</a></li>
+              <li><a href="service-details.html?service=neurological">Neurological Rehab</a></li>
+              <li><a href="service-details.html?service=home-visit">Home Physiotherapy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 4: Clinic Information -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="footer-widget">
+            <h5>Clinic Information</h5>
+            <ul class="footer-links footer-contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>742 Evergreen Healthcare Blvd, Suite 400, NY 10001</span>
+              </li>
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>+1 (800) 555-REHAB (73422)</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>appointments@physiolifeclinic.com</span>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <span>Monday – Friday: 7:00 AM – 8:00 PM</span>
+              </li>
+              <li>
+                <i class="fas fa-calendar-check"></i>
+                <span>Saturday: 8:00 AM – 3:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="footer-copyright">&copy; 2026 PhysioLife Rehabilitation Clinic. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="documentation/index.html" class="footer-bottom-link"><i class="far fa-file-alt me-1"></i> Template Documentation</a>
+            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+            <a href="#" class="footer-bottom-link">Terms of Care</a>
+            <a href="404.html" class="footer-bottom-link">404 Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

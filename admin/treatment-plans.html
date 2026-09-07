@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage clinical care protocol templates and rehabilitation pathways.">
+  <title>Care Protocols – PhysioLife Admin</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+  <style>
+    .input-highlight-pulse {
+      animation: protoPulseHighlight 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    @keyframes protoPulseHighlight {
+      0% { background-color: rgba(13, 110, 253, 0.18); border-color: #0d6efd; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); }
+      100% { background-color: inherit; border-color: inherit; box-shadow: none; }
+    }
+    .auto-fill-badge {
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Clinic Administration</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-chart-pie"></i> <span>Overview</span></a></li>
+        <li class="menu-item"><a href="users.html" class="menu-link"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
+        <li class="menu-item"><a href="therapists.html" class="menu-link"><i class="fas fa-user-md"></i> <span>Therapists</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="services.html" class="menu-link"><i class="fas fa-stethoscope"></i> <span>Services Catalog</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link active"><i class="fas fa-file-medical-alt"></i> <span>Care Protocols</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link"><i class="fas fa-video"></i> <span>Exercise Videos</span></a></li>
+        <li class="menu-category">Financials &amp; Content</li>
+        <li class="menu-item"><a href="orders.html" class="menu-link"><i class="fas fa-file-invoice-dollar"></i> <span>Billing &amp; Claims</span></a></li>
+        <li class="menu-item"><a href="messages.html" class="menu-link"><i class="fas fa-envelope-open-text"></i> <span>Inquiries</span></a></li>
+        <li class="menu-item"><a href="blog.html" class="menu-link"><i class="fas fa-newspaper"></i> <span>Blog CMS</span></a></li>
+        <li class="menu-item"><a href="settings.html" class="menu-link"><i class="fas fa-sliders-h"></i> <span>Clinic Settings</span></a></li>
+        <li class="menu-item mt-3"><a href="../admin-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/therapist-1.svg" alt="Dr. Sarah Jenkins" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Dr. Sarah Jenkins</div>
+            <div class="user-role">Clinical Director (Admin)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search d-none d-md-block">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashTableSearch" class="form-control form-control-sm" placeholder="Search care protocols...">
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+                  <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h2 class="fw-bold mb-1">Standardized Care Protocol Templates</h2>
+            <p class="text-muted small mb-0">Evidence-based clinical guidelines automatically assigned to patient intake records.</p>
+          </div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProtocolModal" id="openCreateProtocolBtn">
+            <i class="fas fa-plus me-1"></i> Create Care Protocol
+          </button>
+        </div>
+
+        <!-- Success Alert Banner -->
+        <div id="protocolAlertSuccess" class="alert alert-success d-none alert-dismissible fade show mb-4" role="alert">
+          <i class="fas fa-check-circle me-2"></i> <span id="protocolAlertText">Protocol updated successfully.</span>
+          <button type="button" class="btn-close" onclick="this.parentElement.classList.add('d-none')" aria-label="Close"></button>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-header d-flex justify-content-between align-items-center">
+            <h5 class="dash-card-title mb-0"><i class="fas fa-clipboard-list text-primary me-2"></i> Protocol Library</h5>
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2" id="protocolCountBadge">4 Active Protocols</span>
+          </div>
+          <div class="dash-card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-custom table-hover">
+                <thead>
+                  <tr>
+                    <th>Protocol Name</th>
+                    <th>Target Pathology</th>
+                    <th>Phases</th>
+                    <th>Standard Duration</th>
+                    <th>Active Patients</th>
+                    <th>Author Doctor</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="protocolsTableBody">
+                  <tr data-id="p1">
+                    <td><strong>Lumbar Disc Decompression &amp; McKenzie</strong></td>
+                    <td>L4-S1 Disc Herniation, Sciatica</td>
+                    <td>4 Phases</td>
+                    <td>6 – 8 Weeks</td>
+                    <td><span class="badge bg-primary-subtle text-primary">82 Patients</span></td>
+                    <td>Dr. Sarah Jenkins</td>
+                    <td><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.openManageProtocol('p1')">Manage</button></td>
+                  </tr>
+
+                  <tr data-id="p2">
+                    <td><strong>ACL Reconstruction Return-to-Sport</strong></td>
+                    <td>Anterior Cruciate Ligament Post-Op</td>
+                    <td>6 Phases</td>
+                    <td>6 – 9 Months</td>
+                    <td><span class="badge bg-primary-subtle text-primary">45 Patients</span></td>
+                    <td>Dr. Marcus Vance</td>
+                    <td><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.openManageProtocol('p2')">Manage</button></td>
+                  </tr>
+
+                  <tr data-id="p3">
+                    <td><strong>Total Knee Arthroplasty (TKA) Post-Op</strong></td>
+                    <td>Total Knee Replacement</td>
+                    <td>3 Phases</td>
+                    <td>8 – 12 Weeks</td>
+                    <td><span class="badge bg-primary-subtle text-primary">39 Patients</span></td>
+                    <td>Dr. David Chen</td>
+                    <td><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.openManageProtocol('p3')">Manage</button></td>
+                  </tr>
+
+                  <tr data-id="p4">
+                    <td><strong>Stroke Neuroplastic Mobility Pathway</strong></td>
+                    <td>Cerebrovascular Hemiparesis</td>
+                    <td>5 Phases</td>
+                    <td>16 Weeks</td>
+                    <td><span class="badge bg-primary-subtle text-primary">24 Patients</span></td>
+                    <td>Dr. Elena Rostova</td>
+                    <td><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.openManageProtocol('p4')">Manage</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Manage Care Protocol Modal -->
+  <div class="modal fade" id="manageProtocolModal" tabindex="-1" aria-labelledby="manageProtocolModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-header border-bottom py-3 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i class="fas fa-file-medical-alt"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold mb-0" id="manageProtocolModalLabel">Manage Care Protocol</h5>
+              <small class="text-muted">Standardized clinical guidelines and phase milestone configuration</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="manageProtocolForm" class="p-4" onsubmit="event.preventDefault(); window.saveProtocolChanges();">
+          <input type="hidden" id="manageProtoId">
+          <div id="manageProtoAlert" class="alert alert-danger d-none mb-3 py-2"></div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="manageProtoName" class="form-label fw-semibold">Protocol Name <span class="text-danger">*</span></label>
+              <input type="text" id="manageProtoName" class="form-control" required placeholder="e.g. Lumbar Disc Decompression">
+            </div>
+            <div class="col-md-6">
+              <label for="manageProtoPathology" class="form-label fw-semibold d-flex justify-content-between align-items-center">
+                <span>Target Pathology <span class="text-danger">*</span></span>
+                <span class="badge bg-primary-subtle text-primary auto-fill-badge fw-normal"><i class="fas fa-magic me-1"></i>Auto-syncs content</span>
+              </label>
+              <select id="manageProtoPathology" class="form-select" onchange="window.onPathologySelected(this.value, 'manage')" required>
+                <option value="" disabled>-- Select Target Pathology --</option>
+                <optgroup label="Spine &amp; Sciatica">
+                  <option value="L4-S1 Disc Herniation, Sciatica">L4-S1 Disc Herniation, Sciatica</option>
+                  <option value="Cervical Radiculopathy &amp; Disc Bulge">Cervical Radiculopathy &amp; Disc Bulge</option>
+                  <option value="Lumbar Spinal Stenosis">Lumbar Spinal Stenosis</option>
+                </optgroup>
+                <optgroup label="Knee &amp; Sports Rehabilitation">
+                  <option value="Anterior Cruciate Ligament Post-Op">Anterior Cruciate Ligament Post-Op (ACL)</option>
+                  <option value="Meniscus Tear &amp; Meniscectomy">Meniscus Tear &amp; Meniscectomy</option>
+                  <option value="Patellofemoral Pain Syndrome (Runner's Knee)">Patellofemoral Pain Syndrome (Runner's Knee)</option>
+                  <option value="Achilles Tendinopathy &amp; Rupture Post-Op">Achilles Tendinopathy &amp; Rupture Post-Op</option>
+                </optgroup>
+                <optgroup label="Joint Arthroplasty (Replacements)">
+                  <option value="Total Knee Replacement">Total Knee Replacement (TKA)</option>
+                  <option value="Total Hip Replacement (THA Post-Op)">Total Hip Replacement (THA Post-Op)</option>
+                  <option value="Knee Osteoarthritis (Stage II-IV)">Knee Osteoarthritis (Stage II-IV)</option>
+                </optgroup>
+                <optgroup label="Shoulder &amp; Upper Extremity">
+                  <option value="Supraspinatus Tendon Repair (Rotator Cuff)">Supraspinatus Tendon Repair (Rotator Cuff)</option>
+                  <option value="Adhesive Capsulitis (Frozen Shoulder)">Adhesive Capsulitis (Frozen Shoulder)</option>
+                  <option value="Lateral Epicondylitis (Tennis Elbow)">Lateral Epicondylitis (Tennis Elbow)</option>
+                </optgroup>
+                <optgroup label="Neurological &amp; Vestibular">
+                  <option value="Cerebrovascular Hemiparesis">Cerebrovascular Hemiparesis (Stroke)</option>
+                  <option value="Vestibular Neuritis &amp; BPPV Vertigo">Vestibular Neuritis &amp; BPPV Vertigo</option>
+                  <option value="Parkinson's Disease Gait Disorder">Parkinson's Disease Gait Disorder</option>
+                </optgroup>
+                <optgroup label="Chronic Pain &amp; Ergonomics">
+                  <option value="Chronic Pain &amp; Central Sensitization">Chronic Pain &amp; Central Sensitization</option>
+                  <option value="Fibromyalgia &amp; Myofascial Pain">Fibromyalgia &amp; Myofascial Pain</option>
+                  <option value="Ergonomic Repetitive Strain Injury">Ergonomic Repetitive Strain Injury (RSI)</option>
+                </optgroup>
+                <optgroup label="Custom Option">
+                  <option value="__custom__">➕ Other / Custom Target Pathology...</option>
+                </optgroup>
+              </select>
+              <div id="manageProtoCustomPathologyWrap" class="mt-2 d-none">
+                <input type="text" id="manageProtoCustomPathology" class="form-control form-control-sm" placeholder="Enter custom target pathology name...">
+              </div>
+              <div id="manageProtoAutoFillNotice" class="d-none small text-success mt-1 align-items-center gap-1">
+                <i class="fas fa-check-circle"></i> <span>Auto-populated relevant clinical content.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="manageProtoDoctor" class="form-label fw-semibold">Author Doctor / Specialist</label>
+              <select id="manageProtoDoctor" class="form-select">
+                <option value="Dr. Sarah Jenkins">Dr. Sarah Jenkins (Orthopedic &amp; Spine)</option>
+                <option value="Dr. Marcus Vance">Dr. Marcus Vance (Sports Injury &amp; Athletic Performance)</option>
+                <option value="Dr. Elena Rostova">Dr. Elena Rostova (Neurological Rehabilitation)</option>
+                <option value="Dr. David Chen">Dr. David Chen (Joint Arthroplasty &amp; Manual)</option>
+                <option value="Dr. Chloe Bennett">Dr. Chloe Bennett (Chronic Pain Management)</option>
+                <option value="Dr. Julian Reed">Dr. Julian Reed (Physical Therapy &amp; Rehab)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="manageProtoDuration" class="form-label fw-semibold">Standard Duration</label>
+              <input type="text" id="manageProtoDuration" class="form-control" placeholder="e.g. 6 – 8 Weeks">
+            </div>
+            <div class="col-md-3">
+              <label for="manageProtoPhases" class="form-label fw-semibold">Number of Phases</label>
+              <input type="text" id="manageProtoPhases" class="form-control" placeholder="e.g. 4 Phases">
+            </div>
+            <div class="col-md-6">
+              <label for="manageProtoPatients" class="form-label fw-semibold">Active Patients</label>
+              <input type="text" id="manageProtoPatients" class="form-control" placeholder="e.g. 82 Patients">
+            </div>
+            <div class="col-md-6">
+              <label for="manageProtoStatus" class="form-label fw-semibold">Protocol Status</label>
+              <select id="manageProtoStatus" class="form-select">
+                <option value="Active">Active (In Clinical Use)</option>
+                <option value="Under Review">Under Review (Committee Revision)</option>
+                <option value="Archived">Archived</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="manageProtoDesc" class="form-label fw-semibold">Clinical Scope &amp; Indications</label>
+              <textarea id="manageProtoDesc" class="form-control" rows="2" placeholder="Clinical scope, diagnostic inclusion criteria, and patient eligibility..."></textarea>
+            </div>
+
+            <!-- Milestone Phases Section -->
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="form-label fw-semibold mb-0"><i class="fas fa-layer-group text-primary me-1"></i> Progression Phases &amp; Milestones</label>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="window.addPhaseMilestoneInput()">
+                  <i class="fas fa-plus me-1"></i> Add Phase Milestone
+                </button>
+              </div>
+              <div id="manageProtoPhasesList" class="d-flex flex-column gap-2">
+                <!-- Dynamically populated phase items -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top px-0 pb-0 pt-4 mt-3 d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-danger" onclick="window.deleteProtocol()">
+              <i class="fas fa-trash-alt me-1"></i> Delete Protocol
+            </button>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="fas fa-check me-1"></i> Save Changes
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Care Protocol Modal -->
+  <div class="modal fade" id="createProtocolModal" tabindex="-1" aria-labelledby="createProtocolModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-header border-bottom py-3 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i class="fas fa-plus"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold mb-0" id="createProtocolModalLabel">Create Care Protocol Template</h5>
+              <small class="text-muted">Standardize an evidence-based clinical rehabilitation pathway</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="createProtocolForm" class="p-4" onsubmit="event.preventDefault(); window.createProtocol();">
+          <div id="createProtoAlert" class="alert alert-danger d-none mb-3 py-2"></div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="newProtoName" class="form-label fw-semibold">Protocol Name <span class="text-danger">*</span></label>
+              <input type="text" id="newProtoName" class="form-control" placeholder="e.g. Rotator Cuff Post-Surgical Protocol" required>
+            </div>
+            <div class="col-md-6">
+              <label for="newProtoPathology" class="form-label fw-semibold d-flex justify-content-between align-items-center">
+                <span>Target Pathology <span class="text-danger">*</span></span>
+                <span class="badge bg-primary-subtle text-primary auto-fill-badge fw-normal"><i class="fas fa-magic me-1"></i>Auto-fills template</span>
+              </label>
+              <select id="newProtoPathology" class="form-select" onchange="window.onPathologySelected(this.value, 'new')" required>
+                <option value="" disabled selected>-- Select Target Pathology --</option>
+                <optgroup label="Spine &amp; Sciatica">
+                  <option value="L4-S1 Disc Herniation, Sciatica">L4-S1 Disc Herniation, Sciatica</option>
+                  <option value="Cervical Radiculopathy &amp; Disc Bulge">Cervical Radiculopathy &amp; Disc Bulge</option>
+                  <option value="Lumbar Spinal Stenosis">Lumbar Spinal Stenosis</option>
+                </optgroup>
+                <optgroup label="Knee &amp; Sports Rehabilitation">
+                  <option value="Anterior Cruciate Ligament Post-Op">Anterior Cruciate Ligament Post-Op (ACL)</option>
+                  <option value="Meniscus Tear &amp; Meniscectomy">Meniscus Tear &amp; Meniscectomy</option>
+                  <option value="Patellofemoral Pain Syndrome (Runner's Knee)">Patellofemoral Pain Syndrome (Runner's Knee)</option>
+                  <option value="Achilles Tendinopathy &amp; Rupture Post-Op">Achilles Tendinopathy &amp; Rupture Post-Op</option>
+                </optgroup>
+                <optgroup label="Joint Arthroplasty (Replacements)">
+                  <option value="Total Knee Replacement">Total Knee Replacement (TKA)</option>
+                  <option value="Total Hip Replacement (THA Post-Op)">Total Hip Replacement (THA Post-Op)</option>
+                  <option value="Knee Osteoarthritis (Stage II-IV)">Knee Osteoarthritis (Stage II-IV)</option>
+                </optgroup>
+                <optgroup label="Shoulder &amp; Upper Extremity">
+                  <option value="Supraspinatus Tendon Repair (Rotator Cuff)">Supraspinatus Tendon Repair (Rotator Cuff)</option>
+                  <option value="Adhesive Capsulitis (Frozen Shoulder)">Adhesive Capsulitis (Frozen Shoulder)</option>
+                  <option value="Lateral Epicondylitis (Tennis Elbow)">Lateral Epicondylitis (Tennis Elbow)</option>
+                </optgroup>
+                <optgroup label="Neurological &amp; Vestibular">
+                  <option value="Cerebrovascular Hemiparesis">Cerebrovascular Hemiparesis (Stroke)</option>
+                  <option value="Vestibular Neuritis &amp; BPPV Vertigo">Vestibular Neuritis &amp; BPPV Vertigo</option>
+                  <option value="Parkinson's Disease Gait Disorder">Parkinson's Disease Gait Disorder</option>
+                </optgroup>
+                <optgroup label="Chronic Pain &amp; Ergonomics">
+                  <option value="Chronic Pain &amp; Central Sensitization">Chronic Pain &amp; Central Sensitization</option>
+                  <option value="Fibromyalgia &amp; Myofascial Pain">Fibromyalgia &amp; Myofascial Pain</option>
+                  <option value="Ergonomic Repetitive Strain Injury">Ergonomic Repetitive Strain Injury (RSI)</option>
+                </optgroup>
+                <optgroup label="Custom Option">
+                  <option value="__custom__">➕ Other / Custom Target Pathology...</option>
+                </optgroup>
+              </select>
+              <div id="newProtoCustomPathologyWrap" class="mt-2 d-none">
+                <input type="text" id="newProtoCustomPathology" class="form-control form-control-sm" placeholder="Enter custom target pathology name...">
+              </div>
+              <div id="newProtoAutoFillNotice" class="d-none small text-success mt-1 align-items-center gap-1">
+                <i class="fas fa-check-circle"></i> <span>Auto-filled protocol details for this pathology. Feel free to edit any field.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="newProtoDoctor" class="form-label fw-semibold">Author Doctor / Specialist</label>
+              <select id="newProtoDoctor" class="form-select">
+                <option value="Dr. Sarah Jenkins">Dr. Sarah Jenkins (Orthopedic &amp; Spine)</option>
+                <option value="Dr. Marcus Vance" selected>Dr. Marcus Vance (Sports Injury &amp; Performance)</option>
+                <option value="Dr. Elena Rostova">Dr. Elena Rostova (Neurological Rehabilitation)</option>
+                <option value="Dr. David Chen">Dr. David Chen (Joint Arthroplasty &amp; Manual)</option>
+                <option value="Dr. Chloe Bennett">Dr. Chloe Bennett (Chronic Pain Management)</option>
+                <option value="Dr. Julian Reed">Dr. Julian Reed (Physical Therapy &amp; Rehab)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="newProtoDuration" class="form-label fw-semibold">Standard Duration</label>
+              <input type="text" id="newProtoDuration" class="form-control" placeholder="e.g. 12 – 16 Weeks">
+            </div>
+            <div class="col-md-3">
+              <label for="newProtoPhases" class="form-label fw-semibold">Number of Phases</label>
+              <input type="text" id="newProtoPhases" class="form-control" placeholder="e.g. 4 Phases">
+            </div>
+            <div class="col-12">
+              <label for="newProtoDesc" class="form-label fw-semibold">Clinical Scope &amp; Indications</label>
+              <textarea id="newProtoDesc" class="form-control" rows="2" placeholder="Clinical scope, rehabilitation milestones, and restrictions..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-top px-0 pb-0 pt-4 mt-3 d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-plus me-1"></i> Create Care Protocol
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const STORAGE_KEY = 'physiolife_admin_protocols';
+
+      const PATHOLOGY_PRESETS = {
+        'L4-S1 Disc Herniation, Sciatica': {
+          category: 'Spine & Sciatica',
+          name: 'Lumbar Disc Decompression & McKenzie Protocol',
+          doctor: 'Dr. Sarah Jenkins',
+          duration: '6 – 8 Weeks',
+          phases: '4 Phases',
+          desc: 'Mechanical diagnosis, directional preference extension, and lumbar decompression for acute and subacute L4-S1 disc protrusion with radicular symptoms.',
+          milestones: [
+            'Phase 1: Acute Pain Modulation, Prone Extension & Lateral Shift Correction',
+            'Phase 2: Core Stabilization, Transverse Abdominis & Neural Flossing',
+            'Phase 3: Progressive Spinal Loading, Hip Mobility & Lifting Mechanics',
+            'Phase 4: Functional Work Hardening & Independent Spine Care Maintenance'
+          ]
+        },
+        'Cervical Radiculopathy & Disc Bulge': {
+          category: 'Spine & Sciatica',
+          name: 'Cervical Spine Decompression & Neural Pathway Protocol',
+          doctor: 'Dr. Sarah Jenkins',
+          duration: '6 – 8 Weeks',
+          phases: '4 Phases',
+          desc: 'Postural cervical retraction, thoracic mobilization, and nerve root decompression for cervical disc displacement and radiating brachialgia.',
+          milestones: [
+            'Phase 1: Cervical Retraction, Gentle Traction & Foraminal Opening',
+            'Phase 2: Deep Neck Flexor Retraining & Median/Radial Nerve Flossing',
+            'Phase 3: Scapular Strengthening & Isometric Cervical Stabilization',
+            'Phase 4: Ergonomic Postural Resilience & High-Demand Load Tolerance'
+          ]
+        },
+        'Lumbar Spinal Stenosis': {
+          category: 'Spine & Sciatica',
+          name: 'Lumbar Stenosis Flexion & Unloading Protocol',
+          doctor: 'Dr. Sarah Jenkins',
+          duration: '8 – 10 Weeks',
+          phases: '4 Phases',
+          desc: 'Flexion-biased therapeutic pathway focused on neurogenic claudication reduction, pelvic tilt control, and walking tolerance.',
+          milestones: [
+            'Phase 1: Flexion Bias Exercises, Pelvic Tilts & Recumbent Unloading',
+            'Phase 2: Hip Flexor Flexibility & Core Muscle Recruitment',
+            'Phase 3: Stationary Cycle Endurance & Graded Treadmill Incline Walking',
+            'Phase 4: Daily Functional Activity Pacing & Fall Risk Prevention'
+          ]
+        },
+        'Anterior Cruciate Ligament Post-Op': {
+          category: 'Knee & Sports Rehabilitation',
+          name: 'ACL Reconstruction Return-to-Sport Pathway',
+          doctor: 'Dr. Marcus Vance',
+          duration: '6 – 9 Months',
+          phases: '6 Phases',
+          desc: 'Objective milestone-driven athletic rehabilitation from graft protection to cutting, jumping, and return-to-competition.',
+          milestones: [
+            'Phase 1: Graft Protection, Full Passive Extension & Effusion Control',
+            'Phase 2: Quadriceps Activation, Patellar Mobility & Symmetrical Gait',
+            'Phase 3: Kinetic Chain Hypertrophy & Neuromuscular Control',
+            'Phase 4: Straight-Line Running & Deceleration Mechanics',
+            'Phase 5: Multi-Planar Agility, Cutting & Reactive Plyometrics',
+            'Phase 6: Return-to-Sport Testing Battery (LSI >90%) & Game Clearance'
+          ]
+        },
+        'Meniscus Tear & Meniscectomy': {
+          category: 'Knee & Sports Rehabilitation',
+          name: 'Meniscal Tear Conservative & Post-Op Protocol',
+          doctor: 'Dr. Marcus Vance',
+          duration: '6 – 8 Weeks',
+          phases: '3 Phases',
+          desc: 'Controlled axial loading, knee joint line symptom relief, and functional kinetic chain strengthening.',
+          milestones: [
+            'Phase 1: Protected Weight-Bearing, Quadriceps Sets & Swelling Control',
+            'Phase 2: Full ROM Restoration, Hamstring/Quad Balancing & Closed Kinetic Loading',
+            'Phase 3: Impact Progression, Squat Mechanics & Sport/Work Return'
+          ]
+        },
+        'Patellofemoral Pain Syndrome (Runner\'s Knee)': {
+          category: 'Knee & Sports Rehabilitation',
+          name: 'Patellofemoral Biomechanical Realignment Protocol',
+          doctor: 'Dr. Marcus Vance',
+          duration: '6 – 8 Weeks',
+          phases: '3 Phases',
+          desc: 'Kinetic chain realignment addressing hip abductor weakness, dynamic valgus, and patellar tracking deficits.',
+          milestones: [
+            'Phase 1: Taping/Unloading, VMO Biofeedback & Hip Abductor Activation',
+            'Phase 2: Closed-Chain Kinetic Loading, Single-Leg Balance & Foot Mechanics',
+            'Phase 3: Dynamic Running Assessment, Landing Mechanics & Re-entry'
+          ]
+        },
+        'Achilles Tendinopathy & Rupture Post-Op': {
+          category: 'Knee & Sports Rehabilitation',
+          name: 'Achilles Tendinopathy Heavy-Slow Resistance Protocol',
+          doctor: 'Dr. Marcus Vance',
+          duration: '12 – 16 Weeks',
+          phases: '4 Phases',
+          desc: 'Staged tendon loading protocol utilizing Alfredson eccentric and heavy slow resistance (HSR) protocols.',
+          milestones: [
+            'Phase 1: Isometric Plantarflexion Unloading & Swelling Control',
+            'Phase 2: Heavy-Slow Resistance Calf Loading & Bilateral Heel Raises',
+            'Phase 3: Single-Leg Eccentric Heel Drops & Kinetic Chain Conditioning',
+            'Phase 4: Plyometric Stretch-Shortening Cycle & Running Progression'
+          ]
+        },
+        'Total Knee Replacement': {
+          category: 'Joint Arthroplasty (Replacements)',
+          name: 'Total Knee Arthroplasty (TKA) Post-Op Protocol',
+          doctor: 'Dr. David Chen',
+          duration: '8 – 12 Weeks',
+          phases: '3 Phases',
+          desc: 'Joint mobility restoration, pain modulation, and quadriceps restoration following total knee arthroplasty.',
+          milestones: [
+            'Phase 1: Swelling Management, Active ROM 0°-90° & Patellar Glides',
+            'Phase 2: Active ROM >110°, Stair Navigation & Closed-Kinetic Strength',
+            'Phase 3: Functional Independence, Endurance Walking & Long-Term Joint Preservation'
+          ]
+        },
+        'Total Hip Replacement (THA Post-Op)': {
+          category: 'Joint Arthroplasty (Replacements)',
+          name: 'Total Hip Arthroplasty (THA) Post-Op Pathway',
+          doctor: 'Dr. David Chen',
+          duration: '8 – 12 Weeks',
+          phases: '3 Phases',
+          desc: 'Joint protection precautions, abductor restoration, and symmetrical gait retraining following hip replacement.',
+          milestones: [
+            'Phase 1: Precautions Education, Bed Transfers & Walker Ambulation',
+            'Phase 2: Progression to Cane/Unassisted, Gluteus Medius Activation & Normal Gait',
+            'Phase 3: Multi-Terrain Walking, Step-Ups & Long-Term Joint Preservation'
+          ]
+        },
+        'Knee Osteoarthritis (Stage II-IV)': {
+          category: 'Joint Arthroplasty (Replacements)',
+          name: 'Knee Osteoarthritis Joint Preservation Protocol',
+          doctor: 'Dr. David Chen',
+          duration: '8 – 12 Weeks',
+          phases: '3 Phases',
+          desc: 'Cartilage unloading, quadriceps/hamstring co-contraction training, and low-impact joint lubrication.',
+          milestones: [
+            'Phase 1: Hydrotherapy/Unloaded Cycling, Joint Mobilization & Pain Relief',
+            'Phase 2: Closed Kinetic Chain Strength & VMO/Gluteal Activation',
+            'Phase 3: Aerobic Conditioning, Weight Optimization & Lifelong Self-Management'
+          ]
+        },
+        'Supraspinatus Tendon Repair (Rotator Cuff)': {
+          category: 'Shoulder & Upper Extremity',
+          name: 'Rotator Cuff Post-Surgical Protocol',
+          doctor: 'Dr. Marcus Vance',
+          duration: '12 – 16 Weeks',
+          phases: '4 Phases',
+          desc: 'Carefully staged protection of surgical anchor fixation, progressive passive-to-active ROM, and scapulothoracic stabilization.',
+          milestones: [
+            'Phase 1: Sling Immobilization, Passive Assistive ROM & Scapular Setting',
+            'Phase 2: Active-Assisted to Full Active ROM & Light Isometric Cuff Loading',
+            'Phase 3: Dynamic Rotator Cuff Resistance & Scapular Dysrhythmia Correction',
+            'Phase 4: Plyometric Overhead Training & Unrestricted Activity Clearance'
+          ]
+        },
+        'Adhesive Capsulitis (Frozen Shoulder)': {
+          category: 'Shoulder & Upper Extremity',
+          name: 'Adhesive Capsulitis Multimodal Mobilization Protocol',
+          doctor: 'Dr. David Chen',
+          duration: '10 – 14 Weeks',
+          phases: '3 Phases',
+          desc: 'Staged intervention with Maitland joint mobilizations, capsular stretching, and pain control.',
+          milestones: [
+            'Phase 1: Grade I-II Joint Mobilizations, Pendulum Motion & Pain Modulation',
+            'Phase 2: Grade III-IV End-Range Mobilizations & Active Glenohumeral Elevation',
+            'Phase 3: Functional Overhead Reaching, Rotator Cuff Strengthening & Full Normalization'
+          ]
+        },
+        'Lateral Epicondylitis (Tennis Elbow)': {
+          category: 'Shoulder & Upper Extremity',
+          name: 'Lateral Epicondylitis Eccentric Loading Protocol',
+          doctor: 'Dr. David Chen',
+          duration: '6 – 8 Weeks',
+          phases: '3 Phases',
+          desc: 'Eccentric wrist extensor loading, soft tissue scraping (IASTM), and grip ergonomic adaptation.',
+          milestones: [
+            'Phase 1: Counterforce Bracing, Isometrics & Tendon Friction Release',
+            'Phase 2: Heavy-Slow Eccentric Wrist Extension & Radial Nerve Glides',
+            'Phase 3: Grip Power Restoration & Workplace/Sport Biomechanics'
+          ]
+        },
+        'Cerebrovascular Hemiparesis': {
+          category: 'Neurological & Vestibular',
+          name: 'Stroke Neuroplastic Mobility Pathway',
+          doctor: 'Dr. Elena Rostova',
+          duration: '16 Weeks',
+          phases: '5 Phases',
+          desc: 'Evidence-based neuroplastic retraining focusing on task-specific repetition, balance, and gait symmetry.',
+          milestones: [
+            'Phase 1: Postural Alignment, Bed Mobility & Trunk Stabilization',
+            'Phase 2: Weight Bearing, Sit-to-Stand Transitions & Spasticity Modulation',
+            'Phase 3: Assisted Ambulation & Task-Specific Upper Limb Functional Training',
+            'Phase 4: Dynamic Balance, Dual-Task Training & Community Mobility',
+            'Phase 5: Independent Home Maintenance & Quality of Life Optimization'
+          ]
+        },
+        'Vestibular Neuritis & BPPV Vertigo': {
+          category: 'Neurological & Vestibular',
+          name: 'Vestibular Habituation & Canalith Repositioning Pathway',
+          doctor: 'Dr. Elena Rostova',
+          duration: '4 – 6 Weeks',
+          phases: '3 Phases',
+          desc: 'Epley maneuver canalith clearing, gaze stabilization (VOR x1 / x2), and visual-vestibular habituation.',
+          milestones: [
+            'Phase 1: Canalith Repositioning Maneuvers & Acute Dizziness Desensitization',
+            'Phase 2: Gaze Stability Exercises (VOR x1 & x2) & Balance on Firm Surface',
+            'Phase 3: Dynamic Head Turns During Ambulation & Complex Visual Flow Training'
+          ]
+        },
+        'Parkinson\'s Disease Gait Disorder': {
+          category: 'Neurological & Vestibular',
+          name: 'Parkinson\'s High-Amplitude Movement Protocol (BIG)',
+          doctor: 'Dr. Elena Rostova',
+          duration: '12 Weeks',
+          phases: '4 Phases',
+          desc: 'High-amplitude sensory recalibration, auditory/visual cueing for freezing of gait, and dual-task balance training.',
+          milestones: [
+            'Phase 1: Big Amplitude Upper & Lower Extremity Calibration Exercises',
+            'Phase 2: Step-Length Enhancement & Visual Cueing to Prevent Freezing',
+            'Phase 3: Dual-Task Walking & Complex Obstacle Navigation',
+            'Phase 4: Caregiver-Supported Home Exercise Program & Fall Prevention Strategy'
+          ]
+        },
+        'Chronic Pain & Central Sensitization': {
+          category: 'Chronic Pain & Ergonomics',
+          name: 'Chronic Pain Desensitization & Graded Motor Protocol',
+          doctor: 'Dr. Chloe Bennett',
+          duration: '10 – 14 Weeks',
+          phases: '4 Phases',
+          desc: 'Pain neuroscience education, graded motor imagery, sensory discrimination, and aerobic pacing.',
+          milestones: [
+            'Phase 1: Pain Neuroscience Education & Diaphragmatic Down-Regulation',
+            'Phase 2: Left/Right Implicit Motor Imagery & Gentle Paced Activity',
+            'Phase 3: Graded Exposure to Feared Movements & Tactile Desensitization',
+            'Phase 4: Self-Efficacy, Fear-Avoidance Elimination & Long-Term Resilience'
+          ]
+        },
+        'Fibromyalgia & Myofascial Pain': {
+          category: 'Chronic Pain & Ergonomics',
+          name: 'Myofascial Trigger Point & Fibromyalgia Conditioning',
+          doctor: 'Dr. Chloe Bennett',
+          duration: '8 – 12 Weeks',
+          phases: '3 Phases',
+          desc: 'Low-impact aerobic conditioning, gentle trigger point myofascial therapy, and sleep-activity pacing.',
+          milestones: [
+            'Phase 1: Gentle Myofascial Release, Paced Walking & Stress Down-Regulation',
+            'Phase 2: Low-Resistance Multi-Joint Movements & Water Therapy',
+            'Phase 3: Sustained Conditioning, Energy Conservation & Self-Management'
+          ]
+        },
+        'Ergonomic Repetitive Strain Injury': {
+          category: 'Chronic Pain & Ergonomics',
+          name: 'Ergonomic Workstation & Cumulative Strain Pathway',
+          doctor: 'Dr. Chloe Bennett',
+          duration: '6 – 8 Weeks',
+          phases: '3 Phases',
+          desc: 'Upper crossed syndrome correction, neurodynamic tension relief, and biomechanical workstation optimization.',
+          milestones: [
+            'Phase 1: Micro-Break Schedules, Workstation Ergonomic Audit & Symptom Relief',
+            'Phase 2: Scapular Retractor Strengthening & Pectoral/Levator Lengthening',
+            'Phase 3: Sustained Postural Tolerance & Functional Ergonomic Habits'
+          ]
+        }
+      };
+
+      const INITIAL_PROTOCOLS = [
+        {
+          id: 'p1',
+          name: 'Lumbar Disc Decompression & McKenzie',
+          pathology: 'L4-S1 Disc Herniation, Sciatica',
+          phases: '4 Phases',
+          duration: '6 – 8 Weeks',
+          patients: '82 Patients',
+          doctor: 'Dr. Sarah Jenkins',
+          status: 'Active',
+          desc: 'Mechanical diagnosis and unloading progression tailored for acute and subacute lumbar disc herniation with radiculopathy.',
+          milestones: [
+            'Phase 1: Acute Pain Relief, Posture Correction & Directional Preference',
+            'Phase 2: Core Stabilization & Nerve Root Mobilization',
+            'Phase 3: Progressive Hip/Spine Loading & Extension Mechanics',
+            'Phase 4: Functional Work Hardening & Independent Maintenance'
+          ]
+        },
+        {
+          id: 'p2',
+          name: 'ACL Reconstruction Return-to-Sport',
+          pathology: 'Anterior Cruciate Ligament Post-Op',
+          phases: '6 Phases',
+          duration: '6 – 9 Months',
+          patients: '45 Patients',
+          doctor: 'Dr. Marcus Vance',
+          status: 'Active',
+          desc: 'Objective milestone-driven rehabilitation from graft fixation through multi-planar athletic return.',
+          milestones: [
+            'Phase 1: Graft Protection, Effusion Control & Full Passive Extension',
+            'Phase 2: Quadriceps Re-Education & Symmetrical Gait Pattern',
+            'Phase 3: Symmetrical Hypertrophy & Neuromuscular Control',
+            'Phase 4: Straight-Line Running & Deceleration Mechanics',
+            'Phase 5: Agility Drills & Plyometric Force Absorption',
+            'Phase 6: Full Return-to-Sport Clearance & Psychological Readiness'
+          ]
+        },
+        {
+          id: 'p3',
+          name: 'Total Knee Arthroplasty (TKA) Post-Op',
+          pathology: 'Total Knee Replacement',
+          phases: '3 Phases',
+          duration: '8 – 12 Weeks',
+          patients: '39 Patients',
+          doctor: 'Dr. David Chen',
+          status: 'Active',
+          desc: 'Joint mobility restoration, pain modulation, and quadriceps restoration following total knee arthroplasty.',
+          milestones: [
+            'Phase 1: Swelling Management, Active ROM 0°-90° & Patellar Glides',
+            'Phase 2: Active ROM >110°, Stair Navigation & Closed-Kinetic Strength',
+            'Phase 3: Functional Independence, Endurance Walking & Long-Term Joint Preservation'
+          ]
+        },
+        {
+          id: 'p4',
+          name: 'Stroke Neuroplastic Mobility Pathway',
+          pathology: 'Cerebrovascular Hemiparesis',
+          phases: '5 Phases',
+          duration: '16 Weeks',
+          patients: '24 Patients',
+          doctor: 'Dr. Elena Rostova',
+          status: 'Active',
+          desc: 'Evidence-based neuroplastic retraining focusing on task-specific repetition, balance, and gait symmetry.',
+          milestones: [
+            'Phase 1: Postural Alignment, Bed Mobility & Trunk Stabilization',
+            'Phase 2: Weight Bearing, Sit-to-Stand Transitions & Spasticity Modulation',
+            'Phase 3: Assisted Ambulation & Task-Specific Upper Limb Functional Training',
+            'Phase 4: Dynamic Balance, Dual-Task Training & Community Mobility',
+            'Phase 5: Independent Home Maintenance & Quality of Life Optimization'
+          ]
+        }
+      ];
+
+      let inMemoryProtocols = null;
+
+      function getProtocols() {
+        if (inMemoryProtocols && inMemoryProtocols.length > 0) return inMemoryProtocols;
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              inMemoryProtocols = parsed;
+              return inMemoryProtocols;
+            }
+          }
+        } catch (e) {
+          console.warn('Error reading protocols from localStorage:', e);
+        }
+        inMemoryProtocols = [...INITIAL_PROTOCOLS];
+        return inMemoryProtocols;
+      }
+
+      function saveProtocols(list) {
+        inMemoryProtocols = list;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          console.error('Error saving protocols to localStorage:', e);
+        }
+      }
+
+      function flashInputHighlight(el) {
+        if (!el) return;
+        el.classList.remove('input-highlight-pulse');
+        void el.offsetWidth; // trigger reflow
+        el.classList.add('input-highlight-pulse');
+      }
+
+      function closeModalSafely(modalEl) {
+        if (!modalEl) return;
+        try {
+          if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            const inst = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+            if (inst) inst.hide();
+          }
+        } catch (e) {}
+
+        const closeBtn = modalEl && typeof modalEl.querySelector === 'function'
+          ? modalEl.querySelector('[data-bs-dismiss="modal"]')
+          : null;
+        if (closeBtn && typeof closeBtn.click === 'function') closeBtn.click();
+
+        setTimeout(() => {
+          if (modalEl.classList) modalEl.classList.remove('show');
+          if (modalEl.style) modalEl.style.display = 'none';
+          if (typeof modalEl.setAttribute === 'function') modalEl.setAttribute('aria-hidden', 'true');
+          if (typeof modalEl.removeAttribute === 'function') modalEl.removeAttribute('aria-modal');
+          document.querySelectorAll('.modal-backdrop').forEach(b => { if (b && b.remove) b.remove(); });
+          if (document.body) {
+            document.body.classList.remove('modal-open');
+            document.body.style.removeProperty('overflow');
+            document.body.style.removeProperty('padding-right');
+          }
+        }, 150);
+      }
+
+      function renderTable(highlightId, searchQuery = '') {
+        const tbody = document.getElementById('protocolsTableBody');
+        const countBadge = document.getElementById('protocolCountBadge');
+        if (!tbody) return;
+
+        let protocols = getProtocols();
+
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase().trim();
+          protocols = protocols.filter(p =>
+            (p.name && p.name.toLowerCase().includes(q)) ||
+            (p.pathology && p.pathology.toLowerCase().includes(q)) ||
+            (p.doctor && p.doctor.toLowerCase().includes(q))
+          );
+        }
+
+        if (countBadge) countBadge.textContent = `${protocols.length} Active Protocols`;
+
+        if (protocols.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="text-center py-4 text-muted">
+                <i class="fas fa-search me-1"></i> No care protocols found matching "${searchQuery}".
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = protocols.map(proto => {
+          const isHighlighted = highlightId && proto.id === highlightId;
+          const rowStyle = isHighlighted ? 'style="background-color: rgba(25, 135, 84, 0.15); transition: background-color 2s ease;"' : '';
+          const patientCount = proto.patients ? (proto.patients.includes('Patient') ? proto.patients : `${proto.patients} Patients`) : '0 Patients';
+          return `
+            <tr data-id="${proto.id}" ${rowStyle}>
+              <td><strong>${proto.name}</strong></td>
+              <td>${proto.pathology}</td>
+              <td>${proto.phases || '4 Phases'}</td>
+              <td>${proto.duration || '6 – 8 Weeks'}</td>
+              <td><span class="badge bg-primary-subtle text-primary">${patientCount}</span></td>
+              <td>${proto.doctor || 'Dr. Sarah Jenkins'}</td>
+              <td>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="window.openManageProtocol('${proto.id}')">
+                  Manage
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        if (highlightId) {
+          setTimeout(() => {
+            if (tbody && typeof tbody.querySelector === 'function') {
+              const row = tbody.querySelector(`tr[data-id="${highlightId}"]`);
+              if (row && row.style) row.style.backgroundColor = '';
+            }
+          }, 3500);
+        }
+      }
+
+      window.onPathologySelected = function (val, mode = 'new') {
+        const isNew = mode === 'new';
+        const customWrap = document.getElementById(isNew ? 'newProtoCustomPathologyWrap' : 'manageProtoCustomPathologyWrap');
+        const customInput = document.getElementById(isNew ? 'newProtoCustomPathology' : 'manageProtoCustomPathology');
+        const noticeEl = document.getElementById(isNew ? 'newProtoAutoFillNotice' : 'manageProtoAutoFillNotice');
+
+        if (val === '__custom__') {
+          if (customWrap) customWrap.classList.remove('d-none');
+          if (customInput) {
+            customInput.focus();
+            customInput.required = true;
+          }
+          if (noticeEl) noticeEl.classList.add('d-none');
+          return;
+        }
+
+        if (customWrap) customWrap.classList.add('d-none');
+        if (customInput) {
+          customInput.value = '';
+          customInput.required = false;
+        }
+
+        const preset = PATHOLOGY_PRESETS[val];
+        if (!preset) return;
+
+        if (isNew) {
+          const nameEl = document.getElementById('newProtoName');
+          const doctorEl = document.getElementById('newProtoDoctor');
+          const durationEl = document.getElementById('newProtoDuration');
+          const phasesEl = document.getElementById('newProtoPhases');
+          const descEl = document.getElementById('newProtoDesc');
+
+          if (nameEl) {
+            nameEl.value = preset.name;
+            flashInputHighlight(nameEl);
+          }
+          if (doctorEl) {
+            doctorEl.value = preset.doctor;
+            flashInputHighlight(doctorEl);
+          }
+          if (durationEl) {
+            durationEl.value = preset.duration;
+            flashInputHighlight(durationEl);
+          }
+          if (phasesEl) {
+            phasesEl.value = preset.phases;
+            flashInputHighlight(phasesEl);
+          }
+          if (descEl) {
+            descEl.value = preset.desc;
+            flashInputHighlight(descEl);
+          }
+
+          if (noticeEl) {
+            noticeEl.classList.remove('d-none');
+            noticeEl.classList.add('d-flex');
+          }
+        } else {
+          // Manage modal: sync fields to chosen pathology preset
+          const nameEl = document.getElementById('manageProtoName');
+          const doctorEl = document.getElementById('manageProtoDoctor');
+          const durationEl = document.getElementById('manageProtoDuration');
+          const phasesEl = document.getElementById('manageProtoPhases');
+          const descEl = document.getElementById('manageProtoDesc');
+
+          if (nameEl) {
+            nameEl.value = preset.name;
+            flashInputHighlight(nameEl);
+          }
+          if (doctorEl) {
+            doctorEl.value = preset.doctor;
+            flashInputHighlight(doctorEl);
+          }
+          if (durationEl) {
+            durationEl.value = preset.duration;
+            flashInputHighlight(durationEl);
+          }
+          if (phasesEl) {
+            phasesEl.value = preset.phases;
+            flashInputHighlight(phasesEl);
+          }
+          if (descEl) {
+            descEl.value = preset.desc;
+            flashInputHighlight(descEl);
+          }
+
+          // Populate milestones for manage modal
+          const phasesListEl = document.getElementById('manageProtoPhasesList');
+          if (phasesListEl && Array.isArray(preset.milestones) && preset.milestones.length > 0) {
+            phasesListEl.innerHTML = '';
+            preset.milestones.forEach((m, idx) => {
+              window.addPhaseMilestoneInput(m, idx + 1);
+            });
+          }
+
+          if (noticeEl) {
+            noticeEl.classList.remove('d-none');
+            noticeEl.classList.add('d-flex');
+          }
+        }
+      };
+
+      window.openManageProtocol = function (id) {
+        const list = getProtocols();
+        const proto = list.find(p => p.id === id);
+        if (!proto) return;
+
+        document.getElementById('manageProtoId').value = proto.id;
+        document.getElementById('manageProtoName').value = proto.name || '';
+
+        // Target Pathology select handling
+        const pathSelect = document.getElementById('manageProtoPathology');
+        const customWrap = document.getElementById('manageProtoCustomPathologyWrap');
+        const customInput = document.getElementById('manageProtoCustomPathology');
+        const noticeEl = document.getElementById('manageProtoAutoFillNotice');
+        if (noticeEl) noticeEl.classList.add('d-none');
+
+        let matched = false;
+        if (pathSelect) {
+          for (let i = 0; i < pathSelect.options.length; i++) {
+            if (pathSelect.options[i].value === proto.pathology) {
+              pathSelect.selectedIndex = i;
+              pathSelect.value = proto.pathology;
+              matched = true;
+              break;
+            }
+          }
+          if (!matched) {
+            pathSelect.value = '__custom__';
+            if (customWrap) customWrap.classList.remove('d-none');
+            if (customInput) customInput.value = proto.pathology || '';
+          } else {
+            if (customWrap) customWrap.classList.add('d-none');
+            if (customInput) customInput.value = '';
+          }
+        }
+
+        document.getElementById('manageProtoDoctor').value = proto.doctor || 'Dr. Sarah Jenkins';
+        document.getElementById('manageProtoDuration').value = proto.duration || '';
+        document.getElementById('manageProtoPhases').value = proto.phases || '';
+        document.getElementById('manageProtoPatients').value = proto.patients || '';
+        document.getElementById('manageProtoStatus').value = proto.status || 'Active';
+        document.getElementById('manageProtoDesc').value = proto.desc || '';
+
+        const alertEl = document.getElementById('manageProtoAlert');
+        if (alertEl) alertEl.classList.add('d-none');
+
+        // Populate milestones
+        const phasesListEl = document.getElementById('manageProtoPhasesList');
+        if (phasesListEl) {
+          phasesListEl.innerHTML = '';
+          const milestones = Array.isArray(proto.milestones) && proto.milestones.length > 0
+            ? proto.milestones
+            : [
+                'Phase 1: Acute Pain Relief, Posture Correction & Directional Preference',
+                'Phase 2: Core Stabilization & Nerve Root Mobilization',
+                'Phase 3: Progressive Hip/Spine Loading & Extension Mechanics',
+                'Phase 4: Functional Work Hardening & Independent Maintenance'
+              ];
+
+          milestones.forEach((m, idx) => {
+            window.addPhaseMilestoneInput(m, idx + 1);
+          });
+        }
+
+        const modalEl = document.getElementById('manageProtocolModal');
+        if (modalEl) {
+          const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modal.show();
+        }
+      };
+
+      window.addPhaseMilestoneInput = function (val = '', phaseNum = null) {
+        const container = document.getElementById('manageProtoPhasesList');
+        if (!container) return;
+        const currentCount = container.querySelectorAll('.phase-milestone-row').length + 1;
+        const defaultText = val || `Phase ${phaseNum || currentCount}: Clinical Milestone Progression`;
+
+        const row = document.createElement('div');
+        row.className = 'input-group input-group-sm phase-milestone-row';
+        row.innerHTML = `
+          <span class="input-group-text bg-surface-alt text-primary fw-semibold"><i class="fas fa-check-circle me-1"></i> Phase</span>
+          <input type="text" class="form-control phase-milestone-input" value="${defaultText.replace(/"/g, '&quot;')}" required>
+          <button type="button" class="btn btn-outline-danger" onclick="this.closest('.phase-milestone-row').remove()" title="Remove Phase"><i class="fas fa-times"></i></button>
+        `;
+        container.appendChild(row);
+      };
+
+      window.saveProtocolChanges = function () {
+        const id = document.getElementById('manageProtoId').value;
+        const name = document.getElementById('manageProtoName').value.trim();
+
+        const pathSelect = document.getElementById('manageProtoPathology');
+        let pathology = '';
+        if (pathSelect.value === '__custom__') {
+          pathology = (document.getElementById('manageProtoCustomPathology').value || '').trim();
+        } else {
+          pathology = (pathSelect.value || '').trim();
+        }
+
+        const alertEl = document.getElementById('manageProtoAlert');
+
+        if (!name || !pathology) {
+          if (alertEl) {
+            alertEl.textContent = 'Please provide both a protocol name and target pathology.';
+            alertEl.classList.remove('d-none');
+          }
+          return;
+        }
+
+        const list = getProtocols();
+        const targetIdx = list.findIndex(p => p.id === id);
+        if (targetIdx === -1) return;
+
+        // Collect milestones
+        const milestones = [];
+        document.querySelectorAll('#manageProtoPhasesList .phase-milestone-input').forEach(input => {
+          if (input.value.trim()) milestones.push(input.value.trim());
+        });
+
+        const updated = {
+          ...list[targetIdx],
+          name,
+          pathology,
+          doctor: document.getElementById('manageProtoDoctor').value,
+          duration: document.getElementById('manageProtoDuration').value.trim() || list[targetIdx].duration,
+          phases: document.getElementById('manageProtoPhases').value.trim() || (milestones.length ? `${milestones.length} Phases` : list[targetIdx].phases),
+          patients: document.getElementById('manageProtoPatients').value.trim() || list[targetIdx].patients,
+          status: document.getElementById('manageProtoStatus').value,
+          desc: document.getElementById('manageProtoDesc').value.trim(),
+          milestones: milestones.length ? milestones : list[targetIdx].milestones,
+          updatedAt: new Date().toISOString()
+        };
+
+        list[targetIdx] = updated;
+        saveProtocols(list);
+        renderTable(updated.id);
+
+        const modalEl = document.getElementById('manageProtocolModal');
+        closeModalSafely(modalEl);
+
+        // Prominent banner and toast notification
+        const alertBanner = document.getElementById('protocolAlertSuccess');
+        const alertText = document.getElementById('protocolAlertText');
+        if (alertBanner && alertText) {
+          alertText.innerHTML = `<strong>${updated.name}</strong> care protocol template updated successfully!`;
+          alertBanner.classList.remove('d-none');
+          if (typeof alertBanner.scrollIntoView === 'function') {
+            alertBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+
+        if (window.PhysioDashboard && window.PhysioDashboard.showToast) {
+          window.PhysioDashboard.showToast(`Care protocol "${updated.name}" updated.`);
+        }
+      };
+
+      window.deleteProtocol = function () {
+        const id = document.getElementById('manageProtoId').value;
+        const list = getProtocols();
+        const target = list.find(p => p.id === id);
+        if (!target) return;
+
+        if (confirm(`Are you sure you want to remove protocol "${target.name}" from the clinical library?`)) {
+          const remaining = list.filter(p => p.id !== id);
+          saveProtocols(remaining);
+          renderTable();
+
+          const modalEl = document.getElementById('manageProtocolModal');
+          closeModalSafely(modalEl);
+
+          const alertBanner = document.getElementById('protocolAlertSuccess');
+          const alertText = document.getElementById('protocolAlertText');
+          if (alertBanner && alertText) {
+            alertText.innerHTML = `Protocol <strong>${target.name}</strong> has been removed.`;
+            alertBanner.classList.remove('d-none');
+          }
+
+          if (window.PhysioDashboard && window.PhysioDashboard.showToast) {
+            window.PhysioDashboard.showToast(`Protocol removed.`);
+          }
+        }
+      };
+
+      window.createProtocol = function () {
+        const name = document.getElementById('newProtoName').value.trim();
+
+        const pathSelect = document.getElementById('newProtoPathology');
+        let pathology = '';
+        if (pathSelect.value === '__custom__') {
+          pathology = (document.getElementById('newProtoCustomPathology').value || '').trim();
+        } else {
+          pathology = (pathSelect.value || '').trim();
+        }
+
+        const alertEl = document.getElementById('createProtoAlert');
+
+        if (!name || !pathology) {
+          if (alertEl) {
+            alertEl.textContent = 'Please provide protocol name and select/enter target pathology.';
+            alertEl.classList.remove('d-none');
+          }
+          return;
+        }
+
+        const doctor = document.getElementById('newProtoDoctor').value;
+        const duration = document.getElementById('newProtoDuration').value.trim() || '8 – 12 Weeks';
+        const phases = document.getElementById('newProtoPhases').value.trim() || '4 Phases';
+        const desc = document.getElementById('newProtoDesc').value.trim() || 'Standardized clinical rehabilitation template.';
+
+        const preset = PATHOLOGY_PRESETS[pathology];
+        const milestones = preset && Array.isArray(preset.milestones) && preset.milestones.length > 0
+          ? preset.milestones
+          : [
+              'Phase 1: Initial Assessment & Symptom Control',
+              'Phase 2: Mobility Restoration & Neuromuscular Retraining',
+              'Phase 3: Progressive Strength & Functional Loading',
+              'Phase 4: Return to Full Activity & Maintenance'
+            ];
+
+        const newProto = {
+          id: 'proto_' + Date.now(),
+          name,
+          pathology,
+          doctor,
+          duration,
+          phases,
+          patients: '0 Patients',
+          status: 'Active',
+          desc,
+          milestones,
+          createdAt: new Date().toISOString()
+        };
+
+        const list = getProtocols();
+        list.unshift(newProto);
+        saveProtocols(list);
+        renderTable(newProto.id);
+
+        const modalEl = document.getElementById('createProtocolModal');
+        closeModalSafely(modalEl);
+
+        const form = document.getElementById('createProtocolForm');
+        if (form && typeof form.reset === 'function') form.reset();
+        const customWrap = document.getElementById('newProtoCustomPathologyWrap');
+        if (customWrap) customWrap.classList.add('d-none');
+        const noticeEl = document.getElementById('newProtoAutoFillNotice');
+        if (noticeEl) noticeEl.classList.add('d-none');
+
+        const alertBanner = document.getElementById('protocolAlertSuccess');
+        const alertText = document.getElementById('protocolAlertText');
+        if (alertBanner && alertText) {
+          alertText.innerHTML = `New protocol <strong>${newProto.name}</strong> created and added to library!`;
+          alertBanner.classList.remove('d-none');
+          if (typeof alertBanner.scrollIntoView === 'function') {
+            alertBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+
+        if (window.PhysioDashboard && window.PhysioDashboard.showToast) {
+          window.PhysioDashboard.showToast(`Protocol "${newProto.name}" created!`);
+        }
+      };
+
+      function init() {
+        renderTable();
+
+        const searchInput = document.getElementById('dashTableSearch');
+        if (searchInput && typeof searchInput.addEventListener === 'function') {
+          searchInput.addEventListener('input', (e) => {
+            renderTable(null, e.target.value);
+          });
+        }
+
+        const createModalEl = document.getElementById('createProtocolModal');
+        if (createModalEl && typeof createModalEl.addEventListener === 'function') {
+          createModalEl.addEventListener('show.bs.modal', () => {
+            const form = document.getElementById('createProtocolForm');
+            if (form && typeof form.reset === 'function') form.reset();
+            const customWrap = document.getElementById('newProtoCustomPathologyWrap');
+            if (customWrap) customWrap.classList.add('d-none');
+            const noticeEl = document.getElementById('newProtoAutoFillNotice');
+            if (noticeEl) noticeEl.classList.add('d-none');
+            const alertEl = document.getElementById('createProtoAlert');
+            if (alertEl) alertEl.classList.add('d-none');
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

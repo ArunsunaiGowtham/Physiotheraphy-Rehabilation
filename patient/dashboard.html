@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PhysioLife Patient Portal - Track your recovery progress, appointments, and home exercise program.">
+  <title>Patient Dashboard – PhysioLife Clinic</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Patient Hub</li>
+        <li class="menu-item">
+          <a href="dashboard.html" class="menu-link active">
+            <i class="fas fa-th-large"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="appointments.html" class="menu-link">
+            <i class="fas fa-calendar-alt"></i> <span>Appointments</span>
+            <span class="menu-badge">1 Next</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="treatment-plans.html" class="menu-link">
+            <i class="fas fa-notes-medical"></i> <span>Treatment Plan</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="exercises.html" class="menu-link">
+            <i class="fas fa-play-circle"></i> <span>Home Exercises</span>
+            <span class="menu-badge">3 Due</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="attendance.html" class="menu-link">
+            <i class="fas fa-clipboard-check"></i> <span>Attendance &amp; Pain</span>
+          </a>
+        </li>
+
+        <li class="menu-category">Billing &amp; Account</li>
+        <li class="menu-item">
+          <a href="payments.html" class="menu-link">
+            <i class="fas fa-credit-card"></i> <span>Payments</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="receipts.html" class="menu-link">
+            <i class="fas fa-file-invoice-dollar"></i> <span>Receipts</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="profile.html" class="menu-link">
+            <i class="fas fa-user-cog"></i> <span>My Profile</span>
+          </a>
+        </li>
+        <li class="menu-item mt-3">
+          <a href="../patient-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();">
+            <i class="fas fa-sign-out-alt"></i> <span>Sign Out</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/patient-robert.jpg" alt="Robert Sterling" class="user-avatar object-fit-cover">
+          <div class="user-info">
+            <div class="user-name">Robert Sterling</div>
+            <div class="user-role">Patient ID: #PT-82910</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Topbar -->
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none" type="button">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="topbar-search d-none d-md-block">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashTableSearch" class="form-control form-control-sm" placeholder="Search sessions, exercises...">
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+            <span class="theme-text d-none d-sm-inline">Dark</span>
+          </button>
+          <button class="rtl-toggle-btn" type="button" aria-label="Toggle RTL">
+            <i class="fas fa-globe"></i>
+            <span class="dir-text d-none d-sm-inline">RTL</span>
+          </button>
+          <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-content">
+        <!-- Welcome Greeting & Quick CTA -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h2 class="fw-bold mb-1" id="patientGreeting">Good Morning, Robert! 👋</h2>
+            <p class="text-muted small mb-0">You're making steady progress on your <strong>Lumbar Disc &amp; Sciatica Recovery Plan</strong>.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="appointments.html" class="btn btn-primary">
+              <i class="fas fa-calendar-plus me-1"></i> Book New Session
+            </a>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="row g-4 mb-4">
+          <!-- Upcoming Session -->
+          <div class="col-md-6 col-xl-3">
+            <div class="stat-card">
+              <div>
+                <span class="stat-label">Next Therapy Session</span>
+                <div class="stat-value text-primary fs-4 mt-1">Tomorrow, 10:00 AM</div>
+                <div class="small text-muted"><i class="fas fa-user-md me-1"></i> Dr. Sarah Jenkins</div>
+              </div>
+              <div class="stat-icon primary">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall Recovery Progress -->
+          <div class="col-md-6 col-xl-3">
+            <div class="stat-card">
+              <div>
+                <span class="stat-label">Recovery Milestone</span>
+                <div class="stat-value text-success mt-1">78% Complete</div>
+                <span class="stat-trend trend-up"><i class="fas fa-arrow-up"></i> +12% this month</span>
+              </div>
+              <div class="stat-icon success">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Completed Sessions -->
+          <div class="col-md-6 col-xl-3">
+            <div class="stat-card">
+              <div>
+                <span class="stat-label">Attended Sessions</span>
+                <div class="stat-value mt-1">7 <span class="fs-6 text-muted">/ 10 Pack</span></div>
+                <div class="small text-muted">3 remaining credits</div>
+              </div>
+              <div class="stat-icon secondary">
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Balance / Copay -->
+          <div class="col-md-6 col-xl-3">
+            <div class="stat-card">
+              <div>
+                <span class="stat-label">Current Account Balance</span>
+                <div class="stat-value text-main mt-1">$0.00</div>
+                <div class="small text-success"><i class="fas fa-check-circle me-1"></i> Insurance In-Network Paid</div>
+              </div>
+              <div class="stat-icon info">
+                <i class="fas fa-file-invoice-dollar"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts & Assigned Specialist Row -->
+        <div class="row g-4 mb-4">
+          <!-- Recovery Progress Gauge Chart -->
+          <div class="col-lg-8">
+            <div class="dash-card h-100 mb-0">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-chart-line text-primary"></i> Lumbar Mobility &amp; Range of Motion (ROM)</h5>
+                <span class="badge bg-success-subtle text-success">Active Progress</span>
+              </div>
+              <div class="dash-card-body">
+                <div style="height: 280px;">
+                  <canvas id="patientMobilityChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recovery Doughnut Breakdown -->
+          <div class="col-lg-4">
+            <div class="dash-card h-100 mb-0">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-chart-pie text-secondary"></i> Milestone Goals</h5>
+              </div>
+              <div class="dash-card-body text-center">
+                <div style="height: 220px; position: relative;">
+                  <canvas id="patientRecoveryChart"></canvas>
+                </div>
+                <p class="small text-muted mt-3 mb-0">7 of 9 clinical recovery milestones achieved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Session & Assigned Doctor Details -->
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="dash-card mb-0">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-user-md text-primary"></i> Your Assigned Physical Therapist</h5>
+                <a href="treatment-plans.html" class="small fw-bold text-primary">View Full Plan</a>
+              </div>
+              <div class="dash-card-body">
+                <div class="d-flex align-items-center gap-3">
+                  <img src="../assets/images/therapist-jenkins.jpg" alt="Dr. Sarah Jenkins" class="rounded-circle object-fit-cover" width="70" height="70">
+                  <div>
+                    <h5 class="fw-bold mb-1">Dr. Sarah Jenkins, PT, DPT, OCS</h5>
+                    <p class="text-primary small fw-semibold mb-1">Orthopedic &amp; Spine Clinical Specialist</p>
+                    <p class="small text-muted mb-0">"Robert's nerve flossing has centralized his leg pain significantly. Ready for progressive core stabilization."</p>
+                  </div>
+                </div>
+                <hr class="my-3 border-subtle">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="small text-muted"><i class="fas fa-clock text-primary me-1"></i> Next Visit: <strong>Tomorrow at 10:00 AM</strong></span>
+                  <a href="appointments.html" class="btn btn-sm btn-outline-primary">Manage Session</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prescribed Home Exercises Today -->
+          <div class="col-lg-6">
+            <div class="dash-card mb-0">
+              <div class="dash-card-header">
+                <h5 class="dash-card-title"><i class="fas fa-play-circle text-primary"></i> Today's Prescribed Routines</h5>
+                <a href="exercises.html" class="small fw-bold text-primary">View All Video Guides</a>
+              </div>
+              <div class="dash-card-body p-0">
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item d-flex align-items-center justify-content-between p-3 border-subtle bg-transparent">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="form-check">
+                        <input class="form-check-input exercise-check" type="checkbox" id="ex1">
+                      </div>
+                      <img src="../assets/images/exercise-pressup.jpg" alt="McKenzie Prone Press-Up" class="rounded-2 object-fit-cover" width="48" height="48">
+                      <div>
+                        <h6 class="mb-0 fw-bold">McKenzie Prone Press-Up</h6>
+                        <small class="text-muted">10 reps • 3 sets • 2 min rest</small>
+                      </div>
+                    </div>
+                    <a href="exercises.html" class="btn btn-sm btn-outline-secondary"><i class="fas fa-play me-1"></i> Watch</a>
+                  </div>
+
+                  <div class="list-group-item d-flex align-items-center justify-content-between p-3 border-subtle bg-transparent">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="form-check">
+                        <input class="form-check-input exercise-check" type="checkbox" id="ex2">
+                      </div>
+                      <img src="../assets/images/exercise-floss.jpg" alt="Sciatic Nerve Flossing" class="rounded-2 object-fit-cover" width="48" height="48">
+                      <div>
+                        <h6 class="mb-0 fw-bold">Sciatic Nerve Flossing (Seated)</h6>
+                        <small class="text-muted">15 smooth repetitions • 2 sets</small>
+                      </div>
+                    </div>
+                    <a href="exercises.html" class="btn btn-sm btn-outline-secondary"><i class="fas fa-play me-1"></i> Watch</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/charts.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

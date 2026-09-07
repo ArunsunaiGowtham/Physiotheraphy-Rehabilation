@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View your physical therapy invoices, copayment history, and payment methods.">
+  <title>Billing &amp; Payments – PhysioLife Patient Portal</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Patient Hub</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link"><i class="fas fa-calendar-alt"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link"><i class="fas fa-notes-medical"></i> <span>Treatment Plan</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link"><i class="fas fa-play-circle"></i> <span>Home Exercises</span></a></li>
+        <li class="menu-item"><a href="attendance.html" class="menu-link"><i class="fas fa-clipboard-check"></i> <span>Attendance &amp; Pain</span></a></li>
+        <li class="menu-category">Billing &amp; Account</li>
+        <li class="menu-item"><a href="payments.html" class="menu-link active"><i class="fas fa-credit-card"></i> <span>Payments</span></a></li>
+        <li class="menu-item"><a href="receipts.html" class="menu-link"><i class="fas fa-file-invoice-dollar"></i> <span>Receipts</span></a></li>
+        <li class="menu-item"><a href="profile.html" class="menu-link"><i class="fas fa-user-cog"></i> <span>My Profile</span></a></li>
+        <li class="menu-item mt-3"><a href="../patient-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/patient-avatar.svg" alt="Robert Sterling" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Robert Sterling</div>
+            <div class="user-role">Patient ID: #PT-82910</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search d-none d-md-block">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashTableSearch" class="form-control form-control-sm" placeholder="Search invoices...">
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+                  <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h2 class="fw-bold mb-1">Billing &amp; Payment History</h2>
+            <p class="text-muted small mb-0">Manage insurance claims, copayments, and stored payment methods.</p>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <button type="button" class="btn btn-primary d-inline-flex align-items-center gap-2" id="openPaymentModalBtn" data-bs-toggle="modal" data-bs-target="#payOnlineModal">
+              <i class="fas fa-credit-card"></i> <span>Make a Payment</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Summary Widgets -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="stat-card" id="balanceCardWidget">
+              <div>
+                <span class="stat-label">Outstanding Balance</span>
+                <div class="stat-value text-danger fs-3 mt-1" id="statBalanceValue">$30.00</div>
+                <small class="text-danger fw-semibold" id="statBalanceSubtext">Statement #INV-2026-095 Due Today</small>
+              </div>
+              <div class="stat-icon" id="statBalanceIcon" style="background-color: var(--danger-subtle); color: var(--danger);"><i class="fas fa-exclamation-circle"></i></div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div>
+                <span class="stat-label">In-Network Insurance</span>
+                <div class="stat-value text-primary fs-3 mt-1">BlueCross PPO</div>
+                <small class="text-muted">Copay: $30.00 per specialist visit</small>
+              </div>
+              <div class="stat-icon primary"><i class="fas fa-shield-alt"></i></div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div>
+                <span class="stat-label">Default Card on File</span>
+                <div class="stat-value fs-4 mt-1">Visa •••• 4242</div>
+                <small class="text-muted">Expires 08/2028 (HSA Eligible)</small>
+              </div>
+              <div class="stat-icon secondary"><i class="fas fa-credit-card"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Invoices Table -->
+        <div class="dash-card">
+          <div class="dash-card-header d-flex justify-content-between align-items-center">
+            <h5 class="dash-card-title mb-0"><i class="fas fa-file-invoice text-primary"></i> Invoices &amp; Statements</h5>
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-2 py-1 small" id="statementCountBadge">1 Statement Pending</span>
+          </div>
+          <div class="dash-card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-custom table-hover align-middle mb-0" id="invoicesTable">
+                <thead>
+                  <tr>
+                    <th>Invoice ID</th>
+                    <th>Date</th>
+                    <th>Services Rendered</th>
+                    <th>Ins. Covered</th>
+                    <th>Patient Copay</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="invoicesTableBody">
+                  <!-- Pending Statement (Active Due Row) -->
+                  <tr id="row-INV-2026-095" class="table-highlight-row">
+                    <td><strong class="text-primary">#INV-2026-095</strong></td>
+                    <td>Sep 7, 2026</td>
+                    <td>Spinal Decompression &amp; Core Strengthening</td>
+                    <td>$120.00</td>
+                    <td><strong>$30.00</strong></td>
+                    <td id="statusCell-INV-2026-095"><span class="badge-status pending" id="badge-INV-2026-095">Due</span></td>
+                    <td id="actionCell-INV-2026-095">
+                      <button type="button" class="btn btn-sm btn-primary pay-now-btn" data-inv="INV-2026-095" data-amount="30.00" data-service="Spinal Decompression &amp; Core Strengthening">
+                        <i class="fas fa-credit-card me-1"></i> Pay Now
+                      </button>
+                    </td>
+                  </tr>
+                  <!-- Settled Statement 1 -->
+                  <tr id="row-INV-2026-089">
+                    <td><strong>#INV-2026-089</strong></td>
+                    <td>Sep 1, 2026</td>
+                    <td>Decompression &amp; McKenzie Therapy</td>
+                    <td>$110.00</td>
+                    <td>$30.00</td>
+                    <td><span class="badge-status paid">Paid</span></td>
+                    <td><a href="receipts.html" class="btn btn-sm btn-outline-primary"><i class="fas fa-download me-1"></i> Receipt</a></td>
+                  </tr>
+                  <!-- Settled Statement 2 -->
+                  <tr id="row-INV-2026-074">
+                    <td><strong>#INV-2026-074</strong></td>
+                    <td>Aug 28, 2026</td>
+                    <td>Dry Needling &amp; Manual Release</td>
+                    <td>$125.00</td>
+                    <td>$30.00</td>
+                    <td><span class="badge-status paid">Paid</span></td>
+                    <td><a href="receipts.html" class="btn btn-sm btn-outline-primary"><i class="fas fa-download me-1"></i> Receipt</a></td>
+                  </tr>
+                  <!-- Settled Statement 3 -->
+                  <tr id="row-INV-2026-052">
+                    <td><strong>#INV-2026-052</strong></td>
+                    <td>Aug 24, 2026</td>
+                    <td>Initial Doctor Evaluation (60 min)</td>
+                    <td>$150.00</td>
+                    <td>$30.00</td>
+                    <td><span class="badge-status paid">Paid</span></td>
+                    <td><a href="receipts.html" class="btn btn-sm btn-outline-primary"><i class="fas fa-download me-1"></i> Receipt</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="dash-card-footer p-3 bg-surface-alt d-flex flex-wrap justify-content-between align-items-center border-top border-subtle">
+            <small class="text-muted"><i class="fas fa-info-circle me-1"></i> Copayments are adjudicated under BlueCross BlueShield PPO policy #W92847291.</small>
+            <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted py-0" id="toggleDemoBalanceBtn" title="Reset this demo to test making payments again">
+              <i class="fas fa-sync-alt me-1"></i> Toggle Due Statement (Demo)
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Interactive Secure Payment Modal -->
+  <div class="modal fade" id="payOnlineModal" tabindex="-1" aria-labelledby="payOnlineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        
+        <!-- 1. Active Payment Checkout Form View -->
+        <div id="paymentFormView">
+          <div class="modal-header bg-surface-alt border-bottom border-subtle px-4 py-3">
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: var(--primary-subtle); color: var(--primary);">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div>
+                <h5 class="modal-title fw-bold mb-0 text-heading" id="payOnlineModalLabel">Patient Payment Checkout</h5>
+                <small class="text-muted">PhysioLife Secure Copay &amp; Billing Gateway</small>
+              </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <form id="activePaymentForm" class="p-4">
+            <!-- Statement / Purpose Selector -->
+            <div class="mb-4">
+              <label class="form-label fw-bold small text-uppercase text-muted">Select Statement or Service to Pay</label>
+              <select class="form-select form-select-lg" id="payStatementSelect" required>
+                <option value="INV-2026-095" data-service="Spinal Decompression &amp; Core Strengthening" data-gross="150.00" data-ins="120.00" data-copay="30.00" selected>
+                  Statement #INV-2026-095 — Spinal Decompression ($30.00 Due)
+                </option>
+                <option value="advance-copay" data-service="Advance Specialist Visit Copay" data-gross="150.00" data-ins="120.00" data-copay="30.00">
+                  Advance Specialist Visit Copay ($30.00)
+                </option>
+                <option value="two-visits" data-service="Two-Session Treatment Plan Package" data-gross="300.00" data-ins="240.00" data-copay="60.00">
+                  Two-Visit Treatment Package Copay ($60.00)
+                </option>
+                <option value="custom" data-service="Custom Patient Payment" data-gross="0.00" data-ins="0.00" data-copay="custom">
+                  Custom Payment Amount...
+                </option>
+              </select>
+            </div>
+
+            <!-- Custom Amount Box (conditionally displayed) -->
+            <div class="mb-3 d-none" id="customAmountGroup">
+              <label class="form-label fw-semibold">Custom Payment Amount ($ USD)</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="customAmountInput" step="1.00" min="5.00" placeholder="e.g. 50.00" value="30.00">
+              </div>
+            </div>
+
+            <!-- Live Statement Breakdown Box -->
+            <div class="p-3 bg-surface-alt rounded-3 border border-subtle mb-4">
+              <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Clinical Procedure:</span>
+                <span class="fw-semibold text-heading text-end" id="breakdownServiceText">Spinal Decompression &amp; Core Strengthening</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Gross Clinician Fee:</span>
+                <span id="breakdownGrossText">$150.00</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span>In-Network Insurance Coverage (BlueCross PPO):</span>
+                <span class="text-success fw-semibold" id="breakdownInsText">-$120.00</span>
+              </div>
+              <hr class="my-2 border-subtle">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-heading">Total Patient Responsibility:</span>
+                <span class="fs-4 fw-bold text-primary" id="breakdownTotalPay">$30.00</span>
+              </div>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div class="mb-4">
+              <label class="form-label fw-bold small text-uppercase text-muted mb-2">Select Payment Method</label>
+              
+              <div class="d-flex flex-column gap-2" id="paymentMethodRadios">
+                <!-- Option 1: Saved Visa Card (Default) -->
+                <label class="payment-method-card d-flex align-items-center justify-content-between p-3 border rounded-3 cursor-pointer selected-method" for="methodVisa4242">
+                  <div class="d-flex align-items-center gap-3">
+                    <input class="form-check-input mt-0" type="radio" name="paymentMethodRadio" id="methodVisa4242" value="visa_4242" checked>
+                    <div>
+                      <div class="fw-bold d-flex align-items-center gap-2">
+                        <i class="fab fa-cc-visa text-primary fs-5"></i> Visa ending in 4242
+                        <span class="badge bg-success-subtle text-success small">HSA Eligible</span>
+                      </div>
+                      <small class="text-muted">Expires 08/2028 • Stored Primary on File</small>
+                    </div>
+                  </div>
+                  <i class="fas fa-check-circle text-primary method-check-icon"></i>
+                </label>
+
+                <!-- Option 2: Saved MasterCard -->
+                <label class="payment-method-card d-flex align-items-center justify-content-between p-3 border rounded-3 cursor-pointer" for="methodMC8891">
+                  <div class="d-flex align-items-center gap-3">
+                    <input class="form-check-input mt-0" type="radio" name="paymentMethodRadio" id="methodMC8891" value="mc_8891">
+                    <div>
+                      <div class="fw-bold d-flex align-items-center gap-2">
+                        <i class="fab fa-cc-mastercard text-danger fs-5"></i> MasterCard ending in 8891
+                      </div>
+                      <small class="text-muted">Expires 11/2027 • Backup Payment Method</small>
+                    </div>
+                  </div>
+                  <i class="fas fa-check-circle text-primary method-check-icon d-none"></i>
+                </label>
+
+                <!-- Option 3: Add New Card -->
+                <label class="payment-method-card d-flex align-items-center justify-content-between p-3 border rounded-3 cursor-pointer" for="methodNewCard">
+                  <div class="d-flex align-items-center gap-3">
+                    <input class="form-check-input mt-0" type="radio" name="paymentMethodRadio" id="methodNewCard" value="new_card">
+                    <div>
+                      <div class="fw-bold"><i class="fas fa-credit-card text-muted me-1"></i> Add New Credit or Debit Card</div>
+                      <small class="text-muted">Visa, MasterCard, Amex, Discover, HSA/FSA</small>
+                    </div>
+                  </div>
+                  <i class="fas fa-check-circle text-primary method-check-icon d-none"></i>
+                </label>
+
+                <!-- Option 4: Google Pay / Apple Pay -->
+                <label class="payment-method-card d-flex align-items-center justify-content-between p-3 border rounded-3 cursor-pointer" for="methodDigitalWallet">
+                  <div class="d-flex align-items-center gap-3">
+                    <input class="form-check-input mt-0" type="radio" name="paymentMethodRadio" id="methodDigitalWallet" value="digital_wallet">
+                    <div>
+                      <div class="fw-bold"><i class="fab fa-google-pay text-primary me-1"></i> Google Pay / <i class="fab fa-apple text-dark me-1"></i> Apple Pay</div>
+                      <small class="text-muted">Instant biometrically authenticated checkout</small>
+                    </div>
+                  </div>
+                  <i class="fas fa-check-circle text-primary method-check-icon d-none"></i>
+                </label>
+              </div>
+            </div>
+
+            <!-- New Card Interactive Fields (collapsible) -->
+            <div id="newCardFieldsContainer" class="p-3 bg-surface-alt rounded-3 border border-subtle mb-4 d-none">
+              <h6 class="fw-bold mb-3"><i class="fas fa-lock text-primary me-1"></i> Enter New Card Information</h6>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label small">Cardholder Name</label>
+                  <input type="text" class="form-control" id="newCardHolderName" placeholder="Name as printed on card" value="Robert Sterling">
+                </div>
+                <div class="col-12">
+                  <label class="form-label small">Card Number</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-credit-card text-muted"></i></span>
+                    <input type="text" class="form-control" id="newCardNumber" maxlength="19" placeholder="4532 •••• •••• ••••">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label class="form-label small">Expiry Date</label>
+                  <input type="text" class="form-control" id="newCardExpiry" maxlength="5" placeholder="MM/YY">
+                </div>
+                <div class="col-6">
+                  <label class="form-label small">CVC / CVV</label>
+                  <input type="text" class="form-control" id="newCardCVC" maxlength="4" placeholder="CVC">
+                </div>
+              </div>
+            </div>
+
+            <!-- Trust / Security Footnote -->
+            <div class="text-center text-muted small mb-4">
+              <span class="d-inline-flex align-items-center gap-2">
+                <i class="fas fa-shield-alt text-success"></i> 256-Bit SSL Encrypted
+                <span>•</span> HIPAA &amp; PCI-DSS Level 1 Compliant
+                <span>•</span> Instant Official Receipt
+              </span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary flex-fill py-2 fw-bold fs-6" id="submitPaymentBtn">
+                <i class="fas fa-lock me-2"></i> Pay <span id="submitBtnAmountText">$30.00</span> Securely
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. Payment Processing Overlay / State View -->
+        <div id="paymentProcessingView" class="p-5 text-center d-none">
+          <div class="spinner-border text-primary mb-4" style="width: 3.5rem; height: 3.5rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <h4 class="fw-bold mb-2">Authorizing Payment...</h4>
+          <p class="text-muted mb-0">Communicating with payment gateway &amp; verifying BlueCross HSA benefits.</p>
+        </div>
+
+        <!-- 3. Payment Success Confirmation View -->
+        <div id="paymentSuccessView" class="p-4 p-md-5 text-center d-none">
+          <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 68px; height: 68px; background-color: var(--success-subtle); color: var(--success); font-size: 2.2rem;">
+            <i class="fas fa-check"></i>
+          </div>
+          <h3 class="fw-bold text-success mb-1">Payment Successful!</h3>
+          <p class="text-muted mb-4">Your patient copayment has been processed and settled in full.</p>
+
+          <div class="p-3 bg-surface-alt rounded-3 border border-subtle text-start mx-auto mb-4" style="max-width: 480px;">
+            <div class="d-flex justify-content-between small text-muted mb-2">
+              <span>Transaction Reference:</span>
+              <strong class="text-heading" id="successTxnRef">#TXN-2026-98402</strong>
+            </div>
+            <div class="d-flex justify-content-between small text-muted mb-2">
+              <span>Invoice Settled:</span>
+              <strong class="text-heading" id="successInvoiceId">#INV-2026-095</strong>
+            </div>
+            <div class="d-flex justify-content-between small text-muted mb-2">
+              <span>Payment Method:</span>
+              <span id="successPaymentMethodDisplay">Visa ending in 4242 (HSA)</span>
+            </div>
+            <div class="d-flex justify-content-between small text-muted mb-2">
+              <span>Date &amp; Time:</span>
+              <span id="successTimestampDisplay">September 7, 2026</span>
+            </div>
+            <hr class="my-2 border-subtle">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-heading">Total Amount Settled:</span>
+              <span class="fs-4 fw-bold text-primary" id="successTotalSettled">$30.00</span>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center gap-3">
+            <a href="receipts.html" class="btn btn-primary px-4" id="viewOfficialReceiptLink">
+              <i class="fas fa-file-invoice-dollar me-1"></i> View Official Receipt
+            </a>
+            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+              Done
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .cursor-pointer { cursor: pointer; }
+    .table-highlight-row { background-color: rgba(var(--primary-rgb, 13, 148, 136), 0.04); }
+    .payment-method-card {
+      transition: all 0.2s ease;
+      background: var(--bg-surface);
+      border-color: var(--border-color) !important;
+    }
+    .payment-method-card:hover {
+      border-color: var(--primary) !important;
+    }
+    .payment-method-card.selected-method {
+      border-color: var(--primary) !important;
+      background-color: var(--primary-subtle);
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+
+  <!-- Interactive Patient Payments Controller -->
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'physiolife_payment_settled_095';
+
+      // DOM Elements
+      const statBalanceValue = document.getElementById('statBalanceValue');
+      const statBalanceSubtext = document.getElementById('statBalanceSubtext');
+      const statBalanceIcon = document.getElementById('statBalanceIcon');
+      const statementCountBadge = document.getElementById('statementCountBadge');
+
+      const row095 = document.getElementById('row-INV-2026-095');
+      const statusCell095 = document.getElementById('statusCell-INV-2026-095');
+      const actionCell095 = document.getElementById('actionCell-INV-2026-095');
+
+      const payStatementSelect = document.getElementById('payStatementSelect');
+      const customAmountGroup = document.getElementById('customAmountGroup');
+      const customAmountInput = document.getElementById('customAmountInput');
+
+      const breakdownServiceText = document.getElementById('breakdownServiceText');
+      const breakdownGrossText = document.getElementById('breakdownGrossText');
+      const breakdownInsText = document.getElementById('breakdownInsText');
+      const breakdownTotalPay = document.getElementById('breakdownTotalPay');
+      const submitBtnAmountText = document.getElementById('submitBtnAmountText');
+
+      const paymentMethodRadios = document.querySelectorAll('input[name="paymentMethodRadio"]');
+      const newCardFieldsContainer = document.getElementById('newCardFieldsContainer');
+      const newCardNumber = document.getElementById('newCardNumber');
+      const newCardExpiry = document.getElementById('newCardExpiry');
+
+      const activePaymentForm = document.getElementById('activePaymentForm');
+      const paymentFormView = document.getElementById('paymentFormView');
+      const paymentProcessingView = document.getElementById('paymentProcessingView');
+      const paymentSuccessView = document.getElementById('paymentSuccessView');
+
+      const successTxnRef = document.getElementById('successTxnRef');
+      const successInvoiceId = document.getElementById('successInvoiceId');
+      const successPaymentMethodDisplay = document.getElementById('successPaymentMethodDisplay');
+      const successTimestampDisplay = document.getElementById('successTimestampDisplay');
+      const successTotalSettled = document.getElementById('successTotalSettled');
+
+      const toggleDemoBalanceBtn = document.getElementById('toggleDemoBalanceBtn');
+      const payOnlineModalEl = document.getElementById('payOnlineModal');
+
+      // State
+      let isSettled = localStorage.getItem(STORAGE_KEY) === 'true';
+
+      function updateDashboardState() {
+        if (isSettled) {
+          // Settled State ($0.00 Outstanding)
+          if (statBalanceValue) {
+            statBalanceValue.className = 'stat-value text-success fs-3 mt-1';
+            statBalanceValue.textContent = '$0.00';
+          }
+          if (statBalanceSubtext) {
+            statBalanceSubtext.className = 'text-muted small';
+            statBalanceSubtext.textContent = 'All active statements settled';
+          }
+          if (statBalanceIcon) {
+            statBalanceIcon.className = 'stat-icon success';
+            statBalanceIcon.style.backgroundColor = 'var(--success-subtle)';
+            statBalanceIcon.style.color = 'var(--success)';
+            statBalanceIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+          }
+          if (statementCountBadge) {
+            statementCountBadge.className = 'badge bg-success-subtle text-success fw-semibold px-2 py-1 small';
+            statementCountBadge.textContent = 'All Statements Paid';
+          }
+          if (row095) {
+            row095.classList.remove('table-highlight-row');
+          }
+          if (statusCell095) {
+            statusCell095.innerHTML = '<span class="badge-status paid">Paid</span>';
+          }
+          if (actionCell095) {
+            actionCell095.innerHTML = '<a href="receipts.html" class="btn btn-sm btn-outline-primary"><i class="fas fa-download me-1"></i> Receipt</a>';
+          }
+        } else {
+          // Unsettled / Due State ($30.00 Due)
+          if (statBalanceValue) {
+            statBalanceValue.className = 'stat-value text-danger fs-3 mt-1';
+            statBalanceValue.textContent = '$30.00';
+          }
+          if (statBalanceSubtext) {
+            statBalanceSubtext.className = 'text-danger fw-semibold small';
+            statBalanceSubtext.textContent = 'Statement #INV-2026-095 Due Today';
+          }
+          if (statBalanceIcon) {
+            statBalanceIcon.className = 'stat-icon';
+            statBalanceIcon.style.backgroundColor = 'var(--danger-subtle)';
+            statBalanceIcon.style.color = 'var(--danger)';
+            statBalanceIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+          }
+          if (statementCountBadge) {
+            statementCountBadge.className = 'badge bg-danger-subtle text-danger fw-semibold px-2 py-1 small';
+            statementCountBadge.textContent = '1 Statement Pending';
+          }
+          if (row095) {
+            row095.classList.add('table-highlight-row');
+          }
+          if (statusCell095) {
+            statusCell095.innerHTML = '<span class="badge-status pending">Due</span>';
+          }
+          if (actionCell095) {
+            actionCell095.innerHTML = '<button type="button" class="btn btn-sm btn-primary pay-now-btn" data-inv="INV-2026-095" data-amount="30.00" data-service="Spinal Decompression &amp; Core Strengthening"><i class="fas fa-credit-card me-1"></i> Pay Now</button>';
+            bindPayNowButtons();
+          }
+        }
+      }
+
+      function bindPayNowButtons() {
+        const btns = document.querySelectorAll('.pay-now-btn');
+        btns.forEach(btn => {
+          btn.onclick = function (e) {
+            e.preventDefault();
+            const inv = this.getAttribute('data-inv') || 'INV-2026-095';
+            if (payStatementSelect) {
+              payStatementSelect.value = inv;
+              triggerStatementChange();
+            }
+            const modalInstance = bootstrap.Modal.getOrCreateInstance(payOnlineModalEl);
+            modalInstance.show();
+          };
+        });
+      }
+
+      function triggerStatementChange() {
+        if (!payStatementSelect) return;
+        const selected = payStatementSelect.options[payStatementSelect.selectedIndex];
+        if (!selected) return;
+
+        const service = selected.getAttribute('data-service') || 'General Physical Therapy Copay';
+        const gross = selected.getAttribute('data-gross') || '150.00';
+        const ins = selected.getAttribute('data-ins') || '120.00';
+        const copay = selected.getAttribute('data-copay');
+
+        if (breakdownServiceText) breakdownServiceText.textContent = service;
+        if (breakdownGrossText) breakdownGrossText.textContent = `$${gross}`;
+        if (breakdownInsText) breakdownInsText.textContent = `-$${ins}`;
+
+        if (copay === 'custom') {
+          if (customAmountGroup) customAmountGroup.classList.remove('d-none');
+          updateCustomTotal();
+        } else {
+          if (customAmountGroup) customAmountGroup.classList.add('d-none');
+          const amountFormatted = `$${parseFloat(copay).toFixed(2)}`;
+          if (breakdownTotalPay) breakdownTotalPay.textContent = amountFormatted;
+          if (submitBtnAmountText) submitBtnAmountText.textContent = amountFormatted;
+        }
+      }
+
+      function updateCustomTotal() {
+        let val = parseFloat(customAmountInput.value) || 0;
+        if (val < 5) val = 5;
+        const formatted = `$${val.toFixed(2)}`;
+        if (breakdownTotalPay) breakdownTotalPay.textContent = formatted;
+        if (submitBtnAmountText) submitBtnAmountText.textContent = formatted;
+      }
+
+      if (payStatementSelect) {
+        payStatementSelect.addEventListener('change', triggerStatementChange);
+      }
+
+      if (customAmountInput) {
+        customAmountInput.addEventListener('input', updateCustomTotal);
+      }
+
+      // Payment Method Radio card toggles
+      paymentMethodRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+          document.querySelectorAll('.payment-method-card').forEach(c => {
+            c.classList.remove('selected-method');
+            const icon = c.querySelector('.method-check-icon');
+            if (icon) icon.classList.add('d-none');
+          });
+
+          const parentCard = this.closest('.payment-method-card');
+          if (parentCard) {
+            parentCard.classList.add('selected-method');
+            const icon = parentCard.querySelector('.method-check-icon');
+            if (icon) icon.classList.remove('d-none');
+          }
+
+          if (this.value === 'new_card') {
+            if (newCardFieldsContainer) newCardFieldsContainer.classList.remove('d-none');
+          } else {
+            if (newCardFieldsContainer) newCardFieldsContainer.classList.add('d-none');
+          }
+        });
+      });
+
+      // Card number formatter (groups of 4)
+      if (newCardNumber) {
+        newCardNumber.addEventListener('input', function (e) {
+          let value = this.value.replace(/\D/g, '');
+          let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+          this.value = formatted.substring(0, 19);
+        });
+      }
+
+      // Expiry formatter (MM/YY)
+      if (newCardExpiry) {
+        newCardExpiry.addEventListener('input', function (e) {
+          let value = this.value.replace(/\D/g, '');
+          if (value.length > 2) {
+            value = value.substring(0, 2) + '/' + value.substring(2, 4);
+          }
+          this.value = value.substring(0, 5);
+        });
+      }
+
+      // Handle Modal Reset on Close
+      if (payOnlineModalEl) {
+        payOnlineModalEl.addEventListener('hidden.bs.modal', function () {
+          if (paymentFormView) paymentFormView.classList.remove('d-none');
+          if (paymentProcessingView) paymentProcessingView.classList.add('d-none');
+          if (paymentSuccessView) paymentSuccessView.classList.add('d-none');
+        });
+      }
+
+      // Execute Payment Submission
+      if (activePaymentForm) {
+        activePaymentForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // Transition to Processing State
+          if (paymentFormView) paymentFormView.classList.add('d-none');
+          if (paymentProcessingView) paymentProcessingView.classList.remove('d-none');
+
+          const selectedOption = payStatementSelect ? payStatementSelect.options[payStatementSelect.selectedIndex] : null;
+          const selectedVal = selectedOption ? selectedOption.value : 'INV-2026-095';
+          const copayAttr = selectedOption ? selectedOption.getAttribute('data-copay') : '30.00';
+          const finalAmount = copayAttr === 'custom' ? (parseFloat(customAmountInput.value) || 30.00).toFixed(2) : parseFloat(copayAttr).toFixed(2);
+
+          let methodLabel = 'Visa ending in 4242 (HSA)';
+          const activeRadio = document.querySelector('input[name="paymentMethodRadio"]:checked');
+          if (activeRadio) {
+            if (activeRadio.value === 'mc_8891') methodLabel = 'MasterCard ending in 8891';
+            else if (activeRadio.value === 'new_card') {
+              const last4 = (newCardNumber && newCardNumber.value.replace(/\D/g, '').slice(-4)) || '7104';
+              methodLabel = `New Card ending in ${last4}`;
+            } else if (activeRadio.value === 'digital_wallet') {
+              methodLabel = 'Apple Pay / Google Pay';
+            }
+          }
+
+          // Simulate realistic authorization latency
+          setTimeout(() => {
+            const randomTxn = '#TXN-' + Math.floor(100000 + Math.random() * 900000);
+            const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            if (successTxnRef) successTxnRef.textContent = randomTxn;
+            if (successInvoiceId) successInvoiceId.textContent = selectedVal === 'INV-2026-095' ? '#INV-2026-095' : `#INV-2026-${Math.floor(100 + Math.random() * 900)}`;
+            if (successPaymentMethodDisplay) successPaymentMethodDisplay.textContent = methodLabel;
+            if (successTimestampDisplay) successTimestampDisplay.textContent = today;
+            if (successTotalSettled) successTotalSettled.textContent = `$${finalAmount}`;
+
+            // Mark invoice 095 settled
+            isSettled = true;
+            localStorage.setItem(STORAGE_KEY, 'true');
+            updateDashboardState();
+
+            // Transition from Processing to Success Confirmation
+            if (paymentProcessingView) paymentProcessingView.classList.add('d-none');
+            if (paymentSuccessView) paymentSuccessView.classList.remove('d-none');
+          }, 800);
+        });
+      }
+
+      // Demo Toggle Button (Allows resetting or testing due state repeatedly)
+      if (toggleDemoBalanceBtn) {
+        toggleDemoBalanceBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          isSettled = !isSettled;
+          localStorage.setItem(STORAGE_KEY, isSettled ? 'true' : 'false');
+          updateDashboardState();
+        });
+      }
+
+      // Live Table Search
+      const searchInput = document.getElementById('dashTableSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          const q = this.value.trim().toLowerCase();
+          const rows = document.querySelectorAll('#invoicesTableBody tr');
+          rows.forEach(r => {
+            const text = r.textContent.toLowerCase();
+            r.style.display = text.includes(q) ? '' : 'none';
+          });
+        });
+      }
+
+      // Initial Setup
+      updateDashboardState();
+      bindPayNowButtons();
+      triggerStatementChange();
+    })();
+  </script>
+</body>
+</html>

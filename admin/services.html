@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage clinic physical therapy service offerings, pricing, and durations.">
+  <title>Services Catalog – PhysioLife Admin</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Clinic Administration</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-chart-pie"></i> <span>Overview</span></a></li>
+        <li class="menu-item"><a href="users.html" class="menu-link"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
+        <li class="menu-item"><a href="therapists.html" class="menu-link"><i class="fas fa-user-md"></i> <span>Therapists</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="services.html" class="menu-link active"><i class="fas fa-stethoscope"></i> <span>Services Catalog</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link"><i class="fas fa-file-medical-alt"></i> <span>Care Protocols</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link"><i class="fas fa-video"></i> <span>Exercise Videos</span></a></li>
+        <li class="menu-category">Financials &amp; Content</li>
+        <li class="menu-item"><a href="orders.html" class="menu-link"><i class="fas fa-file-invoice-dollar"></i> <span>Billing &amp; Claims</span></a></li>
+        <li class="menu-item"><a href="messages.html" class="menu-link"><i class="fas fa-envelope-open-text"></i> <span>Inquiries</span></a></li>
+        <li class="menu-item"><a href="blog.html" class="menu-link"><i class="fas fa-newspaper"></i> <span>Blog CMS</span></a></li>
+        <li class="menu-item"><a href="settings.html" class="menu-link"><i class="fas fa-sliders-h"></i> <span>Clinic Settings</span></a></li>
+        <li class="menu-item mt-3"><a href="../admin-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/therapist-1.svg" alt="Dr. Sarah Jenkins" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Dr. Sarah Jenkins</div>
+            <div class="user-role">Clinical Director (Admin)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search d-none d-md-block">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashTableSearch" class="form-control form-control-sm" placeholder="Search services, codes, categories...">
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+          <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h2 class="fw-bold mb-1">Services &amp; Therapy Offerings</h2>
+            <p class="text-muted small mb-0">Control pricing, treatment duration, and patient booking availability.</p>
+          </div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+            <i class="fas fa-plus me-1"></i> Add New Service
+          </button>
+        </div>
+
+        <!-- Filter Pill Navigation -->
+        <div class="d-flex flex-wrap gap-2 mb-3" id="categoryFilterPills">
+          <button type="button" class="btn btn-sm btn-primary category-filter-btn" data-category="all">All Services</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary category-filter-btn" data-category="Orthopedic">Orthopedic</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary category-filter-btn" data-category="Sports Rehab">Sports Rehab</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary category-filter-btn" data-category="Post-Op">Post-Op</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary category-filter-btn" data-category="Neurology">Neurology</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary category-filter-btn" data-category="Home Care">Home Care</button>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-header d-flex justify-content-between align-items-center">
+            <h5 class="dash-card-title mb-0">
+              <i class="fas fa-stethoscope text-primary me-2"></i> Active Therapy Catalog
+              <span class="badge bg-primary-subtle text-primary rounded-pill ms-2" id="serviceCountBadge">5</span>
+            </h5>
+            <span class="text-muted small" id="searchFilterStatus">Showing all offerings</span>
+          </div>
+          <div class="dash-card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-custom table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Service Name</th>
+                    <th>Category</th>
+                    <th>Duration</th>
+                    <th>Standard Fee</th>
+                    <th>In-Network Billing</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="servicesTableBody">
+                  <!-- Rendered dynamically by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Service Modal -->
+  <div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-bottom">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i class="fas fa-edit"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold" id="editServiceModalLabel">Edit Service Offering</h5>
+              <p class="text-muted small mb-0">Modify therapy package specifications, fees, and billing codes.</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="editServiceForm" class="p-4" onsubmit="window.saveServiceEdits(event)">
+          <input type="hidden" id="editServiceId">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="editServiceName" class="form-label">Service Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="editServiceName" required placeholder="e.g. Spine & Neck Pain Therapy">
+            </div>
+            <div class="col-md-4">
+              <label for="editServiceCategory" class="form-label">Category <span class="text-danger">*</span></label>
+              <select class="form-select" id="editServiceCategory" required>
+                <option value="Orthopedic">Orthopedic</option>
+                <option value="Sports Rehab">Sports Rehab</option>
+                <option value="Post-Op">Post-Op</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Home Care">Home Care</option>
+                <option value="Pediatric">Pediatric</option>
+                <option value="Geriatric">Geriatric</option>
+                <option value="Wellness">Wellness</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="editServiceDuration" class="form-label">Duration (Minutes) <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <input type="number" class="form-control" id="editServiceDuration" min="15" max="180" step="5" required>
+                <span class="input-group-text text-muted">min</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="editServiceFee" class="form-label">Standard Fee ($) <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="editServiceFee" min="0" step="0.01" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="editServiceStatus" class="form-label">Status <span class="text-danger">*</span></label>
+              <select class="form-select" id="editServiceStatus" required>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="editServiceBillingCode" class="form-label">In-Network Billing Codes</label>
+              <input type="text" class="form-control" id="editServiceBillingCode" placeholder="e.g. CPT 97110, 97140">
+              <div class="form-text">Insurance CPT and reimbursement cross-reference codes.</div>
+            </div>
+            <div class="col-12">
+              <label for="editServiceDescription" class="form-label">Clinical Description</label>
+              <textarea class="form-control" id="editServiceDescription" rows="3" placeholder="Brief explanation of clinical protocol, techniques, and targeted patient conditions..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-top px-0 pb-0 pt-4 mt-4 d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-save me-1"></i> Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Service Modal -->
+  <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-bottom">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i class="fas fa-plus"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold" id="addServiceModalLabel">Add Service to Catalog</h5>
+              <p class="text-muted small mb-0">Create a new therapy offering for clinical scheduling and billing.</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addServiceForm" class="p-4" onsubmit="window.saveNewService(event)">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="addServiceName" class="form-label">Service Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="addServiceName" required placeholder="e.g. Aquatic Hydrotherapy">
+            </div>
+            <div class="col-md-4">
+              <label for="addServiceCategory" class="form-label">Category <span class="text-danger">*</span></label>
+              <select class="form-select" id="addServiceCategory" required>
+                <option value="Orthopedic">Orthopedic</option>
+                <option value="Sports Rehab">Sports Rehab</option>
+                <option value="Post-Op">Post-Op</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Home Care">Home Care</option>
+                <option value="Pediatric">Pediatric</option>
+                <option value="Geriatric">Geriatric</option>
+                <option value="Wellness">Wellness</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="addServiceDuration" class="form-label">Duration (Minutes) <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <input type="number" class="form-control" id="addServiceDuration" min="15" max="180" step="5" value="45" required>
+                <span class="input-group-text text-muted">min</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="addServiceFee" class="form-label">Standard Fee ($) <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="addServiceFee" min="0" step="0.01" value="120.00" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="addServiceStatus" class="form-label">Status <span class="text-danger">*</span></label>
+              <select class="form-select" id="addServiceStatus" required>
+                <option value="Active" selected>Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="addServiceBillingCode" class="form-label">In-Network Billing Codes</label>
+              <input type="text" class="form-control" id="addServiceBillingCode" placeholder="e.g. CPT 97110, 97039">
+              <div class="form-text">Insurance CPT and reimbursement cross-reference codes.</div>
+            </div>
+            <div class="col-12">
+              <label for="addServiceDescription" class="form-label">Clinical Description</label>
+              <textarea class="form-control" id="addServiceDescription" rows="3" placeholder="Brief explanation of clinical protocol, techniques, and targeted patient conditions..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-top px-0 pb-0 pt-4 mt-4 d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="fas fa-plus-circle me-1"></i> Add to Catalog
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'physiolife_admin_services';
+
+      const DEFAULT_SERVICES = [
+        {
+          id: 'srv-1',
+          name: 'Spine & Neck Pain Therapy',
+          category: 'Orthopedic',
+          duration: 45,
+          fee: 120.00,
+          billingCode: 'CPT 97110, 97140',
+          status: 'Active',
+          description: 'Targeted spinal mobilization, traction, and postural re-education for acute and chronic spine pain.'
+        },
+        {
+          id: 'srv-2',
+          name: 'Sports Injury Rehabilitation',
+          category: 'Sports Rehab',
+          duration: 60,
+          fee: 140.00,
+          billingCode: 'CPT 97116, 97530',
+          status: 'Active',
+          description: 'Biomechanics correction, agility drills, and return-to-sport testing for athletic injuries.'
+        },
+        {
+          id: 'srv-3',
+          name: 'Post-Surgical Care (Joint)',
+          category: 'Post-Op',
+          duration: 45,
+          fee: 125.00,
+          billingCode: 'CPT 97110, 97035',
+          status: 'Active',
+          description: 'Early-stage ROM, scar tissue therapy, and safe progressive strengthening after joint surgery.'
+        },
+        {
+          id: 'srv-4',
+          name: 'Neurological Rehabilitation',
+          category: 'Neurology',
+          duration: 60,
+          fee: 150.00,
+          billingCode: 'CPT 97112',
+          status: 'Active',
+          description: 'Neuro-developmental treatment, gait retraining, and proprioception for stroke, MS, and Parkinson\'s.'
+        },
+        {
+          id: 'srv-5',
+          name: 'Home Visit Physiotherapy',
+          category: 'Home Care',
+          duration: 60,
+          fee: 180.00,
+          billingCode: 'Direct Travel Code',
+          status: 'Active',
+          description: 'Dedicated concierge physical therapy delivered in the comfort of the patient\'s residence.'
+        }
+      ];
+
+      let currentCategoryFilter = 'all';
+      let currentSearchQuery = '';
+
+      function getServices() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              return parsed;
+            }
+          }
+        } catch (e) {
+          console.warn('Could not read services from localStorage:', e);
+        }
+        saveServices(DEFAULT_SERVICES);
+        return [...DEFAULT_SERVICES];
+      }
+
+      function saveServices(services) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(services));
+        } catch (e) {
+          console.error('Failed to save services into localStorage:', e);
+        }
+      }
+
+      function showToastNotification(message, isSuccess = true) {
+        let toastContainer = document.getElementById('servicesToastContainer');
+        if (!toastContainer) {
+          toastContainer = document.createElement('div');
+          toastContainer.id = 'servicesToastContainer';
+          toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+          toastContainer.style.zIndex = '1095';
+          document.body.appendChild(toastContainer);
+        }
+
+        const toast = document.createElement('div');
+        toast.className = `toast align-items-center text-bg-${isSuccess ? 'success' : 'primary'} border-0 show shadow`;
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.innerHTML = `
+          <div class="d-flex">
+            <div class="toast-body d-flex align-items-center gap-2">
+              <i class="fas fa-${isSuccess ? 'check-circle' : 'info-circle'} fs-5"></i>
+              <span>${message}</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        `;
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 300);
+        }, 3500);
+      }
+
+      function renderServicesTable(highlightId = null) {
+        const tbody = document.getElementById('servicesTableBody');
+        const countBadge = document.getElementById('serviceCountBadge');
+        const statusLabel = document.getElementById('searchFilterStatus');
+        if (!tbody) return;
+
+        const allServices = getServices();
+
+        const filtered = allServices.filter(s => {
+          const matchCategory = (currentCategoryFilter === 'all') || (s.category === currentCategoryFilter);
+          const q = currentSearchQuery.toLowerCase().trim();
+          const matchSearch = !q || (
+            (s.name && s.name.toLowerCase().includes(q)) ||
+            (s.category && s.category.toLowerCase().includes(q)) ||
+            (s.billingCode && s.billingCode.toLowerCase().includes(q)) ||
+            (s.description && s.description.toLowerCase().includes(q))
+          );
+          return matchCategory && matchSearch;
+        });
+
+        if (countBadge) {
+          countBadge.textContent = `${filtered.length} ${filtered.length === 1 ? 'Service' : 'Services'}`;
+        }
+
+        if (statusLabel) {
+          if (currentSearchQuery) {
+            statusLabel.textContent = `Search results for "${currentSearchQuery}"`;
+          } else if (currentCategoryFilter !== 'all') {
+            statusLabel.textContent = `Filtered by ${currentCategoryFilter}`;
+          } else {
+            statusLabel.textContent = 'Showing all offerings';
+          }
+        }
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="text-center py-5 text-muted">
+                <div class="py-4">
+                  <i class="fas fa-stethoscope fa-3x text-muted opacity-50 mb-3 d-block"></i>
+                  <h6 class="fw-bold">No services found</h6>
+                  <p class="small mb-3">No therapy catalog items match your search or filter criteria.</p>
+                  <button type="button" class="btn btn-sm btn-outline-primary" onclick="window.resetServiceFilters()">
+                    <i class="fas fa-undo me-1"></i> Reset Filters
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        let html = '';
+        filtered.forEach(s => {
+          const isHighlighted = s.id === highlightId;
+          const isInactive = s.status === 'Inactive';
+          const badgeClass = isInactive ? 'badge-status draft' : 'badge-status active';
+
+          html += `
+            <tr id="service-row-${s.id}" class="${isHighlighted ? 'table-primary transition-all' : ''}">
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px; font-size: 0.85rem;">
+                    <i class="fas fa-heartbeat"></i>
+                  </div>
+                  <div>
+                    <strong class="d-block text-main">${s.name}</strong>
+                    ${s.description ? `<small class="text-muted text-truncate d-inline-block" style="max-width: 260px;">${s.description}</small>` : ''}
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge bg-light text-dark border">${s.category}</span></td>
+              <td><i class="far fa-clock text-muted me-1"></i>${s.duration} min</td>
+              <td><strong>$${parseFloat(s.fee).toFixed(2)}</strong></td>
+              <td><code class="text-primary small fw-semibold">${s.billingCode || '—'}</code></td>
+              <td><span class="${badgeClass}">${s.status}</span></td>
+              <td>
+                <div class="d-flex gap-1">
+                  <button type="button" class="btn btn-sm btn-outline-primary edit-service-btn" onclick="window.openEditServiceModal('${s.id}')" title="Edit Service Details">
+                    <i class="fas fa-edit me-1"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger" onclick="window.deleteService('${s.id}')" title="Delete Service">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        });
+
+        tbody.innerHTML = html;
+
+        if (highlightId) {
+          const row = document.getElementById(`service-row-${highlightId}`);
+          if (row) {
+            if (typeof row.scrollIntoView === 'function') {
+              row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            setTimeout(() => {
+              if (row.classList) row.classList.remove('table-primary');
+            }, 2000);
+          }
+        }
+      }
+
+      // Open Edit Service Modal and pre-populate with selected service
+      window.openEditServiceModal = function (serviceId) {
+        const services = getServices();
+        const s = services.find(item => item.id === serviceId);
+        if (!s) {
+          showToastNotification('Service not found.', false);
+          return;
+        }
+
+        document.getElementById('editServiceId').value = s.id;
+        document.getElementById('editServiceName').value = s.name || '';
+        document.getElementById('editServiceCategory').value = s.category || 'Orthopedic';
+        document.getElementById('editServiceDuration').value = s.duration || 45;
+        document.getElementById('editServiceFee').value = parseFloat(s.fee || 0).toFixed(2);
+        document.getElementById('editServiceBillingCode').value = s.billingCode || '';
+        document.getElementById('editServiceStatus').value = s.status || 'Active';
+        document.getElementById('editServiceDescription').value = s.description || '';
+
+        const modalEl = document.getElementById('editServiceModal');
+        if (modalEl && typeof bootstrap !== 'undefined') {
+          const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modalInstance.show();
+        }
+      };
+
+      // Save Edited Service back into localStorage
+      window.saveServiceEdits = function (e) {
+        if (e) e.preventDefault();
+        const id = document.getElementById('editServiceId').value;
+        const services = getServices();
+        const s = services.find(item => item.id === id);
+
+        if (!s) {
+          showToastNotification('Could not find service to update.', false);
+          return;
+        }
+
+        const name = document.getElementById('editServiceName').value.trim();
+        const category = document.getElementById('editServiceCategory').value;
+        const duration = parseInt(document.getElementById('editServiceDuration').value, 10) || 45;
+        const fee = parseFloat(document.getElementById('editServiceFee').value) || 0;
+        const billingCode = document.getElementById('editServiceBillingCode').value.trim();
+        const status = document.getElementById('editServiceStatus').value;
+        const description = document.getElementById('editServiceDescription').value.trim();
+
+        if (!name) {
+          alert('Service title is required.');
+          return;
+        }
+
+        s.name = name;
+        s.category = category;
+        s.duration = duration;
+        s.fee = fee;
+        s.billingCode = billingCode;
+        s.status = status;
+        s.description = description;
+
+        saveServices(services);
+
+        const modalEl = document.getElementById('editServiceModal');
+        if (modalEl && typeof bootstrap !== 'undefined') {
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          if (modalInstance) modalInstance.hide();
+        }
+
+        renderServicesTable(s.id);
+        showToastNotification(`Successfully updated "${s.name}"!`);
+      };
+
+      // Add New Service Handler
+      window.saveNewService = function (e) {
+        if (e) e.preventDefault();
+        const name = document.getElementById('addServiceName').value.trim();
+        const category = document.getElementById('addServiceCategory').value;
+        const duration = parseInt(document.getElementById('addServiceDuration').value, 10) || 45;
+        const fee = parseFloat(document.getElementById('addServiceFee').value) || 0;
+        const billingCode = document.getElementById('addServiceBillingCode').value.trim();
+        const status = document.getElementById('addServiceStatus').value;
+        const description = document.getElementById('addServiceDescription').value.trim();
+
+        if (!name) {
+          alert('Service title is required.');
+          return;
+        }
+
+        const newService = {
+          id: 'srv-' + Date.now(),
+          name,
+          category,
+          duration,
+          fee,
+          billingCode,
+          status,
+          description
+        };
+
+        const services = getServices();
+        services.push(newService);
+        saveServices(services);
+
+        // Reset form
+        document.getElementById('addServiceForm').reset();
+
+        const modalEl = document.getElementById('addServiceModal');
+        if (modalEl && typeof bootstrap !== 'undefined') {
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          if (modalInstance) modalInstance.hide();
+        }
+
+        renderServicesTable(newService.id);
+        showToastNotification(`Added "${newService.name}" to catalog!`);
+      };
+
+      // Delete Service
+      window.deleteService = function (serviceId) {
+        const services = getServices();
+        const s = services.find(item => item.id === serviceId);
+        if (!s) return;
+
+        if (confirm(`Are you sure you want to remove "${s.name}" from the services catalog?`)) {
+          const updated = services.filter(item => item.id !== serviceId);
+          saveServices(updated);
+          renderServicesTable();
+          showToastNotification(`Removed "${s.name}" from catalog.`, false);
+        }
+      };
+
+      // Reset search and filters
+      window.resetServiceFilters = function () {
+        currentCategoryFilter = 'all';
+        currentSearchQuery = '';
+        const searchInput = document.getElementById('dashTableSearch');
+        if (searchInput) searchInput.value = '';
+
+        document.querySelectorAll('.category-filter-btn').forEach(btn => {
+          if (btn.getAttribute('data-category') === 'all') {
+            btn.className = 'btn btn-sm btn-primary category-filter-btn';
+          } else {
+            btn.className = 'btn btn-sm btn-outline-secondary category-filter-btn';
+          }
+        });
+
+        renderServicesTable();
+      };
+
+      // Setup event listeners on DOMContentLoaded
+      document.addEventListener('DOMContentLoaded', function () {
+        renderServicesTable();
+
+        // Search listener
+        const searchInput = document.getElementById('dashTableSearch');
+        if (searchInput) {
+          searchInput.addEventListener('input', function (e) {
+            currentSearchQuery = e.target.value;
+            renderServicesTable();
+          });
+        }
+
+        // Category filter pills listener
+        const filterBtns = document.querySelectorAll('.category-filter-btn');
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function () {
+            filterBtns.forEach(b => b.className = 'btn btn-sm btn-outline-secondary category-filter-btn');
+            this.className = 'btn btn-sm btn-primary category-filter-btn';
+            currentCategoryFilter = this.getAttribute('data-category') || 'all';
+            renderServicesTable();
+          });
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Master clinic appointment schedule and booking approvals.">
+  <title>Master Appointments – PhysioLife Admin</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Clinic Administration</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-chart-pie"></i> <span>Overview</span></a></li>
+        <li class="menu-item"><a href="users.html" class="menu-link"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
+        <li class="menu-item"><a href="therapists.html" class="menu-link"><i class="fas fa-user-md"></i> <span>Therapists</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link active"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="services.html" class="menu-link"><i class="fas fa-stethoscope"></i> <span>Services Catalog</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link"><i class="fas fa-file-medical-alt"></i> <span>Care Protocols</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link"><i class="fas fa-video"></i> <span>Exercise Videos</span></a></li>
+        <li class="menu-category">Financials &amp; Content</li>
+        <li class="menu-item"><a href="orders.html" class="menu-link"><i class="fas fa-file-invoice-dollar"></i> <span>Billing &amp; Claims</span></a></li>
+        <li class="menu-item"><a href="messages.html" class="menu-link"><i class="fas fa-envelope-open-text"></i> <span>Inquiries</span></a></li>
+        <li class="menu-item"><a href="blog.html" class="menu-link"><i class="fas fa-newspaper"></i> <span>Blog CMS</span></a></li>
+        <li class="menu-item"><a href="settings.html" class="menu-link"><i class="fas fa-sliders-h"></i> <span>Clinic Settings</span></a></li>
+        <li class="menu-item mt-3"><a href="../admin-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/therapist-1.svg" alt="Dr. Sarah Jenkins" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Dr. Sarah Jenkins</div>
+            <div class="user-role">Clinical Director (Admin)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search d-none d-md-block">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashTableSearch" class="form-control form-control-sm" placeholder="Search master calendar...">
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+                  <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h2 class="fw-bold mb-1">Master Calendar &amp; Clinic Schedule</h2>
+            <p class="text-muted small mb-0">Manage appointments across all therapy rooms, gait analysis lab, and specialist clinicians.</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="dropdown" id="doctorFilterDropdown">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center gap-1" type="button" id="doctorFilterBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-filter text-primary me-1"></i>
+                <span id="currentDoctorFilterLabel">Filter By Doctor</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-2" id="doctorFilterMenu" aria-labelledby="doctorFilterBtn" style="min-width: 280px; max-height: 400px; overflow-y: auto;">
+                <!-- Populated dynamically -->
+              </ul>
+            </div>
+            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1" id="exportScheduleBtn" onclick="window.exportScheduleCSV()">
+              <i class="fas fa-file-export me-1"></i> <span>Export Schedule</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Calendar Date Navigator & View Switcher Bar -->
+        <div class="dash-card mb-4 p-3 border shadow-sm">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <button class="btn btn-outline-secondary btn-sm" id="calPrevDayBtn" onclick="window.shiftCalendarDay(-1)" title="Previous Day">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="d-flex align-items-center gap-2 px-2 py-1 bg-light border rounded">
+                <i class="fas fa-calendar-day text-primary"></i>
+                <input type="date" id="calendarDatePicker" class="form-control form-control-sm border-0 bg-transparent fw-semibold p-0" style="width: 130px; cursor: pointer;" onchange="window.selectCalendarDate(this.value)">
+                <span class="fw-bold text-main d-none d-sm-inline" id="calendarDayLabel">Monday, Sep 7, 2026</span>
+              </div>
+              <button class="btn btn-outline-secondary btn-sm" id="calNextDayBtn" onclick="window.shiftCalendarDay(1)" title="Next Day">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-primary" id="calTodayBtn" onclick="window.resetCalendarToday()">
+                Today
+              </button>
+            </div>
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="Schedule view mode">
+              <button type="button" class="btn btn-primary active" id="viewModeTableBtn" onclick="window.switchScheduleView('table')">
+                <i class="fas fa-list me-1"></i> Table View
+              </button>
+              <button type="button" class="btn btn-outline-primary" id="viewModeMatrixBtn" onclick="window.switchScheduleView('matrix')">
+                <i class="fas fa-calendar-week me-1"></i> Room Matrix Calendar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Matrix Calendar View (Hidden by default until toggled) -->
+        <div id="roomMatrixCalendarContainer" class="d-none">
+          <div class="dash-card mb-4">
+            <div class="dash-card-header d-flex justify-content-between align-items-center">
+              <h5 class="dash-card-title mb-0"><i class="fas fa-th text-primary me-2"></i> Room &amp; Suite Allocation Matrix</h5>
+              <small class="text-muted" id="matrixDateSubtitle">Schedule for Monday, Sep 7, 2026</small>
+            </div>
+            <div class="dash-card-body p-3">
+              <div class="row g-3" id="roomMatrixColumns">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table View Container -->
+        <div class="dash-card" id="tableViewContainer">
+          <div class="dash-card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <h5 class="dash-card-title mb-0"><i class="fas fa-calendar-alt text-primary me-2"></i> Daily Schedule &amp; Requests</h5>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1" id="appointmentCountBadge">Loading...</span>
+            </div>
+            <div id="activeFilterPillContainer" class="d-none align-items-center gap-2">
+              <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 d-inline-flex align-items-center gap-1">
+                <i class="fas fa-user-md"></i>
+                <span id="activeFilterPillText">Dr. Marcus Vance</span>
+                <button type="button" class="btn-close ms-1" style="font-size: 0.65rem;" onclick="window.filterScheduleByDoctor('all', event)" aria-label="Clear filter" title="Clear filter"></button>
+              </span>
+              <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 text-muted small" onclick="window.filterScheduleByDoctor('all', event)">Clear Filter</button>
+            </div>
+          </div>
+          <div class="dash-card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-custom table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Time Slot</th>
+                    <th>Patient Name</th>
+                    <th>Treating Doctor</th>
+                    <th>Service / Modality</th>
+                    <th>Room / Suite</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="appointmentsTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Reschedule / Change Appointment Modal -->
+  <div class="modal fade" id="changeAppointmentModal" tabindex="-1" aria-labelledby="changeAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold" id="changeAppointmentModalLabel">
+            <i class="fas fa-calendar-alt text-primary me-2"></i> Reschedule / Modify Appointment
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="changeAppointmentForm">
+          <input type="hidden" id="changeAptId">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label fw-semibold small text-muted">Patient Name</label>
+              <input type="text" id="changePatientName" class="form-control" required readonly style="background-color: var(--bg-surface-alt, #f8f9fa);">
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small text-muted">Treating Doctor</label>
+              <select id="changeDoctorSelect" class="form-select" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small text-muted">Service / Modality</label>
+              <input type="text" id="changeModality" class="form-control" required placeholder="e.g. Lumbar Disc Decompression">
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-muted">Time Slot</label>
+                <select id="changeTimeSlot" class="form-select" required>
+                  <option value="8:15 AM – 9:00 AM">8:15 AM – 9:00 AM</option>
+                  <option value="9:00 AM – 9:45 AM">9:00 AM – 9:45 AM</option>
+                  <option value="10:00 AM – 10:45 AM">10:00 AM – 10:45 AM</option>
+                  <option value="10:45 AM – 11:30 AM">10:45 AM – 11:30 AM</option>
+                  <option value="11:30 AM – 12:15 PM">11:30 AM – 12:15 PM</option>
+                  <option value="1:00 PM – 1:45 PM">1:00 PM – 1:45 PM</option>
+                  <option value="2:00 PM – 2:45 PM">2:00 PM – 2:45 PM</option>
+                  <option value="3:00 PM – 3:45 PM">3:00 PM – 3:45 PM</option>
+                  <option value="4:00 PM – 4:45 PM">4:00 PM – 4:45 PM</option>
+                  <option value="4:45 PM – 5:30 PM">4:45 PM – 5:30 PM</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-muted">Room / Suite</label>
+                <select id="changeRoom" class="form-select" required>
+                  <option value="Room 1A">Room 1A</option>
+                  <option value="Room 1B">Room 1B</option>
+                  <option value="Room 2A">Room 2A</option>
+                  <option value="Room 3C">Room 3C</option>
+                  <option value="Room 4B">Room 4B</option>
+                  <option value="Gait Lab">Gait Lab</option>
+                  <option value="Neuro Suite">Neuro Suite</option>
+                </select>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label class="form-label fw-semibold small text-muted">Status</label>
+              <select id="changeStatus" class="form-select" required>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Pending Approval">Pending Approval</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer bg-light border-top">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Alert Notification -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11000;">
+    <div id="scheduleToast" class="toast align-items-center text-white bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i class="fas fa-check-circle text-success fs-5" id="scheduleToastIcon"></i>
+          <span id="scheduleToastMsg">Action completed successfully.</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'physiolife_admin_appointments';
+      const THERAPISTS_STORAGE_KEY = 'physiolife_admin_therapists';
+
+      // Default baseline dataset matching clinic schedule
+      const INITIAL_APPOINTMENTS = [
+        {
+          id: 'apt-1',
+          timeSlot: '9:00 AM – 9:45 AM',
+          patientName: 'Michael Chang',
+          doctor: 'Dr. Marcus Vance',
+          modality: 'Shoulder Impingement Therapy',
+          room: 'Room 1A',
+          status: 'Completed'
+        },
+        {
+          id: 'apt-2',
+          timeSlot: '10:00 AM – 10:45 AM',
+          patientName: 'Robert Sterling',
+          doctor: 'Dr. Sarah Jenkins',
+          modality: 'Lumbar Disc Decompression',
+          room: 'Room 4B',
+          status: 'Confirmed'
+        },
+        {
+          id: 'apt-3',
+          timeSlot: '10:45 AM – 11:30 AM',
+          patientName: 'Emily Thorne',
+          doctor: 'Dr. Marcus Vance',
+          modality: 'ACL Deceleration Mechanics',
+          room: 'Gait Lab',
+          status: 'Confirmed'
+        },
+        {
+          id: 'apt-4',
+          timeSlot: '11:30 AM – 12:15 PM',
+          patientName: 'Jonathan Myers',
+          doctor: 'Dr. David Chen',
+          modality: 'Cervical Spine Mobilization',
+          room: 'Room 2A',
+          status: 'Pending Approval'
+        },
+        {
+          id: 'apt-5',
+          timeSlot: '1:00 PM – 1:45 PM',
+          patientName: 'Amara Vance',
+          doctor: 'Dr. Elena Rostova',
+          modality: 'Post-Stroke Neuro Balance Re-ed',
+          room: 'Neuro Suite',
+          status: 'Confirmed'
+        },
+        {
+          id: 'apt-6',
+          timeSlot: '2:00 PM – 2:45 PM',
+          patientName: 'Sophia Patel',
+          doctor: 'Dr. Sarah Jenkins',
+          modality: 'Post-Surgical Lumbar Fusion Protocol',
+          room: 'Room 1B',
+          status: 'Confirmed'
+        },
+        {
+          id: 'apt-7',
+          timeSlot: '3:00 PM – 3:45 PM',
+          patientName: 'Daniel Brody',
+          doctor: 'Dr. Chloe Bennett',
+          modality: 'Chronic Myofascial Pain Release',
+          room: 'Room 3C',
+          status: 'Pending Approval'
+        },
+        {
+          id: 'apt-8',
+          timeSlot: '4:00 PM – 4:45 PM',
+          patientName: 'Lucas Miller',
+          doctor: 'Dr. Julian Reed',
+          modality: 'Patellar Tendinopathy Shockwave',
+          room: 'Room 2A',
+          status: 'Confirmed'
+        },
+        {
+          id: 'apt-9',
+          timeSlot: '4:45 PM – 5:30 PM',
+          patientName: 'Hannah Scott',
+          doctor: 'Dr. Marcus Vance',
+          modality: 'Rotator Cuff Return-to-Sport',
+          room: 'Gait Lab',
+          status: 'Confirmed'
+        },
+        {
+          id: 'apt-10',
+          timeSlot: '8:15 AM – 9:00 AM',
+          patientName: 'Carlos Gomez',
+          doctor: 'Dr. David Chen',
+          modality: 'Total Knee Arthroplasty Phase II',
+          room: 'Room 4B',
+          status: 'Completed'
+        }
+      ];
+
+      const DEFAULT_DOCTORS = [
+        { name: 'Dr. Sarah Jenkins', specialty: 'Orthopedic & Spine Specialist', avatar: '../assets/images/therapist-1.svg' },
+        { name: 'Dr. Marcus Vance', specialty: 'Sports Injury & Athletic Performance', avatar: '../assets/images/therapist-2.svg' },
+        { name: 'Dr. Elena Rostova', specialty: 'Neurological Rehabilitation', avatar: '../assets/images/therapist-3.svg' },
+        { name: 'Dr. David Chen', specialty: 'Joint Arthroplasty & Manual Therapy', avatar: '../assets/images/therapist-4.svg' },
+        { name: 'Dr. Chloe Bennett', specialty: 'Chronic Pain Management', avatar: '../assets/images/therapist-1.svg' },
+        { name: 'Dr. Julian Reed', specialty: 'Physical Therapy & Rehab', avatar: '../assets/images/therapist-2.svg' }
+      ];
+
+      let inMemoryAppointments = null;
+      let currentDoctorFilter = 'all';
+      let currentSearchQuery = '';
+
+      function getAppointments() {
+        if (inMemoryAppointments && inMemoryAppointments.length > 0) {
+          return inMemoryAppointments;
+        }
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              inMemoryAppointments = parsed;
+              return inMemoryAppointments;
+            }
+          }
+        } catch (e) {
+          console.warn('Error reading appointments from localStorage:', e);
+        }
+        inMemoryAppointments = [...INITIAL_APPOINTMENTS];
+        saveAppointments(inMemoryAppointments);
+        return inMemoryAppointments;
+      }
+
+      function saveAppointments(list) {
+        inMemoryAppointments = list;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          console.error('Error saving appointments to localStorage:', e);
+        }
+      }
+
+      function getAllDoctors() {
+        const doctorsMap = new Map();
+
+        // 1. Add defaults
+        DEFAULT_DOCTORS.forEach(doc => {
+          doctorsMap.set(doc.name, { ...doc });
+        });
+
+        // 2. Check localStorage therapists
+        try {
+          const rawTherapists = localStorage.getItem(THERAPISTS_STORAGE_KEY);
+          if (rawTherapists) {
+            const parsed = JSON.parse(rawTherapists);
+            if (Array.isArray(parsed)) {
+              parsed.forEach(t => {
+                if (t.name) {
+                  doctorsMap.set(t.name, {
+                    name: t.name,
+                    specialty: t.department || 'Physical Therapy Specialist',
+                    avatar: t.avatar || '../assets/images/therapist-1.svg'
+                  });
+                }
+              });
+            }
+          }
+        } catch (e) {}
+
+        // 3. Check any doctors present in appointments
+        const currentApts = getAppointments();
+        currentApts.forEach(apt => {
+          if (apt.doctor && !doctorsMap.has(apt.doctor)) {
+            doctorsMap.set(apt.doctor, {
+              name: apt.doctor,
+              specialty: 'Clinical Specialist',
+              avatar: '../assets/images/therapist-1.svg'
+            });
+          }
+        });
+
+        return Array.from(doctorsMap.values());
+      }
+
+      function getDoctorAppointmentCount(doctorName) {
+        const apts = getAppointments();
+        if (doctorName === 'all') return apts.length;
+        return apts.filter(a => a.doctor === doctorName).length;
+      }
+
+      function renderDoctorFilterMenu() {
+        const menu = document.getElementById('doctorFilterMenu');
+        if (!menu) return;
+
+        const doctors = getAllDoctors();
+        const totalAppointments = getDoctorAppointmentCount('all');
+        const isAllSelected = currentDoctorFilter === 'all';
+
+        let html = `
+          <li class="px-3 py-1 mb-1">
+            <span class="text-uppercase fw-bold fs-xs text-muted">Filter Master Schedule</span>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3 ${isAllSelected ? 'active bg-primary text-white rounded-2' : ''}" 
+               href="javascript:void(0);" 
+               onclick="window.filterScheduleByDoctor('all', event)">
+              <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle d-flex align-items-center justify-content-center ${isAllSelected ? 'bg-white text-primary' : 'bg-primary-subtle text-primary'}" style="width: 28px; height: 28px; font-size: 0.8rem;">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div>
+                  <strong class="d-block ${isAllSelected ? 'text-white' : 'text-main'}">All Doctors</strong>
+                  <small class="${isAllSelected ? 'text-white-50' : 'text-muted'}">Full Master Schedule</small>
+                </div>
+              </div>
+              <span class="badge ${isAllSelected ? 'bg-white text-primary' : 'bg-light text-dark border'} rounded-pill ms-2">${totalAppointments}</span>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider my-1"></li>
+          <li class="px-3 py-1">
+            <span class="text-uppercase fw-bold fs-xs text-muted">Treating Clinicians</span>
+          </li>
+        `;
+
+        doctors.forEach(doc => {
+          const isSelected = currentDoctorFilter === doc.name;
+          const count = getDoctorAppointmentCount(doc.name);
+          html += `
+            <li>
+              <a class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3 ${isSelected ? 'active bg-primary text-white rounded-2' : ''}" 
+                 href="javascript:void(0);" 
+                 onclick="window.filterScheduleByDoctor('${doc.name.replace(/'/g, "\\'")}', event)">
+                <div class="d-flex align-items-center gap-2 text-truncate me-2">
+                  <img src="${doc.avatar}" alt="${doc.name}" class="rounded-circle flex-shrink-0" width="28" height="28" style="object-fit: cover;">
+                  <div class="text-truncate">
+                    <strong class="d-block text-truncate ${isSelected ? 'text-white' : 'text-main'}">${doc.name}</strong>
+                    <small class="text-truncate d-block ${isSelected ? 'text-white-50' : 'text-muted'}">${doc.specialty}</small>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                  <span class="badge ${isSelected ? 'bg-white text-primary' : 'bg-light text-dark border'} rounded-pill">${count}</span>
+                  ${isSelected ? '<i class="fas fa-check text-white ms-1 small"></i>' : ''}
+                </div>
+              </a>
+            </li>
+          `;
+        });
+
+        if (!isAllSelected) {
+          html += `
+            <li><hr class="dropdown-divider my-1"></li>
+            <li>
+              <a class="dropdown-item text-center text-danger small py-1" href="javascript:void(0);" onclick="window.filterScheduleByDoctor('all', event)">
+                <i class="fas fa-times me-1"></i> Clear Filter &amp; Show All
+              </a>
+            </li>
+          `;
+        }
+
+        menu.innerHTML = html;
+      }
+
+      function updateFilterButtonLabel() {
+        const label = document.getElementById('currentDoctorFilterLabel');
+        const btn = document.getElementById('doctorFilterBtn');
+        const pillContainer = document.getElementById('activeFilterPillContainer');
+        const pillText = document.getElementById('activeFilterPillText');
+
+        if (!label || !btn) return;
+
+        if (currentDoctorFilter === 'all') {
+          label.textContent = 'Filter By Doctor';
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-outline-secondary');
+          if (pillContainer) {
+            pillContainer.classList.remove('d-flex');
+            pillContainer.classList.add('d-none');
+          }
+        } else {
+          label.innerHTML = `<span>${currentDoctorFilter}</span>`;
+          btn.classList.remove('btn-outline-secondary');
+          btn.classList.add('btn-primary');
+          if (pillContainer && pillText) {
+            pillText.textContent = currentDoctorFilter;
+            pillContainer.classList.remove('d-none');
+            pillContainer.classList.add('d-flex');
+          }
+        }
+      }
+
+      function renderAppointmentsTable(highlightId) {
+        const tbody = document.getElementById('appointmentsTableBody');
+        const countBadge = document.getElementById('appointmentCountBadge');
+        if (!tbody) return;
+
+        const allApts = getAppointments();
+        let filtered = allApts;
+
+        // Apply doctor filter
+        if (currentDoctorFilter !== 'all') {
+          filtered = filtered.filter(a => a.doctor === currentDoctorFilter);
+        }
+
+        // Apply search query filter
+        if (currentSearchQuery) {
+          filtered = filtered.filter(a => {
+            const searchStr = `${a.patientName} ${a.doctor} ${a.modality} ${a.room} ${a.status} ${a.timeSlot}`.toLowerCase();
+            return searchStr.includes(currentSearchQuery);
+          });
+        }
+
+        // Update badge count
+        if (countBadge) {
+          if (currentDoctorFilter === 'all' && !currentSearchQuery) {
+            countBadge.textContent = `${allApts.length} Appointments`;
+          } else if (currentDoctorFilter !== 'all' && !currentSearchQuery) {
+            countBadge.textContent = `${filtered.length} of ${allApts.length} for ${currentDoctorFilter}`;
+          } else {
+            countBadge.textContent = `${filtered.length} matching search`;
+          }
+        }
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="text-center py-5">
+                <div class="text-muted">
+                  <i class="fas fa-calendar-times fa-3x mb-3 text-secondary opacity-50"></i>
+                  <h5 class="fw-bold">No appointments found</h5>
+                  <p class="small text-muted mb-3">
+                    ${currentDoctorFilter !== 'all' ? `No sessions currently scheduled for <strong>${currentDoctorFilter}</strong>.` : 'No appointments match your search criteria.'}
+                  </p>
+                  <button type="button" class="btn btn-sm btn-outline-primary" onclick="window.filterScheduleByDoctor('all', event)">
+                    <i class="fas fa-calendar-alt me-1"></i> View All Doctors (${allApts.length})
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = filtered.map(apt => {
+          let statusBadgeClass = 'badge-status active';
+          if (apt.status === 'Confirmed') statusBadgeClass = 'badge-status confirmed';
+          else if (apt.status === 'Pending Approval') statusBadgeClass = 'badge-status pending';
+          else if (apt.status === 'Cancelled') statusBadgeClass = 'badge-status cancelled';
+
+          let actionsHtml = '';
+          if (apt.status === 'Completed') {
+            actionsHtml = `
+              <button class="btn btn-sm btn-outline-secondary" title="Session Marked Completed" disabled>
+                <i class="fas fa-check"></i>
+              </button>
+            `;
+          } else if (apt.status === 'Pending Approval') {
+            actionsHtml = `
+              <button class="btn btn-sm btn-success text-white d-inline-flex align-items-center gap-1" onclick="window.approveAppointment('${apt.id}')" title="Approve and confirm booking">
+                <i class="fas fa-check"></i> <span>Approve</span>
+              </button>
+            `;
+          } else {
+            actionsHtml = `
+              <button class="btn btn-sm btn-outline-primary" onclick="window.openChangeModal('${apt.id}')" title="Change doctor, time, or room">
+                Change
+              </button>
+            `;
+          }
+
+          const isHighlighted = highlightId && apt.id === highlightId;
+          const rowStyle = isHighlighted ? 'style="background-color: rgba(25, 135, 84, 0.15); transition: background-color 2s ease;"' : '';
+
+          return `
+            <tr data-id="${apt.id}" ${rowStyle}>
+              <td><strong>${apt.timeSlot}</strong></td>
+              <td>
+                <div class="fw-bold text-main">${apt.patientName}</div>
+              </td>
+              <td>
+                <span class="badge bg-light text-dark border px-2 py-1">
+                  <i class="fas fa-user-md text-primary me-1"></i>${apt.doctor}
+                </span>
+              </td>
+              <td>${apt.modality}</td>
+              <td><span class="text-muted"><i class="fas fa-door-open me-1 small"></i>${apt.room}</span></td>
+              <td><span class="${statusBadgeClass}">${apt.status}</span></td>
+              <td>${actionsHtml}</td>
+            </tr>
+          `;
+        }).join('');
+
+        if (highlightId) {
+          setTimeout(() => {
+            const row = tbody.querySelector(`tr[data-id="${highlightId}"]`);
+            if (row && row.style) row.style.backgroundColor = '';
+          }, 3000);
+        }
+      }
+
+      function showToast(message, isSuccess = true) {
+        const toastEl = document.getElementById('scheduleToast');
+        const msgEl = document.getElementById('scheduleToastMsg');
+        const iconEl = document.getElementById('scheduleToastIcon');
+        if (!toastEl || !msgEl) {
+          alert(message);
+          return;
+        }
+
+        msgEl.textContent = message;
+        if (iconEl) {
+          iconEl.className = isSuccess 
+            ? 'fas fa-check-circle text-success fs-5' 
+            : 'fas fa-info-circle text-info fs-5';
+        }
+
+        try {
+          if (typeof bootstrap !== 'undefined' && bootstrap.Toast) {
+            const toast = bootstrap.Toast.getOrCreateInstance(toastEl);
+            toast.show();
+          }
+        } catch (e) {
+          console.warn('Toast display error:', e);
+        }
+      }
+
+      // Public API on window for click events
+      window.filterScheduleByDoctor = function (doctorName, event) {
+        if (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        currentDoctorFilter = doctorName;
+        updateFilterButtonLabel();
+        renderDoctorFilterMenu();
+        renderAppointmentsTable();
+
+        // Close dropdown safely if open
+        const btn = document.getElementById('doctorFilterBtn');
+        if (btn && typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+          const dropdown = bootstrap.Dropdown.getInstance(btn);
+          if (dropdown) dropdown.hide();
+        }
+      };
+
+      window.approveAppointment = function (aptId) {
+        const apts = getAppointments();
+        const target = apts.find(a => a.id === aptId);
+        if (!target) return;
+
+        target.status = 'Confirmed';
+        saveAppointments(apts);
+        renderAppointmentsTable(aptId);
+        renderDoctorFilterMenu();
+        showToast(`Appointment confirmed for ${target.patientName} with ${target.doctor}!`, true);
+      };
+
+      window.openChangeModal = function (aptId) {
+        const apts = getAppointments();
+        const apt = apts.find(a => a.id === aptId);
+        if (!apt) return;
+
+        document.getElementById('changeAptId').value = apt.id;
+        document.getElementById('changePatientName').value = apt.patientName;
+        document.getElementById('changeModality').value = apt.modality;
+        document.getElementById('changeTimeSlot').value = apt.timeSlot;
+        document.getElementById('changeRoom').value = apt.room;
+        document.getElementById('changeStatus').value = apt.status;
+
+        // Populate doctor select
+        const docSelect = document.getElementById('changeDoctorSelect');
+        if (docSelect) {
+          const doctors = getAllDoctors();
+          docSelect.innerHTML = doctors.map(d => `
+            <option value="${d.name}" ${d.name === apt.doctor ? 'selected' : ''}>${d.name} (${d.specialty})</option>
+          `).join('');
+        }
+
+        const modalEl = document.getElementById('changeAppointmentModal');
+        if (modalEl && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+          const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modal.show();
+        }
+      };
+
+      window.exportScheduleCSV = function () {
+        const allApts = getAppointments();
+        let targetList = allApts;
+        if (currentDoctorFilter !== 'all') {
+          targetList = targetList.filter(a => a.doctor === currentDoctorFilter);
+        }
+
+        if (targetList.length === 0) {
+          showToast('No appointments available to export for this selection.', false);
+          return;
+        }
+
+        const headers = ['Time Slot', 'Patient Name', 'Treating Doctor', 'Service / Modality', 'Room / Suite', 'Status'];
+        const csvRows = [headers.join(',')];
+
+        targetList.forEach(apt => {
+          const row = [
+            `"${apt.timeSlot}"`,
+            `"${apt.patientName}"`,
+            `"${apt.doctor}"`,
+            `"${apt.modality}"`,
+            `"${apt.room}"`,
+            `"${apt.status}"`
+          ];
+          csvRows.push(row.join(','));
+        });
+
+        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        const fileName = currentDoctorFilter === 'all' 
+          ? 'physiolife_master_schedule.csv' 
+          : `physiolife_schedule_${currentDoctorFilter.replace(/[^a-zA-Z0-9]/g, '_')}.csv`;
+        link.setAttribute('download', fileName);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showToast(`Exported ${targetList.length} scheduled sessions to CSV!`, true);
+      };
+
+      // Modal submit handler
+      const changeForm = document.getElementById('changeAppointmentForm');
+      if (changeForm) {
+        changeForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const aptId = document.getElementById('changeAptId').value;
+          const apts = getAppointments();
+          const target = apts.find(a => a.id === aptId);
+          if (!target) return;
+
+          target.doctor = document.getElementById('changeDoctorSelect').value;
+          target.modality = document.getElementById('changeModality').value;
+          target.timeSlot = document.getElementById('changeTimeSlot').value;
+          target.room = document.getElementById('changeRoom').value;
+          target.status = document.getElementById('changeStatus').value;
+
+          saveAppointments(apts);
+
+          const modalEl = document.getElementById('changeAppointmentModal');
+          if (modalEl && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            const modal = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+            modal.hide();
+          }
+
+          renderDoctorFilterMenu();
+          renderAppointmentsTable(aptId);
+          renderRoomMatrix();
+          showToast(`Updated appointment for ${target.patientName}!`, true);
+        });
+      }
+
+      // Room Matrix & Calendar View Logic
+      const CLINIC_ROOMS = [
+        { id: 'Room 1A', name: 'Room 1A', desc: 'Private Manual Therapy', icon: 'fa-bed-pulse' },
+        { id: 'Room 1B', name: 'Room 1B', desc: 'Spine & Post-Surgical', icon: 'fa-user-nurse' },
+        { id: 'Room 2A', name: 'Room 2A', desc: 'Mobilization & Shockwave', icon: 'fa-bolt' },
+        { id: 'Room 3C', name: 'Room 3C', desc: 'Myofascial & Needling', icon: 'fa-spa' },
+        { id: 'Room 4B', name: 'Room 4B', desc: 'Disc Decompression Suite', icon: 'fa-dna' },
+        { id: 'Gait Lab', name: 'Gait Lab', desc: 'Biomechanics & Return-to-Sport', icon: 'fa-running' },
+        { id: 'Neuro Suite', name: 'Neuro Suite', desc: 'Balance & Motor Re-education', icon: 'fa-brain' }
+      ];
+
+      let calendarCurrentDate = new Date(2026, 8, 7); // Monday, Sep 7, 2026
+      let currentScheduleView = 'table';
+
+      function formatCalendarDate(d) {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+      }
+
+      function updateCalendarDateDisplay() {
+        const picker = document.getElementById('calendarDatePicker');
+        const label = document.getElementById('calendarDayLabel');
+        const matrixSubtitle = document.getElementById('matrixDateSubtitle');
+
+        const yyyy = calendarCurrentDate.getFullYear();
+        const mm = String(calendarCurrentDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(calendarCurrentDate.getDate()).padStart(2, '0');
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        if (picker) picker.value = dateStr;
+        const formatted = formatCalendarDate(calendarCurrentDate);
+        if (label) label.textContent = formatted;
+        if (matrixSubtitle) matrixSubtitle.textContent = `Room Allocation for ${formatted}`;
+      }
+
+      window.shiftCalendarDay = function (delta) {
+        calendarCurrentDate.setDate(calendarCurrentDate.getDate() + delta);
+        updateCalendarDateDisplay();
+        renderAppointmentsTable();
+        renderRoomMatrix();
+      };
+
+      window.selectCalendarDate = function (val) {
+        if (!val) return;
+        const parts = val.split('-');
+        if (parts.length === 3) {
+          calendarCurrentDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+          updateCalendarDateDisplay();
+          renderAppointmentsTable();
+          renderRoomMatrix();
+        }
+      };
+
+      window.resetCalendarToday = function () {
+        calendarCurrentDate = new Date(2026, 8, 7);
+        updateCalendarDateDisplay();
+        renderAppointmentsTable();
+        renderRoomMatrix();
+      };
+
+      window.switchScheduleView = function (mode) {
+        currentScheduleView = mode;
+        const tableContainer = document.getElementById('tableViewContainer');
+        const matrixContainer = document.getElementById('roomMatrixCalendarContainer');
+        const tableBtn = document.getElementById('viewModeTableBtn');
+        const matrixBtn = document.getElementById('viewModeMatrixBtn');
+
+        if (mode === 'matrix') {
+          if (tableContainer) tableContainer.classList.add('d-none');
+          if (matrixContainer) matrixContainer.classList.remove('d-none');
+          if (tableBtn) { tableBtn.classList.remove('btn-primary', 'active'); tableBtn.classList.add('btn-outline-primary'); }
+          if (matrixBtn) { matrixBtn.classList.remove('btn-outline-primary'); matrixBtn.classList.add('btn-primary', 'active'); }
+          renderRoomMatrix();
+        } else {
+          if (matrixContainer) matrixContainer.classList.add('d-none');
+          if (tableContainer) tableContainer.classList.remove('d-none');
+          if (matrixBtn) { matrixBtn.classList.remove('btn-primary', 'active'); matrixBtn.classList.add('btn-outline-primary'); }
+          if (tableBtn) { tableBtn.classList.remove('btn-outline-primary'); tableBtn.classList.add('btn-primary', 'active'); }
+          renderAppointmentsTable();
+        }
+      };
+
+      function renderRoomMatrix() {
+        const matrixColContainer = document.getElementById('roomMatrixColumns');
+        if (!matrixColContainer) return;
+
+        const allApts = getAppointments();
+        let filtered = allApts;
+
+        if (currentDoctorFilter !== 'all') {
+          filtered = filtered.filter(a => a.doctor === currentDoctorFilter);
+        }
+
+        if (currentSearchQuery) {
+          filtered = filtered.filter(a => {
+            const searchStr = `${a.patientName} ${a.doctor} ${a.modality} ${a.room} ${a.status} ${a.timeSlot}`.toLowerCase();
+            return searchStr.includes(currentSearchQuery);
+          });
+        }
+
+        matrixColContainer.innerHTML = CLINIC_ROOMS.map(room => {
+          const roomApts = filtered.filter(a => a.room === room.id);
+          const countBadge = roomApts.length > 0 
+            ? `<span class="badge bg-primary rounded-pill">${roomApts.length} sessions</span>`
+            : `<span class="badge bg-light text-muted border rounded-pill">Available</span>`;
+
+          const sessionCards = roomApts.length > 0 ? roomApts.map(apt => {
+            let statusBadge = 'badge bg-success-subtle text-success border border-success-subtle';
+            if (apt.status === 'Pending Approval') statusBadge = 'badge bg-warning-subtle text-warning border border-warning-subtle';
+            else if (apt.status === 'Completed') statusBadge = 'badge bg-secondary-subtle text-secondary border border-secondary-subtle';
+
+            return `
+              <div class="card border rounded-3 mb-2 shadow-sm p-2 hover-lift" style="cursor: pointer;" onclick="window.openChangeModal('${apt.id}')" title="Click to view/modify appointment">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge bg-dark-subtle text-dark small py-1 px-2 fw-semibold">${apt.timeSlot}</span>
+                  <span class="${statusBadge} small" style="font-size: 0.7rem;">${apt.status}</span>
+                </div>
+                <strong class="d-block text-main mb-1 fs-6">${apt.patientName}</strong>
+                <div class="text-muted small mb-1 text-truncate">${apt.modality}</div>
+                <div class="d-flex align-items-center gap-1 text-primary small">
+                  <i class="fas fa-user-md"></i>
+                  <span class="text-truncate fw-semibold">${apt.doctor}</span>
+                </div>
+              </div>
+            `;
+          }).join('') : `
+            <div class="p-4 text-center text-muted border border-dashed rounded-3 bg-light">
+              <i class="fas fa-calendar-plus opacity-50 mb-1 d-block"></i>
+              <small>No sessions booked</small>
+            </div>
+          `;
+
+          return `
+            <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
+              <div class="card h-100 border bg-surface-alt">
+                <div class="card-header bg-light border-bottom d-flex justify-content-between align-items-center py-2 px-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fas ${room.icon} text-primary"></i>
+                    <div>
+                      <strong class="d-block text-main">${room.name}</strong>
+                      <small class="text-muted fs-xs">${room.desc}</small>
+                    </div>
+                  </div>
+                  ${countBadge}
+                </div>
+                <div class="card-body p-2" style="max-height: 480px; overflow-y: auto;">
+                  ${sessionCards}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Search input handler
+      const searchInput = document.getElementById('dashTableSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', function (e) {
+          currentSearchQuery = e.target.value.trim().toLowerCase();
+          renderAppointmentsTable();
+          renderRoomMatrix();
+        });
+      }
+
+      // Fallback click listener for Filter By Doctor dropdown button to ensure 100% responsiveness
+      const filterBtn = document.getElementById('doctorFilterBtn');
+      if (filterBtn) {
+        filterBtn.addEventListener('click', function () {
+          renderDoctorFilterMenu();
+        });
+      }
+
+      // Initialize on DOM Ready
+      document.addEventListener('DOMContentLoaded', function () {
+        getAppointments();
+        updateCalendarDateDisplay();
+        renderDoctorFilterMenu();
+        renderAppointmentsTable();
+        renderRoomMatrix();
+      });
+
+      // Immediate call in case already loaded
+      if (document.readyState !== 'loading') {
+        getAppointments();
+        updateCalendarDateDisplay();
+        renderDoctorFilterMenu();
+        renderAppointmentsTable();
+        renderRoomMatrix();
+      }
+    })();
+  </script>
+</body>
+</html>

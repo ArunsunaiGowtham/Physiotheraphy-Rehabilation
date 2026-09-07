@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5FF"/>
+      <stop offset="100%" stop-color="#F3E8FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgGrad3)"/>
+  <!-- Hair Bun -->
+  <circle cx="200" cy="80" r="35" fill="#312E81"/>
+  <path d="M130 150 C130 80 270 80 270 150 C270 200 260 210 260 210 C260 210 240 125 200 125 C160 125 140 210 140 210 Z" fill="#312E81"/>
+  <!-- Face -->
+  <circle cx="200" cy="155" r="52" fill="#FDE68A"/>
+  <!-- Glasses -->
+  <circle cx="180" cy="150" r="16" fill="none" stroke="#4F46E5" stroke-width="3"/>
+  <circle cx="220" cy="150" r="16" fill="none" stroke="#4F46E5" stroke-width="3"/>
+  <line x1="196" y1="150" x2="204" y2="150" stroke="#4F46E5" stroke-width="3"/>
+  <path d="M190 180 Q200 190 210 180" stroke="#DC2626" stroke-width="3" fill="none"/>
+  <!-- Clinical Scrub -->
+  <path d="M110 370 L140 230 L260 230 L290 370 Z" fill="#0284C7"/>
+  <path d="M175 230 L200 275 L225 230 Z" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <circle cx="100" cy="100" r="100" fill="#E0F2FE"/>
+  <!-- Hair -->
+  <path d="M60 75 C60 40 140 40 140 75 C140 85 135 90 135 90 C135 90 125 60 100 60 C75 60 65 90 65 90 Z" fill="#334155"/>
+  <!-- Head -->
+  <circle cx="100" cy="80" r="32" fill="#FCD34D"/>
+  <path d="M92 95 Q100 102 108 95" stroke="#B45309" stroke-width="2.5" fill="none"/>
+  <!-- Casual Shirt -->
+  <path d="M40 190 L65 125 L135 125 L160 190 Z" fill="#0EA5E9"/>
+  <circle cx="100" cy="125" r="14" fill="#FCD34D"/>
+</svg>

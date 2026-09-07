@@ -1,0 +1,12 @@
+const fs = require('fs');
+const content = fs.readFileSync('assets/js/service-engine.js', 'utf8');
+const key = 'sports-injury';
+const serviceKeyIndex = content.indexOf(`'${key}': {`);
+console.log('serviceKeyIndex:', serviceKeyIndex);
+const nextServiceKeyIndex = content.indexOf(`'post-surgery': {`);
+console.log('nextServiceKeyIndex:', nextServiceKeyIndex);
+console.log('Distance between services:', nextServiceKeyIndex - serviceKeyIndex);
+const fullBlock = content.slice(serviceKeyIndex, nextServiceKeyIndex);
+console.log('Includes specialist: { ?', fullBlock.includes('specialist: {'));
+const specIdx = fullBlock.indexOf('specialist: {');
+console.log('specIdx in fullBlock:', specIdx);

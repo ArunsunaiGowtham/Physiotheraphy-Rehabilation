@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage clinical exercise video library for patient home programs.">
+  <title>Exercise Video Library – PhysioLife Admin</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <script src="../assets/js/auth-guard.js"></script>
+  <style>
+    .preview-btn {
+      transition: all 0.2s ease;
+    }
+    .preview-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+    }
+    .video-modal-frame {
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    .video-container-dark {
+      background: #000;
+      min-height: 280px;
+    }
+    .highlight-row {
+      animation: highlightRowPulse 2.5s ease-out;
+    }
+    @keyframes highlightRowPulse {
+      0% { background-color: rgba(25, 135, 84, 0.22); }
+      100% { background-color: inherit; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Clinic Administration</li>
+        <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="fas fa-chart-pie"></i> <span>Overview</span></a></li>
+        <li class="menu-item"><a href="users.html" class="menu-link"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
+        <li class="menu-item"><a href="therapists.html" class="menu-link"><i class="fas fa-user-md"></i> <span>Therapists</span></a></li>
+        <li class="menu-item"><a href="appointments.html" class="menu-link"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
+        <li class="menu-item"><a href="services.html" class="menu-link"><i class="fas fa-stethoscope"></i> <span>Services Catalog</span></a></li>
+        <li class="menu-item"><a href="treatment-plans.html" class="menu-link"><i class="fas fa-file-medical-alt"></i> <span>Care Protocols</span></a></li>
+        <li class="menu-item"><a href="exercises.html" class="menu-link active"><i class="fas fa-video"></i> <span>Exercise Videos</span></a></li>
+        <li class="menu-category">Financials &amp; Content</li>
+        <li class="menu-item"><a href="orders.html" class="menu-link"><i class="fas fa-file-invoice-dollar"></i> <span>Billing &amp; Claims</span></a></li>
+        <li class="menu-item"><a href="messages.html" class="menu-link"><i class="fas fa-envelope-open-text"></i> <span>Inquiries</span></a></li>
+        <li class="menu-item"><a href="blog.html" class="menu-link"><i class="fas fa-newspaper"></i> <span>Blog CMS</span></a></li>
+        <li class="menu-item"><a href="settings.html" class="menu-link"><i class="fas fa-sliders-h"></i> <span>Clinic Settings</span></a></li>
+        <li class="menu-item mt-3"><a href="../admin-login.html" class="menu-link text-danger" onclick="if(window.PhysioAuth)PhysioAuth.logoutUser();"><i class="fas fa-sign-out-alt"></i> <span>Sign Out</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img src="../assets/images/therapist-1.svg" alt="Dr. Sarah Jenkins" class="user-avatar">
+          <div class="user-info">
+            <div class="user-name">Dr. Sarah Jenkins</div>
+            <div class="user-role">Clinical Director (Admin)</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button id="sidebarToggleBtn" class="btn btn-sm btn-outline-secondary d-lg-none"><i class="fas fa-bars"></i></button>
+          <div class="topbar-search d-none d-md-block">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dashTableSearch" class="form-control form-control-sm" placeholder="Search exercises...">
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text d-none d-sm-inline">Dark</span></button>
+          <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text d-none d-sm-inline">RTL</span></button>
+                  <a href="../index.html" class="btn-topbar-back" id="backToWebsiteBtn" title="Back to Main PhysioLife Website Home">
+            <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+          </a>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+          <div>
+            <h2 class="fw-bold mb-1">Prescribed Exercise Video Library</h2>
+            <p class="text-muted small mb-0">High-definition clinical demonstration videos accessible by patients on their portal.</p>
+          </div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadExerciseModal" id="openUploadExerciseBtn" onclick="window.openAddExerciseModal()">
+            <i class="fas fa-plus-circle me-1"></i> Add New Exercise Video
+          </button>
+        </div>
+
+        <!-- Success Alert Banner -->
+        <div id="exerciseAlertSuccess" class="alert alert-success d-none alert-dismissible fade show mb-4" role="alert">
+          <i class="fas fa-check-circle me-2"></i> <span id="exerciseAlertText">Exercise video added successfully.</span>
+          <button type="button" class="btn-close" onclick="this.parentElement.classList.add('d-none')" aria-label="Close"></button>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-header d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
+            <h5 class="dash-card-title mb-0">
+              <i class="fas fa-film text-primary me-2"></i> Video Catalog (<span id="exerciseCountBadge">6 Active Videos</span>)
+            </h5>
+            <span class="badge bg-primary-subtle text-primary fw-normal py-2 px-3">
+              <i class="fas fa-video me-1"></i> HD Clinical Video Stream Ready
+            </span>
+          </div>
+          <div class="dash-card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-custom table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Exercise Title</th>
+                    <th>Muscle Group / Target</th>
+                    <th>Difficulty</th>
+                    <th>Video Duration</th>
+                    <th>Prescribed To</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="exercisesTableBody">
+                  <!-- Dynamically populated rows with matching videos -->
+                  <tr>
+                    <td><strong>McKenzie Prone Press-Up</strong></td>
+                    <td>Lumbar Spine Extensors</td>
+                    <td><span class="badge bg-success-subtle text-success">Beginner</span></td>
+                    <td>03:45</td>
+                    <td>142 Patients</td>
+                    <td><span class="badge-status active">Published</span></td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-outline-primary preview-btn" onclick="window.previewExerciseVideo('ex_mckenzie')">
+                        <i class="fas fa-play me-1"></i> Preview
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Seated Sciatic Nerve Flossing</strong></td>
+                    <td>Sciatic Nerve &amp; Piriformis</td>
+                    <td><span class="badge bg-info-subtle text-info">Gentle</span></td>
+                    <td>04:15</td>
+                    <td>98 Patients</td>
+                    <td><span class="badge-status active">Published</span></td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-outline-primary preview-btn" onclick="window.previewExerciseVideo('ex_floss')">
+                        <i class="fas fa-play me-1"></i> Preview
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Isometric Quadriceps Set (TKA)</strong></td>
+                    <td>Vastus Medialis Oblique</td>
+                    <td><span class="badge bg-success-subtle text-success">Post-Op Day 1</span></td>
+                    <td>02:30</td>
+                    <td>64 Patients</td>
+                    <td><span class="badge-status active">Published</span></td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-outline-primary preview-btn" onclick="window.previewExerciseVideo('ex_quad_sets')">
+                        <i class="fas fa-play me-1"></i> Preview
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Single-Leg Romanian Deadlift</strong></td>
+                    <td>Hamstrings &amp; Glute Stability</td>
+                    <td><span class="badge bg-warning-subtle text-warning">Advanced</span></td>
+                    <td>05:10</td>
+                    <td>52 Patients</td>
+                    <td><span class="badge-status active">Published</span></td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-outline-primary preview-btn" onclick="window.previewExerciseVideo('ex_rdl')">
+                        <i class="fas fa-play me-1"></i> Preview
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Exercise Video Preview Modal -->
+  <div class="modal fade" id="exercisePreviewModal" tabindex="-1" aria-labelledby="previewExerciseTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header border-bottom py-3 px-4 bg-surface">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i class="fas fa-play"></i>
+            </div>
+            <div>
+              <div class="d-flex align-items-center gap-2">
+                <h5 class="modal-title fw-bold mb-0" id="previewExerciseTitle">Exercise Video Guide</h5>
+                <span id="previewExerciseDifficulty" class="badge bg-success-subtle text-success">Beginner</span>
+              </div>
+              <small class="text-muted" id="previewExerciseTarget">Target Muscle Group</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="previewModalCloseBtn"></button>
+        </div>
+        <div class="modal-body p-0 bg-black position-relative video-container-dark" style="display: flex; align-items: center; justify-content: center;">
+          <video
+            id="previewVideoPlayer"
+            class="w-100 d-block"
+            controls
+            playsinline
+            preload="auto"
+            style="max-height: 460px; background: #000; outline: none;"
+          >
+            Your browser does not support the video element.
+          </video>
+          <div id="previewVideoFallback" class="d-none text-center p-5 w-100 text-white bg-dark">
+            <i class="fas fa-video-slash fa-3x text-warning mb-3"></i>
+            <h5 class="fw-bold mb-2">Video Demonstration Loading Error</h5>
+            <p class="small text-white-50 mb-3">Please follow prescribed clinical cues below or verify the video file format.</p>
+            <button type="button" class="btn btn-sm btn-outline-light px-3" onclick="window.retryPreviewVideo()">
+              <i class="fas fa-redo me-1"></i> Reload Video
+            </button>
+          </div>
+        </div>
+        <div class="modal-body p-4 bg-surface-alt border-top">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <h6 class="fw-bold mb-1 text-primary"><i class="fas fa-notes-medical me-1"></i> Clinical Prescribing &amp; Movement Cues</h6>
+              <p class="small text-muted mb-0" id="previewExerciseCues">Follow clinical biomechanics and movement directions.</p>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-surface rounded-3 border">
+                <div class="d-flex justify-content-between mb-1 small">
+                  <span class="text-muted"><i class="fas fa-stopwatch me-1"></i> Duration:</span>
+                  <strong id="previewExerciseDuration">03:45</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-1 small">
+                  <span class="text-muted"><i class="fas fa-user-check me-1"></i> Prescribed To:</span>
+                  <strong id="previewExercisePatients">142 Patients</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-1 small">
+                  <span class="text-muted"><i class="fas fa-redo me-1"></i> Frequency:</span>
+                  <strong id="previewExerciseFrequency">10 Reps • 3 Sets</strong>
+                </div>
+                <div class="d-flex justify-content-between small">
+                  <span class="text-muted"><i class="fas fa-user-md me-1"></i> Specialist:</span>
+                  <strong id="previewExerciseTherapist" class="text-truncate" style="max-width: 130px;">Dr. Jenkins</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top py-3 px-4 bg-surface d-flex justify-content-between">
+          <span class="badge bg-success-subtle text-success py-2 px-3 fw-normal">
+            <i class="fas fa-check-circle me-1"></i> Matching Exact Clinical Demo
+          </span>
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Close Preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Exercise Modal -->
+  <div class="modal fade" id="uploadExerciseModal" tabindex="-1" aria-labelledby="uploadExerciseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-header border-bottom py-3 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+              <i class="fas fa-upload"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold mb-0" id="uploadExerciseModalLabel">Add Exercise Video Guide</h5>
+              <small class="text-muted">Publish a clinical demonstration to the patient portal</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addExerciseForm" class="p-4" onsubmit="event.preventDefault(); window.addNewExercise();">
+          <div id="addExerciseAlert" class="alert alert-danger d-none py-2 mb-3"></div>
+          <div class="mb-3">
+            <label for="newExerciseTitle" class="form-label fw-semibold">Exercise Title <span class="text-danger">*</span></label>
+            <input type="text" id="newExerciseTitle" class="form-control" required placeholder="e.g. Supine Pelvic Glute Bridge">
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label for="newExerciseTarget" class="form-label fw-semibold">Muscle Group / Target <span class="text-danger">*</span></label>
+              <input type="text" id="newExerciseTarget" class="form-control" required placeholder="e.g. Gluteus Maximus &amp; Core">
+            </div>
+            <div class="col-6">
+              <label for="newExerciseDifficulty" class="form-label fw-semibold">Difficulty Level</label>
+              <select id="newExerciseDifficulty" class="form-select">
+                <option value="Beginner" selected>Beginner</option>
+                <option value="Gentle">Gentle</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Post-Op Day 1">Post-Op Day 1</option>
+              </select>
+            </div>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label for="newExerciseCategory" class="form-label fw-semibold">Body Region</label>
+              <select id="newExerciseCategory" class="form-select">
+                <option value="Lumbar Spine">Lumbar Spine</option>
+                <option value="Cervical Neck">Cervical Neck</option>
+                <option value="Shoulder &amp; Scapula">Shoulder &amp; Scapula</option>
+                <option value="Knee &amp; Hip" selected>Knee &amp; Hip</option>
+                <option value="Foot &amp; Ankle">Foot &amp; Ankle</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="newExerciseDuration" class="form-label fw-semibold">Video Duration</label>
+              <input type="text" id="newExerciseDuration" class="form-control" placeholder="e.g. 03:20" value="03:20">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="newExerciseVideoSelect" class="form-label fw-semibold">Select Matching Video Clip</label>
+            <select id="newExerciseVideoSelect" class="form-select mb-2" onchange="document.getElementById('newExerciseVideo').value = this.value;">
+              <option value="../assets/videos/mckenzie-pressup.mp4">McKenzie Prone Press-Up (Spine Demo)</option>
+              <option value="../assets/videos/sciatic-floss.mp4">Seated Sciatic Nerve Flossing (Nerve Glide)</option>
+              <option value="../assets/videos/quad-sets.mp4">Isometric Quadriceps Set (TKA Knee)</option>
+              <option value="../assets/videos/romanian-deadlift.mp4">Single-Leg Romanian Deadlift (Hamstrings)</option>
+              <option value="../assets/videos/glute-bridge.mp4" selected>Supine Pelvic Glute Bridge (Core &amp; Glutes)</option>
+              <option value="../assets/videos/quadruped-birddog.mp4">Quadruped Bird-Dog (Lumbar Stabilizers)</option>
+            </select>
+            <input type="text" id="newExerciseVideo" class="form-control form-control-sm" placeholder="Or custom MP4 URL: https://..." value="../assets/videos/glute-bridge.mp4">
+          </div>
+          <div class="mb-3">
+            <label for="newExerciseCues" class="form-label fw-semibold">Clinical Prescribing Cues</label>
+            <textarea id="newExerciseCues" class="form-control" rows="2" placeholder="Movement instructions, breathing pacing, and form precautions..."></textarea>
+          </div>
+          <div class="d-flex justify-content-end gap-2 pt-2 border-top">
+            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal" onclick="window.closeAddExerciseModal()">Cancel</button>
+            <button type="submit" id="submitExerciseBtn" class="btn btn-primary px-4" onclick="window.addNewExercise(); return false;">
+              <i class="fas fa-plus-circle me-1"></i> Add New Exercise
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const STORAGE_KEY = 'physiolife_admin_exercises';
+
+      const INITIAL_EXERCISES = [
+        {
+          id: 'ex_mckenzie',
+          title: 'McKenzie Prone Press-Up',
+          target: 'Lumbar Spine Extensors',
+          difficulty: 'Beginner',
+          difficultyClass: 'bg-success-subtle text-success',
+          duration: '03:45',
+          patients: '142 Patients',
+          status: 'Published',
+          video: '../assets/videos/mckenzie-pressup.mp4',
+          category: 'Lumbar Spine',
+          cues: 'Lie face down with hands beneath shoulders. Relax lower back and pelvis completely on the floor. Press chest upward with arms while exhaling smoothly. Hold for 2 seconds at the top.',
+          frequency: '10 Reps • 3 Sets Daily',
+          therapist: 'Dr. Sarah Jenkins'
+        },
+        {
+          id: 'ex_floss',
+          title: 'Seated Sciatic Nerve Flossing',
+          target: 'Sciatic Nerve & Piriformis',
+          difficulty: 'Gentle',
+          difficultyClass: 'bg-info-subtle text-info',
+          duration: '04:15',
+          patients: '98 Patients',
+          status: 'Published',
+          video: '../assets/videos/sciatic-floss.mp4',
+          category: 'Lumbar Spine',
+          cues: 'Sit tall with knees at 90 degrees. Extend one knee straight while flexing your foot back and tilting head backwards. Lower leg while tucking chin. Perform smoothly without forcing pain.',
+          frequency: '12 Reps/Leg • 2 Sets Daily',
+          therapist: 'Dr. Sarah Jenkins'
+        },
+        {
+          id: 'ex_quad_sets',
+          title: 'Isometric Quadriceps Set (TKA)',
+          target: 'Vastus Medialis Oblique',
+          difficulty: 'Post-Op Day 1',
+          difficultyClass: 'bg-success-subtle text-success',
+          duration: '02:30',
+          patients: '64 Patients',
+          status: 'Published',
+          video: '../assets/videos/quad-sets.mp4',
+          category: 'Knee & Hip',
+          cues: 'Lie or sit with leg extended. Press the back of the knee firmly down against the bed or a small rolled towel. Tighten your front thigh muscle for a solid 5 seconds, then relax completely.',
+          frequency: '15 Reps • 3 Sets Daily',
+          therapist: 'Dr. David Chen'
+        },
+        {
+          id: 'ex_rdl',
+          title: 'Single-Leg Romanian Deadlift',
+          target: 'Hamstrings & Glute Stability',
+          difficulty: 'Advanced',
+          difficultyClass: 'bg-warning-subtle text-warning',
+          duration: '05:10',
+          patients: '52 Patients',
+          status: 'Published',
+          video: '../assets/videos/romanian-deadlift.mp4',
+          category: 'Knee & Hip',
+          cues: 'Stand on one leg with a soft bend in the knee. Hinge forward from hips, reaching the free leg straight back behind you with spine aligned. Engage glutes and hamstrings to return upright.',
+          frequency: '8-10 Reps/Side • 3 Sets',
+          therapist: 'Dr. Marcus Vance'
+        },
+        {
+          id: 'ex_bridge',
+          title: 'Supine Pelvic Glute Bridge',
+          target: 'Gluteus Maximus & Core',
+          difficulty: 'Beginner',
+          difficultyClass: 'bg-success-subtle text-success',
+          duration: '03:20',
+          patients: '115 Patients',
+          status: 'Published',
+          video: '../assets/videos/glute-bridge.mp4',
+          category: 'Knee & Hip',
+          cues: 'Lie on your back with knees bent and feet flat on the ground. Drive through heels to raise pelvis into a straight bridge line, squeezing glutes firmly for 3 seconds at the peak.',
+          frequency: '12 Reps • 3 Sets Daily',
+          therapist: 'Dr. Marcus Vance'
+        },
+        {
+          id: 'ex_birddog',
+          title: 'Quadruped Bird-Dog',
+          target: 'Multifidus & Core Stabilizers',
+          difficulty: 'Intermediate',
+          difficultyClass: 'bg-info-subtle text-info',
+          duration: '04:00',
+          patients: '88 Patients',
+          status: 'Published',
+          video: '../assets/videos/quadruped-birddog.mp4',
+          category: 'Lumbar Spine',
+          cues: 'Start on all fours with neutral spine. Simultaneously reach right arm forward and left leg backward until level with your torso. Maintain stillness through the hips and core.',
+          frequency: '10 Reps/Side • 2 Sets Daily',
+          therapist: 'Dr. Sarah Jenkins'
+        }
+      ];
+
+      let inMemoryExercises = null;
+
+      function getExerciseVideos() {
+        if (inMemoryExercises && inMemoryExercises.length > 0) return inMemoryExercises;
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              inMemoryExercises = parsed;
+              return inMemoryExercises;
+            }
+          }
+        } catch (e) {
+          console.warn('Error reading exercises from localStorage:', e);
+        }
+        inMemoryExercises = [...INITIAL_EXERCISES];
+        return inMemoryExercises;
+      }
+
+      function saveExerciseVideos(list) {
+        inMemoryExercises = list;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          console.error('Error saving exercises to localStorage:', e);
+        }
+      }
+
+      function renderExerciseTable(highlightId, searchQuery = '') {
+        const tbody = document.getElementById('exercisesTableBody');
+        const countBadge = document.getElementById('exerciseCountBadge');
+        if (!tbody) return;
+
+        let list = getExerciseVideos();
+
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase().trim();
+          list = list.filter(e =>
+            (e.title && e.title.toLowerCase().includes(q)) ||
+            (e.target && e.target.toLowerCase().includes(q)) ||
+            (e.difficulty && e.difficulty.toLowerCase().includes(q)) ||
+            (e.category && e.category.toLowerCase().includes(q))
+          );
+        }
+
+        if (countBadge) countBadge.textContent = `${list.length} Active Videos`;
+
+        if (list.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="text-center py-4 text-muted">
+                <i class="fas fa-search me-1"></i> No exercise videos found matching "${searchQuery}".
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = list.map(ex => {
+          const isHighlighted = highlightId && ex.id === highlightId;
+          const rowClass = isHighlighted ? 'highlight-row' : '';
+          const diffClass = ex.difficultyClass || (
+            ex.difficulty === 'Beginner' ? 'bg-success-subtle text-success' :
+            ex.difficulty === 'Gentle' ? 'bg-info-subtle text-info' :
+            ex.difficulty === 'Advanced' ? 'bg-warning-subtle text-warning' :
+            ex.difficulty === 'Post-Op Day 1' ? 'bg-success-subtle text-success' :
+            'bg-primary-subtle text-primary'
+          );
+
+          return `
+            <tr data-id="${ex.id}" class="${rowClass}">
+              <td><strong>${ex.title}</strong></td>
+              <td>${ex.target}</td>
+              <td><span class="badge ${diffClass}">${ex.difficulty}</span></td>
+              <td>${ex.duration || '03:00'}</td>
+              <td>${ex.patients || '0 Patients'}</td>
+              <td><span class="badge-status active">${ex.status || 'Published'}</span></td>
+              <td>
+                <div class="d-flex gap-1">
+                  <button type="button" class="btn btn-sm btn-outline-primary preview-btn" onclick="window.previewExerciseVideo('${ex.id}')" title="Preview ${ex.title}">
+                    <i class="fas fa-play me-1"></i> Preview
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger" onclick="window.deleteExercise('${ex.id}')" title="Delete ${ex.title}">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      let activeExercise = null;
+
+      function closeModalSafely(modalEl) {
+        if (!modalEl) return;
+        try {
+          if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            const inst = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+            if (inst) inst.hide();
+          }
+        } catch (e) {}
+
+        const closeBtn = modalEl.querySelector('[data-bs-dismiss="modal"]');
+        if (closeBtn && typeof closeBtn.click === 'function') closeBtn.click();
+
+        setTimeout(() => {
+          modalEl.classList.remove('show');
+          modalEl.style.display = 'none';
+          modalEl.setAttribute('aria-hidden', 'true');
+          modalEl.removeAttribute('aria-modal');
+          document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+          const manualBackdrop = document.getElementById('manualModalBackdrop');
+          if (manualBackdrop) manualBackdrop.remove();
+          document.body.classList.remove('modal-open');
+          document.body.style.removeProperty('overflow');
+          document.body.style.removeProperty('padding-right');
+        }, 250);
+      }
+
+      window.openAddExerciseModal = function () {
+        const modalEl = document.getElementById('uploadExerciseModal');
+        if (!modalEl) return;
+
+        const alertEl = document.getElementById('addExerciseAlert');
+        if (alertEl) alertEl.classList.add('d-none');
+
+        const titleInput = document.getElementById('newExerciseTitle');
+        const targetInput = document.getElementById('newExerciseTarget');
+        if (titleInput) titleInput.classList.remove('is-invalid');
+        if (targetInput) targetInput.classList.remove('is-invalid');
+
+        try {
+          if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modal.show();
+            setTimeout(() => {
+              if (titleInput) titleInput.focus();
+            }, 300);
+            return;
+          }
+        } catch (e) {
+          console.warn('Bootstrap modal error, using DOM fallback:', e);
+        }
+
+        modalEl.classList.add('show');
+        modalEl.style.display = 'block';
+        modalEl.removeAttribute('aria-hidden');
+        modalEl.setAttribute('aria-modal', 'true');
+        document.body.classList.add('modal-open');
+        if (!document.querySelector('.modal-backdrop')) {
+          const backdrop = document.createElement('div');
+          backdrop.className = 'modal-backdrop fade show';
+          backdrop.id = 'manualModalBackdrop';
+          document.body.appendChild(backdrop);
+        }
+        setTimeout(() => {
+          if (titleInput) titleInput.focus();
+        }, 150);
+      };
+
+      window.closeAddExerciseModal = function () {
+        const modalEl = document.getElementById('uploadExerciseModal');
+        closeModalSafely(modalEl);
+      };
+
+      window.deleteExercise = function (id) {
+        let list = getExerciseVideos();
+        const ex = list.find(e => e.id === id);
+        const title = ex ? ex.title : 'Exercise';
+        if (confirm(`Are you sure you want to remove "${title}" from the video library?`)) {
+          list = list.filter(e => e.id !== id);
+          saveExerciseVideos(list);
+          renderExerciseTable();
+          if (window.PhysioDashboard && window.PhysioDashboard.showToast) {
+            window.PhysioDashboard.showToast(`"${title}" removed from catalog.`);
+          }
+        }
+      };
+
+      window.previewExerciseVideo = function (exerciseIdOrTitle) {
+        const list = getExerciseVideos();
+        const ex = list.find(e => e.id === exerciseIdOrTitle || (e.title && e.title.toLowerCase() === (exerciseIdOrTitle || '').toLowerCase())) || list[0];
+        if (!ex) return;
+
+        activeExercise = ex;
+
+        const modalEl = document.getElementById('exercisePreviewModal');
+        const videoEl = document.getElementById('previewVideoPlayer');
+        const titleEl = document.getElementById('previewExerciseTitle');
+        const targetEl = document.getElementById('previewExerciseTarget');
+        const diffEl = document.getElementById('previewExerciseDifficulty');
+        const durationEl = document.getElementById('previewExerciseDuration');
+        const patientsEl = document.getElementById('previewExercisePatients');
+        const cuesEl = document.getElementById('previewExerciseCues');
+        const freqEl = document.getElementById('previewExerciseFrequency');
+        const therapistEl = document.getElementById('previewExerciseTherapist');
+        const fallbackEl = document.getElementById('previewVideoFallback');
+
+        if (titleEl) titleEl.textContent = ex.title;
+        if (targetEl) targetEl.textContent = ex.target;
+        if (diffEl) {
+          diffEl.textContent = ex.difficulty;
+          diffEl.className = 'badge ' + (ex.difficultyClass || 'bg-success-subtle text-success');
+        }
+        if (durationEl) durationEl.textContent = ex.duration;
+        if (patientsEl) patientsEl.textContent = ex.patients;
+        if (cuesEl) cuesEl.textContent = ex.cues || 'Follow physical therapy guidance.';
+        if (freqEl) freqEl.textContent = ex.frequency || '10 Reps • 3 Sets Daily';
+        if (therapistEl) therapistEl.textContent = ex.therapist || 'Dr. Sarah Jenkins';
+
+        if (videoEl) {
+          if (fallbackEl) fallbackEl.classList.add('d-none');
+          videoEl.style.display = 'block';
+
+          // Explicitly load matching video file
+          videoEl.src = ex.video;
+          videoEl.load();
+
+          const playPromise = videoEl.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function () {
+              // Browser autoplay policy catch
+            });
+          }
+        }
+
+        if (modalEl && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+          const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modal.show();
+        }
+      };
+
+      window.retryPreviewVideo = function () {
+        if (!activeExercise) return;
+        const videoEl = document.getElementById('previewVideoPlayer');
+        const fallbackEl = document.getElementById('previewVideoFallback');
+        if (videoEl && activeExercise.video) {
+          if (fallbackEl) fallbackEl.classList.add('d-none');
+          videoEl.style.display = 'block';
+          videoEl.src = activeExercise.video;
+          videoEl.load();
+          videoEl.play().catch(() => {});
+        }
+      };
+
+      window.addNewExercise = function () {
+        const titleEl = document.getElementById('newExerciseTitle');
+        const targetEl = document.getElementById('newExerciseTarget');
+        const alertEl = document.getElementById('addExerciseAlert');
+        const title = (titleEl ? titleEl.value : '').trim();
+        const target = (targetEl ? targetEl.value : '').trim();
+
+        if (titleEl) titleEl.classList.remove('is-invalid');
+        if (targetEl) targetEl.classList.remove('is-invalid');
+
+        if (!title) {
+          if (titleEl) {
+            titleEl.classList.add('is-invalid');
+            titleEl.focus();
+          }
+          if (alertEl) {
+            alertEl.textContent = 'Please enter an exercise title.';
+            alertEl.classList.remove('d-none');
+          }
+          return;
+        }
+
+        if (!target) {
+          if (targetEl) {
+            targetEl.classList.add('is-invalid');
+            targetEl.focus();
+          }
+          if (alertEl) {
+            alertEl.textContent = 'Please specify the target muscle group or pathology.';
+            alertEl.classList.remove('d-none');
+          }
+          return;
+        }
+
+        const difficulty = (document.getElementById('newExerciseDifficulty') || {}).value || 'Beginner';
+        const category = (document.getElementById('newExerciseCategory') || {}).value || 'Knee & Hip';
+        const duration = ((document.getElementById('newExerciseDuration') || {}).value || '03:20').trim() || '03:20';
+        const video = ((document.getElementById('newExerciseVideo') || {}).value || '../assets/videos/glute-bridge.mp4').trim();
+        const cues = ((document.getElementById('newExerciseCues') || {}).value || '').trim() || 'Follow prescribed physical therapy cues and range of motion restrictions.';
+
+        const diffClass = (
+          difficulty === 'Beginner' ? 'bg-success-subtle text-success' :
+          difficulty === 'Gentle' ? 'bg-info-subtle text-info' :
+          difficulty === 'Advanced' ? 'bg-warning-subtle text-warning' :
+          difficulty === 'Post-Op Day 1' ? 'bg-success-subtle text-success' :
+          'bg-primary-subtle text-primary'
+        );
+
+        const newEx = {
+          id: 'ex_' + Date.now(),
+          title,
+          target,
+          difficulty,
+          difficultyClass: diffClass,
+          duration,
+          patients: '0 Patients',
+          status: 'Published',
+          video,
+          category,
+          cues,
+          frequency: '10 Reps • 3 Sets Daily',
+          therapist: 'Dr. Sarah Jenkins'
+        };
+
+        const list = getExerciseVideos();
+        list.unshift(newEx);
+        saveExerciseVideos(list);
+        renderExerciseTable(newEx.id);
+
+        const modalEl = document.getElementById('uploadExerciseModal');
+        closeModalSafely(modalEl);
+
+        const form = document.getElementById('addExerciseForm');
+        if (form && typeof form.reset === 'function') form.reset();
+        if (alertEl) alertEl.classList.add('d-none');
+
+        const alertBanner = document.getElementById('exerciseAlertSuccess');
+        const alertText = document.getElementById('exerciseAlertText');
+        if (alertBanner && alertText) {
+          alertText.innerHTML = `Exercise video <strong>${newEx.title}</strong> successfully added to clinical catalog!`;
+          alertBanner.classList.remove('d-none');
+          if (typeof alertBanner.scrollIntoView === 'function') {
+            alertBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+
+        if (window.PhysioDashboard && window.PhysioDashboard.showToast) {
+          window.PhysioDashboard.showToast(`Exercise "${newEx.title}" added to video library!`);
+        }
+      };
+
+      function init() {
+        renderExerciseTable();
+
+        const searchInput = document.getElementById('dashTableSearch');
+        if (searchInput && typeof searchInput.addEventListener === 'function') {
+          searchInput.addEventListener('input', (e) => {
+            renderExerciseTable(null, e.target.value);
+          });
+        }
+
+        const previewModal = document.getElementById('exercisePreviewModal');
+        if (previewModal && typeof previewModal.addEventListener === 'function') {
+          // Pause and reset video when modal closes to prevent audio leaking
+          previewModal.addEventListener('hidden.bs.modal', function () {
+            const videoEl = document.getElementById('previewVideoPlayer');
+            if (videoEl) {
+              try {
+                videoEl.pause();
+                videoEl.currentTime = 0;
+                videoEl.removeAttribute('src');
+                videoEl.load();
+              } catch (e) {}
+            }
+          });
+        }
+
+        const videoEl = document.getElementById('previewVideoPlayer');
+        const fallbackEl = document.getElementById('previewVideoFallback');
+        if (videoEl && fallbackEl && typeof videoEl.addEventListener === 'function') {
+          videoEl.addEventListener('error', function () {
+            videoEl.style.display = 'none';
+            fallbackEl.classList.remove('d-none');
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

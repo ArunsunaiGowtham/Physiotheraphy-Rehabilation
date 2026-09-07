@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" width="160" height="50">
+  <rect width="160" height="50" rx="8" fill="#F1F5F9"/>
+  <!-- Aetna Logo Styling -->
+  <circle cx="25" cy="25" r="10" fill="#7C3AED"/>
+  <path d="M22 28 L25 18 L28 28 Z" fill="#FFFFFF"/>
+  <text x="45" y="32" font-family="'Outfit', sans-serif" font-size="15" font-weight="800" fill="#7C3AED">aetna</text>
+</svg>

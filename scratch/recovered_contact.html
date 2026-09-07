@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhysioLife – Official Template Documentation</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/variables.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dashboard.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <style>
+    .doc-sidebar {
+      position: sticky;
+      top: 20px;
+    }
+    .doc-section {
+      padding-top: 30px;
+      margin-bottom: 50px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 40px;
+    }
+    pre code {
+      background: var(--bg-surface-alt);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      display: block;
+      color: var(--text-main);
+      font-size: 0.875rem;
+      border: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body class="bg-surface-alt">
+
+  <!-- Header -->
+  <header class="py-3 bg-surface border-bottom border-subtle sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <a href="../index.html">
+          <img src="../assets/images/logo.svg" alt="PhysioLife" height="38">
+        </a>
+        <span class="badge bg-primary text-white">v1.0.0 Docs</span>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i><span class="theme-text">Dark</span></button>
+        <button class="rtl-toggle-btn" type="button"><i class="fas fa-globe"></i><span class="dir-text">RTL</span></button>
+        <a href="../index.html" class="btn btn-sm btn-primary"><i class="fas fa-desktop me-1"></i> Live Demo</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container py-5">
+    <div class="row g-5">
+      <!-- Nav Sidebar -->
+      <div class="col-lg-3">
+        <div class="doc-sidebar p-3 bg-surface rounded-4 border border-subtle shadow-sm">
+          <h6 class="fw-bold mb-3 text-uppercase text-muted small">Documentation Index</h6>
+          <ul class="nav flex-column gap-1">
+            <li class="nav-item"><a class="nav-link text-main" href="#intro">1. Introduction</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#structure">2. Folder Structure</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#tech">3. Tech Stack</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#theming">4. Dark/Light &amp; RTL Modes</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#colors">5. Changing Colors &amp; Fonts</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#portals">6. Patient &amp; Admin Portals</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#charts">7. Chart.js Customization</a></li>
+            <li class="nav-item"><a class="nav-link text-main" href="#support">8. Support &amp; Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="col-lg-9">
+        <div class="p-4 p-md-5 bg-surface rounded-4 border border-subtle shadow-sm">
+          
+          <!-- Section 1 -->
+          <section id="intro" class="doc-section pt-0">
+            <h2 class="fw-bold mb-3">1. Introduction</h2>
+            <p>
+              Welcome to <strong>PhysioLife</strong>, a premier multipurpose commercial HTML5 website template engineered primarily for <strong>Physiotherapy &amp; Rehabilitation Clinics</strong>, sports injury recovery centers, and healthcare practitioners, with built-in versatility for any service-based business.
+            </p>
+            <p>
+              The package includes over <strong>25+ meticulously crafted HTML pages</strong>, a dedicated <strong>Patient Care Dashboard</strong>, an executive <strong>Clinic Admin Portal</strong>, an authentication suite, and native support for both <strong>Dark Mode</strong> and <strong>Right-to-Left (RTL)</strong> layouts.
+            </p>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="structure" class="doc-section">
+            <h2 class="fw-bold mb-3">2. Folder Structure</h2>
+            <pre><code>physio-template/
+├── index.html                   # Home 1 - General Physiotherapy Landing Page
+├── home-2.html                  # Home 2 - Sports Rehab &amp; SaaS Landing Page
+├── about.html                   # About Clinic, History Timeline, Team, Values
+├── services.html                # Filterable Services Grid (10+ Therapies)
+├── service-details.html         # Service Page with Pricing Table &amp; FAQs
+├── therapists.html              # Specialists &amp; Doctors Directory
+├── therapist-details.html       # Doctor Profile, Schedule &amp; Direct Booking
+├── insurance.html               # Accepted Insurance &amp; Online Verification
+├── pricing.html                 # Therapy Pricing &amp; Treatment Packages
+├── blog.html                    # Blog Listing with Category &amp; Live Search
+├── blog-details.html            # Article Layout with Sticky Sidebar
+├── contact.html                 # Contact Info, Hours, Interactive Map &amp; Form
+├── 404.html                     # Custom 404 Error Page
+├── coming-soon.html             # Pre-Launch Countdown &amp; Email Capture
+├── maintenance.html             # System Maintenance Notice
+│
+├── login.html                   # Dual Patient / Staff Portal Login
+├── register.html                # Patient Intake Registration
+├── forgot-password.html         # Reset Link Request
+├── reset-password.html          # New Password &amp; Strength Bar
+├── email-verification.html      # 6-Digit OTP Verification Form
+├── account-success.html         # Account Verified Confirmation
+│
+├── patient/                     # Patient Care Portal Suite
+│   ├── dashboard.html           # Patient Overview &amp; Recovery Progress
+│   ├── appointments.html        # Appointments &amp; Booking Modal Wizard
+│   ├── treatment-plans.html     # Active Protocol &amp; Mobility Scores
+│   ├── exercises.html           # Prescribed Video Library &amp; Checklist
+│   ├── attendance.html          # Session Attendance &amp; Visual Pain Tracker
+│   ├── payments.html            # Billing Statements &amp; Pay Modal
+│   ├── receipts.html            # Printable Medical Invoices (@media print)
+│   └── profile.html             # Patient Demographics &amp; Security
+│
+├── admin/                       # Clinic Admin Dashboard Suite
+│   ├── dashboard.html           # KPI Metrics, Growth &amp; Revenue Charts
+│   ├── users.html               # Patient Records Directory &amp; Add Modal
+│   ├── therapists.html          # Doctor Roster &amp; Caseload Allocation
+│   ├── appointments.html        # Master Daily Clinic Schedule
+│   ├── services.html            # Therapy Offerings &amp; Fee Management
+│   ├── treatment-plans.html     # Standardized Care Protocol Templates
+│   ├── exercises.html           # Exercise Video Catalog Manager
+│   ├── orders.html              # Billing, Claims &amp; Financial Ledger
+│   ├── messages.html            # Web Inquiries &amp; Message Inbox
+│   ├── blog.html                # Article CMS &amp; Publishing
+│   └── settings.html            # Clinic Rules, Hours &amp; Payment Gateway
+│
+├── assets/
+│   ├── css/
+│   │   ├── variables.css        # CSS tokens, color palettes, dark mode
+│   │   ├── style.css            # Main styles, cards, header, footer
+│   │   ├── dashboard.css        # Patient and admin dashboard layouts
+│   │   └── rtl.css              # Bidirectional RTL mirror overrides
+│   ├── js/
+│   │   ├── theme.js             # Theme &amp; RTL engine with localStorage
+│   │   ├── main.js              # Sticky nav, filters, countdown, forms
+│   │   ├── dashboard.js         # Sidebar toggle, table search, toasts
+│   │   └── charts.js            # Chart.js visualization configurations
+│   └── images/                  # Crisp SVG logos, medical diagrams, vectors
+│
+└── documentation/
+    └── index.html               # This Documentation File</code></pre>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="tech" class="doc-section">
+            <h2 class="fw-bold mb-3">3. Technology Stack</h2>
+            <ul>
+              <li><strong>HTML5:</strong> Semantic elements, accessible ARIA attributes, structured metadata.</li>
+              <li><strong>Bootstrap 5.3.3:</strong> Responsive 12-column grid, modals, dropdowns, tooltips.</li>
+              <li><strong>Vanilla CSS3:</strong> Custom CSS variables (`variables.css`), glassmorphism, responsive breakpoints.</li>
+              <li><strong>Font Awesome 6.5:</strong> Modern vector icons for medical, clinical, and dashboard navigation.</li>
+              <li><strong>Chart.js 4.4:</strong> Responsive, interactive, dark/light adaptive charts for patients and admin.</li>
+              <li><strong>Vanilla JavaScript (ES6+):</strong> Pure modular scripts without heavy jQuery dependencies.</li>
+            </ul>
+          </section>
+
+          <!-- Section 4 -->
+          <section id="theming" class="doc-section">
+            <h2 class="fw-bold mb-3">4. Dark/Light &amp; RTL Modes</h2>
+            <p>
+              PhysioLife features a built-in theme and direction engine in <code>assets/js/theme.js</code>. Preferences are automatically saved in the user's browser via <code>localStorage</code>.
+            </p>
+            <h5 class="fw-bold mt-3">Setting Default Theme or RTL in HTML</h5>
+            <p>To force dark mode by default on any page, update the <code>&lt;html&gt;</code> tag:</p>
+            <pre><code>&lt;html lang="en" data-bs-theme="dark" dir="ltr"&gt;</code></pre>
+            <p>To set Arabic or Hebrew (RTL) mode by default:</p>
+            <pre><code>&lt;html lang="ar" data-bs-theme="light" dir="rtl"&gt;</code></pre>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="colors" class="doc-section">
+            <h2 class="fw-bold mb-3">5. Changing Colors &amp; Fonts</h2>
+            <p>All brand colors, fonts, borders, and shadows are defined in <code>assets/css/variables.css</code>. To re-brand the template, simply modify the root CSS variables:</p>
+            <pre><code>:root {
+  /* Change Brand Primary Color */
+  --primary: #0F766E;        /* Medical Teal */
+  --primary-hover: #0D9488;
+  
+  /* Change Action Secondary Color */
+  --secondary: #F97316;      /* Energy Amber/Coral */
+  
+  /* Change Fonts */
+  --font-family-body: 'Plus Jakarta Sans', sans-serif;
+  --font-family-heading: 'Outfit', sans-serif;
+}</code></pre>
+          </section>
+
+          <!-- Section 6 -->
+          <section id="portals" class="doc-section">
+            <h2 class="fw-bold mb-3">6. Patient &amp; Admin Portals</h2>
+            <p>
+              The template includes complete, distinct dashboards for both patients and staff:
+            </p>
+            <ul>
+              <li><strong>Patient Portal (<code>/patient/</code>):</strong> Patients can view upcoming sessions, watch prescribed HD exercise videos, check off daily routines, review pain level progression, and download printable medical receipts.</li>
+              <li><strong>Admin Dashboard (<code>/admin/</code>):</strong> Clinic staff can manage patients, schedule master rooms and calendars, add new services, track insurance claims, and publish blog articles.</li>
+            </ul>
+            <p class="small text-muted mb-0">Use the quick autofill buttons on <code>login.html</code> to test both portals instantly.</p>
+          </section>
+
+          <!-- Section 7 -->
+          <section id="charts" class="doc-section">
+            <h2 class="fw-bold mb-3">7. Chart.js Customization</h2>
+            <p>
+              Charts are configured in <code>assets/js/charts.js</code> and listen for the global <code>themeChanged</code> event to dynamically re-style axes, ticks, and legend colors when switching between dark and light modes.
+            </p>
+          </section>
+
+          <!-- Section 8 -->
+          <section id="support" class="doc-section border-bottom-0 pb-0">
+            <h2 class="fw-bold mb-3">8. Support &amp; Changelog</h2>
+            <p>Version 1.0.0 – September 2026</p>
+            <ul>
+              <li>Initial release of PhysioLife Multipurpose Healthcare &amp; Rehabilitation HTML Template.</li>
+              <li>25+ HTML pages, 2 complete dashboards (Patient &amp; Admin), Dark/Light theme, RTL support.</li>
+              <li>Zero broken images, pure semantic markup, validated forms.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 bg-surface border-top border-subtle text-center text-muted small">
+    <div class="container">
+      &copy; 2026 PhysioLife Rehabilitation Clinic. Marketplace Documentation.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+</body>
+</html>
