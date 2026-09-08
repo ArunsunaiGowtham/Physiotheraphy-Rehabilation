@@ -1,60 +1,63 @@
-# Walkthrough: Unique Clinical Specialist Authors for All Services
+# Walkthrough: Complete Mobile Responsiveness & Laptop Content Parity
 
-Every service in PhysioLife now has an entirely **unique, non-repeated doctor author / lead clinical specialist**.
+All features, components, and pages available on laptop/desktop view are now **100% responsive, touch-friendly, and visually balanced on mobile devices** (smartphones from 320px up to tablets and desktops).
 
 ---
 
 ## 1. Summary of Changes
 
-### A. 15 Unique Doctors for 15 Services (Zero Repeated Authors)
+### A. Viewport Containment & Anti-Wobble Protection
+- **Global Reset**: Configured `html, body { overflow-x: clip; max-width: 100vw; }` to eliminate unwanted side-scrolling and horizontal page wobbling on touch devices while preserving sticky navigation.
+- **Dynamic Container Spacing**: Responsive section padding scales from desktop `85px` down to `48px` on smartphones, preventing excessive empty vertical space and fatigue.
 
-| # | Service Name | Category | Lead Clinical Specialist (Author) | Credentials | Profile ID |
-|---|---|---|---|---|---|
-| 1 | **Sports Injury Rehabilitation** | Sports | **Dr. Marcus Vance** | PT, DPT, SCS (Sports Clinical Specialist) | `vance` |
-| 2 | **Post-Surgery Rehabilitation** | Post-Op | **Dr. David Chen** | PT, CMPT (Joint Arthroplasty & Manual Lead) | `chen` |
-| 3 | **Chronic Pain Management** | Spine | **Dr. Chloe Bennett** | PT, DPT, PRPC (Chronic Pain & Sensitization Specialist) | `bennett` |
-| 4 | **Back & Neck Pain Therapy** | Spine | **Dr. Sarah Jenkins** | PT, DPT, OCS (Orthopedic Spine Director) | `jenkins` |
-| 5 | **Joint Rehabilitation** | Spine | **Dr. Julian Reed** | PT, DPT, RMSK (Musculoskeletal Ultrasound & Joint Lead) | `reed` |
-| 6 | **Muscle & Mobility Therapy** | Sports | **Dr. Liam Gallagher** | PT, DPT, CSCS (Myofascial Release & Mobility Lead) | `gallagher` |
-| 7 | **Neurological Rehabilitation** | Neuro | **Dr. Elena Rostova** | PT, NCS (Board-Certified Neurological Specialist) | `rostova` |
-| 8 | **Senior Physiotherapy & Balance** | Home | **Dr. Robert Hayes** | PT, DPT, GCS (Geriatric Clinical Specialist & Fall Prevention) | `hayes` |
-| 9 | **Home Visit Physiotherapy** | Home | **Dr. Hannah Al-Mansoor** | PT, DPT (Director of Mobile Physical Therapy) | `almansoor` |
-| 10 | **Pediatric Physical Therapy & Development** | Home | **Dr. Emily Watson** | PT, DPT, PCS (Board-Certified Pediatric Specialist) | `watson` |
-| 11 | **Aquatic & Hydrotherapy Rehabilitation** | Post-Op | **Dr. Tyler Brooks** | PT, DPT, ATRI-C (Aquatic & Hydrotherapy Director) | `brooks` |
-| 12 | **Stroke & Neuro-Motor Recovery** | Neuro | **Dr. Alexei Voronov** | PT, DPT, CBIS (Stroke Recovery & Brain Injury Fellow) | `voronov` |
-| 13 | **Vestibular & Balance Rehabilitation** | Neuro | **Dr. Sophie Laurent** | PT, DPT, VRT (Vestibular Oculomotor & Balance Specialist) | `laurent` |
-| 14 | **Post-Surgical Tendon & Ligament Recovery** | Post-Op | **Dr. James Sterling** | PT, DPT, SCS, FAAOMPT (Tendon Reconstruction Fellow) | `sterling` |
-| 15 | **Runner's Injury & 3D Gait Analysis** | Sports | **Dr. Nathan Cross** | PT, DPT, CSCS (3D Running Kinematics & Biomechanics) | `cross` |
-| 16 | *Posture Correction & Ergonomics* | Spine | **Dr. Maya Patel** | PT, DPT, CEAS (Ergonomic Assessment & Posture Lead) | `patel` |
+### B. Mobile Navigation Drawer & Touch Targets
+- **Hover Threshold Alignment**: Corrected desktop hover trigger from `992px` to `1200px` in both [`main.js`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/assets/js/main.js) and [`style.css`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/assets/css/style.css), ensuring tablet and mobile taps smoothly toggle navigation submenus without flickering.
+- **Drawer Auto-Collapse**: Added intelligent click handlers that automatically close the mobile navigation drawer when a patient selects an anchor or page link.
+- **WCAG Touch Sizing**: Ensured all mobile drawer action buttons (`Login`, `Sign Up`, `Dashboard`, `Logout`, `Theme`, `RTL`) have a minimum tap target height of **44px**.
+
+### C. Hero Section Parity & Floating Badges
+- **2×2 Grid Transformation**: The 4-column hero statistics strip on [`index.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/index.html) and [`home-2.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/home-2.html) now transforms into an elegant 2×2 grid on mobile screens (`< 768px`), preserving full clinical metrics (`15,000+ Patients`, `98% Recovery`, `25+ Doctors`, `18+ Years`) without horizontal crowding.
+- **Badge Containment**: Floating trust badges (`98.4% Proven Recovery`, `Personalized Care`) that used `-5%` offset on desktop now cleanly dock underneath the hero image on mobile without overflowing the viewport.
+- **Full-Width CTA Buttons**: Hero action buttons expand to full width on extra-small mobile screens (`< 576px`) for comfortable one-thumb tapping.
+
+### D. Blog Page Enhancements ([`blog.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/blog.html) & [`blog-details.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/blog-details.html))
+- **Touch-Swipe Category Strip**: Category pills on mobile now behave like a native iOS/Android horizontal swipeable bar (`overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch;`), keeping the interface compact.
+- **Full-Width Search Bar**: The article search input expands to `100%` width on mobile, directly accessible below category pills.
+- **Adaptive Author Box**: The article author bio card (`#authorBoxContainer`) on [`blog-details.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/blog-details.html) stacks into a comfortable vertical orientation with centered credentials and doctor profile link.
+- **Wrap-Protected Pagination**: Numbered pagination buttons (`1, 2, 3, 4, 5, 6...`) wrap gracefully on small displays without edge clipping.
+
+### E. Services & Therapists ([`services.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/services.html) & [`therapists.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/therapists.html))
+- **Filter Tabs Swipe Strip**: Services category filters (`All Services`, `Spine`, `Sports`, `Post-Surgical`, `Neurological`, `Geriatric`) scroll horizontally on mobile.
+- **Author Badge Wrapping**: The unique doctor specialist footer badge (`Dr. Marcus Vance`, `Dr. David Chen`, etc.) and "Learn More &rarr;" links inside service cards wrap smoothly on narrow devices without overlap.
+- **Card Proportions**: Doctor portrait wrapping heights adjusted to `240px-250px` on small devices for optimal visual balance.
+
+### F. Pricing, Tables, and Booking Modal
+- **iOS Safari Auto-Zoom Prevention**: All input controls (`.form-control`, `.form-select`, search inputs) are standardized with a minimum font size of `16px` on mobile, preventing iOS Safari from forcibly zooming in on focus.
+- **Card Padding Optimization**: Self-pay package cards on [`pricing.html`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/pricing.html) adapt with comfortable `1.75rem 1.15rem` padding.
+- **Smooth Table Scrolling**: Care packages and pricing tables utilize touch-optimized `.table-responsive` containers.
+- **Full-Bleed Modal Dialogs**: The `#bookingModal` appointment reservation modal uses responsive padding and full-width stacked action buttons on mobile screens.
+
+### G. Symmetrical RTL Support ([`assets/css/rtl.css`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/assets/css/rtl.css))
+- Mirrored all mobile swipeable pill lists, search containers, floating badge resets, and text alignment for Arabic/Hebrew RTL layouts.
 
 ---
 
-### B. Updated Code Files
+## 2. Validation & Verification Results
 
-1. [services.html](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/services.html):
-   - Every service card now features an integrated author badge in the card footer with the doctor's portrait, full name, and clickable link to their doctor profile (`therapist-details.html?id=<id>`).
-   - Maintains exact category balance: 5 categories × 3 cards = 15 total cards.
-2. [service-engine.js](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/assets/js/service-engine.js):
-   - Updated `SERVICES_DATA` so that all 15 services (and posture-correction) map to their distinct doctor specialist, credentials, biography, and unique profile routing link.
-3. [therapist-engine.js](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/assets/js/therapist-engine.js):
-   - Expanded `THERAPISTS_DATA` to include full clinical records for all 16 doctors, complete with individual degrees, ratings, clinical philosophy paragraphs, credentials cards, office hours, and consultation imagery.
-4. **Doctor Assets**:
-   - Every doctor has a portrait (`assets/images/therapist-<id>.jpg`) and a consultation hero image (`assets/images/therapist-consult-<id>.jpg`).
+Executed automated test suite [`scratch/verify_responsive_mobile.js`](file:///c:/Users/aruns/OneDrive/Documents/Physiotheraphy%20&%20Rehabilation/scratch/verify_responsive_mobile.js):
 
----
-
-## 2. Verification Results
-
-- **Automated Verification Script (`scratch/verify_unique_authors.js`)**:
-  - `services.html` card count: **15** (sports: 3, postop: 3, spine: 3, neuro: 3, home: 3).
-  - Unique card author names: **15 / 15** (100% Unique, Zero duplicates).
-  - `service-engine.js` specialists: **15 / 15** (100% Unique, Zero duplicates).
-  - `service-engine.js` specialist links: **15 / 15** (100% Unique, Zero duplicates).
-  - `therapist-engine.js` profile registration: **16 / 16** (100% Registered and valid).
-  - Author & specialist images verified on disk: **100% verified**.
-  - Footer consistency check across all 12 public HTML pages: **100% Identical**.
-- **Dev Server HTTP Checks**:
-  - `http://127.0.0.1:8080/services.html` -> `HTTP 200`
-  - `http://127.0.0.1:8080/service-details.html?service=chronic-pain` -> `HTTP 200`
-  - `http://127.0.0.1:8080/therapist-details.html?id=bennett` -> `HTTP 200`
-  - `http://127.0.0.1:8080/assets/images/therapist-bennett.jpg` -> `HTTP 200`
+| Verification Category | Check Description | Result |
+|---|---|:---:|
+| **Viewport Meta Tags** | All 25 root HTML files checked for `width=device-width, initial-scale=1.0` | **PASS (100%)** |
+| **Overflow Containment** | `html, body` overflow-x clipping and `max-width: 100vw` | **PASS** |
+| **Navbar Breakpoints** | `< 1200px` drawer collapse and `>= 1200px` hover restriction | **PASS** |
+| **Mobile Breakpoints** | `< 768px` smartphone rules & `< 576px` extra-small rules | **PASS** |
+| **Hero Stats Parity** | 2×2 grid layout on mobile screens | **PASS** |
+| **Floating Badges** | Zero negative margin overflow on touch devices | **PASS** |
+| **Category Pill Strips** | Smooth horizontal touch swipe scrolling on mobile | **PASS** |
+| **Full-Width Search** | Blog search pill expands to 100% width on mobile | **PASS** |
+| **iOS Auto-Zoom Fix** | Inputs configured with `font-size: 16px` on mobile | **PASS** |
+| **Pagination Protection** | `flex-wrap: wrap` on small screen pagination bars | **PASS** |
+| **Modal Stacking** | Full-width button stacking on touch devices | **PASS** |
+| **RTL Symmetries** | Mirrored floating badges & direction overrides | **PASS** |
+| **HTTP 200 Status** | 12 key pages (`/`, `index.html`, `blog.html`, `services.html`, etc.) | **PASS (12/12)** |

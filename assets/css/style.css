@@ -18,6 +18,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: clip;
 }
 
 [dir="ltr"] {
@@ -35,7 +36,8 @@ body {
   background-color: var(--bg-body);
   color: var(--text-main);
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100vw;
   transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -323,7 +325,7 @@ img {
   animation: fadeInDown 0.15s ease-out;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .navbar-nav .nav-item.dropdown {
     position: relative;
   }
@@ -644,6 +646,20 @@ img {
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
+  }
+
+  .mobile-nav-actions .btn-nav-login,
+  .mobile-nav-actions .btn-nav-signup,
+  .mobile-nav-actions .btn-nav-dashboard,
+  .mobile-nav-actions .btn-nav-logout,
+  .mobile-nav-controls .theme-toggle-btn,
+  .mobile-nav-controls .rtl-toggle-btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-weight: 600;
   }
 }
 
@@ -2688,4 +2704,275 @@ img {
 [data-bs-theme="dark"] .oauth-toast-icon {
   background-color: var(--bg-surface-alt, #1e293b);
   border-color: var(--border-color, #273449);
+}
+
+/* ==========================================================================
+   Comprehensive Mobile Responsiveness & Multi-Device Parity System
+   Breakpoints: 
+     - Large screens & laptops: >= 992px / >= 1200px
+     - Tablets: 768px - 991.98px
+     - Mobile devices: <= 767.98px
+     - Small mobile phones: <= 575.98px
+   ========================================================================== */
+
+/* Tablet & Mobile Shared Optimizations (< 992px) */
+@media (max-width: 991.98px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+  .section-padding-sm {
+    padding: 40px 0;
+  }
+  .section-title {
+    margin-bottom: 2.5rem;
+  }
+  .hero-section {
+    padding: 60px 0 50px;
+  }
+}
+
+/* Smartphone Layout & Touch Optimization (< 768px) */
+@media (max-width: 767.98px) {
+  /* 1. Global Viewport & Spacing */
+  .section-padding {
+    padding: 48px 0;
+  }
+  .section-padding-sm {
+    padding: 32px 0;
+  }
+  .section-title {
+    margin-bottom: 2rem;
+  }
+  .container {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  /* 2. Fluid Heading System */
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    margin-bottom: 1.15rem;
+  }
+  .display-5 {
+    font-size: clamp(1.75rem, 5.5vw, 2.25rem) !important;
+  }
+  h1, .h1 {
+    font-size: clamp(1.75rem, 5.5vw, 2.15rem);
+  }
+  h2, .h2 {
+    font-size: clamp(1.45rem, 4.8vw, 1.85rem);
+  }
+  h3, .h3 {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
+
+  /* 3. Hero Section Parity & Floating Badges */
+  .hero-section {
+    padding: 45px 0 40px;
+    text-align: left;
+  }
+  .hero-lead {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+  .hero-stats-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem 1rem !important;
+    margin-top: 1.75rem !important;
+    padding-top: 1.25rem !important;
+  }
+  .hero-stat-item h3 {
+    font-size: 1.75rem;
+  }
+  .hero-stat-item p {
+    font-size: 0.78rem;
+  }
+  .hero-image-wrapper {
+    margin-top: 1.5rem;
+  }
+  .floating-badge {
+    position: static !important;
+    inset: auto !important;
+    margin-top: 0.75rem !important;
+    width: 100% !important;
+    animation: none !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+
+  /* 4. Page Header Banners */
+  .page-header-banner {
+    padding: 3.25rem 0 2.5rem;
+  }
+  .page-header-banner h1,
+  .page-header-banner .banner-title {
+    font-size: clamp(1.65rem, 5.5vw, 2.2rem) !important;
+  }
+  .page-header-banner .lead,
+  .page-header-banner .banner-subtitle {
+    font-size: clamp(0.92rem, 3.4vw, 1.05rem) !important;
+  }
+
+  /* 5. Blog Page Filters & Full-Width Search */
+  .blog-filters-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .category-pills-list {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    width: 100% !important;
+  }
+  .category-pill {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 1.05rem !important;
+    font-size: 0.84rem !important;
+    min-height: 40px !important;
+  }
+  .blog-search-pill-wrap {
+    width: 100% !important;
+  }
+  .blog-search-pill {
+    padding: 0.45rem 1rem !important;
+  }
+  .blog-card-ref .card-img-container {
+    height: 195px !important;
+  }
+  .blog-card-ref .card-body-ref {
+    padding: 1.15rem !important;
+  }
+
+  /* 6. Blog Details Author Box */
+  #authorBoxContainer {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 1.25rem !important;
+    gap: 1rem !important;
+  }
+  #authorBoxContainer .flex-shrink-0 {
+    margin: 0 auto !important;
+  }
+
+  /* 7. Services Page Filter Tabs & Author Badges */
+  .filter-btn-group {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 0.6rem !important;
+    margin-bottom: 1.5rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    width: 100% !important;
+  }
+  .filter-btn {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 1.15rem !important;
+    font-size: 0.84rem !important;
+    min-height: 40px !important;
+  }
+  .service-card {
+    padding: 1.4rem !important;
+  }
+  .service-author-footer {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+
+  /* 8. Therapists & Doctor Profile Cards */
+  .therapist-img-wrap {
+    height: 250px !important;
+  }
+  #therapistProfileImg {
+    max-height: 320px !important;
+  }
+  #therapistHeroImg {
+    max-height: 220px !important;
+  }
+
+  /* 9. Form Controls iOS Auto-Zoom Prevention */
+  .form-control,
+  .form-select,
+  .blog-search-pill input {
+    font-size: 16px !important; /* Prevents iOS Safari 100%+ auto-zoom */
+  }
+
+  /* 10. Tables Multi-Device Styling */
+  .table-responsive {
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-color) !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .table-custom th,
+  .table-custom td {
+    padding: 0.75rem 0.9rem !important;
+    font-size: 0.88rem !important;
+    white-space: nowrap !important;
+  }
+  .table-custom td:nth-child(3) {
+    white-space: normal !important;
+    min-width: 180px !important;
+  }
+}
+
+/* Extra Small Mobile Screens (< 576px) */
+@media (max-width: 575.98px) {
+  /* Hero Action Buttons Full Width */
+  .hero-section .d-flex.flex-wrap.gap-3 {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  .hero-section .d-flex.flex-wrap.gap-3 .btn {
+    width: 100% !important;
+  }
+
+  /* Pricing Cards Padding */
+  .pricing-card {
+    padding: 1.75rem 1.15rem !important;
+  }
+  .pricing-price {
+    font-size: 2.3rem !important;
+  }
+  .pricing-features li {
+    font-size: 0.86rem !important;
+  }
+
+  /* Blog Pagination Controls */
+  .blog-pagination-ref .pagination {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+  }
+  .blog-pagination-ref .page-item .page-link {
+    min-width: 36px !important;
+    height: 36px !important;
+    font-size: 0.82rem !important;
+    padding: 0 0.55rem !important;
+  }
+
+  /* Booking & General Modal Full-Bleed Dialog */
+  .modal-dialog {
+    margin: 0.5rem !important;
+  }
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem 1.15rem !important;
+  }
+  .modal-footer {
+    flex-direction: column-reverse !important;
+    gap: 0.6rem !important;
+  }
+  .modal-footer .btn {
+    width: 100% !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+  }
 }

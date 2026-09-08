@@ -130,16 +130,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      // Desktop hover support
+      // Desktop hover support (>= 1200px where navbar is expanded)
       dropdown.addEventListener('mouseenter', function () {
-        if (window.innerWidth >= 992) {
+        if (window.innerWidth >= 1200) {
           menu.classList.add('show');
           toggleBtn.setAttribute('aria-expanded', 'true');
         }
       });
 
       dropdown.addEventListener('mouseleave', function () {
-        if (window.innerWidth >= 992) {
+        if (window.innerWidth >= 1200) {
           menu.classList.remove('show');
           toggleBtn.setAttribute('aria-expanded', 'false');
         }
@@ -155,6 +155,18 @@ document.addEventListener('DOMContentLoaded', function () {
           if (toggle) toggle.setAttribute('aria-expanded', 'false');
         });
       }
+    });
+
+    // Auto-close mobile navbar when clicking nav-link (non-dropdown)
+    const mobileNavLinks = document.querySelectorAll('#navbarMain .nav-link:not(.dropdown-toggle), #navbarMain .dropdown-item');
+    const navbarCollapseEl = document.getElementById('navbarMain');
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener('click', function () {
+        if (window.innerWidth < 1200 && navbarCollapseEl && navbarCollapseEl.classList.contains('show') && typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+          const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapseEl) || new bootstrap.Collapse(navbarCollapseEl, { toggle: false });
+          bsCollapse.hide();
+        }
+      });
     });
   }
 

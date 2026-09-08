@@ -217,3 +217,30 @@
   left: auto;
   right: -5%;
 }
+
+/* RTL Mobile Overrides */
+@media (max-width: 767.98px) {
+  [dir="rtl"] .floating-badge {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-top: 0.75rem !important;
+    width: 100% !important;
+    animation: none !important;
+  }
+
+  [dir="rtl"] .hero-section {
+    text-align: right !important;
+  }
+
+  [dir="rtl"] .category-pills-list,
+  [dir="rtl"] .filter-btn-group {
+    direction: rtl !important;
+  }
+
+  [dir="rtl"] #authorBoxContainer {
+    text-align: center !important;
+  }
+}
+
