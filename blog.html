@@ -136,13 +136,15 @@
 
         <!-- Pill Search Bar (Right) -->
         <div class="blog-search-pill-wrap">
-          <div class="blog-search-pill">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="blogSearchInput" placeholder="Search articles..." aria-label="Search articles">
+          <form class="blog-search-pill" id="blogSearchForm" role="search" onsubmit="event.preventDefault();">
+            <button type="button" class="border-0 bg-transparent p-0 me-2 text-muted" id="blogSearchIconBtn" aria-label="Search articles" title="Search articles">
+              <i class="fas fa-search search-icon m-0"></i>
+            </button>
+            <input type="text" id="blogSearchInput" placeholder="Search topics or articles..." aria-label="Search topics or articles" autocomplete="off">
             <button class="clear-search-btn d-none" type="button" id="clearBlogSearchBtn" title="Clear search" aria-label="Clear search">
               <i class="fas fa-times"></i>
             </button>
-          </div>
+          </form>
         </div>
       </div>
 

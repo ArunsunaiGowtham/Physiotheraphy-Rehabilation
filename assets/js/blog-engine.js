@@ -1063,6 +1063,14 @@
       }
       return ALL_ARTICLES.filter(a => a.slug !== (art ? art.slug : slug)).slice(0, limit);
     },
+    searchArticles: function (query, limit = 5) {
+      if (!query) return [];
+      const q = query.toLowerCase().trim();
+      return ALL_ARTICLES.filter(art => {
+        const fullText = (art.title + ' ' + art.description + ' ' + art.category + ' ' + art.tags).toLowerCase();
+        return fullText.includes(q);
+      }).slice(0, limit);
+    },
     getAuthorTherapistId: function (authorOrArticle) {
       return getAuthorTherapistId(authorOrArticle);
     }
@@ -1373,6 +1381,34 @@
         currentPage = 1;
         filterBlog();
       });
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const target = document.getElementById('blogGridContainer') || document.getElementById('blogSearchInput');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    const blogSearchForm = document.getElementById('blogSearchForm');
+    if (blogSearchForm) {
+      blogSearchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('blogGridContainer') || document.getElementById('blogSearchInput');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    const searchIconBtn = document.getElementById('blogSearchIconBtn') || document.querySelector('.blog-search-pill .search-icon');
+    if (searchIconBtn) {
+      searchIconBtn.style.cursor = 'pointer';
+      searchIconBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.focus();
+          const target = document.getElementById('blogGridContainer') || document.getElementById('blogSearchInput');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     }
 
     if (clearSearchBtn) {
@@ -1478,9 +1514,45 @@
       }
     });
 
+    // Read and apply URL Search Parameters (e.g., ?q=knee or ?category=sports-injuries)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlQuery = urlParams.get('q') || urlParams.get('search') || urlParams.get('topic') || urlParams.get('query');
+    const urlCategory = urlParams.get('category') || urlParams.get('cat');
+
+    if (urlCategory) {
+      const matchingBtn = Array.from(categoryBtns).find(b => b.getAttribute('data-category') === urlCategory);
+      if (matchingBtn) {
+        categoryBtns.forEach(b => {
+          b.classList.remove('btn-primary', 'active');
+          if (b.classList.contains('filter-btn')) b.classList.add('btn-outline-secondary');
+        });
+        if (matchingBtn.classList.contains('filter-btn')) matchingBtn.classList.remove('btn-outline-secondary');
+        matchingBtn.classList.add('active');
+        if (matchingBtn.classList.contains('filter-btn')) matchingBtn.classList.add('btn-primary');
+        activeCategory = urlCategory;
+      }
+    }
+
+    if (urlQuery && searchInput) {
+      searchInput.value = urlQuery;
+      if (clearSearchBtn) {
+        clearSearchBtn.classList.remove('d-none');
+      }
+    }
+
     // Ensure links are bound on existing DOM cards and perform initial render
     updateStaticCardLinks();
     filterBlog();
+
+    // Smoothly scroll to results if opened with query parameters
+    if (urlQuery || (urlCategory && urlCategory !== 'all')) {
+      setTimeout(() => {
+        const scrollTarget = document.getElementById('blogSearchInput') || document.getElementById('blogGridContainer');
+        if (scrollTarget) {
+          scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 150);
+    }
   }
 
   // =========================================================================
@@ -1645,6 +1717,131 @@
         }
       } catch (e) {}
     }
+
+    // 12. Setup Sidebar "Search Blog" / "Search Topics" Widget
+    setupBlogDetailsSearchWidget();
+  }
+
+  /**
+   * Setup Interactive Search Widget on blog-details.html sidebar
+   */
+  function setupBlogDetailsSearchWidget() {
+    const detailsSearchForm = document.getElementById('blogDetailsSearchForm');
+    const detailsSearchInput = document.getElementById('blogSearchInput');
+    const detailsSearchBtn = document.getElementById('blogSearchBtn');
+    const suggestionsBox = document.getElementById('blogSearchSuggestions');
+
+    function executeTopicSearch() {
+      const q = detailsSearchInput ? detailsSearchInput.value.trim() : '';
+      if (q) {
+        window.location.href = 'blog.html?q=' + encodeURIComponent(q);
+      } else {
+        window.location.href = 'blog.html';
+      }
+    }
+
+    window.PhysioLifeBlog.submitSearch = executeTopicSearch;
+
+    if (detailsSearchForm) {
+      detailsSearchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        executeTopicSearch();
+      });
+    }
+
+    if (detailsSearchBtn) {
+      detailsSearchBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        executeTopicSearch();
+      });
+    }
+
+    if (detailsSearchInput) {
+      detailsSearchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          executeTopicSearch();
+        } else if (e.key === 'Escape') {
+          if (suggestionsBox) suggestionsBox.classList.add('d-none');
+        }
+      });
+
+      // Live search suggestions popup
+      let debounceTimer = null;
+      detailsSearchInput.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        const val = this.value.trim().toLowerCase();
+        if (!suggestionsBox) return;
+
+        if (val.length < 2) {
+          suggestionsBox.classList.add('d-none');
+          suggestionsBox.innerHTML = '';
+          return;
+        }
+
+        debounceTimer = setTimeout(() => {
+          const matches = ALL_ARTICLES.filter(art => {
+            const fullText = (art.title + ' ' + art.description + ' ' + art.category + ' ' + art.tags).toLowerCase();
+            return fullText.includes(val);
+          }).slice(0, 4);
+
+          if (matches.length === 0) {
+            suggestionsBox.innerHTML = `
+              <div class="p-3 text-center text-muted small">
+                No topics found matching "<strong>${escapeHtml(val)}</strong>".
+                <a href="blog.html?q=${encodeURIComponent(val)}" class="d-block mt-2 text-primary fw-semibold">Search all on Blog &rarr;</a>
+              </div>
+            `;
+            suggestionsBox.classList.remove('d-none');
+            return;
+          }
+
+          suggestionsBox.innerHTML = `
+            <div class="blog-suggestions-list">
+              ${matches.map(m => `
+                <a href="blog-details.html?slug=${m.slug}" class="blog-search-suggestion-item">
+                  <img src="${m.image}" alt="${escapeHtml(m.title)}" class="blog-search-suggestion-img">
+                  <div class="flex-grow-1 overflow-hidden">
+                    <span class="badge bg-surface-alt text-muted" style="font-size: 0.7rem;">${m.category}</span>
+                    <div class="blog-search-suggestion-title text-truncate">${highlightMatch(m.title, val)}</div>
+                    <span class="blog-search-suggestion-meta"><i class="far fa-clock me-1"></i>${m.readingTime}</span>
+                  </div>
+                </a>
+              `).join('')}
+            </div>
+            <a href="blog.html?q=${encodeURIComponent(val)}" class="blog-search-view-all">
+              View all matching topics on blog &rarr;
+            </a>
+          `;
+          suggestionsBox.classList.remove('d-none');
+        }, 120);
+      });
+
+      // Close suggestions on outside click
+      document.addEventListener('click', function (e) {
+        if (suggestionsBox && !suggestionsBox.contains(e.target) && e.target !== detailsSearchInput && e.target !== detailsSearchBtn) {
+          suggestionsBox.classList.add('d-none');
+        }
+      });
+    }
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function highlightMatch(text, query) {
+    if (!query) return escapeHtml(text);
+    const escapedText = escapeHtml(text);
+    const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp('(' + safeQuery + ')', 'gi');
+    return escapedText.replace(regex, '<mark class="p-0 bg-warning-subtle fw-bold">$1</mark>');
   }
 
   // Expose init methods

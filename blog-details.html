@@ -214,9 +214,16 @@
           <!-- Search Widget -->
           <div class="sidebar-widget">
             <h5 class="widget-title">Search Blog</h5>
-            <div class="input-group">
-              <input type="text" id="blogSearchInput" class="form-control" placeholder="Search topics...">
-              <button class="btn btn-primary" type="button" onclick="const q = document.getElementById('blogSearchInput').value.trim(); if(q) window.location.href='blog.html?q=' + encodeURIComponent(q);"><i class="fas fa-search"></i></button>
+            <div class="position-relative">
+              <form id="blogDetailsSearchForm" class="input-group" role="search" onsubmit="event.preventDefault(); const q = document.getElementById('blogSearchInput').value.trim(); window.location.href = q ? ('blog.html?q=' + encodeURIComponent(q)) : 'blog.html';">
+                <input type="text" id="blogSearchInput" class="form-control" placeholder="Search topics..." aria-label="Search topics" autocomplete="off">
+                <button class="btn btn-primary d-inline-flex align-items-center justify-content-center" id="blogSearchBtn" type="submit" aria-label="Search topics" title="Search topics" style="min-width: 48px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                  </svg>
+                </button>
+              </form>
+              <div id="blogSearchSuggestions" class="blog-search-suggestions shadow-lg d-none"></div>
             </div>
           </div>
 
@@ -233,23 +240,23 @@
             <h5 class="widget-title">Categories</h5>
             <ul class="list-unstyled mb-0">
               <li class="py-2 border-bottom border-subtle d-flex justify-content-between">
-                <a href="blog.html" class="text-main">Spine &amp; Neck Care</a>
+                <a href="blog.html?category=spine-care" class="text-main">Spine &amp; Neck Care</a>
                 <span class="badge bg-surface-alt text-muted">14</span>
               </li>
               <li class="py-2 border-bottom border-subtle d-flex justify-content-between">
-                <a href="blog.html" class="text-main">Sports Rehabilitation</a>
+                <a href="blog.html?category=sports-injuries" class="text-main">Sports Rehabilitation</a>
                 <span class="badge bg-surface-alt text-muted">9</span>
               </li>
               <li class="py-2 border-bottom border-subtle d-flex justify-content-between">
-                <a href="blog.html" class="text-main">Post-Surgery Advice</a>
+                <a href="blog.html?category=post-op-rehab" class="text-main">Post-Surgery Advice</a>
                 <span class="badge bg-surface-alt text-muted">7</span>
               </li>
               <li class="py-2 border-bottom border-subtle d-flex justify-content-between">
-                <a href="blog.html" class="text-main">Ergonomics &amp; Posture</a>
+                <a href="blog.html?category=ergonomics" class="text-main">Ergonomics &amp; Posture</a>
                 <span class="badge bg-surface-alt text-muted">11</span>
               </li>
               <li class="pt-2 d-flex justify-content-between">
-                <a href="blog.html" class="text-main">Patient Stories</a>
+                <a href="blog.html?category=all" class="text-main">Patient Stories</a>
                 <span class="badge bg-surface-alt text-muted">5</span>
               </li>
             </ul>
