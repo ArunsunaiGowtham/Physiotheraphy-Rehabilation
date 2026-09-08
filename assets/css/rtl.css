@@ -166,8 +166,32 @@
   left: 0;
 }
 
+[dir="rtl"] .navbar-brand {
+  margin-right: 0 !important;
+  margin-left: 1rem !important;
+}
+
 [dir="rtl"] .navbar-nav {
   padding-right: 0;
+}
+
+[dir="rtl"] .mobile-nav-controls {
+  direction: rtl !important;
+}
+
+[dir="rtl"] .mobile-nav-controls .theme-toggle-btn,
+[dir="rtl"] .mobile-nav-controls .rtl-toggle-btn,
+[dir="rtl"] .mobile-nav-actions .btn-nav-login,
+[dir="rtl"] .mobile-nav-actions .btn-nav-signup,
+[dir="rtl"] .mobile-nav-actions .btn-nav-dashboard,
+[dir="rtl"] .mobile-nav-actions .btn-nav-logout {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+[dir="rtl"] .btn-topbar-back i,
+[dir="rtl"] #backToWebsiteBtn i {
+  transform: scaleX(-1);
 }
 
 /* ==========================================================================

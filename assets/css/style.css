@@ -353,6 +353,7 @@ img {
     box-shadow: none;
     border: 1px solid var(--border-subtle);
     margin: 0.35rem 0.5rem 0.5rem 1rem;
+    margin-inline: 1rem 0.5rem;
     background-color: var(--bg-surface-alt);
   }
 
@@ -603,7 +604,6 @@ img {
     padding: 0.45rem 0.65rem !important;
     font-size: 0.88rem;
   }
-}
 
   .navbar-actions {
     gap: 0.35rem;
@@ -623,6 +623,7 @@ img {
     font-size: 0.78rem;
   }
 }
+
 
 @media (max-width: 1199.98px) {
   .navbar-collapse {
@@ -650,28 +651,59 @@ img {
     padding-top: 1.15rem;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.75rem;
+    width: 100%;
   }
 
   .mobile-nav-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
+    display: flex !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    align-items: stretch !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .mobile-nav-controls .theme-toggle-btn,
+  .mobile-nav-controls .rtl-toggle-btn {
+    flex: 1 1 0% !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.65rem 1rem !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-full) !important;
+    gap: 0.45rem !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    text-align: center !important;
   }
 
   .mobile-nav-actions .btn-nav-login,
   .mobile-nav-actions .btn-nav-signup,
   .mobile-nav-actions .btn-nav-dashboard,
-  .mobile-nav-actions .btn-nav-logout,
-  .mobile-nav-controls .theme-toggle-btn,
-  .mobile-nav-controls .rtl-toggle-btn {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 1rem;
-    font-weight: 600;
+  .mobile-nav-actions .btn-nav-logout {
+    flex: 1 1 0% !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.65rem 1rem !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-full) !important;
+    gap: 0.45rem !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    text-align: center !important;
   }
 }
 
