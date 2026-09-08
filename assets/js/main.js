@@ -4,7 +4,7 @@
  * Version: 1.0.0
  */
 
-document.addEventListener('DOMContentLoaded', function () {
+function initMain() {
   'use strict';
 
   /* ==========================================================================
@@ -106,41 +106,21 @@ document.addEventListener('DOMContentLoaded', function () {
       const menu = dropdown.querySelector('.dropdown-menu');
       if (!toggleBtn || !menu) return;
 
-      // Click handler to toggle dropdown without page reload
-      toggleBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const isOpen = menu.classList.contains('show');
-
-        // Close any other open dropdowns
-        document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach((m) => {
-          if (m !== menu) {
-            m.classList.remove('show');
-            const otherToggle = m.closest('.dropdown')?.querySelector('.dropdown-toggle');
-            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-
-        if (isOpen) {
-          menu.classList.remove('show');
-          toggleBtn.setAttribute('aria-expanded', 'false');
-        } else {
-          menu.classList.add('show');
-          toggleBtn.setAttribute('aria-expanded', 'true');
-        }
-      });
-
       // Desktop hover support (>= 1200px where navbar is expanded)
       dropdown.addEventListener('mouseenter', function () {
         if (window.innerWidth >= 1200) {
+          dropdown.classList.add('show');
           menu.classList.add('show');
+          toggleBtn.classList.add('show');
           toggleBtn.setAttribute('aria-expanded', 'true');
         }
       });
 
       dropdown.addEventListener('mouseleave', function () {
         if (window.innerWidth >= 1200) {
+          dropdown.classList.remove('show');
           menu.classList.remove('show');
+          toggleBtn.classList.remove('show');
           toggleBtn.setAttribute('aria-expanded', 'false');
         }
       });
@@ -149,10 +129,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Close dropdown on click outside
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.navbar-nav .dropdown')) {
-        document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach((menu) => {
-          menu.classList.remove('show');
-          const toggle = menu.closest('.dropdown')?.querySelector('.dropdown-toggle');
-          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.navbar-nav .dropdown').forEach((d) => {
+          d.classList.remove('show');
+          d.querySelector('.dropdown-menu')?.classList.remove('show');
+          const toggle = d.querySelector('.dropdown-toggle');
+          if (toggle) {
+            toggle.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
         });
       }
     });
@@ -423,5 +407,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   initSocialLinks();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMain);
+} else {
+  initMain();
+}
 
