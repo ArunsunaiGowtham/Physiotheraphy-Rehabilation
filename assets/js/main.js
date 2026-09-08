@@ -26,10 +26,14 @@ function initMain() {
     }
 
     const isAdmin = (user.role === 'admin');
-    const targetDashboard = isAdmin ? 'admin/dashboard.html' : 'patient/dashboard.html';
+    const isSubdir = window.location.pathname.includes('/patient/') || window.location.pathname.includes('/admin/');
+    const targetDashboard = isAdmin
+      ? (isSubdir ? '../admin/dashboard.html' : 'admin/dashboard.html')
+      : (isSubdir ? '../patient/dashboard.html' : 'patient/dashboard.html');
     const roleLabel = isAdmin ? 'Admin Dashboard' : 'Dashboard';
+    const shortLabel = isAdmin ? 'Admin' : 'Dashboard';
 
-    // 1. Desktop Navbar Actions
+    // 1. Desktop Navbar Actions (>= 1200px)
     const desktopActions = document.querySelector('.navbar-actions');
     if (desktopActions) {
       const loginBtn = desktopActions.querySelector('.btn-nav-login');
@@ -61,36 +65,45 @@ function initMain() {
       }
     }
 
-    // 2. Mobile Drawer Actions
-    const mobileActionGroup = document.querySelector('.mobile-nav-actions .d-flex.gap-2');
-    if (mobileActionGroup) {
-      const mobileLoginBtn = mobileActionGroup.querySelector('.btn-nav-login');
-      const mobileSignupBtn = mobileActionGroup.querySelector('.btn-nav-signup');
+    // 2. Mobile Header Bar (Directly visible beside Hamburger button on mobile screens)
+    const toggler = document.querySelector('.navbar-toggler');
+    if (toggler && !document.getElementById('mobileHeaderDashboardBtn')) {
+      const mobileHeaderDash = document.createElement('a');
+      mobileHeaderDash.href = targetDashboard;
+      mobileHeaderDash.id = 'mobileHeaderDashboardBtn';
+      mobileHeaderDash.className = 'btn-nav-dashboard-header d-xl-none';
+      mobileHeaderDash.title = `Go to ${roleLabel}`;
+      mobileHeaderDash.innerHTML = `<i class="fas fa-th-large"></i> <span class="d-none d-sm-inline">${shortLabel}</span>`;
+      toggler.parentNode.insertBefore(mobileHeaderDash, toggler);
+    }
 
-      if (mobileLoginBtn) {
-        mobileLoginBtn.outerHTML = `
-          <a href="${targetDashboard}" class="btn-nav-dashboard flex-fill justify-content-center" id="mobileNavDashboardBtn" title="Go to ${roleLabel}">
-            <i class="fas fa-th-large"></i> <span>${roleLabel}</span>
-          </a>
-        `;
-      }
-      if (mobileSignupBtn) {
-        mobileSignupBtn.outerHTML = `
-          <a href="#" class="btn-nav-logout flex-fill justify-content-center" id="mobileNavLogoutBtn" title="Sign Out">
-            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
-          </a>
-        `;
-      }
+    // 3. Mobile Drawer Actions (< 1200px)
+    const mobileLoginBtn = document.querySelector('.mobile-nav-actions .btn-nav-login');
+    const mobileSignupBtn = document.querySelector('.mobile-nav-actions .btn-nav-signup');
 
-      const mobileLogoutBtn = document.getElementById('mobileNavLogoutBtn');
-      if (mobileLogoutBtn) {
-        mobileLogoutBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          localStorage.removeItem('physiolife_current_user');
-          sessionStorage.removeItem('physiolife_current_user');
-          window.location.reload();
-        });
-      }
+    if (mobileLoginBtn) {
+      mobileLoginBtn.outerHTML = `
+        <a href="${targetDashboard}" class="btn-nav-dashboard flex-fill justify-content-center" id="mobileNavDashboardBtn" title="Go to ${roleLabel}">
+          <i class="fas fa-th-large"></i> <span>${roleLabel}</span>
+        </a>
+      `;
+    }
+    if (mobileSignupBtn) {
+      mobileSignupBtn.outerHTML = `
+        <a href="#" class="btn-nav-logout flex-fill justify-content-center" id="mobileNavLogoutBtn" title="Sign Out">
+          <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+        </a>
+      `;
+    }
+
+    const mobileLogoutBtn = document.getElementById('mobileNavLogoutBtn');
+    if (mobileLogoutBtn) {
+      mobileLogoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('physiolife_current_user');
+        sessionStorage.removeItem('physiolife_current_user');
+        window.location.reload();
+      });
     }
   }
 
