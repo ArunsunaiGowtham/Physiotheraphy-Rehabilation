@@ -978,7 +978,8 @@ img {
 
 .therapist-img-wrap {
   position: relative;
-  height: 280px;
+  width: 100%;
+  aspect-ratio: 1.18 / 1;
   overflow: hidden;
   background-color: var(--bg-surface-alt);
 }
@@ -987,6 +988,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 10%;
   transition: transform 0.5s ease;
 }
 
@@ -3016,7 +3018,14 @@ img {
 
   /* 8. Therapists & Doctor Profile Cards */
   .therapist-img-wrap {
-    height: 250px !important;
+    width: 100% !important;
+    aspect-ratio: 1.18 / 1 !important;
+    height: auto !important;
+  }
+  .therapist-img-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-position: center 10% !important;
   }
   #therapistProfileImg {
     max-height: 320px !important;
