@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+  <!-- Full-bleed squircle for maximum visibility in browser tabs -->
+  <rect width="32" height="32" rx="7" fill="url(#favGrad)"/>
+  <!-- Bold high-contrast white pulse wave -->
+  <path d="M 4,16 L 9,16 L 12,9 L 16,23 L 20,12 L 23,18 L 28,16" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Bright orange apex accent dot -->
+  <circle cx="16" cy="6" r="2.2" fill="#F97316"/>
+</svg>
