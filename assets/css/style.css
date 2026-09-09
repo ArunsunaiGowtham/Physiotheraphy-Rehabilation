@@ -2816,6 +2816,10 @@ img {
   background-image: url('../images/banner-contact.jpg');
 }
 
+.page-banner-legal {
+  background-image: url('../images/banner-insurance.jpg');
+}
+
 @media (max-width: 768px) {
   .page-header-banner {
     padding: 3.5rem 0 3rem;
