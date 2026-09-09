@@ -68,6 +68,24 @@
   color: var(--text-heading);
 }
 
+.sidebar-brand .logo-dark {
+  display: none !important;
+}
+
+.sidebar-brand .logo-light {
+  display: inline-block !important;
+}
+
+[data-bs-theme="dark"] .sidebar-brand .logo-dark,
+[data-theme="dark"] .sidebar-brand .logo-dark {
+  display: inline-block !important;
+}
+
+[data-bs-theme="dark"] .sidebar-brand .logo-light,
+[data-theme="dark"] .sidebar-brand .logo-light {
+  display: none !important;
+}
+
 .sidebar-menu {
   padding: 1.25rem 0.85rem;
   list-style: none;

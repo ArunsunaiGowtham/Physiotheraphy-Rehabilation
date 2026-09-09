@@ -255,22 +255,38 @@ img {
 }
 
 .navbar-brand .logo-dark,
-.auth-brand .logo-dark {
+.auth-brand .logo-dark,
+.sidebar-brand .logo-dark,
+.printable-receipt .logo-dark {
   display: none !important;
 }
 
 .navbar-brand .logo-light,
-.auth-brand .logo-light {
+.auth-brand .logo-light,
+.sidebar-brand .logo-light,
+.printable-receipt .logo-light {
   display: inline-block !important;
 }
 
 [data-bs-theme="dark"] .navbar-brand .logo-dark,
-[data-bs-theme="dark"] .auth-brand .logo-dark {
+[data-bs-theme="dark"] .auth-brand .logo-dark,
+[data-bs-theme="dark"] .sidebar-brand .logo-dark,
+[data-bs-theme="dark"] .printable-receipt .logo-dark,
+[data-theme="dark"] .navbar-brand .logo-dark,
+[data-theme="dark"] .auth-brand .logo-dark,
+[data-theme="dark"] .sidebar-brand .logo-dark,
+[data-theme="dark"] .printable-receipt .logo-dark {
   display: inline-block !important;
 }
 
 [data-bs-theme="dark"] .navbar-brand .logo-light,
-[data-bs-theme="dark"] .auth-brand .logo-light {
+[data-bs-theme="dark"] .auth-brand .logo-light,
+[data-bs-theme="dark"] .sidebar-brand .logo-light,
+[data-bs-theme="dark"] .printable-receipt .logo-light,
+[data-theme="dark"] .navbar-brand .logo-light,
+[data-theme="dark"] .auth-brand .logo-light,
+[data-theme="dark"] .sidebar-brand .logo-light,
+[data-theme="dark"] .printable-receipt .logo-light {
   display: none !important;
 }
 
