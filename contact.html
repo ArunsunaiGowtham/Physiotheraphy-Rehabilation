@@ -252,13 +252,19 @@
               <h5 class="fw-bold mb-1"><i class="fas fa-directions text-primary me-2"></i> Clinic Directions</h5>
               <p class="small text-muted mb-0">Located near Penn Station with designated patient parking.</p>
             </div>
-            <!-- Google Maps Embed Placeholder with high quality SVG Map Graphic -->
-            <div class="position-relative bg-surface-alt p-5 text-center" style="min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <i class="fas fa-map-marked-alt display-4 text-primary mb-3"></i>
-              <h6 class="fw-bold">Interactive Navigation Map</h6>
-              <p class="small text-muted mb-3">742 Evergreen Healthcare Blvd, Suite 400</p>
-              <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
-                <i class="fas fa-external-link-alt me-1"></i> Open in Google Maps
+            <!-- Real Interactive Clinic Map View -->
+            <div class="position-relative overflow-hidden clinic-map-wrapper" style="min-height: 280px;">
+              <a href="https://maps.google.com/?q=Penn+Station+Manhattan+New+York+NY" target="_blank" rel="noopener noreferrer" class="d-block text-decoration-none" title="Open PhysioLife Clinic Location in Google Maps">
+                <img src="assets/images/clinic-map.jpg" alt="PhysioLife Clinic Location Map near Penn Station Manhattan" class="clinic-map-img">
+                <div class="position-absolute bottom-0 start-0 end-0 p-3 text-white d-flex flex-wrap justify-content-between align-items-center gap-2" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.88) 35%, rgba(15, 23, 42, 0.96) 100%); backdrop-filter: blur(4px);">
+                  <div>
+                    <span class="fw-semibold d-block small text-white"><i class="fas fa-map-marker-alt text-danger me-1"></i> 742 Evergreen Healthcare Blvd, Suite 400</span>
+                    <span class="text-white-50" style="font-size: 0.75rem;">Manhattan, NY 10001 (Adjacent to Penn Station)</span>
+                  </div>
+                  <span class="btn btn-sm btn-primary py-1 px-3 d-inline-flex align-items-center gap-1 shadow-sm fw-semibold">
+                    <i class="fas fa-directions" style="font-size: 0.75rem;"></i> Open in Google Maps
+                  </span>
+                </div>
               </a>
             </div>
           </div>
