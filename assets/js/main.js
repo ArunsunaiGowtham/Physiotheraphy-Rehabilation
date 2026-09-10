@@ -233,23 +233,162 @@ function initMain() {
   /* ==========================================================================
      Booking Wizard / Modal Interactivity
      ========================================================================== */
+  function initBookingModalTriggers() {
+    const bookingTriggers = document.querySelectorAll(
+      'button[data-bs-target="#bookingModal"], a[data-bs-target="#bookingModal"], #bookBiomechanicalBtn, #bookAthleticAssessmentBtn'
+    );
+    bookingTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        const modalEl = document.getElementById('bookingModal');
+        if (!modalEl) return;
+
+        // Auto-select sports/biomechanics if triggered from athletic pages/buttons
+        const triggerText = (this.textContent || '').toLowerCase();
+        const triggerId = this.id || '';
+        const isBiomech = triggerText.includes('biomechanical') || triggerText.includes('athletic') || triggerId.includes('Biomechanical');
+        const serviceSelect = modalEl.querySelector('#bookService');
+        if (serviceSelect && isBiomech) {
+          if (serviceSelect.querySelector('option[value="sports"]')) {
+            serviceSelect.value = 'sports';
+          }
+        }
+
+        if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+          const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          bsModal.show();
+        } else {
+          modalEl.classList.add('show');
+          modalEl.style.display = 'block';
+          modalEl.removeAttribute('aria-hidden');
+          modalEl.setAttribute('aria-modal', 'true');
+          modalEl.setAttribute('role', 'dialog');
+          let backdrop = document.querySelector('.modal-backdrop');
+          if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.className = 'modal-backdrop fade show';
+            document.body.appendChild(backdrop);
+            backdrop.addEventListener('click', () => {
+              modalEl.classList.remove('show');
+              modalEl.style.display = 'none';
+              modalEl.setAttribute('aria-hidden', 'true');
+              backdrop.remove();
+              document.body.classList.remove('modal-open');
+            });
+          }
+          document.body.classList.add('modal-open');
+        }
+      });
+    });
+
+    // Handle dismiss buttons
+    document.querySelectorAll('#bookingModal [data-bs-dismiss="modal"]').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const modalEl = document.getElementById('bookingModal');
+        if (modalEl) {
+          if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            bsModal.hide();
+          }
+          modalEl.classList.remove('show');
+          modalEl.style.display = 'none';
+          modalEl.setAttribute('aria-hidden', 'true');
+          modalEl.removeAttribute('aria-modal');
+          document.querySelectorAll('.modal-backdrop').forEach((b) => b.remove());
+          document.body.classList.remove('modal-open');
+          document.body.style.removeProperty('overflow');
+          document.body.style.removeProperty('padding-right');
+        }
+      });
+    });
+  }
+
+  initBookingModalTriggers();
+
   const bookingForm = document.getElementById('appointmentBookingForm');
   if (bookingForm) {
     bookingForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const feedbackDiv = document.getElementById('bookingConfirmationFeedback');
-      if (feedbackDiv) {
+
+      const nameInput = bookingForm.querySelector('#athleteFullName') || bookingForm.querySelector('#bookName') || bookingForm.querySelector('input[type="text"]');
+      const emailInput = bookingForm.querySelector('#athleteEmail') || bookingForm.querySelector('#bookEmail') || bookingForm.querySelector('input[type="email"]');
+      const submitBtn = bookingForm.querySelector('#requestAssessmentBtn') || bookingForm.querySelector('button[type="submit"]');
+
+      const nameVal = (nameInput ? nameInput.value : '').trim();
+      const emailVal = (emailInput ? emailInput.value : '').trim();
+
+      let hasError = false;
+      if (nameInput && !nameVal) {
+        nameInput.classList.add('is-invalid');
+        nameInput.focus();
+        hasError = true;
+      } else if (nameInput) {
+        nameInput.classList.remove('is-invalid');
+      }
+
+      if (emailInput && !hasError) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailVal || !emailPattern.test(emailVal)) {
+          emailInput.classList.add('is-invalid');
+          emailInput.focus();
+          hasError = true;
+        } else {
+          emailInput.classList.remove('is-invalid');
+        }
+      }
+
+      if (hasError) return;
+
+      const origBtnHtml = submitBtn ? submitBtn.innerHTML : '<i class="fas fa-check me-2"></i> Confirm';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Submitting...';
+      }
+
+      let feedbackDiv = document.getElementById('bookingConfirmationFeedback');
+      if (!feedbackDiv) {
+        feedbackDiv = document.createElement('div');
+        feedbackDiv.id = 'bookingConfirmationFeedback';
+        feedbackDiv.className = 'alert alert-success mb-4';
+        feedbackDiv.setAttribute('role', 'alert');
+        feedbackDiv.innerHTML = '<i class="fas fa-check-circle me-2"></i> Your session request has been received! Our patient care team will contact you shortly to confirm.';
+        bookingForm.prepend(feedbackDiv);
+      } else {
         feedbackDiv.classList.remove('d-none');
-        bookingForm.reset();
+      }
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.className = 'btn btn-success w-100 py-2 fw-semibold';
+          submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i> Request Confirmed!';
+        }
+
         setTimeout(() => {
           const modalEl = document.getElementById('bookingModal');
-          if (modalEl && window.bootstrap) {
-            const modal = bootstrap.Modal.getInstance(modalEl);
-            if (modal) modal.hide();
-            feedbackDiv.classList.add('d-none');
+          if (modalEl) {
+            if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+              const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+              if (modal) modal.hide();
+            }
+            modalEl.classList.remove('show');
+            modalEl.style.display = 'none';
+            modalEl.setAttribute('aria-hidden', 'true');
+            document.querySelectorAll('.modal-backdrop').forEach((b) => b.remove());
+            document.body.classList.remove('modal-open');
+            document.body.style.removeProperty('overflow');
+            document.body.style.removeProperty('padding-right');
           }
-        }, 2500);
-      }
+          bookingForm.reset();
+          if (nameInput) nameInput.classList.remove('is-invalid');
+          if (emailInput) emailInput.classList.remove('is-invalid');
+          if (feedbackDiv) feedbackDiv.classList.add('d-none');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.className = 'btn btn-secondary w-100 py-2 fw-semibold';
+            submitBtn.innerHTML = origBtnHtml;
+          }
+        }, 1800);
+      }, 400);
     });
   }
 

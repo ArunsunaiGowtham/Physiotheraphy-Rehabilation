@@ -129,7 +129,7 @@
             High-performance sports rehabilitation powered by wearable telemetry sensors, computerized motion capture, and personalized load management designed for competitive athletes.
           </p>
           <div class="d-flex flex-wrap gap-3">
-            <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">
+            <button type="button" class="btn btn-secondary btn-lg" id="bookBiomechanicalBtn" data-bs-toggle="modal" data-bs-target="#bookingModal" aria-haspopup="dialog" aria-controls="bookingModal">
               <i class="fas fa-calendar-alt me-2"></i> Book Biomechanical Analysis
             </button>
             <a href="services.html" class="btn btn-outline-primary btn-lg">
@@ -306,7 +306,7 @@
         <h2 class="display-6 fw-bold mb-3">Elevate Your Athletic Longevity</h2>
         <p class="lead text-muted mb-4">Book your complete kinetic assessment today with our certified sports physical therapists.</p>
         <div class="d-flex justify-content-center gap-3">
-          <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">
+          <button type="button" class="btn btn-secondary btn-lg" id="bookAthleticAssessmentBtn" data-bs-toggle="modal" data-bs-target="#bookingModal" aria-haspopup="dialog" aria-controls="bookingModal">
             <i class="fas fa-bolt me-2"></i> Book Athletic Assessment
           </button>
           <a href="index.html" class="btn btn-outline-secondary btn-lg">
@@ -416,28 +416,43 @@
     </div>
   </footer>
 
-  <!-- Booking Modal -->
-  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+  <!-- Athlete Biomechanical Screening Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title fw-bold">Book Athlete Biomechanical Screen</h5>
+          <h5 class="modal-title fw-bold" id="bookingModalLabel">Book Athlete Biomechanical Screen</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form id="appointmentBookingForm" class="p-4">
+        <form id="appointmentBookingForm" class="p-4" novalidate>
+          <!-- Dynamic Submission Confirmation Alert -->
+          <div id="bookingConfirmationFeedback" class="alert alert-success d-none mb-3" role="alert">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-check-circle fs-4 me-2 text-success flex-shrink-0"></i>
+              <div>
+                <strong class="d-block">Assessment Request Received!</strong>
+                <span class="small" id="feedbackDetails">Our sports kinematics team will contact you within 15 minutes.</span>
+              </div>
+            </div>
+          </div>
+
           <div class="mb-3">
-            <label class="form-label">Athlete Full Name</label>
-            <input type="text" class="form-control" placeholder="e.g. Alex Morgan" required>
+            <label class="form-label fw-semibold" for="athleteFullName">Athlete Full Name</label>
+            <input type="text" class="form-control" id="athleteFullName" name="athleteFullName" placeholder="e.g. Alex Morgan" required>
+            <div class="invalid-feedback">Please enter your full name.</div>
           </div>
           <div class="mb-3">
-            <label class="form-label">Email Address</label>
-            <input type="email" class="form-control" placeholder="alex@sport.com" required>
+            <label class="form-label fw-semibold" for="athleteEmail">Email Address</label>
+            <input type="email" class="form-control" id="athleteEmail" name="athleteEmail" placeholder="alex@sport.com" required>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
           </div>
           <div class="mb-3">
-            <label class="form-label">Sport / Activity</label>
-            <input type="text" class="form-control" placeholder="e.g. Marathon, Soccer, Tennis">
+            <label class="form-label fw-semibold" for="athleteSport">Sport / Activity</label>
+            <input type="text" class="form-control" id="athleteSport" name="athleteSport" placeholder="e.g. Marathon, Soccer, Tennis">
           </div>
-          <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-check me-2"></i> Request Assessment</button>
+          <button type="submit" id="requestAssessmentBtn" class="btn btn-secondary w-100 py-2 fw-semibold">
+            <i class="fas fa-check me-2"></i> Request Assessment
+          </button>
         </form>
       </div>
     </div>
@@ -446,7 +461,190 @@
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/theme.js?v=2.1.0"></script>
   <script src="assets/js/service-engine.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=2.3.0"></script>
+  <script>
+    // Fail-safe direct click and submission binding for Biomechanical Analysis Assessment Modal
+    (function () {
+      function attachBookingTriggers() {
+        const triggers = document.querySelectorAll('#bookBiomechanicalBtn, #bookAthleticAssessmentBtn, [data-bs-target="#bookingModal"]');
+        triggers.forEach(function (btn) {
+          if (btn.dataset.bookingBound) return;
+          btn.dataset.bookingBound = 'true';
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const modalEl = document.getElementById('bookingModal');
+            if (!modalEl) return;
+            if (window.bootstrap && bootstrap.Modal) {
+              const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+              modal.show();
+            } else {
+              modalEl.classList.add('show');
+              modalEl.style.display = 'block';
+              modalEl.removeAttribute('aria-hidden');
+              modalEl.setAttribute('aria-modal', 'true');
+              modalEl.setAttribute('role', 'dialog');
+              let backdrop = document.querySelector('.modal-backdrop');
+              if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                document.body.appendChild(backdrop);
+                backdrop.addEventListener('click', function () {
+                  modalEl.classList.remove('show');
+                  modalEl.style.display = 'none';
+                  modalEl.setAttribute('aria-hidden', 'true');
+                  backdrop.remove();
+                  document.body.classList.remove('modal-open');
+                });
+              }
+              document.body.classList.add('modal-open');
+            }
+          });
+        });
+
+        // Close buttons inside modal
+        document.querySelectorAll('#bookingModal [data-bs-dismiss="modal"]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const modalEl = document.getElementById('bookingModal');
+            if (modalEl) {
+              if (window.bootstrap && bootstrap.Modal) {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                modal.hide();
+              }
+              modalEl.classList.remove('show');
+              modalEl.style.display = 'none';
+              modalEl.setAttribute('aria-hidden', 'true');
+              document.querySelectorAll('.modal-backdrop').forEach(function (b) { b.remove(); });
+              document.body.classList.remove('modal-open');
+              document.body.style.removeProperty('overflow');
+              document.body.style.removeProperty('padding-right');
+            }
+          });
+        });
+      }
+
+      function attachAssessmentSubmission() {
+        const form = document.getElementById('appointmentBookingForm');
+        if (!form || form.dataset.submitBound) return;
+        form.dataset.submitBound = 'true';
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const nameInput = form.querySelector('#athleteFullName') || form.querySelector('input[type="text"]');
+          const emailInput = form.querySelector('#athleteEmail') || form.querySelector('input[type="email"]');
+          const sportInput = form.querySelector('#athleteSport');
+          const submitBtn = document.getElementById('requestAssessmentBtn') || form.querySelector('button[type="submit"]');
+          const feedbackDiv = document.getElementById('bookingConfirmationFeedback');
+
+          const nameVal = (nameInput ? nameInput.value : '').trim();
+          const emailVal = (emailInput ? emailInput.value : '').trim();
+          const sportVal = (sportInput ? sportInput.value : '').trim() || 'Marathon / Athletics';
+
+          // Basic validation
+          let hasError = false;
+          if (nameInput) {
+            if (!nameVal) {
+              nameInput.classList.add('is-invalid');
+              nameInput.focus();
+              hasError = true;
+            } else {
+              nameInput.classList.remove('is-invalid');
+            }
+          }
+
+          if (emailInput && !hasError) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailVal || !emailPattern.test(emailVal)) {
+              emailInput.classList.add('is-invalid');
+              emailInput.focus();
+              hasError = true;
+            } else {
+              emailInput.classList.remove('is-invalid');
+            }
+          }
+
+          if (hasError) return;
+
+          // Immediate Button Feedback State
+          const origBtnHtml = submitBtn ? submitBtn.innerHTML : '<i class="fas fa-check me-2"></i> Request Assessment';
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Submitting...';
+          }
+
+          // Save Assessment Request to LocalStorage
+          try {
+            const existing = JSON.parse(localStorage.getItem('physiolife_athlete_assessments') || '[]');
+            existing.unshift({
+              id: 'BIO-' + Date.now(),
+              athleteName: nameVal,
+              email: emailVal,
+              sport: sportVal,
+              service: 'Athlete Biomechanical Screen',
+              status: 'Confirmed',
+              createdAt: new Date().toISOString()
+            });
+            localStorage.setItem('physiolife_athlete_assessments', JSON.stringify(existing));
+          } catch (err) {}
+
+          setTimeout(function () {
+            if (submitBtn) {
+              submitBtn.className = 'btn btn-success w-100 py-2 fw-semibold';
+              submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i> Request Confirmed!';
+            }
+
+            if (feedbackDiv) {
+              const detailsEl = feedbackDiv.querySelector('#feedbackDetails');
+              if (detailsEl && emailVal) {
+                detailsEl.textContent = 'Our sports kinematics team will contact you at ' + emailVal + ' within 15 minutes.';
+              }
+              feedbackDiv.classList.remove('d-none');
+            }
+
+            // Auto close after 1.8s
+            setTimeout(function () {
+              const modalEl = document.getElementById('bookingModal');
+              if (modalEl) {
+                if (window.bootstrap && bootstrap.Modal) {
+                  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                  modal.hide();
+                }
+                modalEl.classList.remove('show');
+                modalEl.style.display = 'none';
+                modalEl.setAttribute('aria-hidden', 'true');
+                document.querySelectorAll('.modal-backdrop').forEach(function (b) { b.remove(); });
+                document.body.classList.remove('modal-open');
+                document.body.style.removeProperty('overflow');
+                document.body.style.removeProperty('padding-right');
+              }
+
+              // Reset form & button
+              form.reset();
+              if (nameInput) nameInput.classList.remove('is-invalid');
+              if (emailInput) emailInput.classList.remove('is-invalid');
+              if (feedbackDiv) feedbackDiv.classList.add('d-none');
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.className = 'btn btn-secondary w-100 py-2 fw-semibold';
+                submitBtn.innerHTML = origBtnHtml;
+              }
+            }, 1800);
+          }, 400);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          attachBookingTriggers();
+          attachAssessmentSubmission();
+        });
+      } else {
+        attachBookingTriggers();
+        attachAssessmentSubmission();
+      }
+    })();
+  </script>
 </body>
 </html>
 
