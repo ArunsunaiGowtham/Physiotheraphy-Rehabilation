@@ -411,7 +411,46 @@ img {
   gap: 0.45rem;
 }
 
-.theme-toggle-btn, .rtl-toggle-btn {
+.theme-toggle-btn {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 50% !important;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  padding: 0 !important;
+  font-size: 0.88rem;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  transition: var(--transition-base);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.theme-toggle-btn i {
+  margin: 0 !important;
+  font-size: 0.95rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--primary-subtle);
+  color: var(--primary);
+  border-color: var(--primary-border);
+  transform: translateY(-1px);
+}
+
+/* Strictly suppress any theme text notification */
+.theme-toggle-btn .theme-text {
+  display: none !important;
+}
+
+.rtl-toggle-btn {
   background: var(--bg-surface-alt);
   border: 1px solid var(--border-color);
   color: var(--text-main);
@@ -427,7 +466,7 @@ img {
   white-space: nowrap;
 }
 
-.theme-toggle-btn:hover, .rtl-toggle-btn:hover {
+.rtl-toggle-btn:hover {
   background: var(--primary-subtle);
   color: var(--primary);
   border-color: var(--primary-border);
@@ -689,7 +728,13 @@ img {
     font-size: 0.82rem;
   }
 
-  .theme-toggle-btn,
+  .theme-toggle-btn {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    padding: 0 !important;
+  }
   .rtl-toggle-btn {
     padding: 0.32rem 0.55rem;
     font-size: 0.78rem;

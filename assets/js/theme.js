@@ -2,7 +2,7 @@
  * PhysioLife - Theme & RTL Engine
  * Controls Dark/Light Theme and RTL Mode with LocalStorage Persistence
  * Author: Antigravity
- * Version: 2.0.0
+ * Version: 2.1.0
  */
 
 (function () {
@@ -29,9 +29,12 @@
     if (!btn) return;
     btn.removeAttribute('title');
     btn.removeAttribute('aria-label');
+    btn.removeAttribute('aria-description');
+    btn.removeAttribute('aria-describedby');
     btn.removeAttribute('data-bs-toggle');
     btn.removeAttribute('data-bs-title');
     btn.removeAttribute('data-bs-original-title');
+    btn.removeAttribute('data-bs-content');
     btn.title = '';
   }
 
@@ -55,19 +58,21 @@
     window.dispatchEvent(new CustomEvent('directionChanged', { detail: { direction } }));
   }
 
-  // Update UI toggles without ever setting title or notification attributes
+  // Update UI toggles without ever setting title, tooltip, or notification attributes
   function updateThemeButtons(theme) {
     const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
     toggleBtns.forEach((btn) => {
       sanitizeButton(btn);
       const icon = btn.querySelector('i');
       const text = btn.querySelector('.theme-text');
+      if (text) {
+        text.textContent = '';
+        text.style.display = 'none';
+      }
       if (theme === 'dark') {
         if (icon) icon.className = 'fas fa-sun text-warning';
-        if (text) text.textContent = 'Light';
       } else {
         if (icon) icon.className = 'fas fa-moon text-secondary';
-        if (text) text.textContent = 'Dark';
       }
     });
   }

@@ -248,7 +248,30 @@
   gap: 0.65rem;
 }
 
-.topbar-actions .theme-toggle-btn,
+.topbar-actions .theme-toggle-btn {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  min-height: 34px !important;
+  max-height: 34px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+.topbar-actions .theme-toggle-btn i {
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+}
+
+.topbar-actions .theme-toggle-btn .theme-text {
+  display: none !important;
+}
+
 .topbar-actions .rtl-toggle-btn {
   height: 34px;
   box-sizing: border-box;
