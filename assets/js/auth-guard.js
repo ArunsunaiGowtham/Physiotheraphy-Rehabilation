@@ -24,13 +24,13 @@
     const rawPath = window.location.pathname.toLowerCase().replace(/\\/g, '/');
     const filename = rawPath.substring(rawPath.lastIndexOf('/') + 1);
 
-    // Exempt login and registration pages within subdirectories
-    if (filename.includes('login') || filename.includes('register')) {
-      return;
-    }
-
     const isAdminArea = rawPath.includes('/admin/');
     const isPatientArea = rawPath.includes('/patient/');
+
+    // Exempt login, registration pages, and public preview of patient exercise hub
+    if (filename.includes('login') || filename.includes('register') || (isPatientArea && filename === 'exercises.html')) {
+      return;
+    }
 
     // Guard only applies to admin and patient protected areas
     if (!isAdminArea && !isPatientArea) {

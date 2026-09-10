@@ -8,10 +8,10 @@
 (function checkDashboardAccess() {
   const rawPath = window.location.pathname.toLowerCase().replace(/\\/g, '/');
   const filename = rawPath.substring(rawPath.lastIndexOf('/') + 1);
-  if (filename.includes('login') || filename.includes('register')) return;
-
   const isAdmin = rawPath.includes('/admin/');
   const isPatient = rawPath.includes('/patient/');
+
+  if (filename.includes('login') || filename.includes('register') || (isPatient && filename === 'exercises.html')) return;
   if (!isAdmin && !isPatient) return;
 
   const sessionStr = sessionStorage.getItem('physiolife_current_user') || localStorage.getItem('physiolife_current_user');
