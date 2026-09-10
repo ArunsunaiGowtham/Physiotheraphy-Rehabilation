@@ -190,9 +190,26 @@
 }
 
 [dir="rtl"] .btn-topbar-back i,
+[dir="rtl"] .btn-auth-back i,
 [dir="rtl"] #backToWebsiteBtn i {
   transform: scaleX(-1);
 }
+
+/* Form Input Groups Mirroring in RTL */
+[dir="rtl"] .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-top-left-radius: var(--radius-md) !important;
+  border-bottom-left-radius: var(--radius-md) !important;
+}
+
+[dir="rtl"] .input-group > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: var(--radius-md) !important;
+  border-bottom-right-radius: var(--radius-md) !important;
+}
+
 
 /* ==========================================================================
    Hover Micro-interactions Mirroring for RTL

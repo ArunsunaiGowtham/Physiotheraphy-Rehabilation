@@ -19,7 +19,27 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/rtl.css" rel="stylesheet">
 </head>
-<body class="bg-surface-alt d-flex align-items-center min-vh-100 py-5">
+<body class="bg-surface-alt min-vh-100 d-flex flex-column">
+
+  <!-- Auth Top Navigation / Utility Bar (Theme & RTL/LTR Controls) -->
+  <header class="auth-topbar w-100 py-3 px-3 px-sm-4 px-md-5">
+    <div class="container-fluid d-flex justify-content-between align-items-center p-0">
+      <a href="index.html" class="btn-auth-back" id="backToWebsiteBtn">
+        <i class="fas fa-arrow-left"></i> <span class="d-none d-sm-inline">Back to </span>Website
+      </a>
+      <div class="auth-topbar-controls d-flex align-items-center gap-2">
+        <button class="theme-toggle-btn" type="button">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="rtl-toggle-btn" type="button">
+          <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Auth Body -->
+  <main class="auth-main flex-grow-1 d-flex align-items-center py-4">
 
   <div class="container py-4">
     <div class="row justify-content-center">
@@ -111,6 +131,8 @@
       </div>
     </div>
   </div>
+  </main>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/theme.js?v=2.1.0"></script>
