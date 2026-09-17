@@ -102,6 +102,7 @@
    * Strictly creates an account; does NOT log in automatically.
    * Supports role specification: 'patient' or 'admin'.
    */
+  function registerUser({ fullName, email, phone, password, role = 'patient' }) {
     // 1. Name validation
     if (global.PhysioValidator) {
       const nameRes = global.PhysioValidator.validateName(fullName);
