@@ -54,7 +54,7 @@
         <p class="small text-muted"><strong>Clinical Dosage:</strong> 10 slow repetitions, performed 3 to 4 times per day.</p>
 
         <h3 class="h3 mt-4 mb-3">2. Sciatic Nerve Flossing (Neural Gliding)</h3>
-        <img src="assets/images/exercise-floss.jpg" alt="Sciatic Nerve Flossing Technique" class="rounded-3 my-3 w-100 object-fit-cover shadow-sm" style="max-height: 280px;">
+        <img src="assets/images/exercise-floss.jpg" alt="Sciatic Nerve Flossing Technique" class="rounded-3 my-3 w-100 object-fit-cover shadow-sm" style="max-height: 420px; aspect-ratio: 16/9;">
         <p>
           Seated on the edge of a chair, gently slump your thoracic spine and tuck your chin. As you extend the affected knee to straighten your lower leg, simultaneously dorsiflex your ankle and tilt your head backward. Then lower your foot while flexing your neck forward. This dynamic oscillating glide mobilizes the nerve through the fibrotic sheath without tension overload.
         </p>
@@ -82,7 +82,7 @@
       badge: 'Featured · Sports Recovery',
       isFeaturedCategory: 'sports-injuries',
       description: 'Evidence-based physical rehabilitation benchmarks, limb symmetry index (LSI) testing, and neuromuscular deceleration drills ensuring a safe return to high-impact athletics.',
-      image: 'assets/images/home2-acl-protocol.jpg',
+      image: 'assets/images/blog-acl-rehab.jpg',
       author: 'Dr. Marcus Vance',
       authorRole: 'Head of Sports Rehabilitation & Kinetic Performance',
       authorImg: 'assets/images/therapist-vance.jpg',
@@ -155,7 +155,7 @@
         </div>
 
         <h3 class="h3 mt-5 mb-3">1. Supine Craniocervical Flexion (Chin Tucks)</h3>
-        <img src="assets/images/service-posture.jpg" alt="Cervical Posture Correction Drill" class="rounded-3 my-3 w-100 object-fit-cover shadow-sm" style="max-height: 280px;">
+        <img src="assets/images/exercise-pressup.jpg" alt="Cervical Posture Correction Drill" class="rounded-3 my-3 w-100 object-fit-cover shadow-sm" style="max-height: 280px;">
         <p>
           Lying supine with head supported in neutral, perform a subtle nod as if saying 'yes'. The goal is to activate the deep cervical flexors without recruiting superficial sternocleidomastoid (SCM) tension.
         </p>
@@ -425,7 +425,7 @@
       categorySlug: 'spine-care',
       badge: 'Spine Care',
       description: 'Simple, evidence-based daily isometric chin tucks and thoracic extension exercises to reverse years of screen-slouching.',
-      image: 'assets/images/service-posture.jpg',
+      image: 'assets/images/blog-tmj-therapy.jpg',
       author: 'Dr. David Chen',
       authorRole: 'Ergonomics & Joint Biomechanics Consultant',
       authorImg: 'assets/images/therapist-chen.jpg',
@@ -756,7 +756,7 @@
       categorySlug: 'neurological',
       badge: 'Neurological',
       description: 'Understanding benign paroxysmal positional vertigo (BPPV), the Epley maneuver, and gaze stabilization exercises that restore spatial equilibrium.',
-      image: 'assets/images/service-vestibular.jpg',
+      image: 'assets/images/home2-concussion.jpg',
       author: 'Dr. Elena Rostova',
       authorRole: 'Doctor of Physical Therapy & Neuromuscular Specialist',
       authorImg: 'assets/images/therapist-rostova.jpg',

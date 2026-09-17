@@ -4,6 +4,174 @@
  * Version: 1.0.0
  */
 
+/* ==========================================================================
+   PhysioLife Centralized Form Validation Engine
+   Standardized rules for Name, Email, Phone across all forms
+   ========================================================================== */
+const PhysioValidator = {
+  // 1. Name: Min 2 letters, alphabetic characters and spaces only, no numbers or special chars. Trimmed.
+  validateName(val) {
+    const trimmed = (val || '').trim();
+    if (!trimmed) {
+      return { valid: false, message: 'Please enter your full name.' };
+    }
+    // Disallow numbers and special characters; only allow letters and normal spaces
+    if (!/^[A-Za-z]+(?:\s+[A-Za-z]+)*$/.test(trimmed)) {
+      return { valid: false, message: 'Name must contain only alphabetic letters and spaces (no numbers or special characters).' };
+    }
+    const alphaCount = trimmed.replace(/[^A-Za-z]/g, '').length;
+    if (alphaCount < 2) {
+      return { valid: false, message: 'Name must contain at least 2 alphabetic characters.' };
+    }
+    return { valid: true, message: '', value: trimmed };
+  },
+
+  // 2. Email: Valid complete email with domain and valid TLD (>=2 chars). Case-insensitive. Rejects invalid uppercase domain without TLD like GMAIL.
+  validateEmail(val) {
+    const trimmed = (val || '').trim();
+    if (!trimmed) {
+      return { valid: false, message: 'Please enter your email address.' };
+    }
+    // Strict email regex with TLD requirement
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(trimmed)) {
+      return { valid: false, message: 'Please enter a complete and valid email address (e.g. name@example.com).' };
+    }
+    return { valid: true, message: '', value: trimmed };
+  },
+
+  // 3. Phone: No alphabets, no arbitrary special chars, valid 10-15 digits. Supports 10-digit mobile, +91 country code, +1 US format.
+  validatePhone(val) {
+    const trimmed = (val || '').trim();
+    if (!trimmed) {
+      return { valid: false, message: 'Please enter your phone number.' };
+    }
+    if (/[a-zA-Z]/.test(trimmed)) {
+      return { valid: false, message: 'Phone number cannot contain alphabetic letters.' };
+    }
+    if (!/^[0-9+\s\-()]+$/.test(trimmed)) {
+      return { valid: false, message: 'Phone number contains invalid special characters.' };
+    }
+    const digits = trimmed.replace(/\D/g, '');
+    if (digits.length < 10) {
+      return { valid: false, message: 'Phone number must be at least 10 digits (e.g. 9876543210 or +1 (555) 000-0000).' };
+    }
+    if (digits.length > 15) {
+      return { valid: false, message: 'Phone number cannot exceed 15 digits.' };
+    }
+    return { valid: true, message: '', value: trimmed };
+  },
+
+  // Helper to validate a specific input element
+  validateField(input) {
+    if (!input) return true;
+    const val = input.value;
+    const type = (input.getAttribute('type') || '').toLowerCase();
+    const id = (input.id || '').toLowerCase();
+    const name = (input.name || '').toLowerCase();
+    const placeholder = (input.placeholder || '').toLowerCase();
+
+    let res = { valid: true, message: '' };
+
+    const isName = id.includes('name') || name.includes('name') || placeholder.includes('name') || input.dataset.validate === 'name';
+    const isEmail = type === 'email' || id.includes('email') || name.includes('email') || input.dataset.validate === 'email';
+    const isPhone = type === 'tel' || id.includes('phone') || name.includes('phone') || placeholder.includes('phone') || input.dataset.validate === 'phone';
+
+    if (isName) {
+      res = this.validateName(val);
+    } else if (isEmail) {
+      res = this.validateEmail(val);
+    } else if (isPhone) {
+      res = this.validatePhone(val);
+    } else if (input.required && !val.trim()) {
+      res = { valid: false, message: 'This field is required.' };
+    }
+
+    // Locate or create .invalid-feedback
+    let feedback = input.parentNode.querySelector('.invalid-feedback');
+    if (!feedback && input.closest('.mb-3, .col-md-6, .col-12, .col-sm-6, .input-group')) {
+      const container = input.closest('.mb-3, .col-md-6, .col-12, .col-sm-6') || input.parentNode;
+      feedback = container.querySelector('.invalid-feedback');
+      if (!feedback) {
+        feedback = document.createElement('div');
+        feedback.className = 'invalid-feedback';
+        if (input.closest('.input-group')) {
+          input.closest('.input-group').after(feedback);
+        } else {
+          input.after(feedback);
+        }
+      }
+    }
+
+    if (!res.valid) {
+      input.classList.add('is-invalid');
+      input.classList.remove('is-valid');
+      if (feedback) {
+        feedback.textContent = res.message;
+        feedback.style.display = 'block';
+      }
+      input.setCustomValidity(res.message);
+      return false;
+    } else {
+      input.classList.remove('is-invalid');
+      input.classList.add('is-valid');
+      if (feedback) {
+        feedback.textContent = '';
+        feedback.style.display = '';
+      }
+      input.setCustomValidity('');
+      return true;
+    }
+  },
+
+  // Attach live and submit listeners to any form
+  attachFormValidation(form) {
+    if (!form || form.__physioValidationAttached) return;
+    form.__physioValidationAttached = true;
+
+    const inputs = form.querySelectorAll('input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), select, textarea');
+
+    inputs.forEach((input) => {
+      input.addEventListener('blur', () => {
+        if (input.value.trim() || input.required) {
+          PhysioValidator.validateField(input);
+        }
+      });
+      input.addEventListener('input', () => {
+        if (input.classList.contains('is-invalid')) {
+          PhysioValidator.validateField(input);
+        }
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      let isFormValid = true;
+      let firstInvalid = null;
+
+      inputs.forEach((input) => {
+        const ok = PhysioValidator.validateField(input);
+        if (!ok && isFormValid) {
+          isFormValid = false;
+          firstInvalid = input;
+        }
+      });
+
+      if (!isFormValid) {
+        e.preventDefault();
+        e.stopPropagation();
+        form.classList.add('was-validated');
+        if (firstInvalid) {
+          firstInvalid.focus();
+        }
+        return false;
+      }
+      return true;
+    });
+  }
+};
+
+window.PhysioValidator = PhysioValidator;
+
 function initMain() {
   'use strict';
 
@@ -312,32 +480,47 @@ function initMain() {
 
       const nameInput = bookingForm.querySelector('#athleteFullName') || bookingForm.querySelector('#bookName') || bookingForm.querySelector('input[type="text"]');
       const emailInput = bookingForm.querySelector('#athleteEmail') || bookingForm.querySelector('#bookEmail') || bookingForm.querySelector('input[type="email"]');
+      const phoneInput = bookingForm.querySelector('#bookPhone') || bookingForm.querySelector('input[type="tel"]');
       const submitBtn = bookingForm.querySelector('#requestAssessmentBtn') || bookingForm.querySelector('button[type="submit"]');
 
-      const nameVal = (nameInput ? nameInput.value : '').trim();
-      const emailVal = (emailInput ? emailInput.value : '').trim();
-
       let hasError = false;
-      if (nameInput && !nameVal) {
-        nameInput.classList.add('is-invalid');
-        nameInput.focus();
-        hasError = true;
-      } else if (nameInput) {
-        nameInput.classList.remove('is-invalid');
-      }
+      let firstErrorInput = null;
 
-      if (emailInput && !hasError) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailVal || !emailPattern.test(emailVal)) {
-          emailInput.classList.add('is-invalid');
-          emailInput.focus();
+      if (nameInput) {
+        if (!PhysioValidator.validateField(nameInput)) {
           hasError = true;
-        } else {
-          emailInput.classList.remove('is-invalid');
+          if (!firstErrorInput) firstErrorInput = nameInput;
         }
       }
 
-      if (hasError) return;
+      if (emailInput) {
+        if (!PhysioValidator.validateField(emailInput)) {
+          hasError = true;
+          if (!firstErrorInput) firstErrorInput = emailInput;
+        }
+      }
+
+      if (phoneInput) {
+        if (!PhysioValidator.validateField(phoneInput)) {
+          hasError = true;
+          if (!firstErrorInput) firstErrorInput = phoneInput;
+        }
+      }
+
+      // Check remaining required fields in booking form (e.g. date, service)
+      const otherInputs = bookingForm.querySelectorAll('select[required], input[type="date"][required]');
+      otherInputs.forEach(input => {
+        if (!PhysioValidator.validateField(input)) {
+          hasError = true;
+          if (!firstErrorInput) firstErrorInput = input;
+        }
+      });
+
+      if (hasError) {
+        if (firstErrorInput) firstErrorInput.focus();
+        bookingForm.classList.add('was-validated');
+        return;
+      }
 
       const origBtnHtml = submitBtn ? submitBtn.innerHTML : '<i class="fas fa-check me-2"></i> Confirm';
       if (submitBtn) {
@@ -474,25 +657,23 @@ function initMain() {
      ========================================================================== */
   const validatedForms = document.querySelectorAll('.needs-validation');
   Array.from(validatedForms).forEach((form) => {
-    form.addEventListener(
-      'submit',
-      (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        } else {
-          event.preventDefault();
-          const alertSuccess = form.querySelector('.form-success-alert');
-          if (alertSuccess) {
-            alertSuccess.classList.remove('d-none');
-            form.reset();
-            form.classList.remove('was-validated');
-          }
+    PhysioValidator.attachFormValidation(form);
+
+    form.addEventListener('submit', (event) => {
+      // If form passed validation and has a success alert, show it
+      if (!event.defaultPrevented) {
+        event.preventDefault();
+        const alertSuccess = form.querySelector('.form-success-alert');
+        if (alertSuccess) {
+          alertSuccess.classList.remove('d-none');
+          form.reset();
+          form.classList.remove('was-validated');
+          form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+            el.classList.remove('is-valid', 'is-invalid');
+          });
         }
-        form.classList.add('was-validated');
-      },
-      false
-    );
+      }
+    });
   });
 
   /* ==========================================================================

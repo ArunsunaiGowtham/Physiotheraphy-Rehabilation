@@ -135,11 +135,19 @@ document.addEventListener('DOMContentLoaded', function () {
   function validatePatientProfile(data) {
     const errors = {};
 
-    // 1. Full Name: Required, non-empty, min 2 characters
-    if (!data.fullName || !data.fullName.trim()) {
-      errors.fullName = 'Full Name is required.';
-    } else if (data.fullName.trim().length < 2) {
-      errors.fullName = 'Full Name must be at least 2 characters.';
+    // 1. Full Name: Required, min 2 alphabetic characters, letters and spaces only
+    if (window.PhysioValidator) {
+      const nameCheck = window.PhysioValidator.validateName(data.fullName);
+      if (!nameCheck.valid) errors.fullName = nameCheck.message;
+    } else {
+      const cleanName = (data.fullName || '').trim();
+      if (!cleanName) {
+        errors.fullName = 'Full Name is required.';
+      } else if (!/^[A-Za-z]+(?:\s+[A-Za-z]+)*$/.test(cleanName)) {
+        errors.fullName = 'Name must contain only alphabetic letters and spaces (no numbers or special characters).';
+      } else if (cleanName.replace(/[^A-Za-z]/g, '').length < 2) {
+        errors.fullName = 'Full Name must be at least 2 characters.';
+      }
     }
 
     // 2. Date of Birth: Required, valid date
@@ -154,20 +162,39 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // 3. Email Address: Required, valid email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!data.email || !data.email.trim()) {
-      errors.email = 'Email Address is required.';
-    } else if (!emailRegex.test(data.email.trim())) {
-      errors.email = 'Please provide a valid email format (e.g. name@example.com).';
+    // 3. Email Address: Required, valid email format with domain and TLD
+    if (window.PhysioValidator) {
+      const emailCheck = window.PhysioValidator.validateEmail(data.email);
+      if (!emailCheck.valid) errors.email = emailCheck.message;
+    } else {
+      const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+      if (!data.email || !data.email.trim()) {
+        errors.email = 'Email Address is required.';
+      } else if (!emailRegex.test(data.email.trim())) {
+        errors.email = 'Please provide a valid email format (e.g. name@example.com).';
+      }
     }
 
-    // 4. Phone Number: Required, valid phone number (at least 7 digits)
-    const digitsOnly = (data.phone || '').replace(/\D/g, '');
-    if (!data.phone || !data.phone.trim()) {
-      errors.phone = 'Phone Number is required.';
-    } else if (digitsOnly.length < 7) {
-      errors.phone = 'Please enter a valid phone number (at least 7 digits).';
+    // 4. Phone Number: Required, valid phone number (no letters, 10-15 digits)
+    if (window.PhysioValidator) {
+      const phoneCheck = window.PhysioValidator.validatePhone(data.phone);
+      if (!phoneCheck.valid) errors.phone = phoneCheck.message;
+    } else {
+      const cleanPhone = (data.phone || '').trim();
+      if (!cleanPhone) {
+        errors.phone = 'Phone Number is required.';
+      } else if (/[a-zA-Z]/.test(cleanPhone)) {
+        errors.phone = 'Phone number cannot contain alphabetic letters.';
+      } else if (!/^[0-9+\s\-()]+$/.test(cleanPhone)) {
+        errors.phone = 'Phone number contains invalid special characters.';
+      } else {
+        const digits = cleanPhone.replace(/\D/g, '');
+        if (digits.length < 10) {
+          errors.phone = 'Please enter a valid 10-digit phone number (e.g. 9876543210 or +1 (555) 000-0000).';
+        } else if (digits.length > 15) {
+          errors.phone = 'Phone number cannot exceed 15 digits.';
+        }
+      }
     }
 
     // 5. Residential Address: Required

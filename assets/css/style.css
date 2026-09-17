@@ -19,6 +19,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   overflow-x: clip;
+  direction: ltr;
+  text-align: left;
 }
 
 [dir="ltr"] {
@@ -32,6 +34,8 @@ html {
 }
 
 body {
+  direction: ltr;
+  text-align: left;
   font-family: var(--font-family-body);
   background-color: var(--bg-body);
   color: var(--text-main);
@@ -3045,12 +3049,74 @@ img {
     margin-top: 1.5rem;
   }
   .floating-badge {
-    position: static !important;
-    inset: auto !important;
-    margin-top: 0.75rem !important;
-    width: 100% !important;
+    position: absolute !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: var(--radius-md) !important;
+    gap: 0.55rem !important;
+    box-shadow: var(--shadow-md) !important;
+    max-width: calc(100% - 20px) !important;
     animation: none !important;
-    box-shadow: var(--shadow-sm) !important;
+    z-index: 3 !important;
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border-color) !important;
+    margin: 0 !important;
+    width: auto !important;
+  }
+  .floating-badge.badge-top {
+    top: 10px !important;
+    inset-inline-end: 10px !important;
+    inset-inline-start: auto !important;
+  }
+  .floating-badge.badge-bottom {
+    bottom: 10px !important;
+    inset-inline-start: 10px !important;
+    inset-inline-end: auto !important;
+  }
+  .floating-badge .badge-icon-box {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    font-size: 1rem !important;
+    border-radius: var(--radius-sm) !important;
+  }
+  .floating-badge h6 {
+    font-size: 0.76rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+    white-space: nowrap !important;
+  }
+  .floating-badge small {
+    font-size: 0.65rem !important;
+    line-height: 1.1 !important;
+    display: block !important;
+    white-space: nowrap !important;
+  }
+  @media (max-width: 380px) {
+    .floating-badge {
+      padding: 0.4rem 0.55rem !important;
+      gap: 0.45rem !important;
+      max-width: calc(100% - 16px) !important;
+    }
+    .floating-badge.badge-top {
+      top: 8px !important;
+      inset-inline-end: 8px !important;
+    }
+    .floating-badge.badge-bottom {
+      bottom: 8px !important;
+      inset-inline-start: 8px !important;
+    }
+    .floating-badge .badge-icon-box {
+      width: 28px !important;
+      height: 28px !important;
+      min-width: 28px !important;
+      font-size: 0.85rem !important;
+    }
+    .floating-badge h6 {
+      font-size: 0.72rem !important;
+    }
+    .floating-badge small {
+      font-size: 0.6rem !important;
+    }
   }
 
   /* 4. Page Header Banners */
@@ -3357,5 +3423,73 @@ img {
 .clinic-map-wrapper:hover .clinic-map-img {
   transform: scale(1.03);
 }
+
+/* ==========================================================================
+   Home Page - About Our Clinic Checklist Alignment (Issue 4)
+   ========================================================================== */
+.clinic-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.clinic-checklist-item i {
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clinic-checklist-item span {
+  flex: 1;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Insurance Page - In-Network Partners Grid Alignment (Issue 5)
+   ========================================================================== */
+.partner-grid .partner-card {
+  min-height: 130px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.partner-grid .partner-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.partner-logo-box {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo-box img {
+  max-height: 40px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.partner-name-box {
+  min-height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.partner-name-box small {
+  line-height: 1.25;
+}
+
 
 

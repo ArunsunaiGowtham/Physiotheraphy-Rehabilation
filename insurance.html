@@ -130,35 +130,55 @@
         <p>PhysioLife is in-network with the nation's leading commercial, Medicare, and worker's compensation insurance carriers.</p>
       </div>
 
-      <div class="row g-4 justify-content-center text-center">
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100 d-flex flex-column justify-content-center align-items-center">
-            <img src="assets/images/ins-bluecross.svg" alt="BlueCross BlueShield" class="img-fluid mb-2" style="max-height: 40px;">
-            <small class="fw-bold text-main">BlueCross</small>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-3 g-md-4 justify-content-center text-center partner-grid">
+        <div class="col">
+          <div class="partner-card h-100 p-3 p-md-4 bg-surface-alt rounded-4 border border-subtle d-flex flex-column align-items-center justify-content-center">
+            <div class="partner-logo-box mb-2">
+              <img src="assets/images/ins-bluecross.svg" alt="BlueCross BlueShield" class="img-fluid">
+            </div>
+            <div class="partner-name-box">
+              <small class="fw-bold text-main">BlueCross</small>
+            </div>
           </div>
         </div>
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100 d-flex flex-column justify-content-center align-items-center">
-            <img src="assets/images/ins-aetna.svg" alt="Aetna" class="img-fluid mb-2" style="max-height: 40px;">
-            <small class="fw-bold text-main">Aetna Choice</small>
+        <div class="col">
+          <div class="partner-card h-100 p-3 p-md-4 bg-surface-alt rounded-4 border border-subtle d-flex flex-column align-items-center justify-content-center">
+            <div class="partner-logo-box mb-2">
+              <img src="assets/images/ins-aetna.svg" alt="Aetna" class="img-fluid">
+            </div>
+            <div class="partner-name-box">
+              <small class="fw-bold text-main">Aetna Choice</small>
+            </div>
           </div>
         </div>
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100 d-flex flex-column justify-content-center align-items-center">
-            <img src="assets/images/ins-cigna.svg" alt="Cigna" class="img-fluid mb-2" style="max-height: 40px;">
-            <small class="fw-bold text-main">Cigna Healthcare</small>
+        <div class="col">
+          <div class="partner-card h-100 p-3 p-md-4 bg-surface-alt rounded-4 border border-subtle d-flex flex-column align-items-center justify-content-center">
+            <div class="partner-logo-box mb-2">
+              <img src="assets/images/ins-cigna.svg" alt="Cigna" class="img-fluid">
+            </div>
+            <div class="partner-name-box">
+              <small class="fw-bold text-main">Cigna Healthcare</small>
+            </div>
           </div>
         </div>
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100 d-flex flex-column justify-content-center align-items-center">
-            <img src="assets/images/ins-medicare.svg" alt="Medicare" class="img-fluid mb-2" style="max-height: 40px;">
-            <small class="fw-bold text-main">Medicare Part B</small>
+        <div class="col">
+          <div class="partner-card h-100 p-3 p-md-4 bg-surface-alt rounded-4 border border-subtle d-flex flex-column align-items-center justify-content-center">
+            <div class="partner-logo-box mb-2">
+              <img src="assets/images/ins-medicare.svg" alt="Medicare" class="img-fluid">
+            </div>
+            <div class="partner-name-box">
+              <small class="fw-bold text-main">Medicare Part B</small>
+            </div>
           </div>
         </div>
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="p-4 bg-surface-alt rounded-4 border border-subtle h-100 d-flex flex-column justify-content-center align-items-center">
-            <img src="assets/images/ins-united.svg" alt="UnitedHealthcare" class="img-fluid mb-2" style="max-height: 40px;">
-            <small class="fw-bold text-main">UnitedHealth</small>
+        <div class="col">
+          <div class="partner-card h-100 p-3 p-md-4 bg-surface-alt rounded-4 border border-subtle d-flex flex-column align-items-center justify-content-center">
+            <div class="partner-logo-box mb-2">
+              <img src="assets/images/ins-united.svg" alt="UnitedHealthcare" class="img-fluid">
+            </div>
+            <div class="partner-name-box">
+              <small class="fw-bold text-main">UnitedHealth</small>
+            </div>
           </div>
         </div>
       </div>
@@ -261,15 +281,18 @@
               <div class="row g-3">
                 <div class="col-12">
                   <label class="form-label">Full Patient Name *</label>
-                  <input type="text" class="form-control" required placeholder="Jane Doe">
+                  <input type="text" class="form-control" id="insPatientName" name="fullName" data-validate="name" required placeholder="Jane Doe">
+                  <div class="invalid-feedback">Please enter a valid name (at least 2 letters, alphabetic characters and spaces only).</div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Phone Number *</label>
-                  <input type="tel" class="form-control" required placeholder="+1 (555) 000-0000">
+                  <input type="tel" class="form-control" id="insPhone" name="phone" data-validate="phone" required placeholder="+1 (555) 000-0000">
+                  <div class="invalid-feedback">Please enter a valid 10-digit phone number (e.g. 9876543210 or +1 (555) 000-0000).</div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Email Address *</label>
-                  <input type="email" class="form-control" required placeholder="jane@example.com">
+                  <input type="email" class="form-control" id="insEmail" name="email" data-validate="email" required placeholder="jane@example.com">
+                  <div class="invalid-feedback">Please enter a complete and valid email address (e.g. name@example.com).</div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Insurance Provider *</label>

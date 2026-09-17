@@ -260,23 +260,44 @@
         const confirmPassword = document.getElementById('regConfirmPassword').value;
         const termsAgree = document.getElementById('termsAgree').checked;
 
-        // Validation
-        if (!fullName) {
-          showError('Please enter your full name.');
-          return;
-        }
-        if (!email) {
-          showError('Please enter your email address.');
-          return;
-        }
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-          showError('Please enter a valid email address.');
-          return;
-        }
-        if (!phone) {
-          showError('Please enter your phone number.');
-          return;
+        // Validation via PhysioValidator
+        if (window.PhysioValidator) {
+          const nameCheck = window.PhysioValidator.validateName(fullName);
+          if (!nameCheck.valid) {
+            showError(nameCheck.message);
+            document.getElementById('regFullName').focus();
+            return;
+          }
+          const emailCheck = window.PhysioValidator.validateEmail(email);
+          if (!emailCheck.valid) {
+            showError(emailCheck.message);
+            document.getElementById('regEmail').focus();
+            return;
+          }
+          const phoneCheck = window.PhysioValidator.validatePhone(phone);
+          if (!phoneCheck.valid) {
+            showError(phoneCheck.message);
+            document.getElementById('regPhone').focus();
+            return;
+          }
+        } else {
+          if (!fullName) {
+            showError('Please enter your full name.');
+            return;
+          }
+          if (!email) {
+            showError('Please enter your email address.');
+            return;
+          }
+          const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+          if (!emailPattern.test(email)) {
+            showError('Please enter a complete and valid email address (e.g. name@example.com).');
+            return;
+          }
+          if (!phone) {
+            showError('Please enter your phone number.');
+            return;
+          }
         }
         if (!password || password.length < 6) {
           showError('Password must be at least 6 characters long.');

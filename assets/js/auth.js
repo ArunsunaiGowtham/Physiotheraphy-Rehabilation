@@ -102,17 +102,42 @@
    * Strictly creates an account; does NOT log in automatically.
    * Supports role specification: 'patient' or 'admin'.
    */
-  function registerUser({ fullName, email, phone, password, role = 'patient' }) {
-    if (!fullName || !fullName.trim()) {
-      return { success: false, message: 'Please enter your full name.' };
+    // 1. Name validation
+    if (global.PhysioValidator) {
+      const nameRes = global.PhysioValidator.validateName(fullName);
+      if (!nameRes.valid) return { success: false, message: nameRes.message };
+    } else {
+      const cleanName = (fullName || '').trim();
+      if (!cleanName) return { success: false, message: 'Please enter your full name.' };
+      if (!/^[A-Za-z]+(?:\s+[A-Za-z]+)*$/.test(cleanName)) return { success: false, message: 'Name must contain only alphabetic letters and spaces (no numbers or special characters).' };
+      if (cleanName.replace(/[^A-Za-z]/g, '').length < 2) return { success: false, message: 'Name must contain at least 2 alphabetic characters.' };
     }
-    if (!email || !email.trim()) {
-      return { success: false, message: 'Please enter a valid email address.' };
+
+    // 2. Email validation
+    if (global.PhysioValidator) {
+      const emailRes = global.PhysioValidator.validateEmail(email);
+      if (!emailRes.valid) return { success: false, message: emailRes.message };
+    } else {
+      const cleanEmail = (email || '').trim();
+      if (!cleanEmail) return { success: false, message: 'Please enter a valid email address.' };
+      const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(cleanEmail)) return { success: false, message: 'Please enter a complete and valid email address (e.g. name@example.com).' };
     }
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email.trim())) {
-      return { success: false, message: 'Please provide a valid email format (e.g. name@example.com).' };
+
+    // 3. Phone validation
+    if (global.PhysioValidator) {
+      const phoneRes = global.PhysioValidator.validatePhone(phone);
+      if (!phoneRes.valid) return { success: false, message: phoneRes.message };
+    } else {
+      const cleanPhone = (phone || '').trim();
+      if (!cleanPhone) return { success: false, message: 'Please enter your phone number.' };
+      if (/[a-zA-Z]/.test(cleanPhone)) return { success: false, message: 'Phone number cannot contain alphabetic letters.' };
+      if (!/^[0-9+\s\-()]+$/.test(cleanPhone)) return { success: false, message: 'Phone number contains invalid special characters.' };
+      const digits = cleanPhone.replace(/\D/g, '');
+      if (digits.length < 10) return { success: false, message: 'Phone number must be at least 10 digits (e.g. 9876543210 or +1 (555) 000-0000).' };
+      if (digits.length > 15) return { success: false, message: 'Phone number cannot exceed 15 digits.' };
     }
+
     if (!password || password.length < 6) {
       return { success: false, message: 'Password must be at least 6 characters in length.' };
     }

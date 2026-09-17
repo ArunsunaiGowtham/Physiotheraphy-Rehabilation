@@ -148,7 +148,7 @@
         'Achilles Tendon Repair & Ankle Ligament Reconstruction',
         'Post-Fracture Open Reduction Internal Fixation (ORIF)'
       ],
-      modalityImage: 'assets/images/postop-knee-rehab.jpg',
+      modalityImage: 'assets/images/step-strengthening.jpg',
       modalityAlt: 'Post-operative knee joint mobilization and rehabilitation',
       modalities: [
         {
@@ -261,7 +261,7 @@
         'Post-Traumatic Chronic Whiplash Sensitivity',
         'Persistent Non-Specific Chronic Lower Back Discomfort'
       ],
-      modalityImage: 'assets/images/blog-dry-needling.jpg',
+      modalityImage: 'assets/images/step-recovery.jpg',
       modalityAlt: 'Myofascial trigger point dry needling and chronic pain therapy',
       modalities: [
         {
@@ -487,7 +487,7 @@
         'Acromioclavicular (AC) Joint Sprains & Glenohumeral Instability',
         'Rheumatoid Joint Morning Stiffness & Limited Articulation'
       ],
-      modalityImage: 'assets/images/blog-knee-osteo.jpg',
+      modalityImage: 'assets/images/clinic-intro-consult.jpg',
       modalityAlt: 'Knee joint mobilization and osteoarthritis physical therapy',
       modalities: [
         {
@@ -826,7 +826,7 @@
         'Interscapular Burning Pain Between Shoulder Blades',
         'Desk-Related Muscle Exhaustion & Lumbar Fatigue'
       ],
-      modalityImage: 'assets/images/blog-ergonomics.jpg',
+      modalityImage: 'assets/images/clinic-reception.jpg',
       modalityAlt: 'Workstation ergonomic assessment and spinal posture correction',
       modalities: [
         {
@@ -1052,7 +1052,7 @@
         'Busy Executives Demanding Concierge Care at Home',
         'Post-Fall Recovery Requiring Home Environment Safety Audit'
       ],
-      modalityImage: 'assets/images/clinic-intro-consult.jpg',
+      modalityImage: 'assets/images/clinic-exterior.jpg',
       modalityAlt: 'Home therapy consultation and ergonomic home environment adaptation',
       modalities: [
         {
@@ -1163,7 +1163,7 @@
         'Juvenile Sports Injuries & Growth Plate Apophysitis (Osgood-Schlatter)',
         'Cerebral Palsy, Spina Bifida & Neuromuscular Conditions'
       ],
-      modalitiesImg: 'assets/images/service-pediatric.jpg',
+      modalitiesImg: 'assets/images/clinic-team.jpg',
       modalitiesAlt: 'Pediatric physical therapy session with child and therapist',
       modalities: [
         {
@@ -1268,7 +1268,7 @@
         'Balance Deficits, Vertigo & Elevated High-Fall-Risk Patients',
         'Complex Regional Pain Syndrome (CRPS) & Neuropathic Allodynia'
       ],
-      modalitiesImg: 'assets/images/service-aquatic.jpg',
+      modalitiesImg: 'assets/images/clinic-interior.jpg',
       modalitiesAlt: 'Hydrotherapy pool physical therapy session in warm water with therapist',
       modalities: [
         {
@@ -1376,8 +1376,8 @@
         'Difficulty with Bed Mobility, Sit-to-Stand & Wheelchair Transfers',
         'Central Facial Paresis & Coordinated Motor Fatigue'
       ],
-      modalityImage: 'assets/images/service-stroke.jpg',
-      modalitiesImg: 'assets/images/service-stroke.jpg',
+      modalityImage: 'assets/images/therapist-consult-voronov.jpg',
+      modalitiesImg: 'assets/images/therapist-consult-voronov.jpg',
       modalityAlt: 'Neurological physical therapy motor re-education and gait retraining',
       modalities: [
         {
@@ -1491,8 +1491,8 @@
         'Persistent Postural-Perceptual Dizziness (PPPD)',
         'Cervicogenic Dizziness & Motion Sensitivity in Crowded Environments'
       ],
-      modalityImage: 'assets/images/service-vestibular.jpg',
-      modalitiesImg: 'assets/images/service-vestibular.jpg',
+      modalityImage: 'assets/images/therapist-consult-laurent.jpg',
+      modalitiesImg: 'assets/images/therapist-consult-laurent.jpg',
       modalityAlt: 'Vestibular rehabilitation gaze stabilization and balance testing',
       modalities: [
         {
@@ -1606,8 +1606,8 @@
         'Biceps Tenodesis & Subpectoral Fixation Recovery',
         'Patellar & Quadriceps Tendon Surgical Re-Attachment'
       ],
-      modalityImage: 'assets/images/service-postop-shoulder.jpg',
-      modalitiesImg: 'assets/images/service-postop-shoulder.jpg',
+      modalityImage: 'assets/images/therapist-consult-sterling.jpg',
+      modalitiesImg: 'assets/images/therapist-consult-sterling.jpg',
       modalityAlt: 'Post-operative tendon physical therapy and passive range of motion',
       modalities: [
         {
@@ -1721,8 +1721,8 @@
         'Plantar Fasciitis & Calcaneal Heel Pain with Running',
         'Gluteal Amnesia, Pelvic Drop (Trendelenburg) & Overstriding'
       ],
-      modalityImage: 'assets/images/service-runners-gait.jpg',
-      modalitiesImg: 'assets/images/service-runners-gait.jpg',
+      modalityImage: 'assets/images/home2-velocity-lab.jpg',
+      modalitiesImg: 'assets/images/home2-velocity-lab.jpg',
       modalityAlt: '3D running gait analysis and biomechanical motion capture',
       modalities: [
         {
