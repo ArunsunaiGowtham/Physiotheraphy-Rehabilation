@@ -135,9 +135,9 @@
       description: 'Understanding mechanical traction, neural mobilization, and deep cervical flexor strengthening to relieve nerve impingement and radiating arm tingling without operative intervention.',
       image: 'assets/images/blog-cervical-spine.jpg',
       author: 'Dr. Daniel Kowalski',
-      authorId: 'sterling',
+      authorId: 'kowalski',
       authorRole: 'Cervical Spine Fellow & Non-Surgical Decompression Specialist',
-      authorImg: 'assets/images/therapist-sterling.jpg',
+      authorImg: 'assets/images/therapist-kowalski.jpg',
       date: 'Aug 20, 2026',
       readingTime: '7 min read',
       tags: 'cervical spine herniated disc neck pain decompression posture spine care radiculopathy back pain posture',
@@ -361,9 +361,9 @@
       description: 'Scapulothoracic rhythmic stabilization and posterior capsule stretches that restore kinetic chain power for throwing athletes.',
       image: 'assets/images/home2-overhead-arm.jpg',
       author: "Dr. Patrick O'Connor",
-      authorId: 'vance',
+      authorId: 'oconnor',
       authorRole: 'Overhead Athlete Kinetic Chain Specialist',
-      authorImg: 'assets/images/therapist-vance.jpg',
+      authorImg: 'assets/images/therapist-oconnor.jpg',
       date: 'Jul 22, 2026',
       readingTime: '8 min read',
       tags: 'thrower shoulder scapular dyskinesis rotational power kinetic chain sports injuries athlete',
@@ -438,9 +438,9 @@
       description: 'Simple, evidence-based daily isometric chin tucks and thoracic extension exercises to reverse years of screen-slouching.',
       image: 'assets/images/blog-tmj-therapy.jpg',
       author: 'Dr. Jessica Morales',
-      authorId: 'patel',
+      authorId: 'morales',
       authorRole: 'Postural Restoration & Occupational Health Consultant',
-      authorImg: 'assets/images/therapist-patel.jpg',
+      authorImg: 'assets/images/therapist-morales.jpg',
       date: 'Aug 22, 2026',
       readingTime: '5 min read',
       tags: 'tech neck forward head posture cervical spine care desk neck pain drills alignment posture',
@@ -464,9 +464,9 @@
       description: 'Rebalancing anterior pelvic tilt through targeted glute bridge mechanics, hip flexor lengthening, and transverse abdominis bracing.',
       image: 'assets/images/blog-pelvic-tilt.jpg',
       author: 'Dr. Benjamin Scott',
-      authorId: 'jenkins',
+      authorId: 'scott',
       authorRole: 'Spinal Alignment & Biomechanical Correction Specialist',
-      authorImg: 'assets/images/therapist-jenkins.jpg',
+      authorImg: 'assets/images/therapist-scott.jpg',
       date: 'Aug 12, 2026',
       readingTime: '5 min read',
       tags: 'lumbar lordosis pelvic tilt spine care lower back posture core glute activation back pain posture',
@@ -490,9 +490,9 @@
       description: 'How directional preference exercises centralize radiating nerve symptoms and restore spinal extension tolerance quickly.',
       image: 'assets/images/blog-mckenzie-pressup.jpg',
       author: 'Dr. Ryan Henderson',
-      authorId: 'reed',
+      authorId: 'henderson',
       authorRole: 'Certified Mechanical Diagnosis & Therapy (Cert. MDT) Specialist',
-      authorImg: 'assets/images/therapist-reed.jpg',
+      authorImg: 'assets/images/therapist-henderson.jpg',
       date: 'Jul 15, 2026',
       readingTime: '6 min read',
       tags: 'mckenzie method disc bulge lumbar spine care extension back pain centralization',
@@ -570,9 +570,9 @@
       description: 'Neutral wrist angles, mechanical switches, and vertical mouse designs that decompress the median nerve during long desk sessions.',
       image: 'assets/images/blog-carpal-tunnel.jpg',
       author: 'Dr. Rachel Zimmerman',
-      authorId: 'chen',
+      authorId: 'zimmerman',
       authorRole: 'Upper Extremity Manual Therapist & Ergonomics Consultant',
-      authorImg: 'assets/images/therapist-chen.jpg',
+      authorImg: 'assets/images/therapist-zimmerman.jpg',
       date: 'Aug 05, 2026',
       readingTime: '6 min read',
       tags: 'carpal tunnel wrist pain mouse keyboard ergonomics rsi typing office desk',
@@ -597,9 +597,9 @@
       description: 'Understanding windlass mechanism strain, calcaneal spurs, and how radial shockwave therapy triggers neovascularization to resolve chronic morning heel stiffness.',
       image: 'assets/images/blog-plantar-fasciitis.jpg',
       author: 'Dr. Aaron Mitchell',
-      authorId: 'cross',
+      authorId: 'mitchell',
       authorRole: 'Foot & Ankle Biomechanics Specialist',
-      authorImg: 'assets/images/therapist-cross.jpg',
+      authorImg: 'assets/images/therapist-mitchell.jpg',
       date: 'Aug 12, 2026',
       readingTime: '6 min read',
       tags: 'plantar fasciitis heel pain foot arch shockwave therapy morning pain stretch',
@@ -621,9 +621,9 @@
       description: 'Why total immobilization delays ligament healing, and how Protection, Optimal Loading, and dynamic balance training restore ankle stability faster.',
       image: 'assets/images/blog-ankle-sprain.jpg',
       author: 'Dr. Olivia Taylor',
-      authorId: 'watson',
+      authorId: 'taylor',
       authorRole: 'Acute Sports Trauma & Ligament Healing Specialist',
-      authorImg: 'assets/images/therapist-watson.jpg',
+      authorImg: 'assets/images/therapist-taylor.jpg',
       date: 'Aug 08, 2026',
       readingTime: '5 min read',
       tags: 'ankle sprain ligament tear police protocol sports injuries proprioception balance',
@@ -643,9 +643,9 @@
       description: 'How isolated eccentric loading of the extensor carpi radialis brevis regenerates chronic tendinopathy without cortisone injections.',
       image: 'assets/images/blog-tennis-elbow.jpg',
       author: 'Dr. Lucas Moreau',
-      authorId: 'gallagher',
+      authorId: 'moreau',
       authorRole: 'Tendinopathy Rehabilitation & Manual Therapy Specialist',
-      authorImg: 'assets/images/therapist-gallagher.jpg',
+      authorImg: 'assets/images/therapist-moreau.jpg',
       date: 'Jul 26, 2026',
       readingTime: '5 min read',
       tags: 'tennis elbow lateral epicondylitis tendon wrist forearm eccentric grip pain',
@@ -665,9 +665,9 @@
       description: 'Cam and pincer morphological mechanics, anterior hip capsule mobilization, and pelvis control preventing early labral degeneration.',
       image: 'assets/images/blog-joint-hip.jpg',
       author: 'Dr. Claire Dupont',
-      authorId: 'reed',
+      authorId: 'dupont',
       authorRole: 'Hip Arthroscopy & Joint Kinematics Specialist',
-      authorImg: 'assets/images/therapist-reed.jpg',
+      authorImg: 'assets/images/therapist-dupont.jpg',
       date: 'Jul 20, 2026',
       readingTime: '7 min read',
       tags: 'hip impingement fai labrum joint mobility groin pain glute strength cartilage',
@@ -687,9 +687,9 @@
       description: 'Step-by-step milestones to achieve 120-degree knee flexion, full terminal extension, and reciprocal stair climbing following joint replacement.',
       image: 'assets/images/postop-knee-rehab.jpg',
       author: 'Dr. Natalie Fisher',
-      authorId: 'chen',
+      authorId: 'fisher',
       authorRole: 'Post-Arthroplasty Rehabilitation Clinical Fellow',
-      authorImg: 'assets/images/therapist-chen.jpg',
+      authorImg: 'assets/images/therapist-fisher.jpg',
       date: 'Jul 15, 2026',
       readingTime: '8 min read',
       tags: 'total knee replacement arthroplasty post op rehab joint surgery gait stairs',
@@ -709,9 +709,9 @@
       description: 'Passive pendulum exercises, subscapularis tendon healing timelines, and safe active-assisted pulley progression following arthroscopic rotator cuff repair.',
       image: 'assets/images/postop-shoulder-rehab.jpg',
       author: 'Dr. Vikram Malhotra',
-      authorId: 'sterling',
+      authorId: 'malhotra',
       authorRole: 'Post-Surgical Shoulder Fellow & Tissue Biomechanics Specialist',
-      authorImg: 'assets/images/therapist-sterling.jpg',
+      authorImg: 'assets/images/therapist-malhotra.jpg',
       date: 'Aug 19, 2026',
       readingTime: '7 min read',
       tags: 'rotator cuff surgery post op rehab arthroscopy shoulder pulley passive range repair',
@@ -900,9 +900,9 @@
       description: 'Evidence-based eccentric protocols, biceps femoris fascicle lengthening, and high-speed running exposure to eliminate re-injury risks.',
       image: 'assets/images/home2-hero-athlete.jpg',
       author: 'Dr. Kevin Thorne',
-      authorId: 'cross',
+      authorId: 'thorne',
       authorRole: 'High-Velocity Sprint Mechanics & Hamstring Specialist',
-      authorImg: 'assets/images/therapist-cross.jpg',
+      authorImg: 'assets/images/therapist-thorne.jpg',
       date: 'Jul 04, 2026',
       readingTime: '6 min read',
       tags: 'hamstring strain athlete sprinting running nordic curl sports injuries',
@@ -922,9 +922,9 @@
       description: 'Why a stiff mid-back causes shoulder impingement and lower back torque in golfers and tennis players, and 4 clinical rotational drills.',
       image: 'assets/images/blog-joint-thoracic.jpg',
       author: 'Dr. Andrea Gomez',
-      authorId: 'gallagher',
+      authorId: 'gomez',
       authorRole: 'Rotational Biomechanics & Spinal Mobilization Specialist',
-      authorImg: 'assets/images/therapist-gallagher.jpg',
+      authorImg: 'assets/images/therapist-gomez.jpg',
       date: 'Jun 28, 2026',
       readingTime: '5 min read',
       tags: 'thoracic spine mobility rotation golf tennis rib cage posture extension',
@@ -966,9 +966,9 @@
       description: 'Moving beyond sit-ups: how true neuromuscular intra-abdominal pressure bracing stabilizes the lumbar spine and prevents recurrent disc bulges.',
       image: 'assets/images/blog-core-birddog.jpg',
       author: 'Dr. Serena Vance',
-      authorId: 'bennett',
+      authorId: 'serena-vance',
       authorRole: 'Pelvic Floor Rehabilitation & Deep Core Motor Control Specialist',
-      authorImg: 'assets/images/therapist-bennett.jpg',
+      authorImg: 'assets/images/therapist-serena.jpg',
       date: 'Jun 15, 2026',
       readingTime: '6 min read',
       tags: 'core stability transverse abdominis pelvic floor spine care back pain lumbar',
@@ -1117,6 +1117,21 @@
       authorOrArticle = authorOrArticle.author || '';
     }
     const name = String(authorOrArticle).toLowerCase();
+    if (name.includes('kowalski') || name.includes('daniel')) return 'kowalski';
+    if (name.includes('oconnor') || name.includes('o\'connor') || name.includes('patrick')) return 'oconnor';
+    if (name.includes('morales') || name.includes('jessica')) return 'morales';
+    if (name.includes('scott') || name.includes('benjamin')) return 'scott';
+    if (name.includes('henderson') || name.includes('ryan')) return 'henderson';
+    if (name.includes('zimmerman') || name.includes('rachel')) return 'zimmerman';
+    if (name.includes('mitchell') || name.includes('aaron')) return 'mitchell';
+    if (name.includes('taylor') || name.includes('olivia')) return 'taylor';
+    if (name.includes('moreau') || name.includes('lucas')) return 'moreau';
+    if (name.includes('dupont') || name.includes('claire')) return 'dupont';
+    if (name.includes('fisher') || name.includes('natalie')) return 'fisher';
+    if (name.includes('malhotra') || name.includes('vikram')) return 'malhotra';
+    if (name.includes('thorne') || name.includes('kevin')) return 'thorne';
+    if (name.includes('gomez') || name.includes('andrea')) return 'gomez';
+    if (name.includes('serena') || name.includes('serena-vance')) return 'serena-vance';
     if (name.includes('vance') || name.includes('marcus')) return 'vance';
     if (name.includes('chen') || name.includes('david')) return 'chen';
     if (name.includes('rostova') || name.includes('elena')) return 'rostova';
@@ -1224,7 +1239,7 @@
           <div class="row align-items-center g-4">
             <div class="col-lg-6">
               <a href="blog-details.html?slug=${post.slug}">
-                <img src="${post.image}" alt="${post.title}" class="rounded-4 w-100 shadow-sm object-fit-cover" style="max-height: 340px;">
+                <img src="${post.image}" alt="${post.title}" class="rounded-4 w-100 shadow-sm object-fit-cover" style="max-height: 340px; object-position: center 25%;">
               </a>
             </div>
             <div class="col-lg-6">
@@ -1276,7 +1291,7 @@
               <p class="excerpt-ref">${post.description}</p>
               <div class="card-footer-ref d-flex align-items-center justify-content-between mt-auto pt-3 border-top border-subtle">
                 <div class="d-flex align-items-center gap-2">
-                  <img src="${post.authorImg}" alt="${post.author}" class="rounded-circle object-fit-cover" width="26" height="26">
+                  <img src="${post.authorImg}" alt="${post.author}" class="rounded-circle object-fit-cover" width="26" height="26" style="object-position: center 15%;">
                   <span class="small fw-semibold text-main text-truncate" style="max-width: 140px;" title="${post.author}">${post.author}</span>
                 </div>
                 <a href="blog-details.html?slug=${post.slug}" class="link-ref m-0">
@@ -1685,6 +1700,8 @@
       if (featuredImg) {
         featuredImg.src = article.image;
         featuredImg.alt = article.altText || article.title;
+        featuredImg.style.objectFit = 'cover';
+        featuredImg.style.objectPosition = 'center 25%';
       }
 
       // 7. Update Article Body Content
@@ -1702,6 +1719,8 @@
       if (authorBoxImg) {
         authorBoxImg.src = article.authorImg;
         authorBoxImg.alt = article.author;
+        authorBoxImg.style.objectFit = 'cover';
+        authorBoxImg.style.objectPosition = 'center 15%';
       }
       const authorBoxImgLink = document.getElementById('authorBoxImgLink');
       if (authorBoxImgLink) {
@@ -1742,7 +1761,7 @@
         relatedContainer.innerHTML = relatedPosts.map(rel => `
           <div class="d-flex align-items-center gap-3 border-bottom border-subtle pb-3">
             <a href="blog-details.html?slug=${rel.slug}">
-              <img src="${rel.image}" alt="${rel.title}" class="rounded-3 object-fit-cover" width="70" height="70">
+              <img src="${rel.image}" alt="${rel.title}" class="rounded-3 object-fit-cover" width="70" height="70" style="object-position: center 25%;">
             </a>
             <div>
               <span class="badge bg-surface-alt text-muted small mb-1">${rel.category}</span>

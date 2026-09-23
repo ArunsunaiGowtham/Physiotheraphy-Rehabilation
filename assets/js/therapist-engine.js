@@ -20,8 +20,8 @@
         "titleRole": "Board-Certified Orthopedic Clinical Specialist & Spine Director",
         "sidebarRole": "Orthopedic & Spine Lead",
         "image": "assets/images/therapist-jenkins.jpg",
-        "heroImage": "assets/images/therapist-consult-jenkins.jpg",
-        "heroAlt": "Dr. Sarah Jenkins consulting with a patient in clinical private evaluation suite",
+        "heroImage": "assets/images/service-spine.jpg",
+        "heroAlt": "Dr. Sarah Jenkins in the Advanced Spine Rehabilitation & Decompression Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Spine & Sciatica (OCS)",
         "experience": "12+ Years Clinical",
@@ -74,8 +74,8 @@
         "titleRole": "Board-Certified Sports Clinical Specialist & Athletic Performance Director",
         "sidebarRole": "Sports Medicine & Return-to-Play Lead",
         "image": "assets/images/therapist-vance.jpg",
-        "heroImage": "assets/images/therapist-consult-vance.jpg",
-        "heroAlt": "Dr. Marcus Vance conducting sports physical therapy assessment in clinic",
+        "heroImage": "assets/images/service-sports.jpg",
+        "heroAlt": "Dr. Marcus Vance in the High-Performance Athletic Rehabilitation Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Sports Injury & Kinetic Chain (SCS)",
         "experience": "10+ Years Clinical",
@@ -128,8 +128,8 @@
         "titleRole": "Certified Manual Physical Therapist & Joint Arthroplasty Lead",
         "sidebarRole": "Joint Arthroplasty & Post-Surgical Lead",
         "image": "assets/images/therapist-chen.jpg",
-        "heroImage": "assets/images/therapist-consult-chen.jpg",
-        "heroAlt": "Dr. David Chen conducting orthopedic joint rehabilitation examination",
+        "heroImage": "assets/images/service-posture.jpg",
+        "heroAlt": "Dr. David Chen in the Workplace Ergonomics & Biomechanical Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Joint Arthroplasty & Manual Mobilization (CMPT)",
         "experience": "9+ Years Clinical",
@@ -182,8 +182,8 @@
         "titleRole": "Chronic Pain Neurobiology & Central Sensitization Specialist",
         "sidebarRole": "Chronic Pain & Desensitization Lead",
         "image": "assets/images/therapist-bennett.jpg",
-        "heroImage": "assets/images/therapist-consult-bennett.jpg",
-        "heroAlt": "Dr. Chloe Bennett conducting chronic pain neuroplastic evaluation",
+        "heroImage": "assets/images/service-chronic.jpg",
+        "heroAlt": "Dr. Chloe Bennett in the Integrative Myofascial Therapy & Trigger Point Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Chronic Pain & Central Sensitization (PRPC)",
         "experience": "11+ Years Clinical",
@@ -236,8 +236,8 @@
         "titleRole": "Musculoskeletal Ultrasound & Joint Degeneration Lead",
         "sidebarRole": "Joint Rehabilitation & Cartilage Lead",
         "image": "assets/images/therapist-reed.jpg",
-        "heroImage": "assets/images/therapist-consult-reed.jpg",
-        "heroAlt": "Dr. Julian Reed evaluating knee and hip joint mobility in clinic",
+        "heroImage": "assets/images/service-joint.jpg",
+        "heroAlt": "Dr. Julian Reed in the Orthopedic Joint Kinematics & Arthroplasty Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Joint Preservation & Ultrasound (RMSK)",
         "experience": "10+ Years Clinical",
@@ -290,8 +290,8 @@
         "titleRole": "Myofascial Release & Dynamic Mobility Lead",
         "sidebarRole": "Functional Mobility & Soft Tissue Lead",
         "image": "assets/images/therapist-gallagher.jpg",
-        "heroImage": "assets/images/therapist-consult-gallagher.jpg",
-        "heroAlt": "Dr. Liam Gallagher conducting kinetic chain mobility analysis",
+        "heroImage": "assets/images/service-mobility.jpg",
+        "heroAlt": "Dr. Liam Gallagher in the Clinical Neurodynamics & Manual Therapy Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Myofascial Release & Functional Mobility (CSCS)",
         "experience": "8+ Years Clinical",
@@ -344,8 +344,8 @@
         "titleRole": "Board-Certified Neurological Specialist & Vestibular Director",
         "sidebarRole": "Neurological & Neuroplasticity Lead",
         "image": "assets/images/therapist-rostova.jpg",
-        "heroImage": "assets/images/therapist-consult-rostova.jpg",
-        "heroAlt": "Dr. Elena Rostova conducting clinical neurological consultation with patient",
+        "heroImage": "assets/images/service-neuro.jpg",
+        "heroAlt": "Dr. Elena Rostova in the Neurological Gait & Balance Recovery Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Neurology & Neuro-Motor Recovery (NCS)",
         "experience": "14+ Years Clinical",
@@ -398,8 +398,8 @@
         "titleRole": "Board-Certified Geriatric Clinical Specialist & Fall Prevention Lead",
         "sidebarRole": "Senior Physiotherapy & Fall Prevention Lead",
         "image": "assets/images/therapist-hayes.jpg",
-        "heroImage": "assets/images/therapist-consult-hayes.jpg",
-        "heroAlt": "Dr. Robert Hayes conducting senior balance and gait evaluation",
+        "heroImage": "assets/images/service-postop.jpg",
+        "heroAlt": "Dr. Robert Hayes in the Post-Arthroplasty Mobility & Gait Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Geriatrics & Balance Conditioning (GCS)",
         "experience": "15+ Years Clinical",
@@ -452,8 +452,8 @@
         "titleRole": "Director of Mobile Physical Therapy & Home Care Services",
         "sidebarRole": "Home Visit & Concierge Care Director",
         "image": "assets/images/therapist-almansoor.jpg",
-        "heroImage": "assets/images/therapist-consult-almansoor.jpg",
-        "heroAlt": "Dr. Hannah Al-Mansoor conducting concierge home physical therapy consultation",
+        "heroImage": "assets/images/service-posture.jpg",
+        "heroAlt": "Dr. Hannah Al-Mansoor in the Ergonomic Posture Assessment Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Home Care & Adaptive Living (PT, DPT)",
         "experience": "9+ Years Clinical",
@@ -506,8 +506,8 @@
         "titleRole": "Board-Certified Pediatric Clinical Specialist",
         "sidebarRole": "Pediatric Development & Torticollis Lead",
         "image": "assets/images/therapist-watson.jpg",
-        "heroImage": "assets/images/therapist-consult-watson.jpg",
-        "heroAlt": "Dr. Emily Watson evaluating pediatric gross motor milestones",
+        "heroImage": "assets/images/service-postop-shoulder.jpg",
+        "heroAlt": "Dr. Emily Watson in the Glenohumeral Joint Kinematics Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Pediatric Rehabilitation & Milestones (PCS)",
         "experience": "11+ Years Clinical",
@@ -560,8 +560,8 @@
         "titleRole": "Certified Aquatic & Hydrotherapy Rehabilitation Director",
         "sidebarRole": "Aquatic Rehabilitation & Hydrotherapy Lead",
         "image": "assets/images/therapist-brooks.jpg",
-        "heroImage": "assets/images/therapist-consult-brooks.jpg",
-        "heroAlt": "Dr. Tyler Brooks conducting hydrotherapy pool rehabilitation session",
+        "heroImage": "assets/images/service-aquatic.jpg",
+        "heroAlt": "Dr. Tyler Brooks in the Heated Hydrotherapy Rehabilitation Pool Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Aquatic Physical Therapy (ATRI-C)",
         "experience": "8+ Years Clinical",
@@ -614,8 +614,8 @@
         "titleRole": "Stroke Recovery & Certified Brain Injury Specialist",
         "sidebarRole": "Stroke & Hemiparetic Neuro-Motor Lead",
         "image": "assets/images/therapist-voronov.jpg",
-        "heroImage": "assets/images/therapist-consult-voronov.jpg",
-        "heroAlt": "Dr. Alexei Voronov directing stroke motor retraining session in clinic",
+        "heroImage": "assets/images/service-stroke.jpg",
+        "heroAlt": "Dr. Alexei Voronov in the Neuromuscular Task-Specific Relearning Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Stroke Recovery & Neurotrauma (CBIS)",
         "experience": "12+ Years Clinical",
@@ -668,8 +668,8 @@
         "titleRole": "Vestibular Oculomotor & Balance Retraining Specialist",
         "sidebarRole": "Vestibular & Vertigo Rehabilitation Lead",
         "image": "assets/images/therapist-laurent.jpg",
-        "heroImage": "assets/images/therapist-consult-laurent.jpg",
-        "heroAlt": "Dr. Sophie Laurent conducting vestibular infrared oculomotor examination",
+        "heroImage": "assets/images/service-vestibular.jpg",
+        "heroAlt": "Dr. Sophie Laurent in the Vestibular Ocular & Dynamic Balance Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Vestibular & BPPV (VRT Certification)",
         "experience": "10+ Years Clinical",
@@ -722,8 +722,8 @@
         "titleRole": "Tendon Reconstruction & Orthopedic Surgical Fellow",
         "sidebarRole": "Tendon & Ligament Post-Surgical Lead",
         "image": "assets/images/therapist-sterling.jpg",
-        "heroImage": "assets/images/therapist-consult-sterling.jpg",
-        "heroAlt": "Dr. James Sterling inspecting post-operative tendon repair mobility",
+        "heroImage": "assets/images/service-postop-shoulder.jpg",
+        "heroAlt": "Dr. James Sterling in the Shoulder Arthroscopy Recovery Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Tendon Reconstruction & Post-Op (FAAOMPT)",
         "experience": "13+ Years Clinical",
@@ -776,8 +776,8 @@
         "titleRole": "3D Running Kinematics & Endurance Biomechanics Specialist",
         "sidebarRole": "Runner's Injury & 3D Gait Lead",
         "image": "assets/images/therapist-cross.jpg",
-        "heroImage": "assets/images/therapist-consult-cross.jpg",
-        "heroAlt": "Dr. Nathan Cross performing high-speed 3D treadmill gait analysis",
+        "heroImage": "assets/images/service-runners-gait.jpg",
+        "heroAlt": "Dr. Nathan Cross in the 3D Running Cadence & Biomechanics Lab",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Running Biomechanics & Gait Retraining (CSCS)",
         "experience": "9+ Years Clinical",
@@ -830,8 +830,8 @@
         "titleRole": "Ergonomic Assessment Specialist & Spinal Biomechanics Lead",
         "sidebarRole": "Posture Correction & Workplace Ergonomics Lead",
         "image": "assets/images/therapist-patel.jpg",
-        "heroImage": "assets/images/therapist-consult-patel.jpg",
-        "heroAlt": "Dr. Maya Patel conducting ergonomic posture alignment assessment",
+        "heroImage": "assets/images/service-posture.jpg",
+        "heroAlt": "Dr. Maya Patel in the Ergonomic Workstation Optimization Suite",
         "degree": "Doctor of Physical Therapy",
         "specialty": "Ergonomics & Postural Correction (CEAS)",
         "experience": "9+ Years Clinical",
@@ -876,7 +876,673 @@
         "bookingTitle": "Request Appointment with Dr. Maya Patel",
         "bookingSubtitle": "Complete this form to reserve an ergonomic evaluation with Dr. Patel.",
         "successMsg": "Evaluation request received for Dr. Patel! We will call you within 15 minutes."
-    }
+    },
+    "kowalski": {
+        "id": "kowalski",
+        "name": "Dr. Daniel Kowalski",
+        "fullName": "Dr. Daniel Kowalski, PT, DPT, FAAOMPT",
+        "titleRole": "Cervical Spine Fellow & Non-Surgical Decompression Specialist",
+        "sidebarRole": "Cervical Spine & Decompression Lead",
+        "image": "assets/images/therapist-kowalski.jpg",
+        "heroImage": "assets/images/service-spine.jpg",
+        "heroAlt": "Dr. Daniel Kowalski in the Cervical Spine & Decompression Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Cervical Radiculopathy & Traction (FAAOMPT)",
+        "experience": "11+ Years Clinical",
+        "rating": "4.9 / 5.0 (312 Reviews)",
+        "languages": "English, Polish",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Non-Surgical Decompression Philosophy",
+        "bioParagraphs": [
+                "Dr. Daniel Kowalski completed his Doctorate in Physical Therapy at Northwestern University Feinberg School of Medicine, followed by an advanced Fellowship in Orthopaedic Manual Physical Therapy (FAAOMPT) dedicated to cervical spine kinematics and disc decompression.",
+                "Dr. Kowalski believes in non-surgical precision recovery: \"By relieving mechanical pressure on the cervical nerve roots through graded intermittent distraction and retraining craniocervical deep flexors, we successfully alleviate radiating pain without resorting to spinal surgery.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Northwestern University",
+                        "desc": "Doctor of Physical Therapy (DPT), Highest Honors"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "American Academy of Orthopaedic Manual PT",
+                        "desc": "Fellow (FAAOMPT) Cervical Spine Specialization"
+                },
+                {
+                        "icon": "fas fa-compress-arrows-alt",
+                        "color": "text-success",
+                        "title": "North American Spine Society",
+                        "desc": "Certified Spinal Decompression Therapy Lead"
+                },
+                {
+                        "icon": "fas fa-shield-alt",
+                        "color": "text-info",
+                        "title": "McKenzie Institute USA",
+                        "desc": "Mechanical Diagnosis and Therapy Certified (Cert. MDT)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Daniel Kowalski",
+        "bookingSubtitle": "Complete this form to reserve a cervical spine evaluation block directly with Dr. Kowalski.",
+        "successMsg": "Evaluation request received for Dr. Kowalski! We will call you within 15 minutes."
+},
+    "oconnor": {
+        "id": "oconnor",
+        "name": "Dr. Patrick O'Connor",
+        "fullName": "Dr. Patrick O'Connor, PT, DPT, SCS, CSCS",
+        "titleRole": "Overhead Athlete Kinetic Chain & Rotational Power Specialist",
+        "sidebarRole": "Thrower's Shoulder & Scapular Lead",
+        "image": "assets/images/therapist-oconnor.jpg",
+        "heroImage": "assets/images/service-sports.jpg",
+        "heroAlt": "Dr. Patrick O'Connor in the Overhead Athlete Kinetic Chain Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Thrower's Shoulder & Scapular Dyskinesis (SCS)",
+        "experience": "9+ Years Clinical",
+        "rating": "4.9 / 5.0 (278 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "7:30 AM – 3:30 PM",
+                "thuFri": "11:00 AM – 7:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Overhead Athlete Rehabilitation Philosophy",
+        "bioParagraphs": [
+                "Dr. Patrick O'Connor earned his Doctorate in Physical Therapy from the University of Florida and completed a Sports Physical Therapy Residency specializing in overhead throwing kinematics and scapular force couples.",
+                "Dr. O'Connor emphasizes full kinetic chain energy transfer: \"Shoulder health in throwers begins at the hips and thoracic spine; restoring kinetic sequencing eliminates excessive anterior glenohumeral shear stress.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "University of Florida",
+                        "desc": "Doctor of Physical Therapy (DPT), Sports Track"
+                },
+                {
+                        "icon": "fas fa-award",
+                        "color": "text-secondary",
+                        "title": "American Board of Physical Therapy",
+                        "desc": "Board-Certified Sports Clinical Specialist (SCS)"
+                },
+                {
+                        "icon": "fas fa-dumbbell",
+                        "color": "text-success",
+                        "title": "National Strength & Conditioning Association",
+                        "desc": "Certified Strength and Conditioning Specialist (CSCS)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Patrick O'Connor",
+        "bookingSubtitle": "Complete this form to reserve a thrower's shoulder evaluation with Dr. O'Connor.",
+        "successMsg": "Evaluation request received for Dr. O'Connor! We will call you within 15 minutes."
+},
+    "morales": {
+        "id": "morales",
+        "name": "Dr. Jessica Morales",
+        "fullName": "Dr. Jessica Morales, PT, DPT, PRC",
+        "titleRole": "Postural Restoration & Occupational Health Consultant",
+        "sidebarRole": "Postural Restoration & Tech Neck Lead",
+        "image": "assets/images/therapist-morales.jpg",
+        "heroImage": "assets/images/service-posture.jpg",
+        "heroAlt": "Dr. Jessica Morales in the 3D Postural Restoration & Breathing Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Postural Restoration (PRC) & Cervical Biomechanics",
+        "experience": "8+ Years Clinical",
+        "rating": "4.9 / 5.0 (265 Reviews)",
+        "languages": "English, Spanish",
+        "hours": {
+                "monWed": "8:30 AM – 4:30 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Postural Alignment Philosophy",
+        "bioParagraphs": [
+                "Dr. Jessica Morales graduated with honors from the University of Miami Division of Physical Therapy. She is a certified Postural Restoration Certified (PRC) clinician who specializes in resolving forward head posture, tech neck, and ribcage rotational asymmetries.",
+                "Dr. Morales works with modern professionals: \"Correcting tech neck isn't just pulling your chin back; it requires restoring thoracic kyphosis dynamics and diaphragmatic breathing patterns.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "University of Miami",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "Postural Restoration Institute",
+                        "desc": "Postural Restoration Certified (PRC)"
+                },
+                {
+                        "icon": "fas fa-desktop",
+                        "color": "text-success",
+                        "title": "Ergonomics Institute of America",
+                        "desc": "Certified Workstation Evaluator"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Jessica Morales",
+        "bookingSubtitle": "Reserve a postural consultation session directly with Dr. Morales.",
+        "successMsg": "Evaluation request received for Dr. Morales! We will call you within 15 minutes."
+},
+    "scott": {
+        "id": "scott",
+        "name": "Dr. Benjamin Scott",
+        "fullName": "Dr. Benjamin Scott, PT, DPT, OCS",
+        "titleRole": "Spinal Alignment & Biomechanical Correction Specialist",
+        "sidebarRole": "Lumbar Lordosis & Pelvic Tilt Lead",
+        "image": "assets/images/therapist-scott.jpg",
+        "heroImage": "assets/images/service-spine.jpg",
+        "heroAlt": "Dr. Benjamin Scott in the Sagittal Spine Alignment Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Sagittal Pelvic Alignment & Spine Biomechanics (OCS)",
+        "experience": "10+ Years Clinical",
+        "rating": "4.9 / 5.0 (290 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "11:00 AM – 7:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Sagittal Alignment Philosophy",
+        "bioParagraphs": [
+                "Dr. Benjamin Scott received his DPT from Duke University School of Medicine. With advanced board certification in Orthopedics (OCS), Dr. Scott specializes in complex pelvic-lumbar force-couple imbalances and anterior pelvic tilt corrections.",
+                "\"When hip flexors overpower anterior abdominal muscles, the lumbar spine absorbs excessive shear. Balancing these force couples restores pain-free functional posture.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Duke University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "American Board of Physical Therapy Specialties",
+                        "desc": "Board-Certified Orthopedic Clinical Specialist (OCS)"
+                },
+                {
+                        "icon": "fas fa-bone",
+                        "color": "text-success",
+                        "title": "North American Institute of Orthopaedic Manual PT",
+                        "desc": "Level III Advanced Manual Practitioner"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Benjamin Scott",
+        "bookingSubtitle": "Schedule an evaluation for pelvic tilt and lumbar spine alignment with Dr. Scott.",
+        "successMsg": "Evaluation request received for Dr. Scott! We will call you within 15 minutes."
+},
+    "henderson": {
+        "id": "henderson",
+        "name": "Dr. Ryan Henderson",
+        "fullName": "Dr. Ryan Henderson, PT, DPT, Dip. MDT",
+        "titleRole": "Certified Mechanical Diagnosis & Therapy (Cert. MDT) Specialist",
+        "sidebarRole": "McKenzie Lumbar Disc Protocol Lead",
+        "image": "assets/images/therapist-henderson.jpg",
+        "heroImage": "assets/images/service-spine.jpg",
+        "heroAlt": "Dr. Ryan Henderson in the Mechanical Diagnosis & Disc Centralization Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "McKenzie Method & Acute Disc Bulges (Dip. MDT)",
+        "experience": "12+ Years Clinical",
+        "rating": "5.0 / 5.0 (310 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "7:00 AM – 3:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Mechanical Spine Therapy",
+        "bioParagraphs": [
+                "Dr. Ryan Henderson holds the prestigious International Diploma in Mechanical Diagnosis and Therapy from The McKenzie Institute. He is one of the region's foremost authorities on rapid directional preference and disc centralisation.",
+                "\"Most disc bulges possess a mechanical directional preference. Once identified, repetitive extension drills allow patients to rapidly self-manage and abolish radiating pain.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "University of Pittsburgh",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "The McKenzie Institute International",
+                        "desc": "Diplomate in Mechanical Diagnosis and Therapy (Dip. MDT)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Ryan Henderson",
+        "bookingSubtitle": "Reserve a McKenzie disc assessment session with Dr. Henderson.",
+        "successMsg": "Evaluation request received for Dr. Henderson! We will call you within 15 minutes."
+},
+    "zimmerman": {
+        "id": "zimmerman",
+        "name": "Dr. Rachel Zimmerman",
+        "fullName": "Dr. Rachel Zimmerman, PT, DPT, CHT",
+        "titleRole": "Upper Extremity Manual Therapist & Ergonomics Consultant",
+        "sidebarRole": "Carpal Tunnel & RSI Clinical Lead",
+        "image": "assets/images/therapist-zimmerman.jpg",
+        "heroImage": "assets/images/service-posture.jpg",
+        "heroAlt": "Dr. Rachel Zimmerman in the Hand & Upper Extremity Ergonomics Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Certified Hand Therapist (CHT) & Ergonomics",
+        "experience": "11+ Years Clinical",
+        "rating": "4.9 / 5.0 (284 Reviews)",
+        "languages": "English, German",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Upper Extremity Ergonomics",
+        "bioParagraphs": [
+                "Dr. Rachel Zimmerman is a dual-credentialed Doctor of Physical Therapy and Certified Hand Therapist (CHT). She specializes in repetitive strain injury (RSI), median nerve entrapment, and workstation micro-adjustments.",
+                "\"Nerves require free longitudinal gliding and arterial blood flow. Targeted tendon and nerve flossing prevent fibrotic compression in modern keyboard workers.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Boston University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-hand-holding-medical",
+                        "color": "text-secondary",
+                        "title": "Hand Therapy Certification Commission",
+                        "desc": "Certified Hand Therapist (CHT)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Rachel Zimmerman",
+        "bookingSubtitle": "Schedule a hand and wrist rehabilitation session with Dr. Zimmerman.",
+        "successMsg": "Evaluation request received for Dr. Zimmerman! We will call you within 15 minutes."
+},
+    "mitchell": {
+        "id": "mitchell",
+        "name": "Dr. Aaron Mitchell",
+        "fullName": "Dr. Aaron Mitchell, PT, DPT, CSCS",
+        "titleRole": "Foot & Ankle Biomechanics & Shockwave Specialist",
+        "sidebarRole": "Plantar Fasciitis & Foot Biomechanics Lead",
+        "image": "assets/images/therapist-mitchell.jpg",
+        "heroImage": "assets/images/service-runners-gait.jpg",
+        "heroAlt": "Dr. Aaron Mitchell in the Extracorporeal Shockwave & Foot Biomechanics Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Plantar Fascia Shockwave & Gait Analysis",
+        "experience": "7+ Years Clinical",
+        "rating": "4.8 / 5.0 (245 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "7:30 AM – 3:30 PM",
+                "thuFri": "11:00 AM – 7:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Lower Extremity Kinetics",
+        "bioParagraphs": [
+                "Dr. Aaron Mitchell earned his DPT from the University of Washington. He combines high-energy extracorporeal shockwave therapy (ESWT) with high-load strength training for chronic heel pain and plantar fasciitis.",
+                "\"The plantar fascia is collagen that requires progressive tensile stimulation rather than passive rest to stimulate cellular matrix regeneration.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "University of Washington",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-wave-square",
+                        "color": "text-secondary",
+                        "title": "International Society for Medical Shockwave Treatment",
+                        "desc": "Certified Radial & Focused Shockwave Specialist"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Aaron Mitchell",
+        "bookingSubtitle": "Reserve a plantar fasciitis evaluation block with Dr. Mitchell.",
+        "successMsg": "Evaluation request received for Dr. Mitchell! We will call you within 15 minutes."
+},
+    "taylor": {
+        "id": "taylor",
+        "name": "Dr. Olivia Taylor",
+        "fullName": "Dr. Olivia Taylor, PT, DPT, SCS",
+        "titleRole": "Acute Sports Trauma & Ligament Healing Specialist",
+        "sidebarRole": "Ankle Sprain & POLICE Protocol Lead",
+        "image": "assets/images/therapist-taylor.jpg",
+        "heroImage": "assets/images/service-sports.jpg",
+        "heroAlt": "Dr. Olivia Taylor in the Acute Sports Trauma & Ligament Healing Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Acute Ligament Trauma & POLICE Protocols (SCS)",
+        "experience": "8+ Years Clinical",
+        "rating": "4.9 / 5.0 (260 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Sports Ligament Rehabilitation",
+        "bioParagraphs": [
+                "Dr. Olivia Taylor received her Doctorate from King's College London and completed advanced Sports Specialty certification in the US. She champions the modern POLICE protocol over outdated RICE methods.",
+                "\"Optimal loading during the acute proliferative phase of ligament repair prevents chronic ankle instability and accelerates safe return to athletic play.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "King's College London",
+                        "desc": "Doctor of Physical Therapy (Honours)"
+                },
+                {
+                        "icon": "fas fa-medal",
+                        "color": "text-secondary",
+                        "title": "American Board of Physical Therapy",
+                        "desc": "Board-Certified Sports Clinical Specialist (SCS)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Olivia Taylor",
+        "bookingSubtitle": "Schedule an acute ankle ligament assessment with Dr. Taylor.",
+        "successMsg": "Evaluation request received for Dr. Taylor! We will call you within 15 minutes."
+},
+    "moreau": {
+        "id": "moreau",
+        "name": "Dr. Lucas Moreau",
+        "fullName": "Dr. Lucas Moreau, PT, DPT, CMPT",
+        "titleRole": "Tendinopathy Rehabilitation & Manual Therapy Specialist",
+        "sidebarRole": "Tennis Elbow & Tendon Loading Lead",
+        "image": "assets/images/therapist-moreau.jpg",
+        "heroImage": "assets/images/service-mobility.jpg",
+        "heroAlt": "Dr. Lucas Moreau in the Eccentric Tendinopathy Remodeling Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Eccentric Tendinopathy & Wrist Extensors (CMPT)",
+        "experience": "10+ Years Clinical",
+        "rating": "4.9 / 5.0 (275 Reviews)",
+        "languages": "English, French",
+        "hours": {
+                "monWed": "7:30 AM – 3:30 PM",
+                "thuFri": "11:00 AM – 7:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Tendinopathy Regeneration",
+        "bioParagraphs": [
+                "Dr. Lucas Moreau completed his physical therapy doctorate at the University of Montreal followed by advanced certification in orthopedic manual physical therapy (CMPT).",
+                "\"Tendon healing is a load-driven biological process. Through heavy-slow resistance training, we trigger collagen tendon remodeling for stubborn lateral epicondylalgia.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "University of Montreal",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "North American Institute of Orthopaedic Manual PT",
+                        "desc": "Certified Manual Physical Therapist (CMPT)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Lucas Moreau",
+        "bookingSubtitle": "Reserve a tendinopathy consultation with Dr. Moreau.",
+        "successMsg": "Evaluation request received for Dr. Moreau! We will call you within 15 minutes."
+},
+    "dupont": {
+        "id": "dupont",
+        "name": "Dr. Claire Dupont",
+        "fullName": "Dr. Claire Dupont, PT, DPT, OCS",
+        "titleRole": "Hip Arthroscopy & Joint Kinematics Specialist",
+        "sidebarRole": "Femoroacetabular Impingement (FAI) Lead",
+        "image": "assets/images/therapist-dupont.jpg",
+        "heroImage": "assets/images/service-joint.jpg",
+        "heroAlt": "Dr. Claire Dupont in the Hip Arthroscopy & Joint Kinematics Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Hip Labral & FAI Joint Kinematics (OCS)",
+        "experience": "9+ Years Clinical",
+        "rating": "4.9 / 5.0 (270 Reviews)",
+        "languages": "English, French",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Hip Preservation Philosophy",
+        "bioParagraphs": [
+                "Dr. Claire Dupont earned her Doctorate from Emory University School of Medicine and completed an orthopedic fellowship with an emphasis on hip preservation and labral kinematics.",
+                "\"Improving deep hip rotators and correcting pelvic tilt relieves impingement at the femoral-acetabular junction, allowing athletes to squat and lunge without anterior pinch.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Emory University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-award",
+                        "color": "text-secondary",
+                        "title": "American Board of Physical Therapy Specialties",
+                        "desc": "Board-Certified Orthopedic Clinical Specialist (OCS)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Claire Dupont",
+        "bookingSubtitle": "Schedule an FAI hip evaluation with Dr. Dupont.",
+        "successMsg": "Evaluation request received for Dr. Dupont! We will call you within 15 minutes."
+},
+    "fisher": {
+        "id": "fisher",
+        "name": "Dr. Natalie Fisher",
+        "fullName": "Dr. Natalie Fisher, PT, DPT, GCS",
+        "titleRole": "Post-Arthroplasty Rehabilitation Clinical Fellow",
+        "sidebarRole": "Total Knee Replacement Roadmap Lead",
+        "image": "assets/images/therapist-fisher.jpg",
+        "heroImage": "assets/images/service-postop.jpg",
+        "heroAlt": "Dr. Natalie Fisher in the Total Joint Arthroplasty Rehabilitation Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Total Knee Arthroplasty 12-Week Milestones",
+        "experience": "14+ Years Clinical",
+        "rating": "5.0 / 5.0 (360 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "7:00 AM – 3:00 PM",
+                "thuFri": "9:00 AM – 5:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Arthroplasty Roadmap",
+        "bioParagraphs": [
+                "Dr. Natalie Fisher is a Senior Clinical Fellow with over 14 years specializing exclusively in joint replacement recovery. She trained at the Hospital for Special Surgery in New York.",
+                "\"Early extension and progressive closed kinetic chain loading guarantee long-term implant longevity and natural functional gait.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "New York University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "American Board of Physical Therapy",
+                        "desc": "Board-Certified Geriatric Clinical Specialist (GCS)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Natalie Fisher",
+        "bookingSubtitle": "Reserve a joint replacement rehabilitation consult with Dr. Fisher.",
+        "successMsg": "Evaluation request received for Dr. Fisher! We will call you within 15 minutes."
+},
+    "malhotra": {
+        "id": "malhotra",
+        "name": "Dr. Vikram Malhotra",
+        "fullName": "Dr. Vikram Malhotra, PT, DPT, SCS, FAAOMPT",
+        "titleRole": "Post-Surgical Shoulder Fellow & Tissue Biomechanics Specialist",
+        "sidebarRole": "Rotator Cuff Repair Arthroscopy Lead",
+        "image": "assets/images/therapist-malhotra.jpg",
+        "heroImage": "assets/images/service-postop-shoulder.jpg",
+        "heroAlt": "Dr. Vikram Malhotra in the Post-Surgical Arthroscopic Shoulder Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Post-Op Arthroscopic Cuff Protection & Loading",
+        "experience": "9+ Years Clinical",
+        "rating": "4.9 / 5.0 (280 Reviews)",
+        "languages": "English, Hindi",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Post-Surgical Cuff Protection",
+        "bioParagraphs": [
+                "Dr. Vikram Malhotra completed his DPT at Northwestern University and an Orthopaedic Manual Physical Therapy Fellowship. He works collaboratively with top orthopedic shoulder surgeons.",
+                "\"Protecting the suture anchor while promoting tendon-to-bone collagen maturation requires respect for biological healing phases without letting the capsule tighten.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Northwestern University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-shield-alt",
+                        "color": "text-secondary",
+                        "title": "American Academy of Orthopaedic Manual PT",
+                        "desc": "Fellow (FAAOMPT)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Vikram Malhotra",
+        "bookingSubtitle": "Schedule a rotator cuff repair post-surgical evaluation with Dr. Malhotra.",
+        "successMsg": "Evaluation request received for Dr. Malhotra! We will call you within 15 minutes."
+},
+    "thorne": {
+        "id": "thorne",
+        "name": "Dr. Kevin Thorne",
+        "fullName": "Dr. Kevin Thorne, PT, DPT, CSCS",
+        "titleRole": "High-Velocity Sprint Mechanics & Hamstring Specialist",
+        "sidebarRole": "Sprint Biomechanics & Nordic Eccentric Lead",
+        "image": "assets/images/therapist-thorne.jpg",
+        "heroImage": "assets/images/service-sports.jpg",
+        "heroAlt": "Dr. Kevin Thorne in the High-Velocity Sprint Mechanics & Nordic Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Biceps Femoris Strain & Return-to-Sprint",
+        "experience": "8+ Years Clinical",
+        "rating": "4.9 / 5.0 (250 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "7:00 AM – 3:00 PM",
+                "thuFri": "11:00 AM – 7:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Sprint Acceleration Mechanics",
+        "bioParagraphs": [
+                "Dr. Kevin Thorne earned his DPT at Ohio State University and trains collegiate sprinters and field athletes recovering from acute hamstring strains.",
+                "\"Hamstrings tear during terminal swing eccentric deceleration. High-load eccentric training at long muscle lengths is the cornerstone of reinjury prevention.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "The Ohio State University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-running",
+                        "color": "text-secondary",
+                        "title": "National Strength & Conditioning Association",
+                        "desc": "CSCS Certified"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Kevin Thorne",
+        "bookingSubtitle": "Reserve a sprint kinematics assessment with Dr. Thorne.",
+        "successMsg": "Evaluation request received for Dr. Thorne! We will call you within 15 minutes."
+},
+    "gomez": {
+        "id": "gomez",
+        "name": "Dr. Andrea Gomez",
+        "fullName": "Dr. Andrea Gomez, PT, DPT, CMPT",
+        "titleRole": "Rotational Biomechanics & Spinal Mobilization Specialist",
+        "sidebarRole": "Thoracic Spine Extension & Rib Mobility Lead",
+        "image": "assets/images/therapist-gomez.jpg",
+        "heroImage": "assets/images/service-mobility.jpg",
+        "heroAlt": "Dr. Andrea Gomez in the Rotational Spinal Freedom & Thoracic Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Thoracic Cage Kinematics & Costovertebral Joints",
+        "experience": "7+ Years Clinical",
+        "rating": "4.8 / 5.0 (230 Reviews)",
+        "languages": "English, Spanish",
+        "hours": {
+                "monWed": "8:30 AM – 4:30 PM",
+                "thuFri": "10:30 AM – 6:30 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Rotational Spinal Freedom",
+        "bioParagraphs": [
+                "Dr. Andrea Gomez completed her physical therapy training at Texas Woman's University. She specializes in freeing hypomobile thoracic motion segments for golf, tennis, and rotational athletes.",
+                "\"Thoracic stiffness forces the lumbar spine and shoulders to compensate. Restoring T-spine rotation unleashes athletic power and cures chronic neck fatigue.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Texas Woman's University",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-secondary",
+                        "title": "North American Institute of Orthopaedic Manual PT",
+                        "desc": "Certified Manual Physical Therapist (CMPT)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Andrea Gomez",
+        "bookingSubtitle": "Schedule a thoracic mobility evaluation with Dr. Gomez.",
+        "successMsg": "Evaluation request received for Dr. Gomez! We will call you within 15 minutes."
+},
+    "serena-vance": {
+        "id": "serena-vance",
+        "name": "Dr. Serena Vance",
+        "fullName": "Dr. Serena Vance, PT, DPT, WCS, PRPC",
+        "titleRole": "Pelvic Floor Rehabilitation & Deep Core Motor Control Specialist",
+        "sidebarRole": "Deep Core & Pelvic Diaphragm Lead",
+        "image": "assets/images/therapist-serena.jpg",
+        "heroImage": "assets/images/service-chronic.jpg",
+        "heroAlt": "Dr. Serena Vance in the Private Pelvic Health & Deep Core Motor Control Suite",
+        "degree": "Doctor of Physical Therapy",
+        "specialty": "Transverse Abdominis & Pelvic Floor Synchronization",
+        "experience": "9+ Years Clinical",
+        "rating": "5.0 / 5.0 (295 Reviews)",
+        "languages": "English",
+        "hours": {
+                "monWed": "8:00 AM – 4:00 PM",
+                "thuFri": "10:00 AM – 6:00 PM",
+                "sat": "By Appointment Only"
+        },
+        "bioTitle": "Biography & Deep Core Stabilization",
+        "bioParagraphs": [
+                "Dr. Serena Vance earned her Doctorate from Washington University in St. Louis. She holds dual board certifications in Women's Clinical Health (WCS) and Pelvic Rehabilitation (PRPC).",
+                "\"The core is a pressurized canister formed by the diaphragm, transverse abdominis, multifidus, and pelvic floor. True spinal stability comes from their fluid synchronization.\""
+        ],
+        "credentials": [
+                {
+                        "icon": "fas fa-graduation-cap",
+                        "color": "text-primary",
+                        "title": "Washington University in St. Louis",
+                        "desc": "Doctor of Physical Therapy (DPT)"
+                },
+                {
+                        "icon": "fas fa-award",
+                        "color": "text-secondary",
+                        "title": "American Board of Physical Therapy Specialties",
+                        "desc": "Board-Certified Women's Clinical Specialist (WCS)"
+                },
+                {
+                        "icon": "fas fa-certificate",
+                        "color": "text-success",
+                        "title": "Herman & Wallace Pelvic Rehabilitation Institute",
+                        "desc": "Pelvic Rehabilitation Practitioner Certified (PRPC)"
+                }
+        ],
+        "bookingTitle": "Request Appointment with Dr. Serena Vance",
+        "bookingSubtitle": "Reserve a private deep core and pelvic health consultation with Dr. Vance.",
+        "successMsg": "Evaluation request received for Dr. Vance! We will call you within 15 minutes."
+}
 };
 
   // =========================================================================
@@ -936,7 +1602,51 @@
       'nathan': 'cross',
       'nathan-cross': 'cross',
       'maya': 'patel',
-      'maya-patel': 'patel'
+      'maya-patel': 'patel',
+      'kowalski': 'kowalski',
+      'daniel-kowalski': 'kowalski',
+      'daniel': 'kowalski',
+      'oconnor': 'oconnor',
+      'patrick-oconnor': 'oconnor',
+      'patrick': 'oconnor',
+      'morales': 'morales',
+      'jessica-morales': 'morales',
+      'jessica': 'morales',
+      'scott': 'scott',
+      'benjamin-scott': 'scott',
+      'benjamin': 'scott',
+      'henderson': 'henderson',
+      'ryan-henderson': 'henderson',
+      'ryan': 'henderson',
+      'zimmerman': 'zimmerman',
+      'rachel-zimmerman': 'zimmerman',
+      'rachel': 'zimmerman',
+      'mitchell': 'mitchell',
+      'aaron-mitchell': 'mitchell',
+      'aaron': 'mitchell',
+      'taylor': 'taylor',
+      'olivia-taylor': 'taylor',
+      'olivia': 'taylor',
+      'moreau': 'moreau',
+      'lucas-moreau': 'moreau',
+      'lucas': 'moreau',
+      'dupont': 'dupont',
+      'claire-dupont': 'dupont',
+      'claire': 'dupont',
+      'fisher': 'fisher',
+      'natalie-fisher': 'fisher',
+      'natalie': 'fisher',
+      'malhotra': 'malhotra',
+      'vikram-malhotra': 'malhotra',
+      'vikram': 'malhotra',
+      'thorne': 'thorne',
+      'kevin-thorne': 'thorne',
+      'kevin': 'thorne',
+      'gomez': 'gomez',
+      'andrea-gomez': 'gomez',
+      'andrea': 'gomez',
+      'serena': 'serena-vance',
+      'serena-vance': 'serena-vance'
     };
 
     if (aliasMap[raw]) return aliasMap[raw];
@@ -1120,11 +1830,11 @@
     // 5. Hero Consultation Image
     const heroImg = document.getElementById('therapistHeroImg');
     if (heroImg) {
-      heroImg.src = doc.heroImage || 'assets/images/therapist-consult-jenkins.jpg';
+      heroImg.src = doc.heroImage || 'assets/images/clinic-interior.jpg';
       heroImg.alt = doc.heroAlt || `${doc.name} consultation`;
       heroImg.onerror = function () {
         this.onerror = null;
-        this.src = 'assets/images/therapist-consult-jenkins.jpg';
+        this.src = 'assets/images/clinic-interior.jpg';
       };
     }
 
