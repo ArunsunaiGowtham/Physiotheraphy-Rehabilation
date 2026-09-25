@@ -44,6 +44,7 @@
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(THEME_KEY, theme);
     updateThemeButtons(theme);
+    updateDirectionButtons(getPreferredDirection());
 
     // Dispatch event for components like Chart.js
     window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
@@ -81,11 +82,18 @@
     const dirBtns = document.querySelectorAll('.rtl-toggle-btn');
     dirBtns.forEach((btn) => {
       sanitizeButton(btn);
+      btn.style.display = 'inline-flex';
+      btn.style.visibility = 'visible';
+      btn.style.opacity = '1';
       const text = btn.querySelector('.dir-text');
-      if (direction === 'rtl') {
-        if (text) text.textContent = 'LTR';
-      } else {
-        if (text) text.textContent = 'RTL';
+      if (text) {
+        text.style.display = 'inline';
+        text.style.visibility = 'visible';
+        if (direction === 'rtl') {
+          text.textContent = 'LTR';
+        } else {
+          text.textContent = 'RTL';
+        }
       }
     });
   }

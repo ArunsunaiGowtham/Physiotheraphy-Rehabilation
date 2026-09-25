@@ -275,9 +275,9 @@
 .topbar-actions .rtl-toggle-btn {
   height: 34px;
   box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   gap: 0.35rem;
   padding: 0 0.75rem;
   border-radius: var(--radius-full);
@@ -286,11 +286,49 @@
   line-height: 1;
   vertical-align: middle;
   flex-shrink: 0;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  transition: var(--transition-base);
+  cursor: pointer;
 }
 
 .topbar-actions .rtl-toggle-btn .dir-text {
   font-weight: 700;
   letter-spacing: 0.3px;
+  display: inline !important;
+  visibility: visible !important;
+}
+
+/* Explicit Dark Mode styling for RTL Button in dashboard topbar */
+[data-bs-theme="dark"] .topbar-actions .rtl-toggle-btn,
+[data-theme="dark"] .topbar-actions .rtl-toggle-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #38bdf8 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-bs-theme="dark"] .topbar-actions .rtl-toggle-btn i,
+[data-theme="dark"] .topbar-actions .rtl-toggle-btn i,
+[data-bs-theme="dark"] .topbar-actions .rtl-toggle-btn .dir-text,
+[data-theme="dark"] .topbar-actions .rtl-toggle-btn .dir-text {
+  display: inline !important;
+  visibility: visible !important;
+  color: #38bdf8 !important;
+  opacity: 1 !important;
+}
+
+[data-bs-theme="dark"] .topbar-actions .rtl-toggle-btn:hover,
+[data-theme="dark"] .topbar-actions .rtl-toggle-btn:hover {
+  background: #334155 !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
 }
 
 .topbar-actions #backToWebsiteBtn,
