@@ -41,6 +41,20 @@
 
     // 1. Unauthenticated direct access check
     if (!user || !user.email || !user.role) {
+      if (isPatientArea) {
+        // Auto-initialize demo patient session so User Dashboard is always accessible directly via the separate Dashboard icon
+        const demoPatient = {
+          fullName: 'Robert Sterling',
+          email: 'robert@example.com',
+          role: 'patient',
+          dashboard: 'patient/dashboard.html'
+        };
+        try {
+          sessionStorage.setItem(CURRENT_USER_KEY, JSON.stringify(demoPatient));
+        } catch (e) {}
+        return;
+      }
+
       if (document.documentElement) {
         document.documentElement.style.display = 'none';
       }

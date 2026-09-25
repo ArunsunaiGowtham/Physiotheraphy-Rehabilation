@@ -179,99 +179,84 @@ function initMain() {
      Navbar Auth State Synchronization (Login/Signup vs Dashboard/Logout)
      ========================================================================== */
   function syncNavbarAuthState() {
-    let user = null;
-    try {
-      const sessionStr = sessionStorage.getItem('physiolife_current_user') || localStorage.getItem('physiolife_current_user');
-      if (sessionStr) {
-        user = JSON.parse(sessionStr);
-      }
-    } catch (e) {
-      user = null;
-    }
-
-    if (!user || !user.email || !user.role) {
-      return;
-    }
-
-    const isAdmin = (user.role === 'admin');
-    const isSubdir = window.location.pathname.includes('/patient/') || window.location.pathname.includes('/admin/');
-    const targetDashboard = isAdmin
-      ? (isSubdir ? '../admin/dashboard.html' : 'admin/dashboard.html')
-      : (isSubdir ? '../patient/dashboard.html' : 'patient/dashboard.html');
-    const roleLabel = isAdmin ? 'Admin Dashboard' : 'Dashboard';
-    const shortLabel = isAdmin ? 'Admin' : 'Dashboard';
+    const isSubdir = window.location.pathname.includes('/patient/') || 
+                     window.location.pathname.includes('/admin/') || 
+                     window.location.pathname.includes('/documentation/');
+    const userDashboardUrl = isSubdir ? '../patient/dashboard.html' : 'patient/dashboard.html';
+    const roleLabel = 'User Dashboard';
+    const shortLabel = 'Dashboard';
 
     // 1. Desktop Navbar Actions (>= 1200px)
     const desktopActions = document.querySelector('.navbar-actions');
     if (desktopActions) {
-      const loginBtn = desktopActions.querySelector('.btn-nav-login');
-      const signupBtn = desktopActions.querySelector('.btn-nav-signup');
+      let navDash = document.getElementById('navDashboardBtn');
+      if (!navDash) {
+        navDash = document.createElement('a');
+        navDash.href = userDashboardUrl;
+        navDash.className = 'btn-nav-dashboard';
+        navDash.id = 'navDashboardBtn';
+        navDash.title = roleLabel;
+        navDash.setAttribute('aria-label', roleLabel);
+        navDash.innerHTML = `<i class="fas fa-th-large"></i> <span>${shortLabel}</span>`;
 
-      if (loginBtn) {
-        loginBtn.outerHTML = `
-          <a href="${targetDashboard}" class="btn-nav-dashboard" id="navDashboardBtn" title="Go to ${roleLabel}">
-            <i class="fas fa-th-large"></i> <span>${roleLabel}</span>
-          </a>
-        `;
-      }
-      if (signupBtn) {
-        signupBtn.outerHTML = `
-          <a href="#" class="btn-nav-logout" id="navLogoutBtn" title="Sign Out">
-            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
-          </a>
-        `;
-      }
-
-      const logoutBtn = document.getElementById('navLogoutBtn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          localStorage.removeItem('physiolife_current_user');
-          sessionStorage.removeItem('physiolife_current_user');
-          window.location.reload();
-        });
+        // Keep proper alignment: Place Dashboard icon right before Login and Sign Up
+        const loginBtn = desktopActions.querySelector('.btn-nav-login');
+        if (loginBtn) {
+          desktopActions.insertBefore(navDash, loginBtn);
+        } else {
+          desktopActions.appendChild(navDash);
+        }
+      } else {
+        navDash.href = userDashboardUrl;
+        navDash.title = roleLabel;
+        navDash.setAttribute('aria-label', roleLabel);
       }
     }
 
     // 2. Mobile Header Bar (Directly visible beside Hamburger button on mobile screens)
     const toggler = document.querySelector('.navbar-toggler');
-    if (toggler && !document.getElementById('mobileHeaderDashboardBtn')) {
-      const mobileHeaderDash = document.createElement('a');
-      mobileHeaderDash.href = targetDashboard;
-      mobileHeaderDash.id = 'mobileHeaderDashboardBtn';
-      mobileHeaderDash.className = 'btn-nav-dashboard-header d-xl-none';
-      mobileHeaderDash.title = `Go to ${roleLabel}`;
-      mobileHeaderDash.innerHTML = `<i class="fas fa-th-large"></i> <span class="d-none d-sm-inline">${shortLabel}</span>`;
-      toggler.parentNode.insertBefore(mobileHeaderDash, toggler);
+    if (toggler) {
+      let mobileHeaderDash = document.getElementById('mobileHeaderDashboardBtn');
+      if (!mobileHeaderDash) {
+        mobileHeaderDash = document.createElement('a');
+        mobileHeaderDash.href = userDashboardUrl;
+        mobileHeaderDash.id = 'mobileHeaderDashboardBtn';
+        mobileHeaderDash.className = 'btn-nav-dashboard-header d-xl-none';
+        mobileHeaderDash.title = roleLabel;
+        mobileHeaderDash.setAttribute('aria-label', roleLabel);
+        mobileHeaderDash.innerHTML = `<i class="fas fa-th-large"></i> <span class="d-none d-sm-inline">${shortLabel}</span>`;
+        toggler.parentNode.insertBefore(mobileHeaderDash, toggler);
+      } else {
+        mobileHeaderDash.href = userDashboardUrl;
+        mobileHeaderDash.title = roleLabel;
+        mobileHeaderDash.setAttribute('aria-label', roleLabel);
+      }
     }
 
     // 3. Mobile Drawer Actions (< 1200px)
-    const mobileLoginBtn = document.querySelector('.mobile-nav-actions .btn-nav-login');
-    const mobileSignupBtn = document.querySelector('.mobile-nav-actions .btn-nav-signup');
-
-    if (mobileLoginBtn) {
-      mobileLoginBtn.outerHTML = `
-        <a href="${targetDashboard}" class="btn-nav-dashboard flex-fill justify-content-center" id="mobileNavDashboardBtn" title="Go to ${roleLabel}">
-          <i class="fas fa-th-large"></i> <span>${roleLabel}</span>
-        </a>
-      `;
-    }
-    if (mobileSignupBtn) {
-      mobileSignupBtn.outerHTML = `
-        <a href="#" class="btn-nav-logout flex-fill justify-content-center" id="mobileNavLogoutBtn" title="Sign Out">
-          <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
-        </a>
-      `;
-    }
-
-    const mobileLogoutBtn = document.getElementById('mobileNavLogoutBtn');
-    if (mobileLogoutBtn) {
-      mobileLogoutBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        localStorage.removeItem('physiolife_current_user');
-        sessionStorage.removeItem('physiolife_current_user');
-        window.location.reload();
-      });
+    const mobileActions = document.querySelector('.mobile-nav-actions');
+    if (mobileActions) {
+      let mobileNavDash = document.getElementById('mobileNavDashboardBtn');
+      if (!mobileNavDash) {
+        const dashContainer = document.createElement('div');
+        dashContainer.className = 'mb-2 w-100';
+        dashContainer.id = 'mobileNavDashboardContainer';
+        dashContainer.innerHTML = `
+          <a href="${userDashboardUrl}" class="btn-nav-dashboard w-100 justify-content-center" id="mobileNavDashboardBtn" title="${roleLabel}" aria-label="${roleLabel}">
+            <i class="fas fa-th-large"></i> <span>${roleLabel}</span>
+          </a>
+        `;
+        const controls = mobileActions.querySelector('.mobile-nav-controls');
+        if (controls && controls.nextSibling) {
+          mobileActions.insertBefore(dashContainer, controls.nextSibling);
+        } else {
+          mobileActions.prepend(dashContainer);
+        }
+      } else {
+        mobileNavDash.href = userDashboardUrl;
+        mobileNavDash.title = roleLabel;
+        mobileNavDash.setAttribute('aria-label', roleLabel);
+      }
     }
   }
 

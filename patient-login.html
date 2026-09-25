@@ -205,15 +205,19 @@
           return;
         }
 
-        // On patient login, redirection target MUST strictly be patient dashboard only
-        const targetDashboard = 'patient/dashboard.html';
-
-        // Successful authentication -> redirect strictly to patient dashboard
+        // Dummy login: do NOT redirect to dashboard page
         alertBox.className = 'alert alert-success mb-4 d-block';
-        alertBox.innerHTML = `<i class="fas fa-check-circle me-2"></i> Welcome back, <strong>${result.user.fullName}</strong>! Redirecting to Patient Dashboard...`;
-        setTimeout(() => {
-          window.location.href = targetDashboard;
-        }, 350);
+        alertBox.innerHTML = `
+          <div class="d-flex align-items-start gap-2">
+            <i class="fas fa-check-circle fs-5 mt-1 text-success flex-shrink-0"></i>
+            <div>
+              <strong>Patient Sign In Simulated (Dummy Mode)</strong>
+              <div class="small mt-1 text-muted">
+                Welcome, <strong>${result.user.fullName}</strong>! This is a dummy login page and is <strong>not redirected</strong> to the dashboard page. You can access the <strong>User Dashboard</strong> directly anytime using the separate <strong>Dashboard</strong> icon in the navigation header.
+              </div>
+            </div>
+          </div>
+        `;
       });
     });
   </script>

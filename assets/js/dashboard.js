@@ -18,11 +18,23 @@
   let user = null;
   try { user = sessionStr ? JSON.parse(sessionStr) : null; } catch(e) {}
 
-  // 1. Unauthenticated users -> redirect strictly to dedicated login portal
+  // 1. Unauthenticated users -> for patient area, initialize demo patient session so User Dashboard is directly accessible
   if (!user || !user.email || !user.role) {
-    if (document.documentElement) document.documentElement.style.display = 'none';
-    window.location.replace(isAdmin ? '../admin-login.html' : '../patient-login.html');
-    return;
+    if (isPatient) {
+      user = {
+        fullName: 'Robert Sterling',
+        email: 'robert@example.com',
+        role: 'patient',
+        dashboard: 'patient/dashboard.html'
+      };
+      try {
+        sessionStorage.setItem('physiolife_current_user', JSON.stringify(user));
+      } catch (e) {}
+    } else {
+      if (document.documentElement) document.documentElement.style.display = 'none';
+      window.location.replace('../admin-login.html');
+      return;
+    }
   }
 
   // 2. Role boundary protection: Customer login must NEVER open Admin Dashboard
