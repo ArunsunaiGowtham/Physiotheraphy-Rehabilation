@@ -186,34 +186,54 @@ function initMain() {
     const roleLabel = 'User Dashboard';
     const shortLabel = 'Dashboard';
 
-    // 1. Desktop Navbar Actions (>= 1200px)
-    const desktopActions = document.querySelector('.navbar-actions');
-    if (desktopActions) {
-      let navDash = document.getElementById('navDashboardBtn');
-      if (!navDash) {
-        navDash = document.createElement('a');
-        navDash.href = userDashboardUrl;
-        navDash.className = 'btn-nav-dashboard';
-        navDash.id = 'navDashboardBtn';
-        navDash.title = roleLabel;
-        navDash.setAttribute('aria-label', roleLabel);
-        navDash.innerHTML = `<i class="fas fa-th-large"></i> <span>${shortLabel}</span>`;
+    // 1. Place Dashboard Icon directly after Contact in navbar-nav
+    const navBarNav = document.querySelector('.navbar-nav');
+    if (navBarNav) {
+      let dashLink = document.getElementById('navMenuDashboardLink');
+      if (!dashLink) {
+        // Find Contact item
+        const navLinks = navBarNav.querySelectorAll('.nav-link');
+        let contactLi = null;
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') && link.getAttribute('href').includes('contact.html')) {
+            contactLi = link.closest('.nav-item');
+          }
+        });
 
-        // Keep proper alignment: Place Dashboard icon right before Login and Sign Up
-        const loginBtn = desktopActions.querySelector('.btn-nav-login');
-        if (loginBtn) {
-          desktopActions.insertBefore(navDash, loginBtn);
+        const newLi = document.createElement('li');
+        newLi.className = 'nav-item';
+        newLi.innerHTML = `
+          <a class="nav-link nav-dashboard-link" href="${userDashboardUrl}" id="navMenuDashboardLink" title="${roleLabel}" aria-label="${roleLabel}">
+            <i class="fas fa-th-large"></i> <span>${shortLabel}</span>
+          </a>
+        `;
+
+        if (contactLi && contactLi.nextSibling) {
+          navBarNav.insertBefore(newLi, contactLi.nextSibling);
         } else {
-          desktopActions.appendChild(navDash);
+          navBarNav.appendChild(newLi);
         }
       } else {
-        navDash.href = userDashboardUrl;
-        navDash.title = roleLabel;
-        navDash.setAttribute('aria-label', roleLabel);
+        dashLink.href = userDashboardUrl;
+        dashLink.title = roleLabel;
+        dashLink.setAttribute('aria-label', roleLabel);
       }
     }
 
-    // 2. Mobile Header Bar (Directly visible beside Hamburger button on mobile screens)
+    // 2. Remove duplicate Dashboard button from .navbar-actions if present
+    const oldActionDash = document.getElementById('navDashboardBtn');
+    if (oldActionDash) {
+      oldActionDash.remove();
+    }
+
+    // 3. Remove duplicate Dashboard button from .mobile-nav-actions if present
+    const oldMobileDrawerDash = document.getElementById('mobileNavDashboardContainer') || document.getElementById('mobileNavDashboardBtn');
+    if (oldMobileDrawerDash) {
+      const container = oldMobileDrawerDash.closest('#mobileNavDashboardContainer') || oldMobileDrawerDash;
+      container.remove();
+    }
+
+    // 4. Mobile Header Bar (Directly visible beside Hamburger button on mobile screens)
     const toggler = document.querySelector('.navbar-toggler');
     if (toggler) {
       let mobileHeaderDash = document.getElementById('mobileHeaderDashboardBtn');
@@ -230,32 +250,6 @@ function initMain() {
         mobileHeaderDash.href = userDashboardUrl;
         mobileHeaderDash.title = roleLabel;
         mobileHeaderDash.setAttribute('aria-label', roleLabel);
-      }
-    }
-
-    // 3. Mobile Drawer Actions (< 1200px)
-    const mobileActions = document.querySelector('.mobile-nav-actions');
-    if (mobileActions) {
-      let mobileNavDash = document.getElementById('mobileNavDashboardBtn');
-      if (!mobileNavDash) {
-        const dashContainer = document.createElement('div');
-        dashContainer.className = 'mb-2 w-100';
-        dashContainer.id = 'mobileNavDashboardContainer';
-        dashContainer.innerHTML = `
-          <a href="${userDashboardUrl}" class="btn-nav-dashboard w-100 justify-content-center" id="mobileNavDashboardBtn" title="${roleLabel}" aria-label="${roleLabel}">
-            <i class="fas fa-th-large"></i> <span>${roleLabel}</span>
-          </a>
-        `;
-        const controls = mobileActions.querySelector('.mobile-nav-controls');
-        if (controls && controls.nextSibling) {
-          mobileActions.insertBefore(dashContainer, controls.nextSibling);
-        } else {
-          mobileActions.prepend(dashContainer);
-        }
-      } else {
-        mobileNavDash.href = userDashboardUrl;
-        mobileNavDash.title = roleLabel;
-        mobileNavDash.setAttribute('aria-label', roleLabel);
       }
     }
   }
