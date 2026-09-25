@@ -233,24 +233,10 @@ function initMain() {
       container.remove();
     }
 
-    // 4. Mobile Header Bar (Directly visible beside Hamburger button on mobile screens)
-    const toggler = document.querySelector('.navbar-toggler');
-    if (toggler) {
-      let mobileHeaderDash = document.getElementById('mobileHeaderDashboardBtn');
-      if (!mobileHeaderDash) {
-        mobileHeaderDash = document.createElement('a');
-        mobileHeaderDash.href = userDashboardUrl;
-        mobileHeaderDash.id = 'mobileHeaderDashboardBtn';
-        mobileHeaderDash.className = 'btn-nav-dashboard-header d-xl-none';
-        mobileHeaderDash.title = roleLabel;
-        mobileHeaderDash.setAttribute('aria-label', roleLabel);
-        mobileHeaderDash.innerHTML = `<i class="fas fa-th-large"></i> <span class="d-none d-sm-inline">${shortLabel}</span>`;
-        toggler.parentNode.insertBefore(mobileHeaderDash, toggler);
-      } else {
-        mobileHeaderDash.href = userDashboardUrl;
-        mobileHeaderDash.title = roleLabel;
-        mobileHeaderDash.setAttribute('aria-label', roleLabel);
-      }
+    // 4. Mobile Header Bar: ensure no dashboard button is shown in mobile header
+    const oldMobileHeaderDash = document.getElementById('mobileHeaderDashboardBtn');
+    if (oldMobileHeaderDash) {
+      oldMobileHeaderDash.remove();
     }
   }
 
