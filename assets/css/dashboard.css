@@ -285,6 +285,12 @@
   font-weight: 600;
   line-height: 1;
   vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.topbar-actions .rtl-toggle-btn .dir-text {
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .topbar-actions #backToWebsiteBtn,
@@ -335,11 +341,13 @@
   }
 
   .topbar-actions {
+    display: flex !important;
+    align-items: center !important;
     gap: 0.4rem !important;
+    flex-shrink: 0 !important;
   }
 
-  .topbar-actions .theme-toggle-btn,
-  .topbar-actions .rtl-toggle-btn {
+  .topbar-actions .theme-toggle-btn {
     width: 36px !important;
     height: 36px !important;
     min-width: 36px !important;
@@ -348,6 +356,32 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  .topbar-actions .rtl-toggle-btn {
+    width: auto !important;
+    min-width: 56px !important;
+    height: 36px !important;
+    padding: 0 0.65rem !important;
+    border-radius: var(--radius-full) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.35rem !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .topbar-actions .rtl-toggle-btn .dir-text {
+    display: inline !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
   }
 
   #sidebarToggleBtn {
