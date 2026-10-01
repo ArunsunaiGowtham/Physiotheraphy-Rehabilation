@@ -1542,6 +1542,114 @@
         "bookingTitle": "Request Appointment with Dr. Serena Vance",
         "bookingSubtitle": "Reserve a private deep core and pelvic health consultation with Dr. Vance.",
         "successMsg": "Evaluation request received for Dr. Vance! We will call you within 15 minutes."
+},
+"david-brooks": {
+    "id": "david-brooks",
+    "name": "Dr. David Brooks",
+    "fullName": "Dr. David Brooks, PT, DPT, FAAOMPT",
+    "titleRole": "Overhead Athletics & Rotator Cuff Rehabilitation Director",
+    "sidebarRole": "Overhead Athletics & Arm Care Lead",
+    "image": "assets/images/therapist-david-brooks.jpg",
+    "heroImage": "assets/images/home2-overhead-arm.jpg",
+    "heroAlt": "Dr. David Brooks conducting overhead athlete shoulder and arm care kinematics",
+    "degree": "Doctor of Physical Therapy",
+    "specialty": "Overhead Athletics & Kinetic Chain (FAAOMPT)",
+    "experience": "12+ Years Clinical",
+    "rating": "5.0 / 5.0 (310 Reviews)",
+    "languages": "English",
+    "hours": {
+        "monWed": "7:30 AM – 3:30 PM",
+        "thuFri": "10:00 AM – 6:00 PM",
+        "sat": "By Appointment Only"
+    },
+    "bioTitle": "Biography & Overhead Kinetic Philosophy",
+    "bioParagraphs": [
+        "Dr. David Brooks earned his Doctorate in Physical Therapy from the University of Florida, followed by a prestigious Fellowship in Orthopedic Manual Physical Therapy (FAAOMPT). He has served as a specialized arm care and biomechanical consultant for collegiate baseball pitchers and professional tennis competitors.",
+        "Dr. Brooks focuses on full-kinetic chain throwing mechanics: \"Arm pain in overhead athletes is rarely an isolated shoulder problem; it almost always involves pelvic rotation deficits, thoracic stiffness, or scapular dyskinesis. By restoring systemic rotational power, we protect the rotator cuff and labrum while optimizing throwing velocity.\""
+    ],
+    "credentials": [
+        {
+            "icon": "fas fa-graduation-cap",
+            "color": "text-primary",
+            "title": "University of Florida",
+            "desc": "Doctor of Physical Therapy (DPT), Fellowship in Sports Mechanics"
+        },
+        {
+            "icon": "fas fa-certificate",
+            "color": "text-secondary",
+            "title": "American Academy of Orthopaedic Manual PT",
+            "desc": "Fellow of American Academy of Orthopaedic Manual PT (FAAOMPT)"
+        },
+        {
+            "icon": "fas fa-baseball-ball",
+            "color": "text-success",
+            "title": "American Sports Medicine Institute",
+            "desc": "Certified Overhead Throwing Biomechanist"
+        },
+        {
+            "icon": "fas fa-shield-alt",
+            "color": "text-info",
+            "title": "Titleist Performance Institute",
+            "desc": "TPI Certified Rotational Power Specialist"
+        }
+    ],
+    "bookingTitle": "Request Appointment with Dr. David Brooks",
+    "bookingSubtitle": "Complete this form to reserve an overhead athletic evaluation directly with Dr. Brooks.",
+    "successMsg": "Evaluation request received for Dr. Brooks! We will call you within 15 minutes."
+},
+"sarah-bennett": {
+    "id": "sarah-bennett",
+    "name": "Dr. Sarah Bennett",
+    "fullName": "Dr. Sarah Bennett, PT, DPT, ATC",
+    "titleRole": "Lead Endurance Specialist & 3D Running Gait Lab Director",
+    "sidebarRole": "Endurance & Running Gait Lead",
+    "image": "assets/images/therapist-sarah-bennett.jpg",
+    "heroImage": "assets/images/home2-gait-runner.jpg",
+    "heroAlt": "Dr. Sarah Bennett conducting 3D running gait analysis in biomechanics lab",
+    "degree": "Doctor of Physical Therapy",
+    "specialty": "Endurance & Gait Lab (ATC)",
+    "experience": "9+ Years Clinical",
+    "rating": "4.9 / 5.0 (285 Reviews)",
+    "languages": "English",
+    "hours": {
+        "monWed": "8:00 AM – 4:00 PM",
+        "thuFri": "9:30 AM – 5:30 PM",
+        "sat": "By Appointment Only"
+    },
+    "bioTitle": "Biography & Endurance Biomechanics Philosophy",
+    "bioParagraphs": [
+        "Dr. Sarah Bennett received her Doctorate in Physical Therapy from Duke University School of Medicine and is a certified athletic trainer (ATC). As a competitive marathoner and triathlete, she leads PhysioLife's 3D Computerized Running Gait and Lower-Extremity Impact Laboratory.",
+        "Dr. Bennett specializes in ground reaction force attenuation and cadence retraining: \"Running injuries like IT-band syndrome and patellofemoral pain are mechanical overload issues. By optimizing foot-strike dynamics and gluteal deceleration, runners overcome recurring pain and achieve personal bests.\""
+    ],
+    "credentials": [
+        {
+            "icon": "fas fa-graduation-cap",
+            "color": "text-primary",
+            "title": "Duke University School of Medicine",
+            "desc": "Doctor of Physical Therapy (DPT), Athletic Training Honors"
+        },
+        {
+            "icon": "fas fa-running",
+            "color": "text-secondary",
+            "title": "National Athletic Trainers' Association",
+            "desc": "Board-Certified Athletic Trainer (ATC)"
+        },
+        {
+            "icon": "fas fa-shoe-prints",
+            "color": "text-success",
+            "title": "The Running Clinic",
+            "desc": "Certified New Trends in the Prevention of Running Injuries"
+        },
+        {
+            "icon": "fas fa-stopwatch-20",
+            "color": "text-info",
+            "title": "Road Runners Club of America",
+            "desc": "Certified Endurance Running Coach (RRCA Level II)"
+        }
+    ],
+    "bookingTitle": "Request Appointment with Dr. Sarah Bennett",
+    "bookingSubtitle": "Complete this form to reserve an endurance gait evaluation directly with Dr. Bennett.",
+    "successMsg": "Evaluation request received for Dr. Bennett! We will call you within 15 minutes."
 }
 };
 
@@ -1571,6 +1679,8 @@
 
     // Aliases map
     const aliasMap = {
+      'david-brooks': 'david-brooks',
+      'sarah-bennett': 'sarah-bennett',
       'sarah': 'jenkins',
       'sarah-jenkins': 'jenkins',
       'marcus': 'vance',

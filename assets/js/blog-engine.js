@@ -1277,7 +1277,7 @@
           <div class="blog-card-ref" style="cursor: pointer;">
             <div class="card-img-container">
               <a href="blog-details.html?slug=${post.slug}">
-                <img src="${post.image}" alt="${post.altText || post.title}" loading="lazy">
+                <img src="${post.image}" alt="${post.altText || post.title}">
               </a>
             </div>
             <div class="card-body-ref">
