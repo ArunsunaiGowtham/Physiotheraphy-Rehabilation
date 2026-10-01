@@ -85,6 +85,10 @@
       btn.style.display = 'inline-flex';
       btn.style.visibility = 'visible';
       btn.style.opacity = '1';
+      const icon = btn.querySelector('i');
+      if (icon) {
+        icon.className = 'fas fa-right-left';
+      }
       const text = btn.querySelector('.dir-text');
       if (text) {
         text.style.display = 'inline';

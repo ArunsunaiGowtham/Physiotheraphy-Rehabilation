@@ -849,4 +849,121 @@
   display: block;
 }
 
+/* ==========================================================================
+   Responsive Routine Items at 360px (Issue 9)
+   ========================================================================== */
+.routine-item-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem !important;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-base);
+}
+
+.routine-item-row:last-child {
+  border-bottom: none;
+}
+
+.routine-info-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.routine-text-wrap {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.routine-title {
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--text-main);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.routine-meta {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.routine-btn-wrap {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+@media (min-width: 576px) {
+  .routine-item-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .routine-btn-wrap {
+    align-self: center;
+    margin-left: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Receipt Header Controls Responsive Stack at 360px (Issue 10)
+   ========================================================================== */
+@media (max-width: 575.98px) {
+  .receipt-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .receipt-header-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+
+  .receipt-header-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.65rem 1rem !important;
+  }
+}
+
+/* ==========================================================================
+   Appointments Action Buttons Layout at 768px (Issue 11)
+   ========================================================================== */
+.appointment-actions-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+@media (max-width: 991.98px) {
+  .appointment-actions-wrap {
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+
+  .appointment-actions-wrap .btn {
+    flex: 0 1 auto;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 992px) {
+  .appointment-actions-wrap {
+    justify-content: flex-end;
+  }
+}
+
 

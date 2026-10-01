@@ -91,7 +91,7 @@
         <!-- Upcoming Appointment Highlight Card -->
         <div class="p-4 bg-primary-subtle border border-primary-border rounded-4 mb-4">
           <div class="row align-items-center g-3">
-            <div class="col-md-8">
+            <div class="col-12 col-xl-8">
               <span class="badge bg-primary text-white mb-2">Next Upcoming Session</span>
               <h4 class="fw-bold mb-1 text-main">Spinal Mobilization &amp; Decompression</h4>
               <p class="text-muted small mb-2"><i class="fas fa-calendar-alt text-primary me-2"></i> Tomorrow, 10:00 AM – 10:45 AM (EST)</p>
@@ -101,13 +101,15 @@
                 <span class="text-muted small">• Room 4B (Spine Suite)</span>
               </div>
             </div>
-            <div class="col-md-4 text-md-end">
-              <button type="button" class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#rescheduleModal">
-                <i class="fas fa-clock me-1"></i> Reschedule
-              </button>
-              <button type="button" class="btn btn-outline-danger btn-sm" onclick="alert('Session cancellation request submitted. Clinic coordinator will contact you.')">
-                <i class="fas fa-times me-1"></i> Cancel
-              </button>
+            <div class="col-12 col-xl-4 text-xl-end">
+              <div class="d-inline-flex flex-wrap gap-2 appointment-actions-wrap">
+                <button type="button" class="btn btn-outline-primary btn-sm d-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#rescheduleModal">
+                  <i class="fas fa-clock"></i> <span>Reschedule</span>
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-1" onclick="alert('Session cancellation request submitted. Clinic coordinator will contact you.')">
+                  <i class="fas fa-times"></i> <span>Cancel</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

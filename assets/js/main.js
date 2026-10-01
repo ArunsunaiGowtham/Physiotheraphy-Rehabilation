@@ -252,6 +252,38 @@ function initMain() {
       const menu = dropdown.querySelector('.dropdown-menu');
       if (!toggleBtn || !menu) return;
 
+      // Click & Touch support (all devices: desktop, tablet, mobile)
+      toggleBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const willShow = !menu.classList.contains('show');
+
+        // Close other open dropdowns
+        document.querySelectorAll('.navbar-nav .dropdown').forEach((d) => {
+          if (d !== dropdown) {
+            d.classList.remove('show');
+            d.querySelector('.dropdown-menu')?.classList.remove('show');
+            const otherToggle = d.querySelector('.dropdown-toggle');
+            if (otherToggle) {
+              otherToggle.classList.remove('show');
+              otherToggle.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+
+        if (willShow) {
+          dropdown.classList.add('show');
+          menu.classList.add('show');
+          toggleBtn.classList.add('show');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          dropdown.classList.remove('show');
+          menu.classList.remove('show');
+          toggleBtn.classList.remove('show');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
       // Desktop hover support (>= 1200px where navbar is expanded)
       dropdown.addEventListener('mouseenter', function () {
         if (window.innerWidth >= 1200) {

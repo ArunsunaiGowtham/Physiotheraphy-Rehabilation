@@ -96,16 +96,16 @@
       <div class="dashboard-content">
         <div class="receipt-layout-container mx-auto" style="max-width: 880px;">
           <!-- Receipt Actions Header (Aligned with Receipt Box) -->
-          <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4 no-print receipt-header-row">
             <div>
               <h2 class="fw-bold mb-1">Official Medical Receipt</h2>
               <p class="text-muted small mb-0">HSA / FSA and Insurance Reimbursement Compatible.</p>
             </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-secondary d-inline-flex align-items-center gap-2" onclick="window.print()">
+            <div class="receipt-header-actions">
+              <button class="btn btn-outline-secondary d-inline-flex align-items-center justify-content-center gap-2" onclick="window.print()">
                 <i class="fas fa-print"></i> <span>Print Receipt</span>
               </button>
-              <button class="btn btn-primary d-inline-flex align-items-center gap-2" onclick="alert('PDF downloaded to your device.')">
+              <button class="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2" onclick="alert('PDF downloaded to your device.')">
                 <i class="fas fa-download"></i> <span>Download PDF</span>
               </button>
             </div>

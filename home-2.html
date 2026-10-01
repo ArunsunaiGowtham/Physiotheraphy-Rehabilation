@@ -81,10 +81,10 @@
           </ul>
 
           <!-- Right Actions (Desktop) -->
-          <div class="navbar-actions d-none d-xl-flex">
-            <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i></button>
-            <button class="rtl-toggle-btn" type="button">
-              <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+          <div class="navbar-actions d-none d-xl-flex align-items-center gap-2">
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+            <button class="rtl-toggle-btn" type="button" aria-label="Toggle Direction">
+              <i class="fas fa-right-left"></i> <span class="dir-text">RTL</span>
             </button>
             <a href="login.html" class="btn-nav-login">
               <i class="fas fa-sign-in-alt"></i> <span>Login</span>
@@ -92,19 +92,22 @@
             <a href="register.html" class="btn-nav-signup">
               <i class="fas fa-user-plus"></i> <span>Sign Up</span>
             </a>
+            <button type="button" class="btn btn-sm btn-primary btn-nav-appointment d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <i class="fas fa-calendar-check"></i> <span>Book Appointment</span>
+            </button>
           </div>
 
           <!-- Mobile Action Drawer (<1200px) -->
           <div class="mobile-nav-actions d-xl-none">
-            <div class="mobile-nav-controls d-flex gap-2">
-              <button class="theme-toggle-btn flex-fill" type="button">
-              <i class="fas fa-moon"></i>
-            </button>
-              <button class="rtl-toggle-btn flex-fill" type="button">
-                <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+            <div class="mobile-nav-controls d-flex gap-2 mb-2">
+              <button class="theme-toggle-btn flex-fill" type="button" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+              </button>
+              <button class="rtl-toggle-btn flex-fill" type="button" aria-label="Toggle Direction">
+                <i class="fas fa-right-left"></i> <span class="dir-text">RTL</span>
               </button>
             </div>
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 mb-2">
               <a href="login.html" class="btn-nav-login flex-fill justify-content-center">
                 <i class="fas fa-sign-in-alt"></i> <span>Login</span>
               </a>
@@ -112,6 +115,9 @@
                 <i class="fas fa-user-plus"></i> <span>Sign Up</span>
               </a>
             </div>
+            <button type="button" class="btn btn-primary w-100 btn-nav-appointment d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <i class="fas fa-calendar-check"></i> <span>Book an Appointment</span>
+            </button>
           </div>
         </div>
       </nav>
@@ -225,106 +231,449 @@
   <!-- Comparison / Program Matrix -->
   <section class="section-padding bg-surface-alt">
     <div class="container">
-      <div class="text-center max-w-700 mx-auto section-title">
-        <span class="badge-tag">Return to Competition</span>
-        <h2 class="h1">Specialized Athletic Protocols</h2>
-        <p>Evidence-based recovery tracks customized for high-impact collegiate, professional, and endurance athletes.</p>
+      <div class="text-center max-w-700 mx-auto section-title mb-5">
+        <div class="d-inline-flex justify-content-center mb-2">
+          <span class="badge-tag">Return to Competition</span>
+        </div>
+        <h2 class="h1 mb-2">Specialized Athletic Protocols</h2>
+        <p class="text-muted mx-auto">Evidence-based recovery tracks customized for high-impact collegiate, professional, and endurance athletes.</p>
       </div>
 
       <div class="row g-4">
         <!-- Protocol 1: ACL Return-To-Play -->
         <div class="col-md-6 col-lg-3">
-          <div class="service-card">
+          <div class="service-card h-100 d-flex flex-column">
             <div class="card-img-wrap">
-              <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap">
-                <img src="assets/images/home2-acl-protocol.jpg" alt="ACL rehabilitation and return-to-play strength testing">
+              <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="d-block w-100 h-100">
+                <img src="assets/images/home2-acl-protocol.jpg" alt="ACL rehabilitation and return-to-play strength testing" class="w-100 h-100 object-fit-cover">
               </a>
             </div>
-            <div class="service-icon-box">
-              <i class="fas fa-running"></i>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3">
+                <i class="fas fa-running"></i>
+              </div>
+              <h5 class="fw-bold mb-2"><a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="text-decoration-none text-main">ACL Return-To-Play</a></h5>
+              <p class="small text-muted mb-3 flex-grow-1">9-phase criterion-based testing verifying quadriceps symmetry, deceleration mechanics, and rotational stability.</p>
+              <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="service-link mt-auto">View Protocol <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
-            <h5 class="fw-bold"><a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="text-decoration-none text-main">ACL Return-To-Play</a></h5>
-            <p class="small text-muted">9-phase criterion-based testing verifying quadriceps symmetry, deceleration mechanics, and rotational stability.</p>
-            <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
 
         <!-- Protocol 2: Overhead Athlete Arm Care -->
         <div class="col-md-6 col-lg-3">
-          <div class="service-card">
+          <div class="service-card h-100 d-flex flex-column">
             <div class="card-img-wrap">
-              <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis">
-                <img src="assets/images/home2-overhead-arm.jpg" alt="Overhead athlete shoulder mobility and arm care training">
+              <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="d-block w-100 h-100">
+                <img src="assets/images/home2-overhead-arm.jpg" alt="Overhead athlete shoulder mobility and arm care training" class="w-100 h-100 object-fit-cover">
               </a>
             </div>
-            <div class="service-icon-box">
-              <i class="fas fa-baseball-ball"></i>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3">
+                <i class="fas fa-baseball-ball"></i>
+              </div>
+              <h5 class="fw-bold mb-2"><a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="text-decoration-none text-main">Overhead Athlete Arm Care</a></h5>
+              <p class="small text-muted mb-3 flex-grow-1">Scapular kinematics, rotator cuff plyometrics, and throwing volume tracking for baseball and tennis competitors.</p>
+              <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="service-link mt-auto">View Protocol <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
-            <h5 class="fw-bold"><a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="text-decoration-none text-main">Overhead Athlete Arm Care</a></h5>
-            <p class="small text-muted">Scapular kinematics, rotator cuff plyometrics, and throwing volume tracking for baseball and tennis competitors.</p>
-            <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
 
         <!-- Protocol 3: Endurance Runner Gait Lab -->
         <div class="col-md-6 col-lg-3">
-          <div class="service-card">
+          <div class="service-card h-100 d-flex flex-column">
             <div class="card-img-wrap">
-              <a href="blog-details.html?slug=patellofemoral-pain-runners-knee">
-                <img src="assets/images/home2-gait-runner.jpg" alt="Endurance runner gait analysis and biomechanical assessment">
+              <a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="d-block w-100 h-100">
+                <img src="assets/images/home2-gait-runner.jpg" alt="Endurance runner gait analysis and biomechanical assessment" class="w-100 h-100 object-fit-cover">
               </a>
             </div>
-            <div class="service-icon-box">
-              <i class="fas fa-shoe-prints"></i>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3">
+                <i class="fas fa-shoe-prints"></i>
+              </div>
+              <h5 class="fw-bold mb-2"><a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="text-decoration-none text-main">Endurance Runner Gait Lab</a></h5>
+              <p class="small text-muted mb-3 flex-grow-1">High-speed treadmill video analysis identifying overstriding, hip drop, and plantar fascia strain triggers.</p>
+              <a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="service-link mt-auto">View Protocol <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
-            <h5 class="fw-bold"><a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="text-decoration-none text-main">Endurance Runner Gait Lab</a></h5>
-            <p class="small text-muted">High-speed treadmill video analysis identifying overstriding, hip drop, and plantar fascia strain triggers.</p>
-            <a href="blog-details.html?slug=patellofemoral-pain-runners-knee" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
 
         <!-- Protocol 4: Post-Concussion Baseline -->
         <div class="col-md-6 col-lg-3">
-          <div class="service-card">
+          <div class="service-card h-100 d-flex flex-column">
             <div class="card-img-wrap">
-              <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol">
-                <img src="assets/images/home2-concussion.jpg" alt="Post-concussion vestibular and neurological physical therapy assessment">
+              <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="d-block w-100 h-100">
+                <img src="assets/images/home2-concussion.jpg" alt="Post-concussion vestibular and neurological physical therapy assessment" class="w-100 h-100 object-fit-cover">
               </a>
             </div>
-            <div class="service-icon-box">
-              <i class="fas fa-swimmer"></i>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3">
+                <i class="fas fa-swimmer"></i>
+              </div>
+              <h5 class="fw-bold mb-2"><a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="text-decoration-none text-main">Post-Concussion Baseline</a></h5>
+              <p class="small text-muted mb-3 flex-grow-1">Vestibular ocular motor screening (VOMS) and cervical spine stabilization for contact sport return-to-play clearance.</p>
+              <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="service-link mt-auto">View Protocol <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
-            <h5 class="fw-bold"><a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="text-decoration-none text-main">Post-Concussion Baseline</a></h5>
-            <p class="small text-muted">Vestibular ocular motor screening (VOMS) and cervical spine stabilization for contact sport return-to-play clearance.</p>
-            <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="service-link">View Protocol <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Section 5: Advanced Kinetic & Diagnostic Instrumentation -->
+  <section class="section-padding bg-surface">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title mb-5">
+        <div class="d-inline-flex justify-content-center mb-2">
+          <span class="badge-tag">Elite Clinical Tech</span>
+        </div>
+        <h2 class="h1 mb-2">Next-Generation Biomechanical Instrumentation</h2>
+        <p class="text-muted mx-auto">Precision sensor arrays, high-speed computerized motion tracking, and isokinetic testing systems utilized across world championship sports federations.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 d-flex flex-column">
+            <div class="card-img-wrap">
+              <img src="assets/images/home2-velocity-lab.jpg" alt="3D Dual-Camera MoCap & Force Plates" class="w-100 h-100 object-fit-cover">
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3 text-primary bg-primary-subtle">
+                <i class="fas fa-video"></i>
+              </div>
+              <h5 class="fw-bold mb-2">3D Dual-Camera MoCap</h5>
+              <p class="small text-muted mb-3 flex-grow-1">1000 Hz dual piezoelectric force plates calculating ground contact braking forces, center-of-mass shift, and joint power dissipation.</p>
+              <span class="badge bg-primary-subtle text-primary align-self-start mt-auto">1000 Hz Sampling</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 d-flex flex-column">
+            <div class="card-img-wrap">
+              <img src="assets/images/step-recovery.jpg" alt="Pneumatic Compression & Recovery" class="w-100 h-100 object-fit-cover">
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3 text-secondary bg-warning-subtle">
+                <i class="fas fa-compress-arrows-alt"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Pneumatic Compression</h5>
+              <p class="small text-muted mb-3 flex-grow-1">Targeted sequential pneumatic compression and contrast thermal modalities minimizing delayed onset muscle soreness (DOMS).</p>
+              <span class="badge bg-secondary-subtle text-secondary align-self-start mt-auto">Cryo-Recovery</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 d-flex flex-column">
+            <div class="card-img-wrap">
+              <img src="assets/images/step-assessment.jpg" alt="Musculoskeletal Diagnostic Ultrasound" class="w-100 h-100 object-fit-cover">
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3 text-info bg-info-subtle">
+                <i class="fas fa-wave-square"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Diagnostic Ultrasound</h5>
+              <p class="small text-muted mb-3 flex-grow-1">Dynamic live tissue echography identifying micro-tears in patellar tendons, rotator cuffs, and plantar fascia during motion.</p>
+              <span class="badge bg-info-subtle text-info align-self-start mt-auto">Real-Time Imaging</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 d-flex flex-column">
+            <div class="card-img-wrap">
+              <img src="assets/images/step-strengthening.jpg" alt="Isokinetic Biodex Dynamometry" class="w-100 h-100 object-fit-cover">
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="service-icon-box mb-3 text-success bg-success-subtle">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Isokinetic Dynamometry</h5>
+              <p class="small text-muted mb-3 flex-grow-1">Isolated angular torque testing measuring hamstring-to-quadriceps strength ratios with objective return-to-sport clearance thresholds.</p>
+              <span class="badge bg-success-subtle text-success align-self-start mt-auto">Deficit Testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Certified Sports Medicine Specialists -->
+  <section class="section-padding bg-surface-alt">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title mb-5">
+        <div class="d-inline-flex justify-content-center mb-2">
+          <span class="badge-tag">Athletic Medical Staff</span>
+        </div>
+        <h2 class="h1 mb-2">World-Class Sports Rehabilitation Specialists</h2>
+        <p class="text-muted mx-auto">Board-certified sports physical therapy clinical specialists (SCS), athletic trainers, and Olympic biomechanists.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Therapist 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="assets/images/therapist-vance.jpg" alt="Dr. Marcus Vance - Director of Sports Biomechanics">
+            </div>
+            <div class="therapist-info">
+              <span class="therapist-specialty">Sports Clinical Specialist</span>
+              <h4 class="therapist-name"><a href="therapist-details.html?id=vance">Dr. Marcus Vance</a></h4>
+              <p class="therapist-meta">PT, DPT, SCS • 14 Years Exp</p>
+              <p class="small text-muted mb-3">Former Olympic athletic physical therapist specializing in 3D gait diagnostics and high-velocity ACL return-to-sport.</p>
+              <div class="therapist-socials mt-auto">
+                <a href="https://www.linkedin.com/in/marcus-vance-pt" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Marcus Vance LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="therapist-details.html?id=vance" class="btn btn-outline-primary btn-sm ms-auto">View Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Therapist 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="assets/images/therapist-rostova.jpg" alt="Dr. Elena Rostova - Senior Athletic Physical Therapist">
+            </div>
+            <div class="therapist-info">
+              <span class="therapist-specialty">Kinematics &amp; Spine</span>
+              <h4 class="therapist-name"><a href="therapist-details.html?id=rostova">Dr. Elena Rostova</a></h4>
+              <p class="therapist-meta">PT, DPT, OCS • 11 Years Exp</p>
+              <p class="small text-muted mb-3">Lead therapist for gymnastic and track athletes focused on core kinematic stabilization and neuromuscular re-education.</p>
+              <div class="therapist-socials mt-auto">
+                <a href="https://www.linkedin.com/in/elena-rostova-pt" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Elena Rostova LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="therapist-details.html?id=rostova" class="btn btn-outline-primary btn-sm ms-auto">View Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Therapist 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="assets/images/therapist-brooks.jpg" alt="Dr. David Brooks - Overhead Arm Care Director">
+            </div>
+            <div class="therapist-info">
+              <span class="therapist-specialty">Overhead Athletics</span>
+              <h4 class="therapist-name"><a href="therapist-details.html?id=brooks">Dr. David Brooks</a></h4>
+              <p class="therapist-meta">PT, DPT, FAAOMPT • 12 Years Exp</p>
+              <p class="small text-muted mb-3">Consulting specialist for professional baseball and collegiate tennis players recovering from rotator cuff and labral procedures.</p>
+              <div class="therapist-socials mt-auto">
+                <a href="https://www.linkedin.com/in/david-brooks-pt" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. David Brooks LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="therapist-details.html?id=brooks" class="btn btn-outline-primary btn-sm ms-auto">View Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Therapist 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="therapist-card">
+            <div class="therapist-img-wrap">
+              <img src="assets/images/therapist-bennett.jpg" alt="Dr. Sarah Bennett - Lead Endurance Specialist">
+            </div>
+            <div class="therapist-info">
+              <span class="therapist-specialty">Endurance &amp; Gait Lab</span>
+              <h4 class="therapist-name"><a href="therapist-details.html?id=bennett">Dr. Sarah Bennett</a></h4>
+              <p class="therapist-meta">PT, DPT, ATC • 9 Years Exp</p>
+              <p class="small text-muted mb-3">Marathoner and clinical specialist in lower-extremity impact management, foot-strike cadence, and IT-band syndrome rehabilitation.</p>
+              <div class="therapist-socials mt-auto">
+                <a href="https://www.linkedin.com/in/sarah-bennett-pt" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dr. Sarah Bennett LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="therapist-details.html?id=bennett" class="btn btn-outline-primary btn-sm ms-auto">View Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Athlete Recovery & Case Studies -->
+  <section class="section-padding bg-surface">
+    <div class="container">
+      <div class="text-center max-w-700 mx-auto section-title mb-5">
+        <div class="d-inline-flex justify-content-center mb-2">
+          <span class="badge-tag">Clinical Outcomes</span>
+        </div>
+        <h2 class="h1 mb-2">Documented Return-to-Competition Outcomes</h2>
+        <p class="text-muted mx-auto">Verified biometric milestones demonstrating accelerated, injury-free returns to competitive athletics.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Outcome 1 -->
+        <div class="col-lg-4">
+          <div class="service-card p-4 h-100 d-flex flex-column">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <img src="assets/images/patient-emily.jpg" alt="Emily Thorne - Elite Marathoner" class="rounded-circle object-fit-cover flex-shrink-0" width="60" height="60">
+              <div>
+                <h5 class="fw-bold mb-0">Emily Thorne</h5>
+                <span class="small text-secondary fw-semibold">Elite Marathon Competitor</span>
+              </div>
+            </div>
+            <div class="p-3 bg-surface-alt rounded-3 mb-3">
+              <div class="small fw-bold text-muted text-uppercase mb-1">Diagnosis &amp; Protocol</div>
+              <div class="fw-semibold text-main small">Chronic Insertional Achilles Tendinopathy</div>
+              <div class="text-success small fw-bold mt-1"><i class="fas fa-check-circle me-1"></i> 100% Return • PR set 8 mos post-rehab</div>
+            </div>
+            <p class="small text-muted italic flex-grow-1">“PhysioLife's computerized gait telemetry pinpointed an overstriding flaw other clinics missed. I crossed the Boston Marathon finish line completely pain-free.”</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top border-subtle">
+              <span class="small text-muted"><i class="fas fa-user-md text-primary me-1"></i> Dr. Sarah Bennett</span>
+              <span class="badge bg-success-subtle text-success">LSI: 99.1%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcome 2 -->
+        <div class="col-lg-4">
+          <div class="service-card p-4 h-100 d-flex flex-column">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <img src="assets/images/patient-jonathan.jpg" alt="Jonathan Reed - Division I Quarterback" class="rounded-circle object-fit-cover flex-shrink-0" width="60" height="60">
+              <div>
+                <h5 class="fw-bold mb-0">Jonathan Reed</h5>
+                <span class="small text-secondary fw-semibold">Division I Collegiate Quarterback</span>
+              </div>
+            </div>
+            <div class="p-3 bg-surface-alt rounded-3 mb-3">
+              <div class="small fw-bold text-muted text-uppercase mb-1">Diagnosis &amp; Protocol</div>
+              <div class="fw-semibold text-main small">Superior Labral SLAP Tear &amp; Rotator Cuff Strain</div>
+              <div class="text-success small fw-bold mt-1"><i class="fas fa-check-circle me-1"></i> Velocity Restored: 62 mph • 0° Deficit</div>
+            </div>
+            <p class="small text-muted italic flex-grow-1">“The overhead kinematic analysis and scapular stabilization protocol rebuilt my throwing torque faster and safer than surgical expectations.”</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top border-subtle">
+              <span class="small text-muted"><i class="fas fa-user-md text-primary me-1"></i> Dr. David Brooks</span>
+              <span class="badge bg-success-subtle text-success">Full Velocity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcome 3 -->
+        <div class="col-lg-4">
+          <div class="service-card p-4 h-100 d-flex flex-column">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <img src="assets/images/patient-robert.jpg" alt="Robert Sterling - Triathlete &amp; Masters Cyclist" class="rounded-circle object-fit-cover flex-shrink-0" width="60" height="60">
+              <div>
+                <h5 class="fw-bold mb-0">Robert Sterling</h5>
+                <span class="small text-secondary fw-semibold">Ironman Triathlete &amp; Masters Cyclist</span>
+              </div>
+            </div>
+            <div class="p-3 bg-surface-alt rounded-3 mb-3">
+              <div class="small fw-bold text-muted text-uppercase mb-1">Diagnosis &amp; Protocol</div>
+              <div class="fw-semibold text-main small">Post-Operative ACL &amp; Lateral Meniscal Repair</div>
+              <div class="text-success small fw-bold mt-1"><i class="fas fa-check-circle me-1"></i> Symmetry Index: 99.4% • Cleared Month 7</div>
+            </div>
+            <p class="small text-muted italic flex-grow-1">“From isometric blood flow restriction to force plate jump testing, every single milestone was quantified and scientifically verified.”</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top border-subtle">
+              <span class="small text-muted"><i class="fas fa-user-md text-primary me-1"></i> Dr. Marcus Vance</span>
+              <span class="badge bg-success-subtle text-success">LSI: 99.4%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Sports Medicine & Performance Guides -->
+  <section class="section-padding bg-surface-alt">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+        <div>
+          <span class="badge-tag">Sports Clinical Insights</span>
+          <h2 class="h1 mb-0">Biomechanical Research &amp; Training Guides</h2>
+        </div>
+        <a href="blog.html" class="btn btn-outline-primary mt-3 mt-md-0">
+          View All Guides <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+      </div>
+
+      <div class="row g-4">
+        <!-- Guide 1 -->
+        <div class="col-md-4">
+          <div class="blog-card">
+            <div class="blog-img-wrap">
+              <img src="assets/images/blog-acl-rehab.jpg" alt="ACL Reconstruction: 9-Phase Biomechanical Roadmap">
+              <span class="blog-badge">ACL Rehabilitation</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar-alt me-1"></i> Sep 14, 2026</span>
+                <span><i class="far fa-clock me-1"></i> 8 min read</span>
+              </div>
+              <h4 class="blog-title"><a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap">ACL Reconstruction: The 9-Phase Biomechanical Roadmap</a></h4>
+              <p class="small text-muted mb-3">Comprehensive criteria-based testing verifying quad symmetry, limb symmetry index (LSI), and psychological readiness before return-to-competition clearance.</p>
+              <a href="blog-details.html?slug=acl-reconstruction-biomechanical-roadmap" class="text-primary fw-bold small mt-auto">Read Full Guide <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 2 -->
+        <div class="col-md-4">
+          <div class="blog-card">
+            <div class="blog-img-wrap">
+              <img src="assets/images/blog-rotator-cuff.jpg" alt="Thrower's Shoulder: Scapular Dyskinesis &amp; Arm Health">
+              <span class="blog-badge">Shoulder &amp; Overhead</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar-alt me-1"></i> Aug 30, 2026</span>
+                <span><i class="far fa-clock me-1"></i> 6 min read</span>
+              </div>
+              <h4 class="blog-title"><a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis">Thrower's Shoulder: Scapular Dyskinesis &amp; Arm Health</a></h4>
+              <p class="small text-muted mb-3">Evidence-based protocols for overhead athletes managing internal rotation deficits (GIRD), posterior capsule tightness, and rotator cuff fatigue.</p>
+              <a href="blog-details.html?slug=throwers-shoulder-scapular-dyskinesis" class="text-primary fw-bold small mt-auto">Read Full Guide <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 3 -->
+        <div class="col-md-4">
+          <div class="blog-card">
+            <div class="blog-img-wrap">
+              <img src="assets/images/blog-concussion-voms.jpg" alt="Post-Concussion Baseline: The Clinical VOMS Protocol">
+              <span class="blog-badge">Concussion &amp; Neuro</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar-alt me-1"></i> Aug 18, 2026</span>
+                <span><i class="far fa-clock me-1"></i> 7 min read</span>
+              </div>
+              <h4 class="blog-title"><a href="blog-details.html?slug=post-concussion-baseline-voms-protocol">Post-Concussion Baseline: The Clinical VOMS Protocol</a></h4>
+              <p class="small text-muted mb-3">Vestibular ocular motor screening protocols evaluating smooth pursuits, horizontal and vertical saccades, convergence, and visual motion sensitivity.</p>
+              <a href="blog-details.html?slug=post-concussion-baseline-voms-protocol" class="text-primary fw-bold small mt-auto">Read Full Guide <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: CTA -->
   <section class="section-padding bg-surface text-center">
     <div class="container">
       <div class="max-w-700 mx-auto">
+        <div class="d-inline-flex justify-content-center mb-3">
+          <span class="badge-tag"><i class="fas fa-bolt me-1"></i> Peak Athletic Performance</span>
+        </div>
         <h2 class="display-6 fw-bold mb-3">Elevate Your Athletic Longevity</h2>
         <p class="lead text-muted mb-4">Book your complete kinetic assessment today with our certified sports physical therapists.</p>
-        <div class="d-flex justify-content-center gap-3">
-          <button type="button" class="btn btn-secondary btn-lg" id="bookAthleticAssessmentBtn" data-bs-toggle="modal" data-bs-target="#bookingModal" aria-haspopup="dialog" aria-controls="bookingModal">
-            <i class="fas fa-bolt me-2"></i> Book Athletic Assessment
+        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-stretch align-items-sm-center gap-3 max-w-500 mx-auto px-2">
+          <button type="button" class="btn btn-secondary btn-lg d-inline-flex align-items-center justify-content-center gap-2" id="bookAthleticAssessmentBtn" data-bs-toggle="modal" data-bs-target="#bookingModal" aria-haspopup="dialog" aria-controls="bookingModal">
+            <i class="fas fa-bolt"></i> <span>Book Athletic Assessment</span>
           </button>
-          <a href="index.html" class="btn btn-outline-secondary btn-lg">
-            <i class="fas fa-clinic-medical me-2"></i> Back to Main Clinic
+          <a href="index.html" class="btn btn-outline-secondary btn-lg d-inline-flex align-items-center justify-content-center gap-2">
+            <i class="fas fa-clinic-medical"></i> <span>Back to Main Clinic</span>
           </a>
         </div>
       </div>
     </div>
-  </section>  <!-- Site Footer -->
+  </section>
+
+  <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="row footer-main-row">
         <!-- Col 1: Brand Info -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <div class="footer-brand-header">
               <a href="index.html" class="footer-logo-wrap" title="PhysioLife Home">
@@ -348,7 +697,7 @@
         </div>
 
         <!-- Col 2: Quick Links -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <h5>Quick Links</h5>
             <ul class="footer-links">
@@ -363,7 +712,7 @@
         </div>
 
         <!-- Col 3: Services -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <h5>Services</h5>
             <ul class="footer-links">
@@ -378,7 +727,7 @@
         </div>
 
         <!-- Col 4: Clinic Information -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <h5>Clinic Information</h5>
             <ul class="footer-links footer-contact-info">

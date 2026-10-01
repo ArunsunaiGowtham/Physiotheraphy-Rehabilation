@@ -74,10 +74,10 @@
           </ul>
 
           <!-- Right Actions (Desktop) -->
-          <div class="navbar-actions d-none d-xl-flex">
+          <div class="navbar-actions d-none d-xl-flex align-items-center gap-2">
             <button class="theme-toggle-btn" type="button"><i class="fas fa-moon"></i></button>
             <button class="rtl-toggle-btn" type="button">
-              <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+              <i class="fas fa-right-left"></i> <span class="dir-text">RTL</span>
             </button>
             <a href="login.html" class="btn-nav-login">
               <i class="fas fa-sign-in-alt"></i> <span>Login</span>
@@ -85,6 +85,9 @@
             <a href="register.html" class="btn-nav-signup">
               <i class="fas fa-user-plus"></i> <span>Sign Up</span>
             </a>
+            <button type="button" class="btn btn-sm btn-primary btn-nav-appointment d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <i class="fas fa-calendar-check"></i> <span>Book Appointment</span>
+            </button>
           </div>
 
           <!-- Mobile Action Drawer (<1200px) -->
@@ -94,7 +97,7 @@
               <i class="fas fa-moon"></i>
             </button>
               <button class="rtl-toggle-btn flex-fill" type="button">
-                <i class="fas fa-globe"></i> <span class="dir-text">RTL</span>
+                <i class="fas fa-right-left"></i> <span class="dir-text">RTL</span>
               </button>
             </div>
             <div class="d-flex gap-2">
@@ -105,6 +108,9 @@
                 <i class="fas fa-user-plus"></i> <span>Sign Up</span>
               </a>
             </div>
+            <button type="button" class="btn btn-primary w-100 btn-nav-appointment d-flex align-items-center justify-content-center gap-2 mt-2" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <i class="fas fa-calendar-check"></i> <span>Book an Appointment</span>
+            </button>
           </div>
         </div>
       </nav>
@@ -283,7 +289,7 @@
     <div class="container">
       <div class="row footer-main-row">
         <!-- Col 1: Brand Info -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <div class="footer-brand-header">
               <a href="index.html" class="footer-logo-wrap" title="PhysioLife Home">
@@ -307,7 +313,7 @@
         </div>
 
         <!-- Col 2: Quick Links -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <h5>Quick Links</h5>
             <ul class="footer-links">
@@ -322,7 +328,7 @@
         </div>
 
         <!-- Col 3: Services -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <h5>Services</h5>
             <ul class="footer-links">
@@ -337,7 +343,7 @@
         </div>
 
         <!-- Col 4: Clinic Information -->
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-3">
           <div class="footer-widget">
             <h5>Clinic Information</h5>
             <ul class="footer-links footer-contact-info">

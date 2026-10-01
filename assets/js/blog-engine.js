@@ -1289,13 +1289,13 @@
                 <a href="blog-details.html?slug=${post.slug}">${post.title}</a>
               </h4>
               <p class="excerpt-ref">${post.description}</p>
-              <div class="card-footer-ref d-flex align-items-center justify-content-between mt-auto pt-3 border-top border-subtle">
+              <div class="card-footer-ref d-flex flex-wrap align-items-center justify-content-between mt-auto pt-3 border-top border-subtle gap-2">
                 <div class="d-flex align-items-center gap-2">
-                  <img src="${post.authorImg}" alt="${post.author}" class="rounded-circle object-fit-cover" width="26" height="26" style="object-position: center 15%;">
-                  <span class="small fw-semibold text-main text-truncate" style="max-width: 140px;" title="${post.author}">${post.author}</span>
+                  <img src="${post.authorImg}" alt="${post.author}" class="rounded-circle object-fit-cover" width="28" height="28" style="object-position: center 15%;">
+                  <span class="small fw-semibold text-main" title="${post.author}">${post.author}</span>
                 </div>
-                <a href="blog-details.html?slug=${post.slug}" class="link-ref m-0">
-                  Read Guide <i class="fas fa-arrow-right"></i>
+                <a href="blog-details.html?slug=${post.slug}" class="link-ref m-0 flex-shrink-0">
+                  Read Guide <i class="fas fa-arrow-right ms-1"></i>
                 </a>
               </div>
             </div>
