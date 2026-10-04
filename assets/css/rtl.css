@@ -184,7 +184,8 @@
 [dir="rtl"] .mobile-nav-actions .btn-nav-login,
 [dir="rtl"] .mobile-nav-actions .btn-nav-signup,
 [dir="rtl"] .mobile-nav-actions .btn-nav-dashboard,
-[dir="rtl"] .mobile-nav-actions .btn-nav-logout {
+[dir="rtl"] .mobile-nav-actions .btn-nav-logout,
+[dir="rtl"] .mobile-nav-actions .btn-nav-appointment {
   text-align: center !important;
   justify-content: center !important;
 }
