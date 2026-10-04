@@ -148,8 +148,8 @@
         'Achilles Tendon Repair & Ankle Ligament Reconstruction',
         'Post-Fracture Open Reduction Internal Fixation (ORIF)'
       ],
-      modalityImage: 'assets/images/step-strengthening.jpg',
-      modalityAlt: 'Post-operative knee joint mobilization and rehabilitation',
+      modalityImage: 'assets/images/home2-biodex-dynamometry.jpg',
+      modalityAlt: 'Isokinetic dynamometry strength restoration and post-operative joint rehabilitation',
       modalities: [
         {
           icon: 'fas fa-procedures',
@@ -261,8 +261,8 @@
         'Post-Traumatic Chronic Whiplash Sensitivity',
         'Persistent Non-Specific Chronic Lower Back Discomfort'
       ],
-      modalityImage: 'assets/images/step-recovery.jpg',
-      modalityAlt: 'Myofascial trigger point dry needling and chronic pain therapy',
+      modalityImage: 'assets/images/home2-pneumatic-recovery.jpg',
+      modalityAlt: 'Pneumatic compression and multimodal gentle recovery therapy',
       modalities: [
         {
           icon: 'fas fa-feather-alt',
@@ -374,8 +374,8 @@
         'Lumbar Spinal Stenosis & Spondylolisthesis',
         'Post-Spinal Fusion & Discectomy Reconditioning'
       ],
-      modalityImage: 'assets/images/therapist-treatment-jenkins.jpg',
-      modalityAlt: 'Dr. Sarah Jenkins performing targeted cervical and spinal joint mobilization therapy',
+      modalityImage: 'assets/images/anatomy-spine.svg',
+      modalityAlt: 'Vertebral column and spinal decompression blueprint',
       modalities: [
         {
           icon: 'fas fa-hands-helping',
@@ -487,8 +487,8 @@
         'Acromioclavicular (AC) Joint Sprains & Glenohumeral Instability',
         'Rheumatoid Joint Morning Stiffness & Limited Articulation'
       ],
-      modalityImage: 'assets/images/clinic-intro-consult.jpg',
-      modalityAlt: 'Knee joint mobilization and osteoarthritis physical therapy',
+      modalityImage: 'assets/images/home2-overhead-arm.jpg',
+      modalityAlt: 'Targeted joint mobilization and shoulder range-of-motion therapy',
       modalities: [
         {
           icon: 'fas fa-hand-holding-medical',
@@ -600,8 +600,8 @@
         'Deep Gluteal & Piriformis Compression Syndrome',
         'Plantar Fascia & Calf Gastrocnemius Contractures'
       ],
-      modalityImage: 'assets/images/step-therapy.jpg',
-      modalityAlt: 'Manual myofascial release and active mobility therapy',
+      modalityImage: 'assets/images/therapist-treatment-jenkins.jpg',
+      modalityAlt: 'Instrument-assisted soft tissue mobilization and active myofascial release',
       modalities: [
         {
           icon: 'fas fa-cut',
@@ -826,8 +826,8 @@
         'Interscapular Burning Pain Between Shoulder Blades',
         'Desk-Related Muscle Exhaustion & Lumbar Fatigue'
       ],
-      modalityImage: 'assets/images/clinic-reception.jpg',
-      modalityAlt: 'Workstation ergonomic assessment and spinal posture correction',
+      modalityImage: 'assets/images/service-posture-modality.jpg',
+      modalityAlt: 'Computerized 3D digital spinal posture and ergonomic alignment analysis',
       modalities: [
         {
           icon: 'fas fa-street-view',
@@ -939,8 +939,8 @@
         'Degenerative Joint Stiffness in Knees & Hips',
         'Difficulty Rising From Low Chairs or Stepping Curbs'
       ],
-      modalityImage: 'assets/images/step-assessment.jpg',
-      modalityAlt: 'Senior mobility assessment and gentle balance retraining',
+      modalityImage: 'assets/images/service-senior-modality.jpg',
+      modalityAlt: 'Senior balance training station with parallel bars and stability platforms',
       modalities: [
         {
           icon: 'fas fa-user-shield',
@@ -1052,8 +1052,8 @@
         'Busy Executives Demanding Concierge Care at Home',
         'Post-Fall Recovery Requiring Home Environment Safety Audit'
       ],
-      modalityImage: 'assets/images/clinic-exterior.jpg',
-      modalityAlt: 'Home therapy consultation and ergonomic home environment adaptation',
+      modalityImage: 'assets/images/service-home-modality.jpg',
+      modalityAlt: 'Mobile physical therapy portable equipment kit and in-home consultation',
       modalities: [
         {
           icon: 'fas fa-house-user',
@@ -1163,8 +1163,10 @@
         'Juvenile Sports Injuries & Growth Plate Apophysitis (Osgood-Schlatter)',
         'Cerebral Palsy, Spina Bifida & Neuromuscular Conditions'
       ],
-      modalitiesImg: 'assets/images/clinic-team.jpg',
-      modalitiesAlt: 'Pediatric physical therapy session with child and therapist',
+      modalityImage: 'assets/images/service-pediatric-modality.jpg',
+      modalityAlt: 'Pediatric sensory gym, motor skill obstacles and developmental coordination toys',
+      modalitiesImg: 'assets/images/service-pediatric-modality.jpg',
+      modalitiesAlt: 'Pediatric sensory gym, motor skill obstacles and developmental coordination toys',
       modalities: [
         {
           icon: 'fas fa-child',
@@ -1268,8 +1270,10 @@
         'Balance Deficits, Vertigo & Elevated High-Fall-Risk Patients',
         'Complex Regional Pain Syndrome (CRPS) & Neuropathic Allodynia'
       ],
-      modalitiesImg: 'assets/images/clinic-interior.jpg',
-      modalitiesAlt: 'Hydrotherapy pool physical therapy session in warm water with therapist',
+      modalityImage: 'assets/images/service-aquatic-modality.jpg',
+      modalityAlt: 'Hydrotherapy rehabilitation pool with underwater treadmill and aquatic resistance jets',
+      modalitiesImg: 'assets/images/service-aquatic-modality.jpg',
+      modalitiesAlt: 'Hydrotherapy rehabilitation pool with underwater treadmill and aquatic resistance jets',
       modalities: [
         {
           icon: 'fas fa-water',
@@ -1491,9 +1495,9 @@
         'Persistent Postural-Perceptual Dizziness (PPPD)',
         'Cervicogenic Dizziness & Motion Sensitivity in Crowded Environments'
       ],
-      modalityImage: 'assets/images/therapist-consult-laurent.jpg',
-      modalitiesImg: 'assets/images/therapist-consult-laurent.jpg',
-      modalityAlt: 'Vestibular rehabilitation gaze stabilization and balance testing',
+      modalityImage: 'assets/images/home2-concussion.jpg',
+      modalitiesImg: 'assets/images/home2-concussion.jpg',
+      modalityAlt: 'Vestibular ocular motor screening and post-concussion balance testing',
       modalities: [
         {
           icon: 'fas fa-sync-alt',
@@ -1606,9 +1610,9 @@
         'Biceps Tenodesis & Subpectoral Fixation Recovery',
         'Patellar & Quadriceps Tendon Surgical Re-Attachment'
       ],
-      modalityImage: 'assets/images/therapist-consult-sterling.jpg',
-      modalitiesImg: 'assets/images/therapist-consult-sterling.jpg',
-      modalityAlt: 'Post-operative tendon physical therapy and passive range of motion',
+      modalityImage: 'assets/images/home2-diagnostic-ultrasound.jpg',
+      modalitiesImg: 'assets/images/home2-diagnostic-ultrasound.jpg',
+      modalityAlt: 'High-resolution diagnostic ultrasound imaging for healing tendon tissue',
       modalities: [
         {
           icon: 'fas fa-hands',
@@ -1721,9 +1725,9 @@
         'Plantar Fasciitis & Calcaneal Heel Pain with Running',
         'Gluteal Amnesia, Pelvic Drop (Trendelenburg) & Overstriding'
       ],
-      modalityImage: 'assets/images/home2-velocity-lab.jpg',
-      modalitiesImg: 'assets/images/home2-velocity-lab.jpg',
-      modalityAlt: '3D running gait analysis and biomechanical motion capture',
+      modalityImage: 'assets/images/home2-mocap-telemetry.jpg',
+      modalitiesImg: 'assets/images/home2-mocap-telemetry.jpg',
+      modalityAlt: '3D dual-camera motion capture and synchronized ground reaction force plates',
       modalities: [
         {
           icon: 'fas fa-video',
