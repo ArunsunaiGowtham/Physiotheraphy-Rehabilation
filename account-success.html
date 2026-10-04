@@ -19,9 +19,23 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/rtl.css" rel="stylesheet">
 </head>
-<body class="bg-surface-alt d-flex align-items-center min-vh-100 py-5">
+<body class="bg-surface-alt d-flex flex-column min-vh-100">
 
-  <div class="container">
+  <header class="py-3 px-3 px-md-4 border-bottom border-subtle bg-surface">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a href="index.html" class="text-muted small text-decoration-none d-inline-flex align-items-center gap-2">
+        <i class="fas fa-arrow-left"></i> <span>Back to Main Website</span>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <button class="theme-toggle-btn" type="button" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button class="rtl-toggle-btn" type="button" aria-label="Toggle Direction">
+          <i class="fas fa-right-left"></i> <span class="dir-text">RTL</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container my-auto py-4">
     <div class="row justify-content-center">
       <div class="col-md-7 col-lg-5">
         <div class="text-center mb-4">

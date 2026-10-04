@@ -22,11 +22,18 @@
 <body class="d-flex flex-column min-vh-100 justify-content-between">
 
   <!-- Header -->
-  <header class="site-header py-3">
-    <div class="container text-center">
-      <a href="index.html">
-        <img src="assets/images/logo.svg" alt="PhysioLife Logo" height="42">
+  <header class="site-header py-3 px-3 px-md-4">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a href="index.html" class="navbar-brand">
+        <img src="assets/images/logo.svg" alt="PhysioLife Logo" height="40" class="logo-light">
+        <img src="assets/images/logo-dark.svg" alt="PhysioLife Logo" height="40" class="logo-dark">
       </a>
+      <div class="d-flex align-items-center gap-2">
+        <button class="theme-toggle-btn" type="button" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button class="rtl-toggle-btn" type="button" aria-label="Toggle Direction">
+          <i class="fas fa-right-left"></i> <span class="dir-text">RTL</span>
+        </button>
+      </div>
     </div>
   </header>
 
