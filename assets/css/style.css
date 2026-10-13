@@ -4034,3 +4034,62 @@ img {
   object-fit: cover;
   object-position: center 15%;
 }
+
+/* ==========================================================================
+   Hassle-Free Care - Insurance Brands Strip (Equal Alignment)
+   ========================================================================== */
+.insurance-brands-strip {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  align-items: center !important;
+  justify-items: center !important;
+  width: 100% !important;
+}
+
+.insurance-brands-strip img {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 135px !important;
+  height: auto !important;
+  max-height: 38px !important;
+  object-fit: contain !important;
+  display: block !important;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.insurance-brands-strip img:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .insurance-brands-strip {
+    gap: 0.5rem !important;
+  }
+  .insurance-brands-strip img {
+    max-height: 32px !important;
+    max-width: 115px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .insurance-brands-strip {
+    gap: 0.65rem !important;
+  }
+  .insurance-brands-strip img {
+    max-height: 36px !important;
+    max-width: 125px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .insurance-brands-strip {
+    gap: 0.35rem !important;
+  }
+  .insurance-brands-strip img {
+    max-height: 26px !important;
+  }
+}
+
+
