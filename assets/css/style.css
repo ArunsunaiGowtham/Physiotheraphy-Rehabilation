@@ -1088,12 +1088,12 @@ img {
   .mobile-nav-actions .btn-nav-signup,
   .mobile-nav-actions .btn-nav-dashboard,
   .mobile-nav-actions .btn-nav-logout {
-    flex: 1 1 0% !important;
-    width: 0 !important;
-    min-width: 0 !important;
+    display: flex !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     min-height: 44px !important;
     height: 44px !important;
-    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     padding: 0.65rem 1rem !important;
@@ -1104,6 +1104,17 @@ img {
     box-sizing: border-box !important;
     white-space: nowrap !important;
     text-align: center !important;
+    margin: 0 !important;
+  }
+
+  .mobile-nav-actions .d-flex .btn-nav-login,
+  .mobile-nav-actions .d-flex .btn-nav-signup,
+  .mobile-nav-actions .d-flex .btn-nav-dashboard,
+  .mobile-nav-actions .d-flex .btn-nav-logout {
+    flex: 1 1 0% !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
   }
 
   .mobile-nav-actions .btn-nav-appointment {
@@ -1122,7 +1133,7 @@ img {
     box-sizing: border-box !important;
     white-space: nowrap !important;
     text-align: center !important;
-    margin-top: 0.5rem !important;
+    margin: 0 !important;
     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.28) !important;
     visibility: visible !important;
     opacity: 1 !important;
